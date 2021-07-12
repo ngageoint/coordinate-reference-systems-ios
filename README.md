@@ -11,4 +11,62 @@ Software source code previously released under an open source license and then m
 
 ### About ###
 
-Placeholder for future iOS implementation of [Coordinate Reference Systems Java](http://ngageoint.github.io/coordinate-reference-systems-java/)
+[Coordinate Reference Systems](http://ngageoint.github.io/coordinate-reference-systems-ios/) is an iOS library implementation of OGC's 'Geographic information — Well-known text representation of coordinate reference systems' ([18-010r7](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html)) specification.
+
+For projection conversions between coordinates, see [Projections](https://ngageoint.github.io/projections-ios/).
+
+### Usage ###
+
+View the latest [Appledoc](http://ngageoint.github.io/coordinate-reference-systems-ios/docs/api/)
+
+```objectivec
+
+// TODO
+
+```
+
+### Build ###
+
+[![Build & Test](https://github.com/ngageoint/coordinate-reference-systems-ios/workflows/Build%20&%20Test/badge.svg)](https://github.com/ngageoint/coordinate-reference-systems-ios/actions/workflows/build-test.yml)
+
+Build this repository using Xcode and/or CocoaPods:
+
+    pod repo update
+    pod install
+
+Open crs-ios.xcworkspace in Xcode or build from command line:
+
+    xcodebuild -workspace 'crs-ios.xcworkspace' -scheme crs-ios build
+
+Run tests from Xcode or from command line:
+
+    xcodebuild test -workspace 'crs-ios.xcworkspace' -scheme crs-ios -destination 'platform=iOS Simulator,name=iPhone 12'
+
+### Include Library ###
+
+Include this repository by specifying it in a Podfile using a supported option.
+
+Pull from [CocoaPods](https://cocoapods.org/pods/crs-ios):
+
+    pod 'crs-ios', '~> 1.0.0'
+
+Pull from GitHub:
+
+    pod 'crs-ios', :git => 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :branch => 'master'
+    pod 'crs-ios', :git => 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :tag => '1.0.0'
+
+Include as local project:
+
+    pod 'crs-ios', :path => '../coordinate-reference-systems-ios'
+
+### Swift ###
+
+To use from Swift, import the crs-ios bridging header from the Swift project's bridging header
+
+    #import "crs-ios-Bridging-Header.h"
+
+```swift
+
+// TODO
+
+```
