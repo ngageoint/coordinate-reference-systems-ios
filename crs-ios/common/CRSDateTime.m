@@ -46,7 +46,102 @@ static NSString *PLUS_SIGN = @"+";
 static NSString *MINUS_SIGN = @"-";
 
 +(CRSDateTime *) parse: (NSString *) text{
-    // TODO
+
+    CRSDateTime *dateTime = nil;
+    
+    if(text != nil && text.length >= 4){
+        
+        NSArray<NSString *> *dateTimeParts = [text componentsSeparatedByString:TIME_DESIGNATOR];
+        
+        NSString *date = nil;
+        
+        int numDateTimeParts = (int) dateTimeParts.count;
+        if(numDateTimeParts == 1 || numDateTimeParts == 2){
+            date = [dateTimeParts firstObject];
+        }
+        
+        if(date != nil){
+            
+            NSArray<NSString *> *dateParts = [date componentsSeparatedByString:HYPHEN];
+            int numDateParts = (int) dateParts.count;
+            
+            if(numDateParts >= 1 && numDateParts <= 3){
+                dateTime = [[CRSDateTime alloc] init];
+                
+                [dateTime setYear:[[dateParts firstObject] intValue]];
+                
+                if(numDateParts > 1){
+                    NSNumber *datePartTwo = [NSNumber numberWithInt:[[dateParts objectAtIndex:1] intValue]];
+                    if(numDateParts == 2){
+                        if([dateParts objectAtIndex:1].length == 2){
+                            [dateTime setMonth:datePartTwo];
+                        }else{
+                            [dateTime setDay:datePartTwo];
+                        }
+                    }else{
+                        [dateTime setMonth:datePartTwo];
+                        [dateTime setDay:[NSNumber numberWithInt:[[dateParts objectAtIndex:2] intValue]]];
+                    }
+                }
+            }
+            
+        }
+        
+        if(dateTime != nil && numDateTimeParts == 2){
+            NSString *timeWithZone = [dateTimeParts objectAtIndex:1];
+            
+            NSRange zoneRange = [timeWithZone rangeOfString:UTC];
+            if(zoneRange.length == 0){
+                zoneRange = [timeWithZone rangeOfString:PLUS_SIGN];
+                if(zoneRange.length == 0){
+                    zoneRange = [timeWithZone rangeOfString:MINUS_SIGN];
+                }
+            }
+            if(zoneRange.length > 0){
+                
+                NSString *timeZone = [timeWithZone substringFromIndex:zoneRange.location];
+                if(![timeZone isEqualToString:UTC]){
+                    NSArray<NSString *> *timeZoneParts = [timeZone componentsSeparatedByString:COLON];
+                    [dateTime setTimeZoneHour:[NSNumber numberWithInt:[[timeZoneParts firstObject] intValue]]];
+                    if(timeZoneParts.count == 2){
+                        [dateTime setTimeZoneMinute:[NSNumber numberWithInt:[[timeZoneParts objectAtIndex:1] intValue]]];
+                    }
+                }
+                
+                NSString *time = [timeWithZone substringToIndex:zoneRange.location];
+                NSArray<NSString *> *timeParts = [time componentsSeparatedByString:COLON];
+                int numTimeParts = (int) timeParts.count;
+
+                if(numTimeParts >= 1 && numTimeParts <= 3){
+                    [dateTime setHour:[NSNumber numberWithInt:[[timeParts firstObject] intValue]]];
+                    if(numTimeParts > 1){
+                        [dateTime setMinute:[NSNumber numberWithInt:[[timeParts objectAtIndex:1] intValue]]];
+                        if(numTimeParts > 2){
+                            NSString *seconds = [timeParts objectAtIndex:2];
+                            NSRange decimalRange = [seconds rangeOfString:PERIOD];
+                            if(decimalRange.length > 0){
+                                NSString *fraction = [NSString stringWithFormat:@"0%@%@", PERIOD, [seconds substringFromIndex:decimalRange.location + 1]];
+                                [dateTime setFraction:[[NSDecimalNumber alloc] initWithDouble:[fraction doubleValue]]];
+                                seconds = [seconds substringToIndex:decimalRange.location];
+                            }
+                            [dateTime setSecond:[NSNumber numberWithInt:[seconds intValue]]];
+                        }
+                    }
+                }
+            }
+            
+            if (![dateTime hasHour]) {
+                dateTime = nil;
+            }
+        }
+        
+    }
+    
+    if (dateTime == nil) {
+        [NSException raise:@"Invalid Date Time" format:@"Invalid Date and Time value: %@", text];
+    }
+
+    return dateTime;
 }
 
 +(CRSDateTime *) tryParse: (NSString *) text{
@@ -253,13 +348,31 @@ static NSString *MINUS_SIGN = @"-";
                 [text appendFormat:@"%02d", [[self second] intValue]];
                 if([self hasFraction]){
                     NSString *fraction = [[self fraction] stringValue];
-                    //fraction rangeOfString:<#(nonnull NSString *)#>
-                    // TODO
+                    NSRange periodRange = [fraction rangeOfString:PERIOD];
+                    if(periodRange.length != 0 && periodRange.location + 1 < fraction.length){
+                        [text appendString:COLON];
+                        [text appendString:[fraction substringFromIndex:periodRange.location + 1]];
+                    }
                 }
             }
         }
+        if([self isTimeZoneUTC]){
+            [text appendString:UTC];
+        }else{
+            int timeZoneHour = [[self timeZoneHour] intValue];
+            if(timeZoneHour >= 0){
+                [text appendString:PLUS_SIGN];
+            }else{
+                [text appendString:MINUS_SIGN];
+                timeZoneHour *= -1;
+            }
+            [text appendFormat:@"%02d", timeZoneHour];
+            if([self hasTimeZoneMinute]){
+                [text appendString:COLON];
+                [text appendFormat:@"%02d", [[self timeZoneMinute] intValue]];
+            }
+        }
     }
-    // TODO
     return text;
 }
 
