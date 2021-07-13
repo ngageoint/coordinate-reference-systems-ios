@@ -9,6 +9,8 @@
 #ifndef CRSIdentifiable_h
 #define CRSIdentifiable_h
 
+#import "CRSIdentifier.h"
+
 /**
  *  Identifiable object interface
  */
@@ -19,7 +21,7 @@
  *
  * @return identifiers
  */
--(NSMutableArray<CRSIdentifier> *) identifiers;
+-(NSMutableArray<CRSIdentifier *> *) identifiers;
 
 /**
  * Has identifiers
@@ -50,7 +52,7 @@
  * @param identifiers
  *            identifiers
  */
--(void) setIdentifiers: (NSArray<CRSIdentifier> *) identifiers;
+-(void) setIdentifiers: (NSArray<CRSIdentifier *> *) identifiers;
 
 /**
  * Add the identifier
@@ -66,7 +68,7 @@
  * @param identifiers
  *            identifiers
  */
--(void) addIdentifiers: (NSArray<CRSIdentifier> *) identifiers;
+-(void) addIdentifiers: (NSArray<CRSIdentifier *> *) identifiers;
 
 @end
 

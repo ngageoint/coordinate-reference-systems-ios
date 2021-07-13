@@ -7,6 +7,7 @@
 //
 
 #import "CRSIdentifier.h"
+#import "CRSWriter.h"
 
 @implementation CRSIdentifier
 
@@ -44,25 +45,52 @@
     return [self uri] != nil;
 }
 
-- (BOOL)equals:(CRSIdentifier *)identifier {
-    if (self == identifier)
+- (BOOL) equals: (CRSIdentifier *) identifier{
+    if (self == identifier){
         return YES;
-    if (identifier == nil)
+    }
+    if (identifier == nil){
         return NO;
-    if (![self.name isEqualToString:identifier.name])
+    }
+    if (_name == nil) {
+        if (identifier.name != nil){
+            return NO;
+        }
+    } else if (![_name isEqualToString:identifier.name]){
         return NO;
-    if (![self.uniqueIdentifier isEqualToString:identifier.uniqueIdentifier])
+    }
+    if (_uniqueIdentifier == nil) {
+        if (identifier.uniqueIdentifier != nil){
+            return NO;
+        }
+    } else if (![_uniqueIdentifier isEqualToString:identifier.uniqueIdentifier]){
         return NO;
-    if (![self.version isEqualToString:identifier.version])
+    }
+    if (_version == nil) {
+        if (identifier.version != nil){
+            return NO;
+        }
+    } else if (![_version isEqualToString:identifier.version]){
         return NO;
-    if (![self.citation isEqualToString:identifier.citation])
+    }
+    if (_citation == nil) {
+        if (identifier.citation != nil){
+            return NO;
+        }
+    } else if (![_citation isEqualToString:identifier.citation]){
         return NO;
-    if (![self.uri isEqualToString:identifier.uri])
+    }
+    if (_uri == nil) {
+        if (identifier.uri != nil){
+            return NO;
+        }
+    } else if (![_uri isEqualToString:identifier.uri]){
         return NO;
+    }
     return YES;
 }
 
-- (BOOL)isEqual:(id)object {
+- (BOOL) isEqual: (id) object{
     if (self == object) {
         return YES;
     }
@@ -74,21 +102,21 @@
     return [self equals:(CRSIdentifier *)object];
 }
 
-- (NSUInteger)hash {
+- (NSUInteger) hash{
     NSUInteger prime = 31;
     NSUInteger result = 1;
-    result = prime * result + ((self.name == nil) ? 0 : [self.name hash]);
-    result = prime * result + ((self.uniqueIdentifier == nil) ? 0 : [self.uniqueIdentifier hash]);
-    result = prime * result + ((self.version == nil) ? 0 : [self.version hash]);
-    result = prime * result + ((self.citation == nil) ? 0 : [self.citation hash]);
-    result = prime * result + ((self.uri == nil) ? 0 : [self.uri hash]);
+    result = prime * result + ((_name == nil) ? 0 : [_name hash]);
+    result = prime * result + ((_uniqueIdentifier == nil) ? 0 : [_uniqueIdentifier hash]);
+    result = prime * result + ((_version == nil) ? 0 : [_version hash]);
+    result = prime * result + ((_citation == nil) ? 0 : [_citation hash]);
+    result = prime * result + ((_uri == nil) ? 0 : [_uri hash]);
     return result;
 }
 
 -(NSString *) description{
-    NSString *value = nil;
-    // TODO
-    return value;
+    CRSWriter *writer = [[CRSWriter alloc] init];
+    [writer writeIdentifier:self];
+    return [writer description];
 }
 
 @end

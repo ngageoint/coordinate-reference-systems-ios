@@ -7,11 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CRSScopeExtentIdentifierRemark.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface CRSObject : NSObject
+@interface CRSObject : NSObject<CRSScopeExtentIdentifierRemark>
 
 @end
-
-NS_ASSUME_NONNULL_END

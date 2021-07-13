@@ -22,6 +22,18 @@
 		04BCA98C269CBE400015DEC0 /* CRSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA98A269CBE400015DEC0 /* CRSObject.m */; };
 		04BCA992269CC4A40015DEC0 /* CRSIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA990269CC4A40015DEC0 /* CRSIdentifier.h */; };
 		04BCA993269CC4A40015DEC0 /* CRSIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA991269CC4A40015DEC0 /* CRSIdentifier.m */; };
+		04BCA998269DB03B0015DEC0 /* CRSWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA996269DB03B0015DEC0 /* CRSWriter.h */; };
+		04BCA999269DB03B0015DEC0 /* CRSWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA997269DB03B0015DEC0 /* CRSWriter.m */; };
+		04BCA99D269DC4540015DEC0 /* CRSGeographicBoundingBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA99B269DC4540015DEC0 /* CRSGeographicBoundingBox.h */; };
+		04BCA99E269DC4540015DEC0 /* CRSGeographicBoundingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA99C269DC4540015DEC0 /* CRSGeographicBoundingBox.m */; };
+		04BCA9A1269DD71C0015DEC0 /* CRSUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA99F269DD71C0015DEC0 /* CRSUnit.h */; };
+		04BCA9A2269DD71C0015DEC0 /* CRSUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9A0269DD71C0015DEC0 /* CRSUnit.m */; };
+		04BCA9A5269DD78A0015DEC0 /* CRSUnitTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9A3269DD78A0015DEC0 /* CRSUnitTypes.h */; };
+		04BCA9A6269DD78A0015DEC0 /* CRSUnitTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9A4269DD78A0015DEC0 /* CRSUnitTypes.m */; };
+		04BCA9A9269E06E90015DEC0 /* CRSVerticalExtent.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9A7269E06E90015DEC0 /* CRSVerticalExtent.h */; };
+		04BCA9AA269E06E90015DEC0 /* CRSVerticalExtent.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9A8269E06E90015DEC0 /* CRSVerticalExtent.m */; };
+		04BCA9AD269E18320015DEC0 /* CRSDateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9AB269E18320015DEC0 /* CRSDateTime.h */; };
+		04BCA9AE269E18320015DEC0 /* CRSDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9AC269E18320015DEC0 /* CRSDateTime.m */; };
 		04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4562D209B6D1000FC299E /* CRSTestUtils.m */; };
 		455990E02D380E531EE4ACDC /* libPods-crs-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2802BAC0915BABF2D048D9 /* libPods-crs-ios.a */; };
 		B5D94958E350F092F31540ED /* libPods-crs-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-crs-iosTests.a */; };
@@ -58,6 +70,19 @@
 		04BCA98E269CC07E0015DEC0 /* CRSIdentifiable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSIdentifiable.h; sourceTree = "<group>"; };
 		04BCA990269CC4A40015DEC0 /* CRSIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSIdentifier.h; sourceTree = "<group>"; };
 		04BCA991269CC4A40015DEC0 /* CRSIdentifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSIdentifier.m; sourceTree = "<group>"; };
+		04BCA996269DB03B0015DEC0 /* CRSWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSWriter.h; sourceTree = "<group>"; };
+		04BCA997269DB03B0015DEC0 /* CRSWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSWriter.m; sourceTree = "<group>"; };
+		04BCA99A269DBA1C0015DEC0 /* CRSScopeExtentIdentifierRemark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSScopeExtentIdentifierRemark.h; sourceTree = "<group>"; };
+		04BCA99B269DC4540015DEC0 /* CRSGeographicBoundingBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSGeographicBoundingBox.h; sourceTree = "<group>"; };
+		04BCA99C269DC4540015DEC0 /* CRSGeographicBoundingBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSGeographicBoundingBox.m; sourceTree = "<group>"; };
+		04BCA99F269DD71C0015DEC0 /* CRSUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSUnit.h; sourceTree = "<group>"; };
+		04BCA9A0269DD71C0015DEC0 /* CRSUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSUnit.m; sourceTree = "<group>"; };
+		04BCA9A3269DD78A0015DEC0 /* CRSUnitTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSUnitTypes.h; sourceTree = "<group>"; };
+		04BCA9A4269DD78A0015DEC0 /* CRSUnitTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSUnitTypes.m; sourceTree = "<group>"; };
+		04BCA9A7269E06E90015DEC0 /* CRSVerticalExtent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSVerticalExtent.h; sourceTree = "<group>"; };
+		04BCA9A8269E06E90015DEC0 /* CRSVerticalExtent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSVerticalExtent.m; sourceTree = "<group>"; };
+		04BCA9AB269E18320015DEC0 /* CRSDateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSDateTime.h; sourceTree = "<group>"; };
+		04BCA9AC269E18320015DEC0 /* CRSDateTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSDateTime.m; sourceTree = "<group>"; };
 		04F4562D209B6D1000FC299E /* CRSTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSTestUtils.m; sourceTree = "<group>"; };
 		04F4562E209B6D1000FC299E /* CRSTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSTestUtils.h; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-crs-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-crs-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				04BCA98F269CC0CC0015DEC0 /* common */,
+				04BCA995269DAFF50015DEC0 /* wkt */,
 				042FC6D41B96453E00549A4B /* crs_ios.h */,
 				04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */,
 				04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */,
@@ -160,11 +186,31 @@
 		04BCA98F269CC0CC0015DEC0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				04BCA9AB269E18320015DEC0 /* CRSDateTime.h */,
+				04BCA9AC269E18320015DEC0 /* CRSDateTime.m */,
 				04BCA98E269CC07E0015DEC0 /* CRSIdentifiable.h */,
 				04BCA990269CC4A40015DEC0 /* CRSIdentifier.h */,
 				04BCA991269CC4A40015DEC0 /* CRSIdentifier.m */,
+				04BCA99A269DBA1C0015DEC0 /* CRSScopeExtentIdentifierRemark.h */,
+				04BCA99B269DC4540015DEC0 /* CRSGeographicBoundingBox.h */,
+				04BCA99C269DC4540015DEC0 /* CRSGeographicBoundingBox.m */,
+				04BCA99F269DD71C0015DEC0 /* CRSUnit.h */,
+				04BCA9A0269DD71C0015DEC0 /* CRSUnit.m */,
+				04BCA9A3269DD78A0015DEC0 /* CRSUnitTypes.h */,
+				04BCA9A4269DD78A0015DEC0 /* CRSUnitTypes.m */,
+				04BCA9A7269E06E90015DEC0 /* CRSVerticalExtent.h */,
+				04BCA9A8269E06E90015DEC0 /* CRSVerticalExtent.m */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		04BCA995269DAFF50015DEC0 /* wkt */ = {
+			isa = PBXGroup;
+			children = (
+				04BCA996269DB03B0015DEC0 /* CRSWriter.h */,
+				04BCA997269DB03B0015DEC0 /* CRSWriter.m */,
+			);
+			path = wkt;
 			sourceTree = "<group>";
 		};
 		63206AE083C9F99B2058A9EE /* Frameworks */ = {
@@ -194,10 +240,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BCA9A1269DD71C0015DEC0 /* CRSUnit.h in Headers */,
 				04BCA992269CC4A40015DEC0 /* CRSIdentifier.h in Headers */,
 				0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */,
+				04BCA998269DB03B0015DEC0 /* CRSWriter.h in Headers */,
 				04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */,
+				04BCA9A5269DD78A0015DEC0 /* CRSUnitTypes.h in Headers */,
+				04BCA9AD269E18320015DEC0 /* CRSDateTime.h in Headers */,
+				04BCA99D269DC4540015DEC0 /* CRSGeographicBoundingBox.h in Headers */,
 				042FC6AF1B96421E00549A4B /* (null) in Headers */,
+				04BCA9A9269E06E90015DEC0 /* CRSVerticalExtent.h in Headers */,
 				042FC6D51B96453E00549A4B /* crs_ios.h in Headers */,
 				042FC6D31B96421E00549A4B /* crs-ios-Prefix.pch in Headers */,
 				04BCA987269CAE880015DEC0 /* CRSTypes.h in Headers */,
@@ -345,9 +397,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BCA98C269CBE400015DEC0 /* CRSObject.m in Sources */,
+				04BCA99E269DC4540015DEC0 /* CRSGeographicBoundingBox.m in Sources */,
+				04BCA9A2269DD71C0015DEC0 /* CRSUnit.m in Sources */,
 				04BCA993269CC4A40015DEC0 /* CRSIdentifier.m in Sources */,
 				04BCA988269CAE880015DEC0 /* CRSTypes.m in Sources */,
+				04BCA9AA269E06E90015DEC0 /* CRSVerticalExtent.m in Sources */,
 				04BCA984269CAAB40015DEC0 /* CRSCategoryTypes.m in Sources */,
+				04BCA9AE269E18320015DEC0 /* CRSDateTime.m in Sources */,
+				04BCA9A6269DD78A0015DEC0 /* CRSUnitTypes.m in Sources */,
+				04BCA999269DB03B0015DEC0 /* CRSWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
