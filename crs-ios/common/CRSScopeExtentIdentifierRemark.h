@@ -10,6 +10,7 @@
 #define CRSScopeExtentIdentifierRemark_h
 
 #import "CRSIdentifiable.h"
+#import "CRSUsage.h"
 
 /**
  *  Interface Scope, Extent, Identifier, and Remark values

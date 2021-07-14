@@ -77,6 +77,13 @@
 +(CRSDateTime *) tryParse: (NSString *) text;
 
 /**
+ *  Create
+ *
+ *  @return new instance
+ */
++(CRSDateTime *) create;
+
+/**
  *  Initialize
  *
  *  @return new instance
@@ -161,7 +168,7 @@
  *
  * @return true if has time zone minute
  */
--(BOOL) hasTimeZoneMinute
+-(BOOL) hasTimeZoneMinute;
 
 /**
  * Is the time zone UTC

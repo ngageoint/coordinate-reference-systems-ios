@@ -11,6 +11,10 @@
 
 @implementation CRSIdentifier
 
++(CRSIdentifier *) create{
+    return [[CRSIdentifier alloc] init];
+}
+
 -(instancetype) init{
     self = [super init];
     return self;
@@ -114,7 +118,7 @@
 }
 
 -(NSString *) description{
-    CRSWriter *writer = [[CRSWriter alloc] init];
+    CRSWriter *writer = [CRSWriter create];
     [writer writeIdentifier:self];
     return [writer description];
 }

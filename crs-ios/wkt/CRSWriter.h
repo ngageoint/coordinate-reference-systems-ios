@@ -7,15 +7,35 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CRSObject.h"
 #import "CRSUnit.h"
 #import "CRSIdentifier.h"
+#import "CRSUsage.h"
+#import "CRSExtent.h"
 #import "CRSGeographicBoundingBox.h"
 #import "CRSVerticalExtent.h"
+#import "CRSTemporalExtent.h"
 
 /**
  * Well-Known Text writer
  */
 @interface CRSWriter : NSObject
+
+/**
+ * Write a coordinate reference system to well-known text
+ *
+ * @param crs
+ *            coordinate reference system
+ * @return well-known text
+ */
++(NSString *) write: (CRSObject *) crs;
+
+/**
+ *  Create
+ *
+ *  @return new instance
+ */
++(CRSWriter *) create;
 
 /**
  *  Initialize
@@ -39,6 +59,14 @@
 -(NSMutableString *) text;
 
 /**
+ * Write a CRS to well-known text
+ *
+ * @param crs
+ *            coordinate reference system
+ */
+-(void) writeCRS: (CRSObject *) crs;
+
+/**
  * Write a unit to well-known text
  *
  * @param unit
@@ -55,6 +83,22 @@
 -(void) writeIdentifier: (CRSIdentifier *) identifier;
 
 /**
+ * Write a usage to well-known text
+ *
+ * @param usage
+ *            usage
+ */
+-(void) writeUsage: (CRSUsage *) usage;
+
+/**
+ * Write an extent to well-known text
+ *
+ * @param extent
+ *            extent
+ */
+-(void) writeExtent: (CRSExtent *) extent;
+
+/**
  * Write a geographic bounding box to well-known text
  *
  * @param geographicBoundingBox
@@ -69,5 +113,13 @@
  *            vertical extent
  */
 -(void) writeVerticalExtent: (CRSVerticalExtent *) verticalExtent;
+
+/**
+ * Write a temporal extent to well-known text
+ *
+ * @param temporalExtent
+ *            temporal extent
+ */
+-(void) writeTemporalExtent: (CRSTemporalExtent *) temporalExtent;
 
 @end

@@ -37,6 +37,13 @@
 @property (nonatomic, strong) NSMutableArray<CRSIdentifier *> *identifiers;
 
 /**
+ *  Create
+ *
+ *  @return new instance
+ */
++(CRSUnit *) create;
+
+/**
  *  Initialize
  *
  *  @return new instance

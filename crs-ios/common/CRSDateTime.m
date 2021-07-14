@@ -66,7 +66,7 @@ static NSString *MINUS_SIGN = @"-";
             int numDateParts = (int) dateParts.count;
             
             if(numDateParts >= 1 && numDateParts <= 3){
-                dateTime = [[CRSDateTime alloc] init];
+                dateTime = [CRSDateTime create];
                 
                 [dateTime setYear:[[dateParts firstObject] intValue]];
                 
@@ -152,6 +152,10 @@ static NSString *MINUS_SIGN = @"-";
         // eat
     }
     return dateTime;
+}
+
++(CRSDateTime *) create{
+    return [CRSDateTime create];
 }
 
 -(instancetype) init{

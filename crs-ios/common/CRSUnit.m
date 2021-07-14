@@ -11,6 +11,10 @@
 
 @implementation CRSUnit
 
++(CRSUnit *) create{
+    return [[CRSUnit alloc] init];
+}
+
 -(instancetype) init{
     self = [super init];
     return self;
@@ -122,7 +126,7 @@
 }
 
 -(NSString *) description{
-    CRSWriter *writer = [[CRSWriter alloc] init];
+    CRSWriter *writer = [CRSWriter create];
     [writer writeUnit:self];
     return [writer description];
 }

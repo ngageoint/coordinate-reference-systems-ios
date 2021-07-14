@@ -30,6 +30,13 @@
 @property (nonatomic, strong) CRSUnit *unit;
 
 /**
+ *  Create
+ *
+ *  @return new instance
+ */
++(CRSVerticalExtent *) create;
+
+/**
  *  Initialize
  *
  *  @return new instance

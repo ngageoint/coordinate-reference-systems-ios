@@ -39,6 +39,13 @@
 @property (nonatomic, strong) NSString *uri;
 
 /**
+ *  Create
+ *
+ *  @return new instance
+ */
++(CRSIdentifier *) create;
+
+/**
  *  Initialize
  *
  *  @return new instance

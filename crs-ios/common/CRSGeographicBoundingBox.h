@@ -34,6 +34,13 @@
 @property (nonatomic) double upperRightLongitude;
 
 /**
+ *  Create
+ *
+ *  @return new instance
+ */
++(CRSGeographicBoundingBox *) create;
+
+/**
  *  Initialize
  *
  *  @return new instance

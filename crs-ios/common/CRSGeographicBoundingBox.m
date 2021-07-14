@@ -11,6 +11,10 @@
 
 @implementation CRSGeographicBoundingBox
 
++(CRSGeographicBoundingBox *) create{
+    return [[CRSGeographicBoundingBox alloc] init];
+}
+
 -(instancetype) init{
     self = [super init];
     return self;
@@ -75,7 +79,7 @@
 }
 
 -(NSString *) description{
-    CRSWriter *writer = [[CRSWriter alloc] init];
+    CRSWriter *writer = [CRSWriter create];
     [writer writeGeographicBoundingBox:self];
     return [writer description];
 }

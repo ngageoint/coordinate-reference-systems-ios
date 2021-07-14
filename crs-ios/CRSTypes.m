@@ -12,7 +12,7 @@
 
 +(enum CRSCategoryType) categoryType: (enum CRSType) crsType{
     
-    enum CRSCategoryType category;
+    enum CRSCategoryType category = -1;
     
     switch(crsType){
             

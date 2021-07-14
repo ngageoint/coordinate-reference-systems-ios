@@ -11,6 +11,10 @@
 
 @implementation CRSVerticalExtent
 
++(CRSVerticalExtent *) create{
+    return [[CRSVerticalExtent alloc] init];
+}
+
 -(instancetype) init{
     self = [super init];
     return self;
@@ -79,7 +83,7 @@
 }
 
 -(NSString *) description{
-    CRSWriter *writer = [[CRSWriter alloc] init];
+    CRSWriter *writer = [CRSWriter create];
     [writer writeVerticalExtent:self];
     return [writer description];
 }
