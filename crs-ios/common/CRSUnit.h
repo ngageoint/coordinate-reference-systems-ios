@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "CRSIdentifiable.h"
 #import "CRSUnitTypes.h"
-#import "CRSIdentifier.h"
 
 /**
  * Unit

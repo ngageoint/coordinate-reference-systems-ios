@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "CRSObject.h"
+#import "CRSReferenceFrame.h"
+#import "CRSDatumEnsemble.h"
+#import "CRSDatumEnsembleMember.h"
+#import "CRSDynamic.h"
 #import "CRSUnit.h"
 #import "CRSIdentifier.h"
+#import "CRSCoordinateSystem.h"
+#import "CRSAxis.h"
 #import "CRSUsage.h"
 #import "CRSExtent.h"
 #import "CRSGeographicBoundingBox.h"
@@ -67,6 +73,38 @@
 -(void) writeCRS: (CRSObject *) crs;
 
 /**
+ * Write a reference frame to well-known text
+ *
+ * @param referenceFrame
+ *            reference frame
+ */
+-(void) writeReferenceFrame: (CRSReferenceFrame *) referenceFrame;
+
+/**
+ * Write a datum ensemble to well-known text
+ *
+ * @param datumEnsemble
+ *            datum ensemble
+ */
+-(void) writeDatumEnsemble: (CRSDatumEnsemble *) datumEnsemble;
+
+/**
+ * Write a datum ensemble member to well-known text
+ *
+ * @param datumEnsembleMember
+ *            datum ensemble member
+ */
+-(void) writeDatumEnsembleMember: (CRSDatumEnsembleMember *) datumEnsembleMember;
+
+/**
+ * Write a dynamic to well-known text
+ *
+ * @param dynamic
+ *            dynamic
+ */
+-(void) writeDynamic: (CRSDynamic *) dynamic;
+
+/**
  * Write a unit to well-known text
  *
  * @param unit
@@ -81,6 +119,22 @@
  *            identifier
  */
 -(void) writeIdentifier: (CRSIdentifier *) identifier;
+
+/**
+ * Write a coordinate system to well-known text
+ *
+ * @param coordinateSystem
+ *            coordinate system
+ */
+-(void) writeCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem;
+
+/**
+ * Write an axis to well-known text
+ *
+ * @param axis
+ *            axis
+ */
+-(void) writeAxis: (CRSAxis *) axis;
 
 /**
  * Write a usage to well-known text

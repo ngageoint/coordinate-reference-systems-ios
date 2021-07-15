@@ -51,11 +51,35 @@
     // TODO
 }
 
+-(void) writeReferenceFrame: (CRSReferenceFrame *) referenceFrame{
+    // TODO
+}
+
+-(void) writeDatumEnsemble: (CRSDatumEnsemble *) datumEnsemble{
+    // TODO
+}
+
+-(void) writeDatumEnsembleMember: (CRSDatumEnsembleMember *) datumEnsembleMember{
+    // TODO
+}
+
+-(void) writeDynamic: (CRSDynamic *) dynamic{
+    // TODO
+}
+
 -(void) writeUnit: (CRSUnit *) unit{
     // TODO
 }
 
 -(void) writeIdentifier: (CRSIdentifier *) identifier{
+    // TODO
+}
+
+-(void) writeCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+    // TODO
+}
+
+-(void) writeAxis: (CRSAxis *) axis{
     // TODO
 }
 

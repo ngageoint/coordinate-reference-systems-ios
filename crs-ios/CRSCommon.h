@@ -11,7 +11,7 @@
 /**
  * Common coordinate reference system and coordinate operations object
  */
-@interface CRSCommon : CRSObject
+@interface CRSCommon : CRSObject<CRSIdentifiable>
 
 /**
  *  Name
