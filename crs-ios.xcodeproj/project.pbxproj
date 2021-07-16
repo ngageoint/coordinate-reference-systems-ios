@@ -68,6 +68,8 @@
 		04BCA9EF26A1B2E60015DEC0 /* CRSOperationParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9ED26A1B2E60015DEC0 /* CRSOperationParameters.m */; };
 		04BCA9F226A1DBB80015DEC0 /* CRSOperationParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9F026A1DBB80015DEC0 /* CRSOperationParameter.h */; };
 		04BCA9F326A1DBB80015DEC0 /* CRSOperationParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9F126A1DBB80015DEC0 /* CRSOperationParameter.m */; };
+		04BCA9F626A203560015DEC0 /* CRSOperationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9F426A203560015DEC0 /* CRSOperationMethods.h */; };
+		04BCA9F726A203560015DEC0 /* CRSOperationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9F526A203560015DEC0 /* CRSOperationMethods.m */; };
 		04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4562D209B6D1000FC299E /* CRSTestUtils.m */; };
 		455990E02D380E531EE4ACDC /* libPods-crs-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2802BAC0915BABF2D048D9 /* libPods-crs-ios.a */; };
 		B5D94958E350F092F31540ED /* libPods-crs-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-crs-iosTests.a */; };
@@ -151,6 +153,8 @@
 		04BCA9ED26A1B2E60015DEC0 /* CRSOperationParameters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSOperationParameters.m; sourceTree = "<group>"; };
 		04BCA9F026A1DBB80015DEC0 /* CRSOperationParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSOperationParameter.h; sourceTree = "<group>"; };
 		04BCA9F126A1DBB80015DEC0 /* CRSOperationParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSOperationParameter.m; sourceTree = "<group>"; };
+		04BCA9F426A203560015DEC0 /* CRSOperationMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSOperationMethods.h; sourceTree = "<group>"; };
+		04BCA9F526A203560015DEC0 /* CRSOperationMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSOperationMethods.m; sourceTree = "<group>"; };
 		04F4562D209B6D1000FC299E /* CRSTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSTestUtils.m; sourceTree = "<group>"; };
 		04F4562E209B6D1000FC299E /* CRSTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSTestUtils.h; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-crs-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-crs-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,6 +317,8 @@
 		04BCA9C3269F77140015DEC0 /* operation */ = {
 			isa = PBXGroup;
 			children = (
+				04BCA9F426A203560015DEC0 /* CRSOperationMethods.h */,
+				04BCA9F526A203560015DEC0 /* CRSOperationMethods.m */,
 				04BCA9F026A1DBB80015DEC0 /* CRSOperationParameter.h */,
 				04BCA9F126A1DBB80015DEC0 /* CRSOperationParameter.m */,
 				04BCA9EC26A1B2E60015DEC0 /* CRSOperationParameters.h */,
@@ -374,6 +380,7 @@
 				04BCA9F226A1DBB80015DEC0 /* CRSOperationParameter.h in Headers */,
 				04BCA9E226A0BDE70015DEC0 /* CRSReferenceFrame.h in Headers */,
 				042FC6D31B96421E00549A4B /* crs-ios-Prefix.pch in Headers */,
+				04BCA9F626A203560015DEC0 /* CRSOperationMethods.h in Headers */,
 				04BCA9CE26A06B0C0015DEC0 /* CRSCoordinateSystemTypes.h in Headers */,
 				04BCA9B1269EFD480015DEC0 /* CRSTemporalExtent.h in Headers */,
 				04BCA9DA26A0A0C90015DEC0 /* CRSDatumEnsemble.h in Headers */,
@@ -548,6 +555,7 @@
 				04BCA9C2269F719E0015DEC0 /* CRSCoordinateReferenceSystem.m in Sources */,
 				04BCA9F326A1DBB80015DEC0 /* CRSOperationParameter.m in Sources */,
 				04BCA9CB269F7CBE0015DEC0 /* CRSAxis.m in Sources */,
+				04BCA9F726A203560015DEC0 /* CRSOperationMethods.m in Sources */,
 				04BCA999269DB03B0015DEC0 /* CRSWriter.m in Sources */,
 				04BCA9BA269F1FBC0015DEC0 /* CRSUsage.m in Sources */,
 			);
