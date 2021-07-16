@@ -21,6 +21,7 @@
 #import "CRSGeographicBoundingBox.h"
 #import "CRSVerticalExtent.h"
 #import "CRSTemporalExtent.h"
+#import "CRSOperationParameter.h"
 
 /**
  * Well-Known Text writer
@@ -175,5 +176,13 @@
  *            temporal extent
  */
 -(void) writeTemporalExtent: (CRSTemporalExtent *) temporalExtent;
+
+/**
+ * Write an operation parameter to well-known text
+ *
+ * @param parameter
+ *            operation parameter
+ */
+-(void) writeOperationParameter: (CRSOperationParameter *) operationParameter;
 
 @end

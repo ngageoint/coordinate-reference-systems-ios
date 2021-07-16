@@ -43,6 +43,32 @@
 +(CRSUnit *) create;
 
 /**
+ *  Create
+ *
+ * @param type
+ *            unit type
+ * @param name
+ *            name
+ *
+ *  @return new instance
+ */
++(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name;
+
+/**
+ *  Create
+ *
+ * @param type
+ *            unit type
+ * @param name
+ *            name
+ * @param conversionFactor
+ *            conversion factor
+ *
+ *  @return new instance
+ */
++(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor;
+
+/**
  *  Initialize
  *
  *  @return new instance

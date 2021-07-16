@@ -15,6 +15,14 @@
     return [[CRSUnit alloc] init];
 }
 
++(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name{
+    return [[CRSUnit alloc] initWithType:type andName:name];
+}
+
++(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor{
+    return [[CRSUnit alloc] initWithType:type andName:name andConversionFactor:conversionFactor];
+}
+
 -(instancetype) init{
     self = [super init];
     return self;
