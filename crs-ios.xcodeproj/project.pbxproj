@@ -84,6 +84,10 @@
 		04BCAA1026A5E3780015DEC0 /* CRSPointMotionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA0E26A5E3780015DEC0 /* CRSPointMotionOperation.m */; };
 		04BCAA1426A5EBD50015DEC0 /* CRSCoordinateMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA1226A5EBD50015DEC0 /* CRSCoordinateMetadata.h */; };
 		04BCAA1526A5EBD50015DEC0 /* CRSCoordinateMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA1326A5EBD50015DEC0 /* CRSCoordinateMetadata.m */; };
+		04BCAA1826A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA1626A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.h */; };
+		04BCAA1926A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA1726A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.m */; };
+		04BCAA1C26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA1A26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.h */; };
+		04BCAA1D26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA1B26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.m */; };
 		04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4562D209B6D1000FC299E /* CRSTestUtils.m */; };
 		455990E02D380E531EE4ACDC /* libPods-crs-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2802BAC0915BABF2D048D9 /* libPods-crs-ios.a */; };
 		B5D94958E350F092F31540ED /* libPods-crs-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-crs-iosTests.a */; };
@@ -184,6 +188,10 @@
 		04BCAA0E26A5E3780015DEC0 /* CRSPointMotionOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSPointMotionOperation.m; sourceTree = "<group>"; };
 		04BCAA1226A5EBD50015DEC0 /* CRSCoordinateMetadata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCoordinateMetadata.h; sourceTree = "<group>"; };
 		04BCAA1326A5EBD50015DEC0 /* CRSCoordinateMetadata.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSCoordinateMetadata.m; sourceTree = "<group>"; };
+		04BCAA1626A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCompoundCoordinateReferenceSystem.h; sourceTree = "<group>"; };
+		04BCAA1726A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSCompoundCoordinateReferenceSystem.m; sourceTree = "<group>"; };
+		04BCAA1A26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSSimpleCoordinateReferenceSystem.h; sourceTree = "<group>"; };
+		04BCAA1B26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSSimpleCoordinateReferenceSystem.m; sourceTree = "<group>"; };
 		04F4562D209B6D1000FC299E /* CRSTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSTestUtils.m; sourceTree = "<group>"; };
 		04F4562E209B6D1000FC299E /* CRSTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSTestUtils.h; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-crs-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-crs-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,10 +255,14 @@
 				04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */,
 				04BCA9BB269F505E0015DEC0 /* CRSCommon.h */,
 				04BCA9BC269F505E0015DEC0 /* CRSCommon.m */,
+				04BCAA1626A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.h */,
+				04BCAA1726A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.m */,
 				04BCA9BF269F719E0015DEC0 /* CRSCoordinateReferenceSystem.h */,
 				04BCA9C0269F719E0015DEC0 /* CRSCoordinateReferenceSystem.m */,
 				04BCA989269CBE400015DEC0 /* CRSObject.h */,
 				04BCA98A269CBE400015DEC0 /* CRSObject.m */,
+				04BCAA1A26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.h */,
+				04BCAA1B26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.m */,
 				04BCA985269CAE880015DEC0 /* CRSTypes.h */,
 				04BCA986269CAE880015DEC0 /* CRSTypes.m */,
 				042FC69E1B96421E00549A4B /* crs-ios-Prefix.pch */,
@@ -421,9 +433,11 @@
 				04BCA9FE26A5BA7C0015DEC0 /* CRSOperation.h in Headers */,
 				0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */,
 				04BCA998269DB03B0015DEC0 /* CRSWriter.h in Headers */,
+				04BCAA1826A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.h in Headers */,
 				04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */,
 				04BCA9A5269DD78A0015DEC0 /* CRSUnitTypes.h in Headers */,
 				04BCAA0B26A5DF430015DEC0 /* CRSCoordinateOperation.h in Headers */,
+				04BCAA1C26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.h in Headers */,
 				04BCA9C6269F7B980015DEC0 /* CRSAxisDirectionTypes.h in Headers */,
 				04BCA9AD269E18320015DEC0 /* CRSDateTime.h in Headers */,
 				04BCA99D269DC4540015DEC0 /* CRSGeographicBoundingBox.h in Headers */,
@@ -603,6 +617,7 @@
 				04BCA988269CAE880015DEC0 /* CRSTypes.m in Sources */,
 				04BCA9C7269F7B980015DEC0 /* CRSAxisDirectionTypes.m in Sources */,
 				04BCA9EF26A1B2E60015DEC0 /* CRSOperationParameters.m in Sources */,
+				04BCAA1926A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.m in Sources */,
 				04BCA9AA269E06E90015DEC0 /* CRSVerticalExtent.m in Sources */,
 				04BCA9CF26A06B0C0015DEC0 /* CRSCoordinateSystemTypes.m in Sources */,
 				04BCA9D726A0948A0015DEC0 /* CRSDatumEnsembleMember.m in Sources */,
@@ -616,6 +631,7 @@
 				04BCA9B6269F11A10015DEC0 /* CRSExtent.m in Sources */,
 				04BCAA1526A5EBD50015DEC0 /* CRSCoordinateMetadata.m in Sources */,
 				04BCA9C2269F719E0015DEC0 /* CRSCoordinateReferenceSystem.m in Sources */,
+				04BCAA1D26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.m in Sources */,
 				04BCA9F326A1DBB80015DEC0 /* CRSOperationParameter.m in Sources */,
 				04BCA9FF26A5BA7C0015DEC0 /* CRSOperation.m in Sources */,
 				04BCA9CB269F7CBE0015DEC0 /* CRSAxis.m in Sources */,
