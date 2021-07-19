@@ -124,7 +124,7 @@
     if(![[NSNumber numberWithDouble:_value] isEqual:[NSNumber numberWithDouble:operationParameter.value]]){
         return NO;
     }
-    if (_unit== nil) {
+    if (_unit == nil) {
         if (operationParameter.unit != nil){
             return NO;
         }
@@ -172,7 +172,7 @@
     NSUInteger result = 1;
     result = prime * result + ((_name == nil) ? 0 : [_name hash]);
     result = prime * result + [[NSNumber numberWithDouble:_value] hash];
-    result = prime * result + ((_unit== nil) ? 0 : [_unit hash]);
+    result = prime * result + ((_unit == nil) ? 0 : [_unit hash]);
     result = prime * result + ((_fileName == nil) ? 0 : [_fileName hash]);
     result = prime * result + ((_identifiers == nil) ? 0 : [_identifiers hash]);
     result = prime * result + ((_parameter == nil) ? 0 : [[NSNumber numberWithInteger:_parameter.type] hash]);

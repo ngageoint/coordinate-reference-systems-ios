@@ -45,14 +45,14 @@
     if (![super isEqual:coordinateOperation]){
         return NO;
     }
-    if (_target== nil) {
+    if (_target == nil) {
         if (coordinateOperation.target != nil){
             return NO;
         }
     } else if (![_target isEqual:coordinateOperation.target]){
         return NO;
     }
-    if (_interpolation== nil) {
+    if (_interpolation == nil) {
         if (coordinateOperation.interpolation != nil){
             return NO;
         }

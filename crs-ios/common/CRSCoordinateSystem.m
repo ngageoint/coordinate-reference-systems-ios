@@ -129,7 +129,7 @@
     } else if (![_axes isEqual:coordinateSystem.axes]){
         return NO;
     }
-    if (_unit== nil) {
+    if (_unit == nil) {
         if (coordinateSystem.unit != nil){
             return NO;
         }
@@ -158,7 +158,7 @@
     result = prime * result + [[NSNumber numberWithInt:_dimension] hash];
     result = prime * result + ((_identifiers == nil) ? 0 : [_identifiers hash]);
     result = prime * result + ((_axes == nil) ? 0 : [_axes hash]);
-    result = prime * result + ((_unit== nil) ? 0 : [_unit hash]);
+    result = prime * result + ((_unit == nil) ? 0 : [_unit hash]);
     return result;
 }
 

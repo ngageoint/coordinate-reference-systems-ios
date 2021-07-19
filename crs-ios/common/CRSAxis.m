@@ -93,7 +93,7 @@
     } else if (![_name isEqualToString:axis.name]){
         return NO;
     }
-    if (_abbreviation== nil) {
+    if (_abbreviation == nil) {
         if (axis.abbreviation != nil){
             return NO;
         }
@@ -103,35 +103,35 @@
     if(_direction != axis.direction){
         return NO;
     }
-    if (_meridian== nil) {
+    if (_meridian == nil) {
         if (axis.meridian != nil){
             return NO;
         }
     } else if (![_meridian isEqual:axis.meridian]){
         return NO;
     }
-    if (_meridianUnit== nil) {
+    if (_meridianUnit == nil) {
         if (axis.meridianUnit != nil){
             return NO;
         }
     } else if (![_meridianUnit isEqual:axis.meridianUnit]){
         return NO;
     }
-    if (_bearing== nil) {
+    if (_bearing == nil) {
         if (axis.bearing != nil){
             return NO;
         }
     } else if (![_bearing isEqual:axis.bearing]){
         return NO;
     }
-    if (_order== nil) {
+    if (_order == nil) {
         if (axis.order  != nil){
             return NO;
         }
     } else if (![_order isEqual:axis.order ]){
         return NO;
     }
-    if (_unit== nil) {
+    if (_unit == nil) {
         if (axis.unit != nil){
             return NO;
         }
@@ -170,7 +170,7 @@
     result = prime * result + ((_meridianUnit == nil) ? 0 : [_meridianUnit hash]);
     result = prime * result + ((_bearing == nil) ? 0 : [_bearing hash]);
     result = prime * result + ((_order == nil) ? 0 : [_order hash]);
-    result = prime * result + ((_unit== nil) ? 0 : [_unit hash]);
+    result = prime * result + ((_unit == nil) ? 0 : [_unit hash]);
     result = prime * result + ((_identifiers == nil) ? 0 : [_identifiers hash]);
     return result;
 }

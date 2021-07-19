@@ -48,7 +48,7 @@
     } else if (![_version isEqualToString:operation.version]){
         return NO;
     }
-    if (_source== nil) {
+    if (_source == nil) {
         if (operation.source != nil){
             return NO;
         }

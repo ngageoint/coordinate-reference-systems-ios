@@ -57,7 +57,7 @@
     if (![super isEqual:concatenatedOperation]){
         return NO;
     }
-    if (_target== nil) {
+    if (_target == nil) {
         if (concatenatedOperation.target != nil){
             return NO;
         }
