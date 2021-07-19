@@ -177,11 +177,11 @@ static NSMutableDictionary<NSNumber *, CRSOperationParameters *> *codeParameters
     self = [super init];
     if(self != nil){
         _aliases = [NSMutableArray array];
-        [self setType:type];
-        [self setCode:code];
-        [self setName:name];
-        [self setOperationType:operationType];
-        [self setUnitType:unitType];
+        _type = type;
+        _code = code;
+        _name = name;
+        _operationType = operationType;
+        _unitType = unitType;
         [self addAlias:name];
         if(aliases != nil){
             for(NSString *alias in aliases){

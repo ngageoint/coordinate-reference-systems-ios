@@ -70,6 +70,18 @@
 		04BCA9F326A1DBB80015DEC0 /* CRSOperationParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9F126A1DBB80015DEC0 /* CRSOperationParameter.m */; };
 		04BCA9F626A203560015DEC0 /* CRSOperationMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9F426A203560015DEC0 /* CRSOperationMethods.h */; };
 		04BCA9F726A203560015DEC0 /* CRSOperationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9F526A203560015DEC0 /* CRSOperationMethods.m */; };
+		04BCA9FA26A5A7A70015DEC0 /* CRSOperationMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9F826A5A7A70015DEC0 /* CRSOperationMethod.h */; };
+		04BCA9FB26A5A7A70015DEC0 /* CRSOperationMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9F926A5A7A70015DEC0 /* CRSOperationMethod.m */; };
+		04BCA9FE26A5BA7C0015DEC0 /* CRSOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA9FC26A5BA7C0015DEC0 /* CRSOperation.h */; };
+		04BCA9FF26A5BA7C0015DEC0 /* CRSOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA9FD26A5BA7C0015DEC0 /* CRSOperation.m */; };
+		04BCAA0326A5CB7B0015DEC0 /* CRSConcatenatedOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA0126A5CB7B0015DEC0 /* CRSConcatenatedOperation.h */; };
+		04BCAA0426A5CB7B0015DEC0 /* CRSConcatenatedOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA0226A5CB7B0015DEC0 /* CRSConcatenatedOperation.m */; };
+		04BCAA0726A5DA440015DEC0 /* CRSSimpleOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA0526A5DA440015DEC0 /* CRSSimpleOperation.h */; };
+		04BCAA0826A5DA440015DEC0 /* CRSSimpleOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA0626A5DA440015DEC0 /* CRSSimpleOperation.m */; };
+		04BCAA0B26A5DF430015DEC0 /* CRSCoordinateOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA0926A5DF430015DEC0 /* CRSCoordinateOperation.h */; };
+		04BCAA0C26A5DF430015DEC0 /* CRSCoordinateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA0A26A5DF430015DEC0 /* CRSCoordinateOperation.m */; };
+		04BCAA0F26A5E3780015DEC0 /* CRSPointMotionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA0D26A5E3780015DEC0 /* CRSPointMotionOperation.h */; };
+		04BCAA1026A5E3780015DEC0 /* CRSPointMotionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA0E26A5E3780015DEC0 /* CRSPointMotionOperation.m */; };
 		04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4562D209B6D1000FC299E /* CRSTestUtils.m */; };
 		455990E02D380E531EE4ACDC /* libPods-crs-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2802BAC0915BABF2D048D9 /* libPods-crs-ios.a */; };
 		B5D94958E350F092F31540ED /* libPods-crs-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-crs-iosTests.a */; };
@@ -155,6 +167,19 @@
 		04BCA9F126A1DBB80015DEC0 /* CRSOperationParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSOperationParameter.m; sourceTree = "<group>"; };
 		04BCA9F426A203560015DEC0 /* CRSOperationMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSOperationMethods.h; sourceTree = "<group>"; };
 		04BCA9F526A203560015DEC0 /* CRSOperationMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSOperationMethods.m; sourceTree = "<group>"; };
+		04BCA9F826A5A7A70015DEC0 /* CRSOperationMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSOperationMethod.h; sourceTree = "<group>"; };
+		04BCA9F926A5A7A70015DEC0 /* CRSOperationMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSOperationMethod.m; sourceTree = "<group>"; };
+		04BCA9FC26A5BA7C0015DEC0 /* CRSOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSOperation.h; sourceTree = "<group>"; };
+		04BCA9FD26A5BA7C0015DEC0 /* CRSOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSOperation.m; sourceTree = "<group>"; };
+		04BCAA0026A5C74F0015DEC0 /* CRSCommonOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCommonOperation.h; sourceTree = "<group>"; };
+		04BCAA0126A5CB7B0015DEC0 /* CRSConcatenatedOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSConcatenatedOperation.h; sourceTree = "<group>"; };
+		04BCAA0226A5CB7B0015DEC0 /* CRSConcatenatedOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSConcatenatedOperation.m; sourceTree = "<group>"; };
+		04BCAA0526A5DA440015DEC0 /* CRSSimpleOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSSimpleOperation.h; sourceTree = "<group>"; };
+		04BCAA0626A5DA440015DEC0 /* CRSSimpleOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSSimpleOperation.m; sourceTree = "<group>"; };
+		04BCAA0926A5DF430015DEC0 /* CRSCoordinateOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCoordinateOperation.h; sourceTree = "<group>"; };
+		04BCAA0A26A5DF430015DEC0 /* CRSCoordinateOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSCoordinateOperation.m; sourceTree = "<group>"; };
+		04BCAA0D26A5E3780015DEC0 /* CRSPointMotionOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSPointMotionOperation.h; sourceTree = "<group>"; };
+		04BCAA0E26A5E3780015DEC0 /* CRSPointMotionOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSPointMotionOperation.m; sourceTree = "<group>"; };
 		04F4562D209B6D1000FC299E /* CRSTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSTestUtils.m; sourceTree = "<group>"; };
 		04F4562E209B6D1000FC299E /* CRSTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSTestUtils.h; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-crs-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-crs-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,6 +342,15 @@
 		04BCA9C3269F77140015DEC0 /* operation */ = {
 			isa = PBXGroup;
 			children = (
+				04BCAA0026A5C74F0015DEC0 /* CRSCommonOperation.h */,
+				04BCAA0126A5CB7B0015DEC0 /* CRSConcatenatedOperation.h */,
+				04BCAA0226A5CB7B0015DEC0 /* CRSConcatenatedOperation.m */,
+				04BCAA0926A5DF430015DEC0 /* CRSCoordinateOperation.h */,
+				04BCAA0A26A5DF430015DEC0 /* CRSCoordinateOperation.m */,
+				04BCA9FC26A5BA7C0015DEC0 /* CRSOperation.h */,
+				04BCA9FD26A5BA7C0015DEC0 /* CRSOperation.m */,
+				04BCA9F826A5A7A70015DEC0 /* CRSOperationMethod.h */,
+				04BCA9F926A5A7A70015DEC0 /* CRSOperationMethod.m */,
 				04BCA9F426A203560015DEC0 /* CRSOperationMethods.h */,
 				04BCA9F526A203560015DEC0 /* CRSOperationMethods.m */,
 				04BCA9F026A1DBB80015DEC0 /* CRSOperationParameter.h */,
@@ -325,6 +359,10 @@
 				04BCA9ED26A1B2E60015DEC0 /* CRSOperationParameters.m */,
 				04BCA9E826A1AD7E0015DEC0 /* CRSOperationTypes.h */,
 				04BCA9E926A1AD7E0015DEC0 /* CRSOperationTypes.m */,
+				04BCAA0526A5DA440015DEC0 /* CRSSimpleOperation.h */,
+				04BCAA0D26A5E3780015DEC0 /* CRSPointMotionOperation.h */,
+				04BCAA0E26A5E3780015DEC0 /* CRSPointMotionOperation.m */,
+				04BCAA0626A5DA440015DEC0 /* CRSSimpleOperation.m */,
 			);
 			path = operation;
 			sourceTree = "<group>";
@@ -358,18 +396,24 @@
 			files = (
 				04BCA9A1269DD71C0015DEC0 /* CRSUnit.h in Headers */,
 				04BCA9B5269F11A10015DEC0 /* CRSExtent.h in Headers */,
+				04BCAA0F26A5E3780015DEC0 /* CRSPointMotionOperation.h in Headers */,
 				04BCA9EE26A1B2E60015DEC0 /* CRSOperationParameters.h in Headers */,
 				04BCA9B9269F1FBC0015DEC0 /* CRSUsage.h in Headers */,
+				04BCA9FA26A5A7A70015DEC0 /* CRSOperationMethod.h in Headers */,
 				04BCA9E626A0CAC00015DEC0 /* CRSUnits.h in Headers */,
 				04BCA992269CC4A40015DEC0 /* CRSIdentifier.h in Headers */,
+				04BCAA0326A5CB7B0015DEC0 /* CRSConcatenatedOperation.h in Headers */,
+				04BCA9FE26A5BA7C0015DEC0 /* CRSOperation.h in Headers */,
 				0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */,
 				04BCA998269DB03B0015DEC0 /* CRSWriter.h in Headers */,
 				04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */,
 				04BCA9A5269DD78A0015DEC0 /* CRSUnitTypes.h in Headers */,
+				04BCAA0B26A5DF430015DEC0 /* CRSCoordinateOperation.h in Headers */,
 				04BCA9C6269F7B980015DEC0 /* CRSAxisDirectionTypes.h in Headers */,
 				04BCA9AD269E18320015DEC0 /* CRSDateTime.h in Headers */,
 				04BCA99D269DC4540015DEC0 /* CRSGeographicBoundingBox.h in Headers */,
 				04BCA9CA269F7CBE0015DEC0 /* CRSAxis.h in Headers */,
+				04BCAA0726A5DA440015DEC0 /* CRSSimpleOperation.h in Headers */,
 				04BCA9EA26A1AD7E0015DEC0 /* CRSOperationTypes.h in Headers */,
 				04BCA9C1269F719E0015DEC0 /* CRSCoordinateReferenceSystem.h in Headers */,
 				04BCA9BD269F505E0015DEC0 /* CRSCommon.h in Headers */,
@@ -531,11 +575,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BCA9DF26A0B3F30015DEC0 /* CRSDynamic.m in Sources */,
+				04BCAA1026A5E3780015DEC0 /* CRSPointMotionOperation.m in Sources */,
 				04BCA98C269CBE400015DEC0 /* CRSObject.m in Sources */,
 				04BCA99E269DC4540015DEC0 /* CRSGeographicBoundingBox.m in Sources */,
 				04BCA9D326A079A10015DEC0 /* CRSCoordinateSystem.m in Sources */,
 				04BCA9A2269DD71C0015DEC0 /* CRSUnit.m in Sources */,
 				04BCA9E326A0BDE70015DEC0 /* CRSReferenceFrame.m in Sources */,
+				04BCAA0426A5CB7B0015DEC0 /* CRSConcatenatedOperation.m in Sources */,
 				04BCA9DB26A0A0C90015DEC0 /* CRSDatumEnsemble.m in Sources */,
 				04BCA993269CC4A40015DEC0 /* CRSIdentifier.m in Sources */,
 				04BCA9E726A0CAC00015DEC0 /* CRSUnits.m in Sources */,
@@ -547,6 +593,7 @@
 				04BCA9D726A0948A0015DEC0 /* CRSDatumEnsembleMember.m in Sources */,
 				04BCA9EB26A1AD7E0015DEC0 /* CRSOperationTypes.m in Sources */,
 				04BCA984269CAAB40015DEC0 /* CRSCategoryTypes.m in Sources */,
+				04BCAA0826A5DA440015DEC0 /* CRSSimpleOperation.m in Sources */,
 				04BCA9BE269F505E0015DEC0 /* CRSCommon.m in Sources */,
 				04BCA9B2269EFD480015DEC0 /* CRSTemporalExtent.m in Sources */,
 				04BCA9AE269E18320015DEC0 /* CRSDateTime.m in Sources */,
@@ -554,9 +601,12 @@
 				04BCA9B6269F11A10015DEC0 /* CRSExtent.m in Sources */,
 				04BCA9C2269F719E0015DEC0 /* CRSCoordinateReferenceSystem.m in Sources */,
 				04BCA9F326A1DBB80015DEC0 /* CRSOperationParameter.m in Sources */,
+				04BCA9FF26A5BA7C0015DEC0 /* CRSOperation.m in Sources */,
 				04BCA9CB269F7CBE0015DEC0 /* CRSAxis.m in Sources */,
 				04BCA9F726A203560015DEC0 /* CRSOperationMethods.m in Sources */,
+				04BCAA0C26A5DF430015DEC0 /* CRSCoordinateOperation.m in Sources */,
 				04BCA999269DB03B0015DEC0 /* CRSWriter.m in Sources */,
+				04BCA9FB26A5A7A70015DEC0 /* CRSOperationMethod.m in Sources */,
 				04BCA9BA269F1FBC0015DEC0 /* CRSUsage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

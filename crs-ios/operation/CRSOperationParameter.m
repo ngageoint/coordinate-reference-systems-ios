@@ -27,9 +27,9 @@
 -(instancetype) initWithName: (NSString *) name andValue: (double) value andUnit: (CRSUnit *) unit{
     self = [super init];
     if(self != nil){
-        [self setName:name];
-        [self setValue:value];
-        [self setUnit:unit];
+        _name = name;
+        _value = value;
+        _unit = unit;
         [self updateParameter];
     }
     return self;
@@ -42,9 +42,9 @@
 -(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValue: (double) value andUnit: (CRSUnit *) unit{
     self = [super init];
     if(self != nil){
-        [self setName:parameter.name];
-        [self setValue:value];
-        [self setUnit:unit];
+        _name = parameter.name;
+        _value = value;
+        _unit = unit;
         _parameter = parameter;
     }
     return self;
@@ -53,8 +53,8 @@
 -(instancetype) initWithName: (NSString *) name andFileName: (NSString *) fileName{
     self = [super init];
     if(self != nil){
-        [self setName:name];
-        [self setFileName:fileName];
+        _name = name;
+        _fileName = fileName;
         [self updateParameter];
     }
     return self;

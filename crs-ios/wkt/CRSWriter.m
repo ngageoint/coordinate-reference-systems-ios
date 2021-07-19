@@ -103,6 +103,10 @@
     // TODO
 }
 
+-(void) writeOperationMethod: (CRSOperationMethod *) operationMethod{
+    // TODO
+}
+
 -(void) writeOperationParameter: (CRSOperationParameter *) operationParameter{
     // TODO
 }
