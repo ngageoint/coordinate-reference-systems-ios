@@ -23,6 +23,7 @@
 #import "CRSTemporalExtent.h"
 #import "CRSOperationMethod.h"
 #import "CRSOperationParameter.h"
+#import "CRSAbridgedCoordinateTransformation.h"
 
 /**
  * Well-Known Text writer
@@ -193,5 +194,13 @@
  *            operation parameter
  */
 -(void) writeOperationParameter: (CRSOperationParameter *) operationParameter;
+
+/**
+ * Write an abridged coordinate transformation
+ *
+ * @param transformation
+ *            abridged coordinate transformation
+ */
+-(void) writeAbridgedCoordinateTransformation: (CRSAbridgedCoordinateTransformation *) transformation;
 
 @end
