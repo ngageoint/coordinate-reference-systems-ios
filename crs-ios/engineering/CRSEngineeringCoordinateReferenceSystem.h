@@ -24,7 +24,7 @@
  *
  *  @return new instance
  */
-+(CRSEngineeringDatum *) create;
++(CRSEngineeringCoordinateReferenceSystem *) create;
 
 /**
  *  Initialize
