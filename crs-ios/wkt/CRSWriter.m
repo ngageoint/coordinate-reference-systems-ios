@@ -103,6 +103,10 @@
     // TODO
 }
 
+-(void) writeMapProjection: (CRSMapProjection *) mapProjection{
+    // TODO
+}
+
 -(void) writeOperationMethod: (CRSOperationMethod *) operationMethod{
     // TODO
 }

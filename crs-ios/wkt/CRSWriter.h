@@ -21,6 +21,7 @@
 #import "CRSGeographicBoundingBox.h"
 #import "CRSVerticalExtent.h"
 #import "CRSTemporalExtent.h"
+#import "CRSMapProjection.h"
 #import "CRSOperationMethod.h"
 #import "CRSOperationParameter.h"
 #import "CRSDerivingConversion.h"
@@ -179,6 +180,14 @@
  *            temporal extent
  */
 -(void) writeTemporalExtent: (CRSTemporalExtent *) temporalExtent;
+
+/**
+ * Write a map projection to well-known text
+ *
+ * @param mapProjection
+ *            map projection
+ */
+-(void) writeMapProjection: (CRSMapProjection *) mapProjection;
 
 /**
  * Write an operation method to well-known text
