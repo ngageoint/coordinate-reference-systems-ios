@@ -111,4 +111,12 @@
     // TODO
 }
 
+-(void) writeDerivingConversion: (CRSDerivingConversion *) derivingConversion{
+    // TODO
+}
+
+-(void) writeAbridgedCoordinateTransformation: (CRSAbridgedCoordinateTransformation *) transformation{
+    // TODO
+}
+
 @end
