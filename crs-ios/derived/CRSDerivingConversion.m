@@ -21,7 +21,7 @@
 }
 
 -(instancetype) initWithName: (NSString *) name andMethod: (CRSOperationMethod *) method{
-    self = [self init];
+    self = [super init];
     if(self != nil){
         [self setName:name];
         [self setMethod:method];

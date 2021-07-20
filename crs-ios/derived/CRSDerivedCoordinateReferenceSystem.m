@@ -15,12 +15,12 @@
 }
 
 -(instancetype) init{
-    self = [self initWithType:CRS_TYPE_DERIVED];
+    self = [super initWithType:CRS_TYPE_DERIVED];
     return self;
 }
 
 -(instancetype) initWithName: (NSString *) name andBase: (CRSCoordinateReferenceSystem *) base andConversion: (CRSDerivingConversion *) conversion andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
-    self = [self initWithName:name andType:CRS_TYPE_DERIVED andCoordinateSystem:coordinateSystem];
+    self = [super initWithName:name andType:CRS_TYPE_DERIVED andCoordinateSystem:coordinateSystem];
     if(self != nil){
         [self setBase:base];
         [self setConversion:conversion];
