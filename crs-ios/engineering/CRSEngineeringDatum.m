@@ -54,10 +54,4 @@
     return [super hash];
 }
 
--(NSString *) description{
-    CRSWriter *writer = [CRSWriter create];
-    [writer writeReferenceFrame:self];
-    return [writer description];
-}
-
 @end

@@ -24,6 +24,7 @@
 #import "CRSMapProjection.h"
 #import "CRSOperationMethod.h"
 #import "CRSOperationParameter.h"
+#import "CRSTemporalDatum.h"
 #import "CRSDerivingConversion.h"
 #import "CRSAbridgedCoordinateTransformation.h"
 
@@ -204,6 +205,14 @@
  *            operation parameter
  */
 -(void) writeOperationParameter: (CRSOperationParameter *) operationParameter;
+
+/**
+ * Write a temporal datum to well-known text
+ *
+ * @param temporalDatum
+ *            temporal datum
+ */
+-(void) writeTemporalDatum: (CRSTemporalDatum *) temporalDatum;
 
 /**
  * Write a deriving conversion to well-known text

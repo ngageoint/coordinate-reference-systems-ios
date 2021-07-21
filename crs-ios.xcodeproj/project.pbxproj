@@ -114,6 +114,16 @@
 		04BCAA5326A74E850015DEC0 /* CRSGeoReferenceFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA5126A74E850015DEC0 /* CRSGeoReferenceFrame.m */; };
 		04BCAA5626A74F700015DEC0 /* CRSGeoDatumEnsemble.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA5426A74F700015DEC0 /* CRSGeoDatumEnsemble.h */; };
 		04BCAA5726A74F700015DEC0 /* CRSGeoDatumEnsemble.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA5526A74F700015DEC0 /* CRSGeoDatumEnsemble.m */; };
+		04BCAA5C26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA5A26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.h */; };
+		04BCAA5D26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA5B26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.m */; };
+		04BCAA6026A763AA0015DEC0 /* CRSTemporalDatum.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA5E26A763AA0015DEC0 /* CRSTemporalDatum.h */; };
+		04BCAA6126A763AA0015DEC0 /* CRSTemporalDatum.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA5F26A763AA0015DEC0 /* CRSTemporalDatum.m */; };
+		04BCAA6526A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA6326A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.h */; };
+		04BCAA6626A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA6426A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.m */; };
+		04BCAA6926A84AB60015DEC0 /* CRSVerticalDatumEnsemble.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA6726A84AB60015DEC0 /* CRSVerticalDatumEnsemble.h */; };
+		04BCAA6A26A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA6826A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m */; };
+		04BCAA6D26A84B500015DEC0 /* CRSVerticalReferenceFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA6B26A84B500015DEC0 /* CRSVerticalReferenceFrame.h */; };
+		04BCAA6E26A84B500015DEC0 /* CRSVerticalReferenceFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA6C26A84B500015DEC0 /* CRSVerticalReferenceFrame.m */; };
 		04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4562D209B6D1000FC299E /* CRSTestUtils.m */; };
 		455990E02D380E531EE4ACDC /* libPods-crs-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2802BAC0915BABF2D048D9 /* libPods-crs-ios.a */; };
 		B5D94958E350F092F31540ED /* libPods-crs-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-crs-iosTests.a */; };
@@ -245,6 +255,16 @@
 		04BCAA5426A74F700015DEC0 /* CRSGeoDatumEnsemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSGeoDatumEnsemble.h; sourceTree = "<group>"; };
 		04BCAA5526A74F700015DEC0 /* CRSGeoDatumEnsemble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSGeoDatumEnsemble.m; sourceTree = "<group>"; };
 		04BCAA5826A74FAB0015DEC0 /* CRSGeoDatum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSGeoDatum.h; sourceTree = "<group>"; };
+		04BCAA5A26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTemporalCoordinateReferenceSystem.h; sourceTree = "<group>"; };
+		04BCAA5B26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTemporalCoordinateReferenceSystem.m; sourceTree = "<group>"; };
+		04BCAA5E26A763AA0015DEC0 /* CRSTemporalDatum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTemporalDatum.h; sourceTree = "<group>"; };
+		04BCAA5F26A763AA0015DEC0 /* CRSTemporalDatum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTemporalDatum.m; sourceTree = "<group>"; };
+		04BCAA6326A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSVerticalCoordinateReferenceSystem.h; sourceTree = "<group>"; };
+		04BCAA6426A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSVerticalCoordinateReferenceSystem.m; sourceTree = "<group>"; };
+		04BCAA6726A84AB60015DEC0 /* CRSVerticalDatumEnsemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSVerticalDatumEnsemble.h; sourceTree = "<group>"; };
+		04BCAA6826A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSVerticalDatumEnsemble.m; sourceTree = "<group>"; };
+		04BCAA6B26A84B500015DEC0 /* CRSVerticalReferenceFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSVerticalReferenceFrame.h; sourceTree = "<group>"; };
+		04BCAA6C26A84B500015DEC0 /* CRSVerticalReferenceFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSVerticalReferenceFrame.m; sourceTree = "<group>"; };
 		04F4562D209B6D1000FC299E /* CRSTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSTestUtils.m; sourceTree = "<group>"; };
 		04F4562E209B6D1000FC299E /* CRSTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSTestUtils.h; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-crs-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-crs-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +328,8 @@
 				04BCA9C3269F77140015DEC0 /* operation */,
 				04BCAA3926A718D50015DEC0 /* parametric */,
 				04BCAA4226A7429F0015DEC0 /* projected */,
+				04BCAA5926A7633B0015DEC0 /* temporal */,
+				04BCAA6226A768550015DEC0 /* vertical */,
 				04BCA995269DAFF50015DEC0 /* wkt */,
 				042FC6D41B96453E00549A4B /* crs_ios.h */,
 				04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */,
@@ -521,6 +543,30 @@
 			path = geo;
 			sourceTree = "<group>";
 		};
+		04BCAA5926A7633B0015DEC0 /* temporal */ = {
+			isa = PBXGroup;
+			children = (
+				04BCAA5A26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.h */,
+				04BCAA5B26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.m */,
+				04BCAA5E26A763AA0015DEC0 /* CRSTemporalDatum.h */,
+				04BCAA5F26A763AA0015DEC0 /* CRSTemporalDatum.m */,
+			);
+			path = temporal;
+			sourceTree = "<group>";
+		};
+		04BCAA6226A768550015DEC0 /* vertical */ = {
+			isa = PBXGroup;
+			children = (
+				04BCAA6326A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.h */,
+				04BCAA6426A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.m */,
+				04BCAA6726A84AB60015DEC0 /* CRSVerticalDatumEnsemble.h */,
+				04BCAA6826A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m */,
+				04BCAA6B26A84B500015DEC0 /* CRSVerticalReferenceFrame.h */,
+				04BCAA6C26A84B500015DEC0 /* CRSVerticalReferenceFrame.m */,
+			);
+			path = vertical;
+			sourceTree = "<group>";
+		};
 		63206AE083C9F99B2058A9EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +607,7 @@
 				04BCA992269CC4A40015DEC0 /* CRSIdentifier.h in Headers */,
 				04BCAA3C26A71B500015DEC0 /* CRSParametricCoordinateReferenceSystem.h in Headers */,
 				04BCAA0326A5CB7B0015DEC0 /* CRSConcatenatedOperation.h in Headers */,
+				04BCAA6D26A84B500015DEC0 /* CRSVerticalReferenceFrame.h in Headers */,
 				04BCA9FE26A5BA7C0015DEC0 /* CRSOperation.h in Headers */,
 				0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */,
 				04BCA998269DB03B0015DEC0 /* CRSWriter.h in Headers */,
@@ -568,6 +615,7 @@
 				04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */,
 				04BCA9A5269DD78A0015DEC0 /* CRSUnitTypes.h in Headers */,
 				04BCAA0B26A5DF430015DEC0 /* CRSCoordinateOperation.h in Headers */,
+				04BCAA5C26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.h in Headers */,
 				04BCAA5626A74F700015DEC0 /* CRSGeoDatumEnsemble.h in Headers */,
 				04BCAA1C26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.h in Headers */,
 				04BCA9C6269F7B980015DEC0 /* CRSAxisDirectionTypes.h in Headers */,
@@ -575,6 +623,7 @@
 				04BCA9AD269E18320015DEC0 /* CRSDateTime.h in Headers */,
 				04BCA99D269DC4540015DEC0 /* CRSGeographicBoundingBox.h in Headers */,
 				04BCA9CA269F7CBE0015DEC0 /* CRSAxis.h in Headers */,
+				04BCAA6926A84AB60015DEC0 /* CRSVerticalDatumEnsemble.h in Headers */,
 				04BCAA3726A701A50015DEC0 /* CRSEngineeringDatum.h in Headers */,
 				04BCAA0726A5DA440015DEC0 /* CRSSimpleOperation.h in Headers */,
 				04BCA9EA26A1AD7E0015DEC0 /* CRSOperationTypes.h in Headers */,
@@ -586,6 +635,7 @@
 				042FC6D51B96453E00549A4B /* crs_ios.h in Headers */,
 				04BCA9F226A1DBB80015DEC0 /* CRSOperationParameter.h in Headers */,
 				04BCA9E226A0BDE70015DEC0 /* CRSReferenceFrame.h in Headers */,
+				04BCAA6026A763AA0015DEC0 /* CRSTemporalDatum.h in Headers */,
 				042FC6D31B96421E00549A4B /* crs-ios-Prefix.pch in Headers */,
 				04BCAA5226A74E850015DEC0 /* CRSGeoReferenceFrame.h in Headers */,
 				04BCAA2E26A6EAB40015DEC0 /* CRSDerivingConversion.h in Headers */,
@@ -596,6 +646,7 @@
 				04BCA9DA26A0A0C90015DEC0 /* CRSDatumEnsemble.h in Headers */,
 				04BCA9D626A0948A0015DEC0 /* CRSDatumEnsembleMember.h in Headers */,
 				04BCAA3326A701600015DEC0 /* CRSEngineeringCoordinateReferenceSystem.h in Headers */,
+				04BCAA6526A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.h in Headers */,
 				04BCA987269CAE880015DEC0 /* CRSTypes.h in Headers */,
 				04BCAA4026A71D9C0015DEC0 /* CRSParametricDatum.h in Headers */,
 				04BCA98B269CBE400015DEC0 /* CRSObject.h in Headers */,
@@ -752,6 +803,7 @@
 				04BCA9D326A079A10015DEC0 /* CRSCoordinateSystem.m in Sources */,
 				04BCA9A2269DD71C0015DEC0 /* CRSUnit.m in Sources */,
 				04BCA9E326A0BDE70015DEC0 /* CRSReferenceFrame.m in Sources */,
+				04BCAA6126A763AA0015DEC0 /* CRSTemporalDatum.m in Sources */,
 				04BCAA0426A5CB7B0015DEC0 /* CRSConcatenatedOperation.m in Sources */,
 				04BCAA3826A701A50015DEC0 /* CRSEngineeringDatum.m in Sources */,
 				04BCA9DB26A0A0C90015DEC0 /* CRSDatumEnsemble.m in Sources */,
@@ -764,6 +816,7 @@
 				04BCA988269CAE880015DEC0 /* CRSTypes.m in Sources */,
 				04BCA9C7269F7B980015DEC0 /* CRSAxisDirectionTypes.m in Sources */,
 				04BCA9EF26A1B2E60015DEC0 /* CRSOperationParameters.m in Sources */,
+				04BCAA6A26A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m in Sources */,
 				04BCAA1926A5FD030015DEC0 /* CRSCompoundCoordinateReferenceSystem.m in Sources */,
 				04BCA9AA269E06E90015DEC0 /* CRSVerticalExtent.m in Sources */,
 				04BCA9CF26A06B0C0015DEC0 /* CRSCoordinateSystemTypes.m in Sources */,
@@ -782,10 +835,13 @@
 				04BCAA4F26A749510015DEC0 /* CRSGeoCoordinateReferenceSystem.m in Sources */,
 				04BCA9B6269F11A10015DEC0 /* CRSExtent.m in Sources */,
 				04BCAA1526A5EBD50015DEC0 /* CRSCoordinateMetadata.m in Sources */,
+				04BCAA6E26A84B500015DEC0 /* CRSVerticalReferenceFrame.m in Sources */,
 				04BCA9C2269F719E0015DEC0 /* CRSCoordinateReferenceSystem.m in Sources */,
 				04BCAA1D26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.m in Sources */,
 				04BCA9F326A1DBB80015DEC0 /* CRSOperationParameter.m in Sources */,
 				04BCA9FF26A5BA7C0015DEC0 /* CRSOperation.m in Sources */,
+				04BCAA5D26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.m in Sources */,
+				04BCAA6626A844BB0015DEC0 /* CRSVerticalCoordinateReferenceSystem.m in Sources */,
 				04BCA9CB269F7CBE0015DEC0 /* CRSAxis.m in Sources */,
 				04BCA9F726A203560015DEC0 /* CRSOperationMethods.m in Sources */,
 				04BCAA0C26A5DF430015DEC0 /* CRSCoordinateOperation.m in Sources */,

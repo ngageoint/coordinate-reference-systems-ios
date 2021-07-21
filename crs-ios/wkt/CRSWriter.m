@@ -115,6 +115,10 @@
     // TODO
 }
 
+-(void) writeTemporalDatum: (CRSTemporalDatum *) temporalDatum{
+    // TODO
+}
+
 -(void) writeDerivingConversion: (CRSDerivingConversion *) derivingConversion{
     // TODO
 }
