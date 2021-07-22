@@ -116,7 +116,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationParameters *> *codeParameters
         NSMutableArray<CRSOperationParameters *> *parameterArray = [aliasParameters objectForKey:aliasLowerCase];
         if(parameterArray == nil){
             parameterArray = [NSMutableArray array];
-            [aliasParameters setValue:parameterArray forKey:aliasLowerCase];
+            [aliasParameters setObject:parameterArray forKey:aliasLowerCase];
         }
         [parameterArray addObject:parameter];
     }

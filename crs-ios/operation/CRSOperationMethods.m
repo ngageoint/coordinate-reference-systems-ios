@@ -72,7 +72,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
         NSMutableArray<CRSOperationMethods *> *methodArray = [aliasMethods objectForKey:aliasLowerCase];
         if(methodArray == nil){
             methodArray = [NSMutableArray array];
-            [aliasMethods setValue:methodArray forKey:aliasLowerCase];
+            [aliasMethods setObject:methodArray forKey:aliasLowerCase];
         }
         [methodArray addObject:method];
     }
