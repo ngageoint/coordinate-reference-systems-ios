@@ -12,6 +12,8 @@
 #import "CRSDatumEnsemble.h"
 #import "CRSDatumEnsembleMember.h"
 #import "CRSDynamic.h"
+#import "CRSPrimeMeridian.h"
+#import "CRSEllipsoid.h"
 #import "CRSUnit.h"
 #import "CRSIdentifier.h"
 #import "CRSCoordinateSystem.h"
@@ -109,6 +111,22 @@
  *            dynamic
  */
 -(void) writeDynamic: (CRSDynamic *) dynamic;
+
+/**
+ * Write a prime meridian to well-known text
+ *
+ * @param primeMeridian
+ *            prime meridian
+ */
+-(void) writePrimeMeridian: (CRSPrimeMeridian *) primeMeridian;
+
+/**
+ * Write an ellipsoid to well-known text
+ *
+ * @param ellipsoid
+ *            ellipsoid
+ */
+-(void) writeEllipsoid: (CRSEllipsoid *) ellipsoid;
 
 /**
  * Write a unit to well-known text

@@ -124,6 +124,14 @@
 		04BCAA6A26A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA6826A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m */; };
 		04BCAA6D26A84B500015DEC0 /* CRSVerticalReferenceFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA6B26A84B500015DEC0 /* CRSVerticalReferenceFrame.h */; };
 		04BCAA6E26A84B500015DEC0 /* CRSVerticalReferenceFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA6C26A84B500015DEC0 /* CRSVerticalReferenceFrame.m */; };
+		04BCAA7126A8905E0015DEC0 /* CRSEllipsoid.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA6F26A8905E0015DEC0 /* CRSEllipsoid.h */; };
+		04BCAA7226A8905E0015DEC0 /* CRSEllipsoid.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA7026A8905E0015DEC0 /* CRSEllipsoid.m */; };
+		04BCAA7526A89E000015DEC0 /* CRSEllipsoidTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA7326A89E000015DEC0 /* CRSEllipsoidTypes.h */; };
+		04BCAA7626A89E000015DEC0 /* CRSEllipsoidTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA7426A89E000015DEC0 /* CRSEllipsoidTypes.m */; };
+		04BCAA7926A8B6B90015DEC0 /* CRSPrimeMeridian.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA7726A8B6B90015DEC0 /* CRSPrimeMeridian.h */; };
+		04BCAA7A26A8B6B90015DEC0 /* CRSPrimeMeridian.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA7826A8B6B90015DEC0 /* CRSPrimeMeridian.m */; };
+		04BCAA7D26A991440015DEC0 /* CRSTriaxialEllipsoid.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCAA7B26A991440015DEC0 /* CRSTriaxialEllipsoid.h */; };
+		04BCAA7E26A991440015DEC0 /* CRSTriaxialEllipsoid.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCAA7C26A991440015DEC0 /* CRSTriaxialEllipsoid.m */; };
 		04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4562D209B6D1000FC299E /* CRSTestUtils.m */; };
 		455990E02D380E531EE4ACDC /* libPods-crs-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2802BAC0915BABF2D048D9 /* libPods-crs-ios.a */; };
 		B5D94958E350F092F31540ED /* libPods-crs-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499642A447440D35F38311C9 /* libPods-crs-iosTests.a */; };
@@ -265,6 +273,14 @@
 		04BCAA6826A84AB60015DEC0 /* CRSVerticalDatumEnsemble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSVerticalDatumEnsemble.m; sourceTree = "<group>"; };
 		04BCAA6B26A84B500015DEC0 /* CRSVerticalReferenceFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSVerticalReferenceFrame.h; sourceTree = "<group>"; };
 		04BCAA6C26A84B500015DEC0 /* CRSVerticalReferenceFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSVerticalReferenceFrame.m; sourceTree = "<group>"; };
+		04BCAA6F26A8905E0015DEC0 /* CRSEllipsoid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSEllipsoid.h; sourceTree = "<group>"; };
+		04BCAA7026A8905E0015DEC0 /* CRSEllipsoid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSEllipsoid.m; sourceTree = "<group>"; };
+		04BCAA7326A89E000015DEC0 /* CRSEllipsoidTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSEllipsoidTypes.h; sourceTree = "<group>"; };
+		04BCAA7426A89E000015DEC0 /* CRSEllipsoidTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSEllipsoidTypes.m; sourceTree = "<group>"; };
+		04BCAA7726A8B6B90015DEC0 /* CRSPrimeMeridian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSPrimeMeridian.h; sourceTree = "<group>"; };
+		04BCAA7826A8B6B90015DEC0 /* CRSPrimeMeridian.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSPrimeMeridian.m; sourceTree = "<group>"; };
+		04BCAA7B26A991440015DEC0 /* CRSTriaxialEllipsoid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTriaxialEllipsoid.h; sourceTree = "<group>"; };
+		04BCAA7C26A991440015DEC0 /* CRSTriaxialEllipsoid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTriaxialEllipsoid.m; sourceTree = "<group>"; };
 		04F4562D209B6D1000FC299E /* CRSTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSTestUtils.m; sourceTree = "<group>"; };
 		04F4562E209B6D1000FC299E /* CRSTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSTestUtils.h; sourceTree = "<group>"; };
 		499642A447440D35F38311C9 /* libPods-crs-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-crs-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -532,6 +548,10 @@
 		04BCAA4B26A749310015DEC0 /* geo */ = {
 			isa = PBXGroup;
 			children = (
+				04BCAA6F26A8905E0015DEC0 /* CRSEllipsoid.h */,
+				04BCAA7026A8905E0015DEC0 /* CRSEllipsoid.m */,
+				04BCAA7326A89E000015DEC0 /* CRSEllipsoidTypes.h */,
+				04BCAA7426A89E000015DEC0 /* CRSEllipsoidTypes.m */,
 				04BCAA4C26A749510015DEC0 /* CRSGeoCoordinateReferenceSystem.h */,
 				04BCAA4D26A749510015DEC0 /* CRSGeoCoordinateReferenceSystem.m */,
 				04BCAA5826A74FAB0015DEC0 /* CRSGeoDatum.h */,
@@ -539,6 +559,10 @@
 				04BCAA5526A74F700015DEC0 /* CRSGeoDatumEnsemble.m */,
 				04BCAA5026A74E850015DEC0 /* CRSGeoReferenceFrame.h */,
 				04BCAA5126A74E850015DEC0 /* CRSGeoReferenceFrame.m */,
+				04BCAA7726A8B6B90015DEC0 /* CRSPrimeMeridian.h */,
+				04BCAA7826A8B6B90015DEC0 /* CRSPrimeMeridian.m */,
+				04BCAA7B26A991440015DEC0 /* CRSTriaxialEllipsoid.h */,
+				04BCAA7C26A991440015DEC0 /* CRSTriaxialEllipsoid.m */,
 			);
 			path = geo;
 			sourceTree = "<group>";
@@ -603,6 +627,7 @@
 				04BCA9FA26A5A7A70015DEC0 /* CRSOperationMethod.h in Headers */,
 				04BCAA4926A748D60015DEC0 /* CRSProjectedCoordinateReferenceSystem.h in Headers */,
 				04BCA9E626A0CAC00015DEC0 /* CRSUnits.h in Headers */,
+				04BCAA7126A8905E0015DEC0 /* CRSEllipsoid.h in Headers */,
 				04BCAA1426A5EBD50015DEC0 /* CRSCoordinateMetadata.h in Headers */,
 				04BCA992269CC4A40015DEC0 /* CRSIdentifier.h in Headers */,
 				04BCAA3C26A71B500015DEC0 /* CRSParametricCoordinateReferenceSystem.h in Headers */,
@@ -636,10 +661,13 @@
 				04BCA9F226A1DBB80015DEC0 /* CRSOperationParameter.h in Headers */,
 				04BCA9E226A0BDE70015DEC0 /* CRSReferenceFrame.h in Headers */,
 				04BCAA6026A763AA0015DEC0 /* CRSTemporalDatum.h in Headers */,
+				04BCAA7D26A991440015DEC0 /* CRSTriaxialEllipsoid.h in Headers */,
 				042FC6D31B96421E00549A4B /* crs-ios-Prefix.pch in Headers */,
 				04BCAA5226A74E850015DEC0 /* CRSGeoReferenceFrame.h in Headers */,
 				04BCAA2E26A6EAB40015DEC0 /* CRSDerivingConversion.h in Headers */,
 				04BCA9F626A203560015DEC0 /* CRSOperationMethods.h in Headers */,
+				04BCAA7526A89E000015DEC0 /* CRSEllipsoidTypes.h in Headers */,
+				04BCAA7926A8B6B90015DEC0 /* CRSPrimeMeridian.h in Headers */,
 				04BCA9CE26A06B0C0015DEC0 /* CRSCoordinateSystemTypes.h in Headers */,
 				04BCA9B1269EFD480015DEC0 /* CRSTemporalExtent.h in Headers */,
 				04BCAA4E26A749510015DEC0 /* CRSGeoCoordinateReferenceSystem.h in Headers */,
@@ -833,11 +861,14 @@
 				04BCA9AE269E18320015DEC0 /* CRSDateTime.m in Sources */,
 				04BCA9A6269DD78A0015DEC0 /* CRSUnitTypes.m in Sources */,
 				04BCAA4F26A749510015DEC0 /* CRSGeoCoordinateReferenceSystem.m in Sources */,
+				04BCAA7226A8905E0015DEC0 /* CRSEllipsoid.m in Sources */,
+				04BCAA7E26A991440015DEC0 /* CRSTriaxialEllipsoid.m in Sources */,
 				04BCA9B6269F11A10015DEC0 /* CRSExtent.m in Sources */,
 				04BCAA1526A5EBD50015DEC0 /* CRSCoordinateMetadata.m in Sources */,
 				04BCAA6E26A84B500015DEC0 /* CRSVerticalReferenceFrame.m in Sources */,
 				04BCA9C2269F719E0015DEC0 /* CRSCoordinateReferenceSystem.m in Sources */,
 				04BCAA1D26A5FEAD0015DEC0 /* CRSSimpleCoordinateReferenceSystem.m in Sources */,
+				04BCAA7626A89E000015DEC0 /* CRSEllipsoidTypes.m in Sources */,
 				04BCA9F326A1DBB80015DEC0 /* CRSOperationParameter.m in Sources */,
 				04BCA9FF26A5BA7C0015DEC0 /* CRSOperation.m in Sources */,
 				04BCAA5D26A763660015DEC0 /* CRSTemporalCoordinateReferenceSystem.m in Sources */,
@@ -848,6 +879,7 @@
 				04BCAA3D26A71B500015DEC0 /* CRSParametricCoordinateReferenceSystem.m in Sources */,
 				04BCAA2226A613890015DEC0 /* CRSAbridgedCoordinateTransformation.m in Sources */,
 				04BCA999269DB03B0015DEC0 /* CRSWriter.m in Sources */,
+				04BCAA7A26A8B6B90015DEC0 /* CRSPrimeMeridian.m in Sources */,
 				04BCA9FB26A5A7A70015DEC0 /* CRSOperationMethod.m in Sources */,
 				04BCA9BA269F1FBC0015DEC0 /* CRSUsage.m in Sources */,
 			);

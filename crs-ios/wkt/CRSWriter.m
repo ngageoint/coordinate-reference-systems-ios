@@ -67,6 +67,14 @@
     // TODO
 }
 
+-(void) writePrimeMeridian: (CRSPrimeMeridian *) primeMeridian{
+    // TODO
+}
+
+-(void) writeEllipsoid: (CRSEllipsoid *) ellipsoid{
+    // TODO
+}
+
 -(void) writeUnit: (CRSUnit *) unit{
     // TODO
 }

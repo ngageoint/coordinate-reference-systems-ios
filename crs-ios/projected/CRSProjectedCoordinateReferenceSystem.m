@@ -53,7 +53,112 @@
     return self;
 }
 
-// TODO
+-(NSString *) baseName{
+    return [self base].name;
+}
+
+-(void) setBaseName: (NSString *) baseName{
+    [[self base] setName:baseName];
+}
+
+-(enum CRSType) baseType{
+    return [self base].type;
+}
+
+-(void) setBaseType: (enum CRSType) baseType{
+    [[self base] setType:baseType];
+}
+
+-(CRSGeoReferenceFrame *) referenceFrame{
+    return [self base].referenceFrame;
+}
+
+-(BOOL) hasReferenceFrame{
+    return [[self base] hasReferenceFrame];
+}
+
+-(void) setReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame{
+    [[self base] setReferenceFrame:referenceFrame];
+}
+
+-(CRSGeoDatumEnsemble *) datumEnsemble{
+    return [self base].datumEnsemble;
+}
+
+-(BOOL) hasDatumEnsemble{
+    return [[self base] hasDatumEnsemble];
+}
+
+-(void) setDatumEnsemble: (CRSGeoDatumEnsemble *) datumEnsemble{
+    [[self base] setDatumEnsemble:datumEnsemble];
+}
+
+-(CRSDynamic *) dynamic{
+    return [self base].dynamic;
+}
+
+-(BOOL) hasDynamic{
+    return [[self base] hasDynamic];
+}
+
+-(void) setDynamic: (CRSDynamic *) dynamic{
+    [[self base] setDynamic:dynamic];
+}
+
+-(NSObject<CRSGeoDatum> *) geoDatum{
+    return [[self base] geoDatum];
+}
+
+-(NSMutableArray<CRSIdentifier *> *) baseIdentifiers{
+    return [self base].identifiers;
+}
+
+-(BOOL) hasBaseIdentifiers{
+    return [[self base] hasIdentifiers];
+}
+
+-(int) numBaseIdentifiers{
+    return [[self base] numIdentifiers];
+}
+
+-(CRSIdentifier *) baseIdentifierAtIndex: (int) index{
+    return [[self base] identifierAtIndex:index];
+}
+
+-(void) setBaseIdentifiers: (NSArray<CRSIdentifier *> *) baseIdentifiers{
+    [[self base] setIdentifiers:[NSMutableArray arrayWithArray:baseIdentifiers]];
+}
+
+-(void) addBaseIdentifier: (CRSIdentifier *) baseIdentifier{
+    [[self base] addIdentifier:baseIdentifier];
+}
+
+-(void) addBaseIdentifiers: (NSArray<CRSIdentifier *> *) baseIdentifiers{
+    [[self base] addIdentifiers:baseIdentifiers];
+}
+
+-(CRSUnit *) unit{
+    CRSUnit *unit = nil;
+    CRSCoordinateSystem *cs = [self base].coordinateSystem;
+    if(cs != nil){
+        unit = cs.unit;
+    }
+    return unit;
+}
+
+-(BOOL) hasUnit{
+    CRSCoordinateSystem *cs = [self base].coordinateSystem;
+    return cs != nil && [cs hasUnit];
+}
+
+-(void) setUnit: (CRSUnit *) unit{
+    CRSCoordinateSystem *cs = [self base].coordinateSystem;
+    if(cs == nil){
+        cs = [CRSCoordinateSystem create];
+        
+    }
+    [cs setUnit:unit];
+}
 
 - (BOOL) equals: (CRSProjectedCoordinateReferenceSystem *) projectedCoordinateReferenceSystem{
     if (self == projectedCoordinateReferenceSystem){

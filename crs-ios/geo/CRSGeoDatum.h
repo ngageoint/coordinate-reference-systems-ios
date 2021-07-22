@@ -10,13 +10,65 @@
 #define CRSGeoDatum_h
 
 #import "CRSIdentifiable.h"
+#import "CRSEllipsoid.h"
+#import "CRSPrimeMeridian.h"
 
 /**
  *  Common Operation interface
  */
 @protocol CRSGeoDatum <CRSIdentifiable>
 
-// TODO
+/**
+ * Get the datum name
+ *
+ * @return datum name
+ */
+-(NSString *) name;
+
+/**
+ * Set the datum name
+ *
+ * @param name
+ *            datum name
+ */
+-(void) setName: (NSString *) name;
+
+/**
+ * Get the ellipsoid
+ *
+ * @return ellipsoid
+ */
+-(CRSEllipsoid *) ellipsoid;
+
+/**
+ * Set the ellipsoid
+ *
+ * @param ellipsoid
+ *            ellipsoid
+ */
+-(void) setEllipsoid: (CRSEllipsoid *) ellipsoid;
+
+/**
+ * Get the prime meridian
+ *
+ * @return prime meridian
+ */
+-(CRSPrimeMeridian *) primeMeridian;
+
+/**
+ * Has a prime meridian
+ *
+ * @return true if has prime meridian
+ */
+-(BOOL) hasPrimeMeridian;
+
+/**
+ * Set the prime meridian
+ *
+ * @param primeMeridian
+ *            prime meridian
+ */
+-(void) setPrimeMeridian: (CRSPrimeMeridian *) primeMeridian;
 
 @end
 

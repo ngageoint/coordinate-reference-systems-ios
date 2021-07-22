@@ -14,6 +14,64 @@
  */
 @interface CRSGeoDatumEnsemble : CRSDatumEnsemble<CRSGeoDatum>
 
-// TODO
+/**
+ * Ellipsoid
+ */
+@property (nonatomic, strong) CRSEllipsoid *ellipsoid;
+
+/**
+ * Prime Meridian
+ */
+@property (nonatomic, strong) CRSPrimeMeridian *primeMeridian;
+
+/**
+ *  Create
+ *
+ *  @return new instance
+ */
++(CRSGeoDatumEnsemble *) create;
+
+/**
+ *  Initialize
+ *
+ *  @return new instance
+ */
+-(instancetype) init;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
+ * @param member
+ *            member
+ * @param ellipsoid
+ *            ellipsoid
+ * @param accuracy
+ *            accuracy
+ * @param primeMeridian
+ *            prime meridian
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andMember: (CRSDatumEnsembleMember *) member andEllipsoid: (CRSEllipsoid *) ellipsoid andAccuracy: (double) accuracy andPrimeMeridian: (CRSPrimeMeridian *) primeMeridian;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
+ * @param members
+ *            members
+ * @param ellipsoid
+ *            ellipsoid
+ * @param accuracy
+ *            accuracy
+ * @param primeMeridian
+ *            prime meridian
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andMembers: (NSArray<CRSDatumEnsembleMember *> *) members andEllipsoid: (CRSEllipsoid *) ellipsoid andAccuracy: (double) accuracy andPrimeMeridian: (CRSPrimeMeridian *) primeMeridian;
 
 @end
