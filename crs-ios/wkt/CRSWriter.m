@@ -7,6 +7,8 @@
 //
 
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
+#import "CRSTextConstants.h"
 
 @interface CRSWriter()
 
@@ -25,6 +27,46 @@
     [writer writeCRS:crs];
     value = [writer text];
     return value;
+}
+
++(NSString *) writePretty: (CRSObject *) crs{
+    return [self writePrettyWithText:[self write:crs]];
+}
+
++(NSString *) writePrettyTabIndent: (CRSObject *) crs{
+    return [self writePrettyTabIndentWithText:[self write:crs]];
+}
+
++(NSString *) writePrettyNoIndent: (CRSObject *) crs{
+    return [self writePrettyNoIndentWithText:[self write:crs]];
+}
+
++(NSString *) writePretty: (CRSObject *) crs withIndent: (NSString *) indent{
+    return [self writePrettyWithText:[self write:crs] andIndent:indent];
+}
+
++(NSString *) writePretty: (CRSObject *) crs withNewline: (NSString *) newline andIndent: (NSString *) indent{
+    return [self writePrettyWithText:[self write:crs] andNewline:newline andIndent:indent];
+}
+
++(NSString *) writePrettyWithText: (NSString *) wkt{
+    return [CRSTextUtils pretty:wkt];
+}
+
++(NSString *) writePrettyTabIndentWithText: (NSString *) wkt{
+    return [CRSTextUtils prettyTabIndent:wkt];
+}
+
++(NSString *) writePrettyNoIndentWithText: (NSString *) wkt{
+    return [CRSTextUtils prettyNoIndent:wkt];
+}
+
++(NSString *) writePrettyWithText: (NSString *) wkt andIndent: (NSString *) indent{
+    return [CRSTextUtils pretty:wkt withIndent:indent];
+}
+
++(NSString *) writePrettyWithText: (NSString *) wkt andNewline: (NSString *) newline andIndent: (NSString *) indent{
+    return [CRSTextUtils pretty:wkt withNewline:newline andIndent:indent];
 }
 
 +(CRSWriter *) create{
@@ -49,6 +91,60 @@
 
 -(void) writeCRS: (CRSObject *) crs{
     // TODO
+}
+
+-(void) writeKeywordType: (enum CRSKeywordType) keyword{
+    [self writeKeyword:[CRSKeyword keywordOfType:keyword]];
+}
+
+-(void) writeKeyword: (CRSKeyword *) keyword{
+    [_text appendString:keyword.name];
+}
+
+-(void) writeLeftDelimiter{
+    [_text appendString:CRS_WKT_LEFT_DELIMITER];
+}
+
+-(void) writeRightDelimiter{
+    [_text appendString:CRS_WKT_RIGHT_DELIMITER];
+}
+
+-(void) writeSeparator{
+    [_text appendString:CRS_WKT_SEPARATOR];
+}
+
+-(void) writeQuotedText: (NSString *) text{
+    [_text appendString:@"\""];
+    [_text appendString:[text stringByReplacingOccurrencesOfString:@"\"" withString:@"\"\""]];
+    [_text appendString:@"\""];
+}
+
+-(void) writeNumber: (NSNumber *) number{
+    [_text appendString:[number stringValue]];
+}
+
+-(void) writeNumberOrQuotedText: (NSString *) text{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    if([formatter numberFromString:text] != nil){
+        [_text appendString:text];
+    }else{
+        [self writeQuotedText:text];
+    }
+}
+
+-(void) writeKeywordType: (enum CRSKeywordType) keyword withDelimitedQuotedText: (NSString *) text{
+    [self writeKeyword:[CRSKeyword keywordOfType:keyword] withDelimitedQuotedText:text];
+}
+
+-(void) writeKeyword: (CRSKeyword *) keyword withDelimitedQuotedText: (NSString *) text{
+    
+    [self writeKeyword:keyword];
+    
+    [self writeLeftDelimiter];
+    
+    [self writeQuotedText:text];
+    
+    [self writeRightDelimiter];
 }
 
 -(void) writeReferenceFrame: (CRSReferenceFrame *) referenceFrame{

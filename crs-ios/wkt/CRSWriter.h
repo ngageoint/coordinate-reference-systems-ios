@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CRSObject.h"
+#import "CRSKeyword.h"
 #import "CRSReferenceFrame.h"
 #import "CRSDatumEnsemble.h"
 #import "CRSDatumEnsembleMember.h"
@@ -45,6 +46,110 @@
 +(NSString *) write: (CRSObject *) crs;
 
 /**
+ * Write a coordinate reference system to well-known pretty text, 4 space
+ * indents
+ *
+ * @param crs
+ *            coordinate reference system
+ * @return well-known pretty text
+ */
++(NSString *) writePretty: (CRSObject *) crs;
+
+/**
+ * Write a coordinate reference system to well-known pretty text, tab
+ * indents
+ *
+ * @param crs
+ *            coordinate reference system
+ * @return well-known pretty text
+ */
++(NSString *) writePrettyTabIndent: (CRSObject *) crs;
+
+/**
+ * Write a coordinate reference system to well-known pretty text, no indents
+ *
+ * @param crs
+ *            coordinate reference system
+ * @return well-known pretty text
+ */
++(NSString *) writePrettyNoIndent: (CRSObject *) crs;
+
+/**
+ * Write a coordinate reference system to well-known pretty text
+ *
+ * @param crs
+ *            coordinate reference system
+ * @param indent
+ *            indent string
+ * @return well-known pretty text
+ */
++(NSString *) writePretty: (CRSObject *) crs withIndent: (NSString *) indent;
+
+/**
+ * Write a coordinate reference system to well-known pretty text
+ *
+ * @param crs
+ *            coordinate reference system
+ * @param newline
+ *            newline string
+ * @param indent
+ *            indent string
+ * @return well-known pretty text
+ */
++(NSString *) writePretty: (CRSObject *) crs withNewline: (NSString *) newline andIndent: (NSString *) indent;
+
+/**
+ * Write well-known text to well-known pretty text, 4 space indents
+ *
+ * @param wkt
+ *            well-known text
+ * @return well-known pretty text
+ */
++(NSString *) writePrettyWithText: (NSString *) wkt;
+
+/**
+ * Write well-known text to well-known pretty text, tab indents
+ *
+ * @param wkt
+ *            well-known text
+ * @return well-known pretty text
+ */
++(NSString *) writePrettyTabIndentWithText: (NSString *) wkt;
+
+/**
+ * Write well-known text to well-known pretty text, no indents
+ *
+ * @param wkt
+ *            well-known text
+ * @return well-known pretty text
+ */
++(NSString *) writePrettyNoIndentWithText: (NSString *) wkt;
+
+/**
+ * Write well-known text to well-known pretty text
+ *
+ * @param wkt
+ *            well-known text
+ * @param indent
+ *            indent string
+ * @return well-known pretty text
+ */
++(NSString *) writePrettyWithText: (NSString *) wkt andIndent: (NSString *) indent;
+
+/**
+ * Write well-known text to well-known pretty text
+ *
+ * @param wkt
+ *            well-known text
+ * @param newline
+ *            newline string
+ * @param indent
+ *            indent string
+ * @return well-known pretty text
+ */
++(NSString *) writePrettyWithText: (NSString *) wkt andNewline: (NSString *) newline andIndent: (NSString *) indent;
+
+/**
  *  Create
  *
  *  @return new instance
@@ -79,6 +184,81 @@
  *            coordinate reference system
  */
 -(void) writeCRS: (CRSObject *) crs;
+
+/**
+ * Write a keyword type
+ *
+ * @param keyword
+ *            keyword type
+ */
+-(void) writeKeywordType: (enum CRSKeywordType) keyword;
+
+/**
+ * Write a keyword
+ *
+ * @param keyword
+ *            keyword
+ */
+-(void) writeKeyword: (CRSKeyword *) keyword;
+
+/**
+ * Write a left delimiter
+ */
+-(void) writeLeftDelimiter;
+
+/**
+ * Write a right delimiter
+ */
+-(void) writeRightDelimiter;
+
+/**
+ * Write a separator
+ */
+-(void) writeSeparator;
+
+/**
+ * Write the text as quoted
+ *
+ * @param text
+ *            text
+ */
+-(void) writeQuotedText: (NSString *) text;
+
+/**
+ * Write a number
+ *
+ * @param number
+ *            number
+ */
+-(void) writeNumber: (NSNumber *) number;
+
+/**
+ * Write a number or quoted text if not a number
+ *
+ * @param text
+ *            text
+ */
+-(void) writeNumberOrQuotedText: (NSString *) text;
+
+/**
+ * Write a keyword type delimited text
+ *
+ * @param keyword
+ *            keyword type
+ * @param text
+ *            text
+ */
+-(void) writeKeywordType: (enum CRSKeywordType) keyword withDelimitedQuotedText: (NSString *) text;
+
+/**
+ * Write a keyword delimited text
+ *
+ * @param keyword
+ *            keyword
+ * @param text
+ *            text
+ */
+-(void) writeKeyword: (CRSKeyword *) keyword withDelimitedQuotedText: (NSString *) text;
 
 /**
  * Write a reference frame to well-known text
