@@ -56,7 +56,7 @@
             [_coordinateReferenceSystems addObject:crs];
             break;
         default:
-            [NSException raise:@"Unsupported Compound CRS" format:@"Unsupported Compound Coordinate Reference System Type: %d", crs.type];
+            [NSException raise:@"Unsupported Compound CRS" format:@"Unsupported Compound Coordinate Reference System Type: %@", [CRSTypes name:crs.type]];
     }
 }
 

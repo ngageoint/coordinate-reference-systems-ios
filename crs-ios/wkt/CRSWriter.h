@@ -9,6 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "CRSObject.h"
 #import "CRSKeyword.h"
+#import "CRSGeoCoordinateReferenceSystem.h"
+#import "CRSProjectedCoordinateReferenceSystem.h"
+#import "CRSVerticalCoordinateReferenceSystem.h"
+#import "CRSEngineeringCoordinateReferenceSystem.h"
+#import "CRSParametricCoordinateReferenceSystem.h"
+#import "CRSTemporalCoordinateReferenceSystem.h"
+#import "CRSDerivedCoordinateReferenceSystem.h"
+#import "CRSCompoundCoordinateReferenceSystem.h"
+#import "CRSCoordinateMetadata.h"
+#import "CRSCoordinateOperation.h"
+#import "CRSPointMotionOperation.h"
+#import "CRSConcatenatedOperation.h"
+#import "CRSBoundCoordinateReferenceSystem.h"
 #import "CRSReferenceFrame.h"
 #import "CRSDatumEnsemble.h"
 #import "CRSDatumEnsembleMember.h"
@@ -259,6 +272,166 @@
  *            text
  */
 -(void) writeKeyword: (CRSKeyword *) keyword withDelimitedQuotedText: (NSString *) text;
+
+/**
+ * Write a geodetic or geographic CRS to well-known text
+ *
+ * @param crs
+ *            geodetic or geographic coordinate reference system
+ */
+-(void) writeGeo: (CRSGeoCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a projected CRS to well-known text
+ *
+ * @param crs
+ *            projected coordinate reference system
+ */
+-(void) writeProjected: (CRSProjectedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a vertical CRS to well-known text
+ *
+ * @param crs
+ *            vertical coordinate reference system
+ */
+-(void) writeVertical: (CRSVerticalCoordinateReferenceSystem *) crs;
+
+/**
+ * Write an engineering CRS to well-known text
+ *
+ * @param crs
+ *            engineering coordinate reference system
+ */
+-(void) writeEngineering: (CRSEngineeringCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a parametric CRS to well-known text
+ *
+ * @param crs
+ *            parametric coordinate reference system
+ */
+-(void) writeParametric: (CRSParametricCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a temporal CRS to well-known text
+ *
+ * @param crs
+ *            temporal coordinate reference system
+ */
+-(void) writeTemporal: (CRSTemporalCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a derived CRS to well-known text
+ *
+ * @param crs
+ *            temporal coordinate reference system
+ */
+-(void) writeDerived: (CRSDerivedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a derived geo CRS to well-known text
+ *
+ * @param crs
+ *            derived geo coordinate reference system
+ */
+-(void) writeDerivedGeoCRS: (CRSDerivedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a derived projected CRS to well-known text
+ *
+ * @param crs
+ *            derived projected coordinate reference system
+ */
+-(void) writeDerivedProjectedCRS: (CRSDerivedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a derived vertical CRS to well-known text
+ *
+ * @param crs
+ *            derived vertical coordinate reference system
+ */
+-(void) writeDerivedVerticalCRS: (CRSDerivedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a derived engineering CRS to well-known text
+ *
+ * @param crs
+ *            derived engineering coordinate reference system
+ */
+-(void) writeDerivedEngineeringCRS: (CRSDerivedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a derived parametric CRS to well-known text
+ *
+ * @param crs
+ *            derived parametric coordinate reference system
+ */
+-(void) writeDerivedParametricCRS: (CRSDerivedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a derived temporal CRS to well-known text
+ *
+ * @param crs
+ *            derived temporal coordinate reference system
+ */
+-(void) writeDerivedTemporalCRS: (CRSDerivedCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a compound CRS to well-known text
+ *
+ * @param crs
+ *            compound coordinate reference system
+ */
+-(void) writeCompound: (CRSCompoundCoordinateReferenceSystem *) crs;
+
+/**
+ * Write coordinate metadata to well-known text
+ *
+ * @param metadata
+ *            coordinate metadata
+ */
+-(void) writeCoordinateMetadata: (CRSCoordinateMetadata *) metadata;
+
+/**
+ * Write coordinate operation to well-known text
+ *
+ * @param operation
+ *            coordinate operation
+ */
+-(void) writeCoordinateOperation: (CRSCoordinateOperation *) operation;
+
+/**
+ * Write point motion operation to well-known text
+ *
+ * @param operation
+ *            point motion operation
+ */
+-(void) writePointMotionOperation: (CRSPointMotionOperation *) operation;
+
+/**
+ * Write concatenated operation to well-known text
+ *
+ * @param operation
+ *            concatenated operation
+ */
+-(void) writeConcatenatedOperation: (CRSConcatenatedOperation *) operation;
+
+/**
+ * Write a bound CRS to well-known text
+ *
+ * @param crs
+ *            bound coordinate reference system
+ */
+-(void) writeBound: (CRSBoundCoordinateReferenceSystem *) crs;
+
+/**
+ * Write the CRS usages (scope and extent), identifiers, and remark
+ *
+ * @param object
+ *            scope extent identifier remark object
+ */
+-(void) writeScopeExtentIdentifierRemark: (NSObject<CRSScopeExtentIdentifierRemark> *) object;
 
 /**
  * Write a reference frame to well-known text

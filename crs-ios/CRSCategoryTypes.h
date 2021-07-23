@@ -17,6 +17,31 @@ enum CRSCategoryType{
     CRS_CATEGORY_METADATA
 };
 
+/**
+ * Category Type names
+ */
+extern NSString * const CRS_CATEGORY_CRS_NAME;
+extern NSString * const CRS_CATEGORY_OPERATION_NAME;
+extern NSString * const CRS_CATEGORY_METADATA_NAME;
+
 @interface CRSCategoryTypes : NSObject
+
+/**
+ * Get the type name
+ *
+ * @param type
+ *            type
+ * @return type name
+ */
++(NSString *) name: (enum CRSCategoryType) type;
+
+/**
+ * Get the type from the name
+ *
+ * @param name
+ *            type name
+ * @return type
+ */
++(enum CRSCategoryType) type: (NSString *) name;
 
 @end

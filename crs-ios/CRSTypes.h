@@ -29,7 +29,43 @@ enum CRSType{
     CRS_TYPE_VERTICAL
 };
 
+/**
+ * CRS Type names
+ */
+extern NSString * const CRS_TYPE_BOUND_NAME;
+extern NSString * const CRS_TYPE_COMPOUND_NAME;
+extern NSString * const CRS_TYPE_CONCATENATED_OPERATION_NAME;
+extern NSString * const CRS_TYPE_COORDINATE_METADATA_NAME;
+extern NSString * const CRS_TYPE_COORDINATE_OPERATION_NAME;
+extern NSString * const CRS_TYPE_DERIVED_NAME;
+extern NSString * const CRS_TYPE_ENGINEERING_NAME;
+extern NSString * const CRS_TYPE_GEODETIC_NAME;
+extern NSString * const CRS_TYPE_GEOGRAPHIC_NAME;
+extern NSString * const CRS_TYPE_PARAMETRIC_NAME;
+extern NSString * const CRS_TYPE_POINT_MOTION_OPERATION_NAME;
+extern NSString * const CRS_TYPE_PROJECTED_NAME;
+extern NSString * const CRS_TYPE_TEMPORAL_NAME;
+extern NSString * const CRS_TYPE_VERTICAL_NAME;
+
 @interface CRSTypes : NSObject
+
+/**
+ * Get the type name
+ *
+ * @param type
+ *            type
+ * @return type name
+ */
++(NSString *) name: (enum CRSType) type;
+
+/**
+ * Get the type from the name
+ *
+ * @param name
+ *            type name
+ * @return type
+ */
++(enum CRSType) type: (NSString *) name;
 
 /**
  *  Get the category type
