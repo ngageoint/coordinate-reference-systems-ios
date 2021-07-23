@@ -25,6 +25,26 @@
  *
  *  @return new text reader
  */
++(CRSTextReader *) createWithText: (NSString *) text;
+
+/**
+ *  Initialize
+ *
+ *  @param text text
+ *  @param includeQuotes
+ *            include quotes
+ *
+ *  @return new text reader
+ */
++(CRSTextReader *) createWithText: (NSString *) text andIncludeQuotes: (BOOL) includeQuotes;
+
+/**
+ *  Initialize
+ *
+ *  @param text text
+ *
+ *  @return new text reader
+ */
 -(instancetype) initWithText: (NSString *) text;
 
 /**

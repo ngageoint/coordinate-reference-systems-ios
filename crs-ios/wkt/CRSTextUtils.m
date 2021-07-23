@@ -127,13 +127,10 @@
     
     int depth = 0;
     
-    // TODO
-    /*
+    CRSTextReader *reader = [CRSTextReader createWithText:wkt andIncludeQuotes:YES];
     
-    CRSTextReader *reader = [[CRSTextReader alloc] initWithText:wkt andIncludeQuotes:YES];
-    
-    NSString *previousToken [reader readToken];
-    NSString *token [reader readToken];
+    NSString *previousToken = [reader readToken];
+    NSString *token = [reader readToken];
     while(previousToken != nil){
         
         if(token != nil && ([token isEqualToString:@"["] || [token isEqualToString:@"("])){
@@ -155,10 +152,6 @@
         previousToken = token;
         token = [reader readToken];
     }
-
-    [reader close];
-     
-     */
 
     return pretty;
 }

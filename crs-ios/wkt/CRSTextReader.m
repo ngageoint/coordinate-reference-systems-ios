@@ -29,6 +29,14 @@
 
 @implementation CRSTextReader
 
++(CRSTextReader *) createWithText: (NSString *) text{
+    return [[CRSTextReader alloc] initWithText:text];
+}
+
++(CRSTextReader *) createWithText: (NSString *) text andIncludeQuotes: (BOOL) includeQuotes{
+    return [[CRSTextReader alloc] initWithText:text andIncludeQuotes:includeQuotes];
+}
+
 -(instancetype) initWithText: (NSString *) text{
     return [self initWithText:text andIncludeQuotes:NO];
 }
