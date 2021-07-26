@@ -9,6 +9,7 @@
 #import "CRSWriter.h"
 #import "CRSTextUtils.h"
 #import "CRSTextConstants.h"
+#import "CRSTriaxialEllipsoid.h"
 
 @interface CRSWriter()
 
@@ -177,6 +178,14 @@
     }
 }
 
+-(void) writeDouble: (double) value{
+    [_text appendFormat:@"%f", value];
+}
+
+-(void) writeInt: (int) value{
+    [_text appendFormat:@"%d", value];
+}
+
 -(void) writeKeywordType: (enum CRSKeywordType) keyword withDelimitedQuotedText: (NSString *) text{
     [self writeKeyword:[CRSKeyword keywordOfType:keyword] withDelimitedQuotedText:text];
 }
@@ -232,163 +241,1437 @@
 }
 
 -(void) writeProjected: (CRSProjectedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_PROJCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    enum CRSKeywordType baseKeyword;
+    switch([crs baseType]){
+        case CRS_TYPE_GEODETIC:
+            baseKeyword = CRS_KEYWORD_BASEGEODCRS;
+            break;
+        case CRS_TYPE_GEOGRAPHIC:
+            baseKeyword = CRS_KEYWORD_BASEGEOGCRS;
+            break;
+        default:
+            [NSException raise:@"Invalid CRS Type" format:@"Invalid Geodetic or Geographic Base Coordinate Reference System Type: %@", [CRSTypes name:[crs baseType]]];
+    }
+
+    [self writeSeparator];
+    [self writeKeywordType:baseKeyword];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:[crs baseName]];
+
+    if([crs hasDynamic]){
+        [self writeSeparator];
+        [self writeDynamic:[crs dynamic]];
+    }
+
+    [self writeSeparator];
+    if([crs hasDynamic] || [crs hasReferenceFrame]){
+        [self writeReferenceFrame:[crs referenceFrame]];
+    }else{
+        [self writeDatumEnsemble:[crs datumEnsemble]];
+    }
+
+    if([crs hasUnit]){
+        [self writeSeparator];
+        [self writeUnit:[crs unit]];
+    }
+    
+    if([crs hasBaseIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:[crs baseIdentifiers]];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeMapProjection:crs.mapProjection];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeVertical: (CRSVerticalCoordinateReferenceSystem *) crs{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_VERTCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    if([crs hasDynamic]){
+        [self writeSeparator];
+        [self writeDynamic:crs.dynamic];
+    }
+
+    [self writeSeparator];
+    if([crs hasDynamic] || [crs hasReferenceFrame]){
+        [self writeReferenceFrame:crs.referenceFrame];
+    }else{
+        [self writeDatumEnsemble:crs.datumEnsemble];
+    }
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    if([crs hasGeoidModelName]){
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_GEOIDMODEL];
+        [self writeLeftDelimiter];
+        [self writeQuotedText:crs.geoidModelName];
+        if([crs hasGeoidModelIdentifier]){
+            [self writeSeparator];
+            [self writeIdentifier:crs.geoidModelIdentifier];
+        }
+        [self writeRightDelimiter];
+    }
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeEngineering: (CRSEngineeringCoordinateReferenceSystem *) crs{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_ENGCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    [self writeSeparator];
+    [self writeReferenceFrame:crs.datum];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeParametric: (CRSParametricCoordinateReferenceSystem *) crs{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_PARAMETRICCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    [self writeSeparator];
+    [self writeReferenceFrame:crs.datum];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeTemporal: (CRSTemporalCoordinateReferenceSystem *) crs{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_TIMECRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    [self writeSeparator];
+    [self writeTemporalDatum:crs.datum];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDerived: (CRSDerivedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    switch([crs baseType]){
+        case CRS_TYPE_GEODETIC:
+        case CRS_TYPE_GEOGRAPHIC:
+            [self writeDerivedGeoCRS:crs];
+            break;
+        case CRS_TYPE_PROJECTED:
+            [self writeDerivedProjectedCRS:crs];
+            break;
+        case CRS_TYPE_VERTICAL:
+            [self writeDerivedVerticalCRS:crs];
+            break;
+        case CRS_TYPE_ENGINEERING:
+            [self writeDerivedEngineeringCRS:crs];
+            break;
+        case CRS_TYPE_PARAMETRIC:
+            [self writeDerivedParametricCRS:crs];
+            break;
+        case CRS_TYPE_TEMPORAL:
+            [self writeDerivedTemporalCRS:crs];
+            break;
+        default:
+            [NSException raise:@"Unsupported CRS Type" format:@"Unsupported derived base CRS type: %@", [CRSTypes name:[crs baseType]]];
+    }
+
 }
 
 -(void) writeDerivedGeoCRS: (CRSDerivedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    enum CRSKeywordType keyword;
+    enum CRSKeywordType baseKeyword;
+    switch([crs baseType]){
+        case CRS_TYPE_GEODETIC:
+            keyword = CRS_KEYWORD_GEODCRS;
+            baseKeyword = CRS_KEYWORD_BASEGEODCRS;
+            break;
+        case CRS_TYPE_GEOGRAPHIC:
+            keyword = CRS_KEYWORD_GEOGCRS;
+            baseKeyword = CRS_KEYWORD_BASEGEOGCRS;
+            break;
+        default:
+            [NSException raise:@"Invalid CRS Type" format:@"Invalid Derived Geodetic or Geographic Coordinate Reference System Type: %@", [CRSTypes name:[crs baseType]]];
+    }
+
+    CRSGeoCoordinateReferenceSystem *baseCrs = (CRSGeoCoordinateReferenceSystem *) crs.base;
+
+    [self writeKeywordType:keyword];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    [self writeSeparator];
+    [self writeKeywordType:baseKeyword];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:baseCrs.name];
+
+    if([baseCrs hasDynamic]){
+        [self writeSeparator];
+        [self writeDynamic:baseCrs.dynamic];
+    }
+
+    [self writeSeparator];
+    if([baseCrs hasDynamic] || [baseCrs hasReferenceFrame]){
+        [self writeReferenceFrame:baseCrs.referenceFrame];
+    }else{
+        [self writeDatumEnsemble:baseCrs.datumEnsemble];
+    }
+
+    if([baseCrs hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:baseCrs.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeDerivingConversion:crs.conversion];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDerivedProjectedCRS: (CRSDerivedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    CRSProjectedCoordinateReferenceSystem *projectedCrs = (CRSProjectedCoordinateReferenceSystem *) crs.base;
+
+    [self writeKeywordType:CRS_KEYWORD_DERIVEDPROJCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    [self writeSeparator];
+    [self writeKeywordType:CRS_KEYWORD_BASEPROJCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:projectedCrs.name];
+
+    enum CRSKeywordType keyword;
+    switch([projectedCrs baseType]){
+        case CRS_TYPE_GEODETIC:
+            keyword = CRS_KEYWORD_BASEGEODCRS;
+            break;
+        case CRS_TYPE_GEOGRAPHIC:
+            keyword = CRS_KEYWORD_BASEGEOGCRS;
+            break;
+        default:
+            [NSException raise:@"Invalid CRS Type" format:@"Invalid Derived Projected Geodetic or Geographic Coordinate Reference System Type: %@", [CRSTypes name:[projectedCrs baseType]]];
+    }
+
+    [self writeSeparator];
+    [self writeKeywordType:keyword];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:[projectedCrs baseName]];
+
+    if([projectedCrs hasDynamic]){
+        [self writeSeparator];
+        [self writeDynamic:[projectedCrs dynamic]];
+    }
+
+    [self writeSeparator];
+    if([projectedCrs hasDynamic] || [projectedCrs hasReferenceFrame]){
+        [self writeReferenceFrame:[projectedCrs referenceFrame]];
+    }else{
+        [self writeDatumEnsemble:[projectedCrs datumEnsemble]];
+    }
+
+    if([projectedCrs hasBaseIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:[projectedCrs baseIdentifiers]];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeMapProjection: projectedCrs.mapProjection];
+
+    if([projectedCrs hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:projectedCrs.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeDerivingConversion:crs.conversion];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDerivedVerticalCRS: (CRSDerivedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    CRSVerticalCoordinateReferenceSystem *baseCrs = (CRSVerticalCoordinateReferenceSystem *) crs.base;
+
+    [self writeKeywordType:CRS_KEYWORD_VERTCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    [self writeSeparator];
+    [self writeKeywordType:CRS_KEYWORD_BASEVERTCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:baseCrs.name];
+
+    if([baseCrs hasDynamic]){
+        [self writeSeparator];
+        [self writeDynamic:baseCrs.dynamic];
+    }
+
+    [self writeSeparator];
+    if([baseCrs hasDynamic] || [baseCrs hasReferenceFrame]){
+        [self writeReferenceFrame:baseCrs.referenceFrame];
+    }else{
+        [self writeDatumEnsemble:baseCrs.datumEnsemble];
+    }
+
+    if([baseCrs hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:baseCrs.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeDerivingConversion:crs.conversion];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDerivedEngineeringCRS: (CRSDerivedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    CRSEngineeringCoordinateReferenceSystem *baseCrs = (CRSEngineeringCoordinateReferenceSystem *) crs.base;
+
+    [self writeKeywordType:CRS_KEYWORD_ENGCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    [self writeSeparator];
+    [self writeKeywordType:CRS_KEYWORD_BASEENGCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:baseCrs.name];
+
+    [self writeSeparator];
+    [self writeReferenceFrame:baseCrs.datum];
+
+    if([baseCrs hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:baseCrs.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeDerivingConversion:crs.conversion];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDerivedParametricCRS: (CRSDerivedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    CRSParametricCoordinateReferenceSystem *baseCrs = (CRSParametricCoordinateReferenceSystem *) crs.base;
+
+    [self writeKeywordType:CRS_KEYWORD_PARAMETRICCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+    
+    [self writeSeparator];
+    [self writeKeywordType:CRS_KEYWORD_BASEPARAMCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:baseCrs.name];
+
+    [self writeSeparator];
+    [self writeReferenceFrame:baseCrs.datum];
+
+    if([baseCrs hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:baseCrs.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeDerivingConversion:crs.conversion];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDerivedTemporalCRS: (CRSDerivedCoordinateReferenceSystem *) crs{
-    // TODO
+
+    CRSTemporalCoordinateReferenceSystem *baseCrs = (CRSTemporalCoordinateReferenceSystem *) crs.base;
+
+    [self writeKeywordType:CRS_KEYWORD_TIMECRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+    
+    [self writeSeparator];
+    [self writeKeywordType:CRS_KEYWORD_BASETIMECRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:baseCrs.name];
+    
+    [self writeSeparator];
+    [self writeTemporalDatum:baseCrs.datum];
+
+    if([baseCrs hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:baseCrs.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    [self writeSeparator];
+    [self writeDerivingConversion:crs.conversion];
+
+    [self writeSeparator];
+    [self writeCoordinateSystem:crs.coordinateSystem];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeCompound: (CRSCompoundCoordinateReferenceSystem *) crs{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_COMPOUNDCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:crs.name];
+
+    for(CRSObject *coordinateReferenceSystem in crs.coordinateReferenceSystems){
+        [self writeSeparator];
+        [self writeCRS:coordinateReferenceSystem];
+    }
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeCoordinateMetadata: (CRSCoordinateMetadata *) metadata{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_COORDINATEMETADATA];
+
+    [self writeLeftDelimiter];
+
+    [self writeCRS:metadata.coordinateReferenceSystem];
+
+    if([metadata hasEpoch]){
+        
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_EPOCH];
+        [self writeLeftDelimiter];
+        [self writeNumber:metadata.epoch];
+        [self writeRightDelimiter];
+        
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeCoordinateOperation: (CRSCoordinateOperation *) operation{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_COORDINATEOPERATION];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:operation.name];
+
+    if([operation hasVersion]){
+        [self writeSeparator];
+        [self writeVersion:operation.version];
+    }
+
+    [self writeSeparator];
+    [self writeSource:operation.source];
+
+    [self writeSeparator];
+    [self writeTarget:operation.target];
+
+    [self writeSeparator];
+    CRSOperationMethod *method = operation.method;
+    [self writeOperationMethod:method];
+
+    if([method hasParameters]){
+        [self writeSeparator];
+        [self writeOperationParameters:method.parameters];
+    }
+
+    if([operation hasInterpolation]){
+        [self writeSeparator];
+        [self writeInterpolation:operation.interpolation];
+    }
+
+    if([operation hasAccuracy]){
+        [self writeSeparator];
+        [self writeAccuracy:[operation.accuracy doubleValue]];
+    }
+
+    [self writeScopeExtentIdentifierRemark:operation];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writePointMotionOperation: (CRSPointMotionOperation *) operation{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_POINTMOTIONOPERATION];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:operation.name];
+
+    if([operation hasVersion]){
+        [self writeSeparator];
+        [self writeVersion:operation.version];
+    }
+
+    [self writeSeparator];
+    [self writeSource:operation.source];
+
+    [self writeSeparator];
+    CRSOperationMethod *method = operation.method;
+    [self writeOperationMethod:method];
+    
+    if([method hasParameters]){
+        [self writeSeparator];
+        [self writeOperationParameters:method.parameters];
+    }
+
+    if([operation hasAccuracy]){
+        [self writeSeparator];
+        [self writeAccuracy:[operation.accuracy doubleValue]];
+    }
+
+    [self writeScopeExtentIdentifierRemark:operation];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeConcatenatedOperation: (CRSConcatenatedOperation *) operation{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_CONCATENATEDOPERATION];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:operation.name];
+
+    if([operation hasVersion]){
+        [self writeSeparator];
+        [self writeVersion:operation.version];
+    }
+
+    [self writeSeparator];
+    [self writeSource:operation.source];
+
+    [self writeSeparator];
+    [self writeTarget:operation.target];
+
+    for(NSObject<CRSCommonOperation> *concatenable in operation.operations){
+        
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_STEP];
+
+        [self writeLeftDelimiter];
+
+        switch([concatenable operationType]){
+            case CRS_OPERATION_COORDINATE:
+                [self writeCoordinateOperation:(CRSCoordinateOperation *)concatenable];
+                break;
+            case CRS_OPERATION_POINT_MOTION:
+                [self writePointMotionOperation:(CRSPointMotionOperation *)concatenable];
+                break;
+            case CRS_OPERATION_MAP_PROJECTION:
+                [self writeMapProjection:(CRSMapProjection *)concatenable];
+                break;
+            case CRS_OPERATION_DERIVING_CONVERSION:
+                [self writeDerivingConversion:(CRSDerivingConversion *)concatenable];
+                break;
+            default:
+                [NSException raise:@"Unsupported Operation" format:@"Unsupported concatenable operation type: %@", [CRSOperationTypes name:[concatenable operationType]]];
+        }
+
+        [self writeRightDelimiter];
+    }
+
+    if([operation hasAccuracy]){
+        [self writeSeparator];
+        [self writeAccuracy:[operation.accuracy doubleValue]];
+    }
+
+    [self writeScopeExtentIdentifierRemark:operation];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeBound: (CRSBoundCoordinateReferenceSystem *) crs{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_BOUNDCRS];
+
+    [self writeLeftDelimiter];
+
+    [self writeSource:crs.source];
+
+    [self writeSeparator];
+    [self writeTarget:crs.target];
+    
+    [self writeSeparator];
+    [self writeAbridgedCoordinateTransformation:crs.transformation];
+
+    [self writeScopeExtentIdentifierRemark:crs];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeScopeExtentIdentifierRemark: (NSObject<CRSScopeExtentIdentifierRemark> *) object{
-    // TODO
+
+    if([object hasUsages]){
+        [self writeSeparator];
+        [self writeUsages:[object usages]];
+    }
+    
+    if([object hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:[object identifiers]];
+    }
+    
+    if([object hasRemark]){
+        [self writeSeparator];
+        [self writeRemark:[object remark]];
+    }
+
 }
 
 -(void) writeReferenceFrame: (CRSReferenceFrame *) referenceFrame{
-    // TODO
+
+    CRSGeoReferenceFrame *geodeticReferenceFrame = nil;
+    if([referenceFrame isKindOfClass:[CRSGeoReferenceFrame class]]){
+        geodeticReferenceFrame = (CRSGeoReferenceFrame *) referenceFrame;
+    }
+    
+    switch(referenceFrame.type){
+        case CRS_TYPE_GEODETIC:
+        case CRS_TYPE_GEOGRAPHIC:
+            [self writeKeywordType:CRS_KEYWORD_DATUM];
+            break;
+        case CRS_TYPE_VERTICAL:
+            [self writeKeywordType:CRS_KEYWORD_VDATUM];
+            break;
+        case CRS_TYPE_ENGINEERING:
+            [self writeKeywordType:CRS_KEYWORD_EDATUM];
+            break;
+        case CRS_TYPE_PARAMETRIC:
+            [self writeKeywordType:CRS_KEYWORD_PDATUM];
+            break;
+        default:
+            [NSException raise:@"Unexpected CRS Type" format:@"Unexpected Reference Frame Coordinate Reference System Type: %@", [CRSTypes name:referenceFrame.type]];
+    }
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:referenceFrame.name];
+
+    if(geodeticReferenceFrame != nil){
+        [self writeSeparator];
+        [self writeEllipsoid:geodeticReferenceFrame.ellipsoid];
+    }
+
+    if([referenceFrame hasAnchor]){
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_ANCHOR withDelimitedQuotedText:referenceFrame.anchor];
+    }
+
+    if([referenceFrame hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:referenceFrame.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    if(geodeticReferenceFrame != nil && [geodeticReferenceFrame hasPrimeMeridian]){
+        [self writeSeparator];
+        [self writePrimeMeridian:geodeticReferenceFrame.primeMeridian];
+    }
+
 }
 
 -(void) writeDatumEnsemble: (CRSDatumEnsemble *) datumEnsemble{
-    // TODO
+
+    CRSGeoDatumEnsemble *geodeticDatumEnsemble = nil;
+    if([datumEnsemble isKindOfClass:[CRSGeoDatumEnsemble class]]){
+        geodeticDatumEnsemble = (CRSGeoDatumEnsemble *) datumEnsemble;
+    }
+
+    [self writeKeywordType:CRS_KEYWORD_ENSEMBLE];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:datumEnsemble.name];
+
+    for(CRSDatumEnsembleMember *member in datumEnsemble.members){
+        [self writeSeparator];
+        [self writeDatumEnsembleMember:member];
+    }
+
+    if(geodeticDatumEnsemble != nil){
+        [self writeSeparator];
+        [self writeEllipsoid:geodeticDatumEnsemble.ellipsoid];
+    }
+
+    [self writeSeparator];
+    [self writeKeywordType:CRS_KEYWORD_ENSEMBLEACCURACY];
+    [self writeLeftDelimiter];
+    [self writeAccuracy:datumEnsemble.accuracy];
+    [self writeRightDelimiter];
+
+    if([datumEnsemble hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:datumEnsemble.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    if(geodeticDatumEnsemble != nil && [geodeticDatumEnsemble hasPrimeMeridian]){
+        [self writeSeparator];
+        [self writePrimeMeridian:geodeticDatumEnsemble.primeMeridian];
+    }
+
 }
 
 -(void) writeDatumEnsembleMember: (CRSDatumEnsembleMember *) datumEnsembleMember{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_MEMBER];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:datumEnsembleMember.name];
+
+    if([datumEnsembleMember hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:datumEnsembleMember.identifiers];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDynamic: (CRSDynamic *) dynamic{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_DYNAMIC];
+
+    [self writeLeftDelimiter];
+
+    [self writeKeywordType:CRS_KEYWORD_FRAMEEPOCH];
+
+    [self writeLeftDelimiter];
+
+    [self writeDouble:dynamic.referenceEpoch];
+
+    [self writeRightDelimiter];
+
+    if([dynamic hasDeformationModelName]){
+
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_MODEL];
+
+        [self writeLeftDelimiter];
+
+        [self writeQuotedText:dynamic.deformationModelName];
+
+        if([dynamic hasIdentifiers]){
+            [self writeSeparator];
+            [self writeIdentifiers:dynamic.identifiers];
+        }
+
+        [self writeRightDelimiter];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writePrimeMeridian: (CRSPrimeMeridian *) primeMeridian{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_PRIMEM];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:primeMeridian.name];
+
+    [self writeSeparator];
+    [self writeDouble:primeMeridian.longitude];
+
+    if([primeMeridian hasLongitudeUnit]){
+        [self writeSeparator];
+        [self writeUnit:primeMeridian.longitudeUnit];
+    }
+
+    if([primeMeridian hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:primeMeridian.identifiers];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeEllipsoid: (CRSEllipsoid *) ellipsoid{
-    // TODO
+
+    CRSTriaxialEllipsoid *triaxial = nil;
+
+    if([ellipsoid isKindOfClass:[CRSTriaxialEllipsoid class]]){
+        triaxial = (CRSTriaxialEllipsoid *) ellipsoid;
+        [self writeKeywordType:CRS_KEYWORD_TRIAXIAL];
+    }else{
+        [self writeKeywordType:CRS_KEYWORD_ELLIPSOID];
+    }
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:ellipsoid.name];
+
+    [self writeSeparator];
+    [self writeDouble:ellipsoid.semiMajorAxis];
+
+    if(triaxial != nil){
+        
+        [self writeSeparator];
+        [self writeDouble:triaxial.semiMedianAxis];
+        
+        [self writeSeparator];
+        [self writeDouble:triaxial.semiMinorAxis];
+        
+    }else{
+        
+        [self writeSeparator];
+        [self writeDouble:triaxial.inverseFlattening];
+        
+    }
+
+    if([ellipsoid hasUnit]){
+        [self writeSeparator];
+        [self writeUnit:ellipsoid.unit];
+    }
+
+    if([ellipsoid hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:ellipsoid.identifiers];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeUnit: (CRSUnit *) unit{
-    // TODO
+
+    [_text appendString:[CRSUnitTypes name:unit.type]];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:unit.name];
+    
+    if([unit hasConversionFactor]){
+        [self writeSeparator];
+        [self writeNumber:unit.conversionFactor];
+    }
+
+    if([unit hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:unit.identifiers];
+    }
+
+    [self writeRightDelimiter];
+}
+
+-(void) writeIdentifiers: (NSArray<CRSIdentifier *> *) identifiers{
+    
+    for(int i = 0; i < identifiers.count; i++){
+        
+        if(i > 0){
+            [self writeSeparator];
+        }
+        
+        [self writeIdentifier:[identifiers objectAtIndex:i]];
+    }
+    
 }
 
 -(void) writeIdentifier: (CRSIdentifier *) identifier{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_ID];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:identifier.name];
+
+    [self writeSeparator];
+    [self writeNumberOrQuotedText:identifier.uniqueIdentifier];
+
+    if([identifier hasVersion]){
+        [self writeSeparator];
+        [self writeNumberOrQuotedText:identifier.version];
+    }
+
+    if([identifier hasCitation]){
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_CITATION withDelimitedQuotedText:identifier.citation];
+    }
+
+    if([identifier hasUri]){
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_URI withDelimitedQuotedText:identifier.uri];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_CS];
+
+    [self writeLeftDelimiter];
+
+    [_text appendString:[CRSCoordinateSystemTypes name:coordinateSystem.type]];
+
+    [self writeSeparator];
+    [self writeInt:coordinateSystem.dimension];
+
+    if([coordinateSystem hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:coordinateSystem.identifiers];
+    }
+
+    [self writeRightDelimiter];
+
+    for(CRSAxis *axis in coordinateSystem.axes){
+        [self writeSeparator];
+        [self writeAxis:axis];
+    }
+
+    if([coordinateSystem hasUnit]){
+        [self writeSeparator];
+        [self writeUnit:coordinateSystem.unit];
+    }
+
 }
 
 -(void) writeAxis: (CRSAxis *) axis{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_AXIS];
+
+    [self writeLeftDelimiter];
+
+    NSMutableString *nameAbbrev = [NSMutableString string];
+    if([axis hasName]){
+        [nameAbbrev appendString:axis.name];
+    }
+    if([axis hasAbbreviation]){
+        if(nameAbbrev.length > 0){
+            [nameAbbrev appendString:@" "];
+        }
+        [nameAbbrev appendString:CRS_WKT_AXIS_ABBREV_LEFT_DELIMITER];
+        [nameAbbrev appendString:axis.abbreviation];
+        [nameAbbrev appendString:CRS_WKT_AXIS_ABBREV_RIGHT_DELIMITER];
+    }
+    [self writeQuotedText:nameAbbrev];
+
+    [self writeSeparator];
+    [_text appendString:[CRSAxisDirectionTypes name:axis.direction]];
+
+    switch(axis.direction){
+            
+        case CRS_AXIS_NORTH:
+        case CRS_AXIS_SOUTH:
+            
+            if([axis hasMeridian]){
+                
+                [self writeSeparator];
+                [self writeKeywordType:CRS_KEYWORD_MERIDIAN];
+                
+                [self writeLeftDelimiter];
+                
+                [self writeNumber:axis.meridian];
+                
+                [self writeSeparator];
+                [self writeUnit:axis.meridianUnit];
+                
+                [self writeRightDelimiter];
+            }
+            
+            break;
+            
+        case CRS_AXIS_CLOCKWISE:
+        case CRS_AXIS_COUNTER_CLOCKWISE:
+            
+            [self writeSeparator];
+            [self writeKeywordType:CRS_KEYWORD_BEARING];
+            
+            [self writeLeftDelimiter];
+            
+            [self writeNumber:axis.bearing];
+            
+            [self writeRightDelimiter];
+            
+            break;
+            
+        default:
+            break;
+    }
+
+    if([axis hasOrder]){
+        
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_ORDER];
+        
+        [self writeLeftDelimiter];
+        
+        [self writeNumber:axis.order];
+        
+        [self writeRightDelimiter];
+    }
+    
+    if([axis hasUnit]){
+        [self writeSeparator];
+        [self writeUnit:axis.unit];
+    }
+
+    if([axis hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:axis.identifiers];
+    }
+
+    [self writeRightDelimiter];
+}
+
+-(void) writeRemark: (NSString *) remark{
+    [self writeKeywordType:CRS_KEYWORD_REMARK withDelimitedQuotedText:remark];
+}
+
+-(void) writeUsages: (NSArray<CRSUsage *> *) usages{
+
+    for(int i = 0; i < usages.count; i++){
+
+        if(i > 0){
+            [self writeSeparator];
+        }
+
+        [self writeUsage:[usages objectAtIndex:i]];
+    }
+
 }
 
 -(void) writeUsage: (CRSUsage *) usage{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_USAGE];
+
+    [self writeLeftDelimiter];
+
+    [self writeScope:usage.scope];
+
+    [self writeExtent:usage.extent];
+
+    [self writeRightDelimiter];
+}
+
+-(void) writeScope: (NSString *) scope{
+    [self writeKeywordType:CRS_KEYWORD_SCOPE withDelimitedQuotedText:scope];
 }
 
 -(void) writeExtent: (CRSExtent *) extent{
-    // TODO
+
+    if([extent hasAreaDescription]){
+        [self writeSeparator];
+        [self writeAreaDescription:extent.areaDescription];
+    }
+
+    if([extent hasGeographicBoundingBox]){
+        [self writeSeparator];
+        [self writeGeographicBoundingBox:extent.geographicBoundingBox];
+    }
+
+    if([extent hasVerticalExtent]){
+        [self writeSeparator];
+        [self writeVerticalExtent:extent.verticalExtent];
+    }
+
+    if([extent hasTemporalExtent]){
+        [self writeSeparator];
+        [self writeTemporalExtent:extent.temporalExtent];
+    }
+
+}
+
+-(void) writeAreaDescription: (NSString *) areaDescription{
+    [self writeKeywordType:CRS_KEYWORD_AREA withDelimitedQuotedText:areaDescription];
 }
 
 -(void) writeGeographicBoundingBox: (CRSGeographicBoundingBox *) geographicBoundingBox{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_BBOX];
+
+    [self writeLeftDelimiter];
+
+    [self writeDouble:geographicBoundingBox.lowerLeftLatitude];
+
+    [self writeSeparator];
+    [self writeDouble:geographicBoundingBox.lowerLeftLongitude];
+
+    [self writeSeparator];
+    [self writeDouble:geographicBoundingBox.upperRightLatitude];
+
+    [self writeSeparator];
+    [self writeDouble:geographicBoundingBox.upperRightLongitude];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeVerticalExtent: (CRSVerticalExtent *) verticalExtent{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_VERTICALEXTENT];
+
+    [self writeLeftDelimiter];
+    
+    [self writeDouble:verticalExtent.minimumHeight];
+
+    [self writeSeparator];
+    [self writeDouble:verticalExtent.maximumHeight];
+
+    if([verticalExtent hasUnit]){
+        [self writeSeparator];
+        [self writeUnit:verticalExtent.unit];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeTemporalExtent: (CRSTemporalExtent *) temporalExtent{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_TIMEEXTENT];
+
+    [self writeLeftDelimiter];
+
+    if([temporalExtent hasStartDateTime]){
+        [_text appendString:[temporalExtent.startDateTime description]];
+    }else{
+        [self writeQuotedText:temporalExtent.start];
+    }
+
+    [self writeSeparator];
+
+    if([temporalExtent hasEndDateTime]){
+        [_text appendString:[temporalExtent.endDateTime description]];
+    }else{
+        [self writeQuotedText:temporalExtent.end];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeMapProjection: (CRSMapProjection *) mapProjection{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_CONVERSION];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:mapProjection.name];
+
+    [self writeSeparator];
+
+    CRSOperationMethod *method = mapProjection.method;
+    [self writeOperationMethod:method];
+
+    if([method hasParameters]){
+        [self writeSeparator];
+        [self writeOperationParameters:method.parameters];
+    }
+
+    if([mapProjection hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:mapProjection.identifiers];
+    }
+
+    [self writeRightDelimiter];
 }
 
--(void) writeOperationMethod: (CRSOperationMethod *) operationMethod{
-    // TODO
+-(void) writeOperationMethod: (CRSOperationMethod *) method{
+
+    [self writeKeywordType:CRS_KEYWORD_METHOD];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:method.name];
+
+    if([method hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:method.identifiers];
+    }
+
+    [self writeRightDelimiter];
 }
 
--(void) writeOperationParameter: (CRSOperationParameter *) operationParameter{
-    // TODO
+-(void) writeOperationParameter: (CRSOperationParameter *) parameter{
+
+    if([parameter isFile]){
+        [self writeKeywordType:CRS_KEYWORD_PARAMETERFILE];
+    }else{
+        [self writeKeywordType:CRS_KEYWORD_PARAMETER];
+    }
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:parameter.name];
+
+    [self writeSeparator];
+    if([parameter isFile]){
+        [self writeQuotedText:parameter.fileName];
+    } else {
+        [self writeDouble:parameter.value];
+
+        if([parameter hasUnit]){
+            [self writeSeparator];
+            [self writeUnit:parameter.unit];
+        }
+    }
+
+    if([parameter hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:parameter.identifiers];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeTemporalDatum: (CRSTemporalDatum *) temporalDatum{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_TDATUM];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:temporalDatum.name];
+
+    if([temporalDatum hasCalendar]){
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_CALENDAR withDelimitedQuotedText:temporalDatum.calendar];
+    }
+
+    if([temporalDatum hasOrigin] || [temporalDatum hasOriginDateTime]){
+        [self writeSeparator];
+        [self writeKeywordType:CRS_KEYWORD_TIMEORIGIN];
+        [self writeLeftDelimiter];
+        if([temporalDatum hasOriginDateTime]){
+            [_text appendString:[temporalDatum.originDateTime description]];
+        }else{
+            [self writeQuotedText:temporalDatum.origin];
+        }
+        [self writeRightDelimiter];
+    }
+
+    if([temporalDatum hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:temporalDatum.identifiers];
+    }
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeDerivingConversion: (CRSDerivingConversion *) derivingConversion{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_DERIVINGCONVERSION];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:derivingConversion.name];
+
+    [self writeSeparator];
+    CRSOperationMethod *method = derivingConversion.method;
+    [self writeOperationMethod:method];
+
+    if([method hasParameters]){
+        [self writeSeparator];
+        [self writeOperationParameters:method.parameters];
+    }
+
+    if([derivingConversion hasIdentifiers]){
+        [self writeSeparator];
+        [self writeIdentifiers:derivingConversion.identifiers];
+    }
+
+    [self writeRightDelimiter];
+}
+
+-(void) writeOperationParameters: (NSArray<CRSOperationParameter *> *) parameters{
+
+    for(int i = 0; i < parameters.count; i++){
+
+        if(i > 0){
+            [self writeSeparator];
+        }
+
+        [self writeOperationParameter:[parameters objectAtIndex:i]];
+    }
+
+}
+
+-(void) writeVersion: (NSString *) version{
+
+    [self writeKeywordType:CRS_KEYWORD_VERSION];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:version];
+
+    [self writeRightDelimiter];
+}
+
+-(void) writeSource: (CRSCoordinateReferenceSystem *) crs{
+    [self writeCoordinateReferenceSystem:crs withKeywordType:CRS_KEYWORD_SOURCECRS];
+}
+
+-(void) writeTarget: (CRSCoordinateReferenceSystem *) crs{
+    [self writeCoordinateReferenceSystem:crs withKeywordType:CRS_KEYWORD_TARGETCRS];
+}
+
+-(void) writeInterpolation: (CRSCoordinateReferenceSystem *) crs{
+    [self writeCoordinateReferenceSystem:crs withKeywordType:CRS_KEYWORD_INTERPOLATIONCRS];
+}
+
+-(void) writeCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) crs withKeywordType: (enum CRSKeywordType) keyword{
+
+    [self writeKeywordType:keyword];
+    [self writeLeftDelimiter];
+
+    [self writeCRS:crs];
+
+    [self writeRightDelimiter];
+}
+
+-(void) writeAccuracy: (double) accuracy{
+    
+    [self writeKeywordType:CRS_KEYWORD_OPERATIONACCURACY];
+
+    [self writeLeftDelimiter];
+
+    [self writeDouble:accuracy];
+
+    [self writeRightDelimiter];
 }
 
 -(void) writeAbridgedCoordinateTransformation: (CRSAbridgedCoordinateTransformation *) transformation{
-    // TODO
+
+    [self writeKeywordType:CRS_KEYWORD_ABRIDGEDTRANSFORMATION];
+
+    [self writeLeftDelimiter];
+
+    [self writeQuotedText:transformation.name];
+
+    if([transformation hasVersion]){
+        [self writeSeparator];
+        [self writeVersion:transformation.version];
+    }
+
+    [self writeSeparator];
+    CRSOperationMethod *method = transformation.method;
+    [self writeOperationMethod:method];
+
+    if([method hasParameters]){
+        [self writeSeparator];
+        [self writeOperationParameters:method.parameters];
+    }
+
+    [self writeScopeExtentIdentifierRemark:transformation];
+
+    [self writeRightDelimiter];
 }
 
 @end

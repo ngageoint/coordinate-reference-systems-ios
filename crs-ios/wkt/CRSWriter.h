@@ -254,6 +254,22 @@
 -(void) writeNumberOrQuotedText: (NSString *) text;
 
 /**
+ * Write a double
+ *
+ * @param value
+ *            double value
+ */
+-(void) writeDouble: (double) value;
+
+/**
+ * Write an int
+ *
+ * @param value
+ *            int value
+ */
+-(void) writeInt: (int) value;
+
+/**
  * Write a keyword type delimited text
  *
  * @param keyword
@@ -490,6 +506,14 @@
 -(void) writeUnit: (CRSUnit *) unit;
 
 /**
+ * Write identifiers to well-known text
+ *
+ * @param identifiers
+ *            identifiers
+ */
+-(void) writeIdentifiers: (NSArray<CRSIdentifier *> *) identifiers;
+
+/**
  * Write an identifier to well-known text
  *
  * @param identifier
@@ -514,6 +538,22 @@
 -(void) writeAxis: (CRSAxis *) axis;
 
 /**
+ * Write a remark to well-known text
+ *
+ * @param remark
+ *            remark
+ */
+-(void) writeRemark: (NSString *) remark;
+
+/**
+ * Write usages to well-known text
+ *
+ * @param usages
+ *            usages
+ */
+-(void) writeUsages: (NSArray<CRSUsage *> *) usages;
+
+/**
  * Write a usage to well-known text
  *
  * @param usage
@@ -522,12 +562,28 @@
 -(void) writeUsage: (CRSUsage *) usage;
 
 /**
+ * Write a scope to well-known text
+ *
+ * @param scope
+ *            scope
+ */
+-(void) writeScope: (NSString *) scope;
+
+/**
  * Write an extent to well-known text
  *
  * @param extent
  *            extent
  */
 -(void) writeExtent: (CRSExtent *) extent;
+
+/**
+ * Write an area description to well-known text
+ *
+ * @param areaDescription
+ *            area description
+ */
+-(void) writeAreaDescription: (NSString *) areaDescription;
 
 /**
  * Write a geographic bounding box to well-known text
@@ -567,7 +623,7 @@
  * @param method
  *            operation method
  */
--(void) writeOperationMethod: (CRSOperationMethod *) operationMethod;
+-(void) writeOperationMethod: (CRSOperationMethod *) method;
 
 /**
  * Write an operation parameter to well-known text
@@ -575,7 +631,7 @@
  * @param parameter
  *            operation parameter
  */
--(void) writeOperationParameter: (CRSOperationParameter *) operationParameter;
+-(void) writeOperationParameter: (CRSOperationParameter *) parameter;
 
 /**
  * Write a temporal datum to well-known text
@@ -592,6 +648,65 @@
  *            deriving conversion
  */
 -(void) writeDerivingConversion: (CRSDerivingConversion *) derivingConversion;
+
+/**
+ * Write operation parameters and operation parameter files to well-known
+ * text
+ *
+ * @param parameters
+ *            operation parameters
+ */
+-(void) writeOperationParameters: (NSArray<CRSOperationParameter *> *) parameters;
+
+/**
+ * Write an operation version
+ *
+ * @param version
+ *            operation version
+ */
+-(void) writeVersion: (NSString *) version;
+
+/**
+ * Write a source coordinate reference system
+ *
+ * @param crs
+ *            coordinate reference system
+ */
+-(void) writeSource: (CRSCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a target coordinate reference system
+ *
+ * @param crs
+ *            coordinate reference system
+ */
+-(void) writeTarget: (CRSCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a interpolation coordinate reference system
+ *
+ * @param crs
+ *            coordinate reference system
+ */
+-(void) writeInterpolation: (CRSCoordinateReferenceSystem *) crs;
+
+/**
+ * Write a coordinate reference system with the keyword
+ *
+ * @param keyword
+ *            CRS keyword
+ * @param crs
+ *            coordinate reference system
+ */
+-(void) writeCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) crs withKeywordType: (enum CRSKeywordType) keyword;
+
+/**
+ * Write an operation accuracy
+ *
+ * @param accuracy
+ *            operation accuracy
+ */
+-(void) writeAccuracy: (double) accuracy;
 
 /**
  * Write an abridged coordinate transformation
