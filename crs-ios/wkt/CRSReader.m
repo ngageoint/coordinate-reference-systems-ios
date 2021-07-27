@@ -20,131 +20,226 @@
 @implementation CRSReader
 
 +(CRSObject *) read: (NSString *) text{
-    return nil; // TODO
+    return [self read:text withStrict:NO];
 }
 
 +(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text andStrict:strict];
+    CRSObject *crs = [reader read];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSObject *) read: (NSString *) text withType: (enum CRSType) expected{
-    return nil; // TODO
+    return [self read:text withStrict:NO andType:expected];
 }
 
 +(CRSObject *) read: (NSString *) text withTypes: (NSArray<NSNumber *> *) expected{
-    return nil; // TODO
+    return [self read:text withStrict:NO andTypes:expected];
 }
 
-+(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict withType: (enum CRSType) expected{
-    return nil; // TODO
++(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict andType: (enum CRSType) expected{
+    return [self read:text withStrict:strict andTypes:[NSArray arrayWithObject:[NSNumber numberWithInt:expected]]];
+}
+
++(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict andTypes: (NSArray<NSNumber *> *) expected{
+    CRSObject *crs = [self read:text withStrict:strict];
+    if(![expected containsObject:[NSNumber numberWithInt:crs.type]]){
+        [NSException raise:@"Unexpected CRS Type" format:@"Unexpected Coordinate Reference System Type: %@, Expected: %@", [CRSTypes name:crs.type], [CRSTypes names:expected]];
+    }
+    return crs;
 }
 
 +(CRSCoordinateReferenceSystem *) readCoordinateReferenceSystem: (NSString *) text{
-    return nil; // TODO
+    return [self readCoordinateReferenceSystem:text withStrict:NO];
 }
 
 +(CRSCoordinateReferenceSystem *) readCoordinateReferenceSystem: (NSString *) text withStrict: (BOOL) strict{
-    return nil; // TODO
+    return (CRSCoordinateReferenceSystem *) [self read:text withStrict:strict andTypes:[NSArray arrayWithObjects:
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_GEODETIC],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_GEOGRAPHIC],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_PROJECTED],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_VERTICAL],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_ENGINEERING],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_PARAMETRIC],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_TEMPORAL],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_DERIVED],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_COMPOUND],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_BOUND],
+                                                                                        nil]];
 }
 
 +(CRSSimpleCoordinateReferenceSystem *) readSimpleCoordinateReferenceSystem: (NSString *) text{
-    return nil; // TODO
+    return [self readSimpleCoordinateReferenceSystem:text withStrict:NO];
 }
 
 +(CRSSimpleCoordinateReferenceSystem *) readSimpleCoordinateReferenceSystem: (NSString *) text withStrict: (BOOL) strict{
-    return nil; // TODO
+    return (CRSSimpleCoordinateReferenceSystem *) [self read:text withStrict:strict andTypes:[NSArray arrayWithObjects:
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_GEODETIC],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_GEOGRAPHIC],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_PROJECTED],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_VERTICAL],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_ENGINEERING],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_PARAMETRIC],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_TEMPORAL],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_DERIVED],
+                                                                                        nil]];
 }
 
 +(CRSGeoCoordinateReferenceSystem *) readGeo: (NSString *) text{
-    return nil; // TODO
+    return (CRSGeoCoordinateReferenceSystem *) [self read:text withTypes:[NSArray arrayWithObjects:
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_GEODETIC],
+                                                                                        [NSNumber numberWithInt:CRS_TYPE_GEOGRAPHIC],
+                                                                                        nil]];
 }
 
 +(CRSGeoCoordinateReferenceSystem *) readGeodetic: (NSString *) text{
-    return nil; // TODO
+    return (CRSGeoCoordinateReferenceSystem *) [self read:text withType:CRS_TYPE_GEODETIC];
 }
 
 +(CRSGeoCoordinateReferenceSystem *) readGeographic: (NSString *) text{
-    return nil; // TODO
+    return (CRSGeoCoordinateReferenceSystem *) [self read:text  withType:CRS_TYPE_GEOGRAPHIC];
 }
 
 +(CRSProjectedCoordinateReferenceSystem *) readProjected: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSProjectedCoordinateReferenceSystem *crs = [reader readProjected];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSProjectedCoordinateReferenceSystem *) readProjectedGeodetic: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSProjectedCoordinateReferenceSystem *crs = [reader readProjectedGeodetic];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSProjectedCoordinateReferenceSystem *) readProjectedGeographic: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSProjectedCoordinateReferenceSystem *crs = [reader readProjectedGeographic];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSVerticalCoordinateReferenceSystem *) readVertical: (NSString *) text{
-    return nil; // TODO
+    return (CRSVerticalCoordinateReferenceSystem *) [self read:text withType:CRS_TYPE_VERTICAL];
 }
 
 +(CRSEngineeringCoordinateReferenceSystem *) readEngineering: (NSString *) text{
-    return nil; // TODO
+    return (CRSEngineeringCoordinateReferenceSystem *) [self read:text withType:CRS_TYPE_ENGINEERING];
 }
 
 +(CRSParametricCoordinateReferenceSystem *) readParametric: (NSString *) text{
-    return nil; // TODO
+    return (CRSParametricCoordinateReferenceSystem *) [self read:text withType:CRS_TYPE_PARAMETRIC];
 }
 
 +(CRSTemporalCoordinateReferenceSystem *) readTemporal: (NSString *) text{
-    return nil; // TODO
+    return (CRSTemporalCoordinateReferenceSystem *) [self read:text withType:CRS_TYPE_TEMPORAL];
 }
 
 +(CRSDerivedCoordinateReferenceSystem *) readDerived: (NSString *) text{
-    return nil; // TODO
+    return (CRSDerivedCoordinateReferenceSystem *) [self read:text withType:CRS_TYPE_DERIVED];
 }
 
 +(CRSCompoundCoordinateReferenceSystem *) readCompound: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSCompoundCoordinateReferenceSystem *crs = [reader readCompound];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSCoordinateMetadata *) readCoordinateMetadata: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSCoordinateMetadata *metadata = [reader readCoordinateMetadata];
+    [reader readEnd];
+    return metadata;
 }
 
 +(CRSCoordinateOperation *) readCoordinateOperation: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSCoordinateOperation *operation = [reader readCoordinateOperation];
+    [reader readEnd];
+    return operation;
 }
 
 +(CRSPointMotionOperation *) readPointMotionOperation: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSPointMotionOperation *operation = [reader readPointMotionOperation];
+    [reader readEnd];
+    return operation;
 }
 
 +(CRSConcatenatedOperation *) readConcatenatedOperation: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSConcatenatedOperation *operation = [reader readConcatenatedOperation];
+    [reader readEnd];
+    return operation;
 }
 
 +(CRSBoundCoordinateReferenceSystem *) readBound: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSBoundCoordinateReferenceSystem *crs = [reader readBound];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSGeoCoordinateReferenceSystem *) readGeoCompat: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSGeoCoordinateReferenceSystem *crs = [reader readGeoCompat];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSGeoCoordinateReferenceSystem *) readGeodeticCompat: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSGeoCoordinateReferenceSystem *crs = [reader readGeodeticCompat];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSGeoCoordinateReferenceSystem *) readGeographicCompat: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSGeoCoordinateReferenceSystem *crs = [reader readGeographicCompat];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSProjectedCoordinateReferenceSystem *) readProjectedCompat: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSProjectedCoordinateReferenceSystem *crs = [reader readProjectedCompat];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSProjectedCoordinateReferenceSystem *) readProjectedGeodeticCompat: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSProjectedCoordinateReferenceSystem *crs = [reader readProjectedGeodeticCompat];
+    [reader readEnd];
+    return crs;
 }
 
 +(CRSProjectedCoordinateReferenceSystem *) readProjectedGeographicCompat: (NSString *) text{
-    return nil; // TODO
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSProjectedCoordinateReferenceSystem *crs = [reader readProjectedGeographicCompat];
+    [reader readEnd];
+    return crs;
+}
+
++(CRSReader *) createWithText: (NSString *) text{
+    return [[CRSReader alloc] initWithText:text];
+}
+
++(CRSReader *) createWithReader: (CRSTextReader *) reader{
+    return [[CRSReader alloc] initWithReader:reader];
+}
+
++(CRSReader *) createWithText: (NSString *) text andStrict: (BOOL) strict{
+    return [[CRSReader alloc] initWithText:text andStrict:strict];
+}
+
++(CRSReader *) createWithReader: (CRSTextReader *) reader andStrict: (BOOL) strict{
+    return [[CRSReader alloc] initWithReader:reader andStrict:strict];
 }
 
 -(instancetype) initWithText: (NSString *) text{
@@ -177,43 +272,117 @@
 }
 
 -(CRSObject *) read{
-    return nil; // TODO
+
+    CRSObject *crs = nil;
+    
+    enum CRSKeywordType keyword = [self peekKeyword];
+    switch(keyword){
+        case CRS_KEYWORD_GEODCRS:
+        case CRS_KEYWORD_GEOGCRS:
+            crs = [self readGeo];
+            break;
+        case CRS_KEYWORD_GEOCCS:
+        case CRS_KEYWORD_GEOGCS:
+            crs = [self readGeoCompat];
+            break;
+        case CRS_KEYWORD_PROJCRS:
+            crs = [self readProjected];
+            break;
+        case CRS_KEYWORD_PROJCS:
+            crs = [self readProjectedCompat];
+            break;
+        case CRS_KEYWORD_VERTCRS:
+            crs = [self readVertical];
+            break;
+        case CRS_KEYWORD_VERT_CS:
+            crs = [self readVerticalCompat];
+            break;
+        case CRS_KEYWORD_ENGCRS:
+            crs = [self readEngineering];
+            break;
+        case CRS_KEYWORD_LOCAL_CS:
+            crs = [self readEngineeringCompat];
+            break;
+        case CRS_KEYWORD_PARAMETRICCRS:
+            crs = [self readParametric];
+            break;
+        case CRS_KEYWORD_TIMECRS:
+            crs = [self readTemporal];
+            break;
+        case CRS_KEYWORD_DERIVEDPROJCRS:
+            crs = [self readDerivedProjected];
+            break;
+        case CRS_KEYWORD_COMPOUNDCRS:
+            crs = [self readCompound];
+            break;
+        case CRS_KEYWORD_COORDINATEMETADATA:
+            crs = [self readCoordinateMetadata];
+            break;
+        case CRS_KEYWORD_COORDINATEOPERATION:
+            crs = [self readCoordinateOperation];
+            break;
+        case CRS_KEYWORD_POINTMOTIONOPERATION:
+            crs = [self readPointMotionOperation];
+            break;
+        case CRS_KEYWORD_CONCATENATEDOPERATION:
+            crs = [self readConcatenatedOperation];
+            break;
+        case CRS_KEYWORD_BOUNDCRS:
+            crs = [self readBound];
+            break;
+        default:
+            [NSException raise:@"Unsupported Keyword" format:@"Unsupported WKT CRS keyword: %@", [CRSKeyword keywordOfType:keyword].name];
+    }
+
+    return crs;
 }
 
 -(CRSCoordinateReferenceSystem *) readCoordinateReferenceSystem{
-    return nil; // TODO
+    CRSObject *crs = [self read];
+    if(![crs isKindOfClass:[CRSCoordinateReferenceSystem class]]){
+        [NSException raise:@"Unexpected CRS Type" format:@"Unexpected Coordinate Reference System Type: %@", [CRSTypes name:crs.type]];
+    }
+    return (CRSCoordinateReferenceSystem *) crs;
 }
 
 -(CRSSimpleCoordinateReferenceSystem *) readSimpleCoordinateReferenceSystem{
-    return nil; // TODO
+    CRSObject *crs = [self read];
+    if(![crs isKindOfClass:[CRSSimpleCoordinateReferenceSystem class]]){
+        [NSException raise:@"Unexpected CRS Type" format:@"Unexpected Simple Coordinate Reference System Type: %@", [CRSTypes name:crs.type]];
+    }
+    return (CRSSimpleCoordinateReferenceSystem *) crs;
 }
 
 -(enum CRSKeywordType) readKeyword{
-    return -1; // TODO
+    return [CRSKeyword requiredType:[_reader readToken]];
 }
 
 -(NSArray<NSNumber *> *) readKeywords{
-    return nil; // TODO
+    return [CRSKeyword requiredTypes:[_reader readToken]];
 }
 
 -(enum CRSKeywordType) readKeywordWithType: (enum CRSKeywordType) keyword{
-    return -1; // TODO
+    return [self readKeywordWithType:keyword andRequired:YES];
 }
 
 -(enum CRSKeywordType) readKeywordWithTypes: (NSArray<NSNumber *> *) keywords{
-    return -1; // TODO
+    return [self readKeywordWithTypes:keywords andRequired:YES];
 }
 
 -(enum CRSKeywordType) readToKeyword: (enum CRSKeywordType) keyword{
-    return -1; // TODO
+    return [self readToKeywords:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]]];
 }
 
 -(enum CRSKeywordType) readToKeywords: (NSArray<NSNumber *> *) keywords{
-    return -1; // TODO
+    enum CRSKeywordType keyword = [self readKeywordWithTypes:keywords andRequired:NO];
+    if(keyword != -1){
+        [_reader pushToken:[CRSKeyword keywordOfType:keyword].name]; // TODO keyword object?
+    }
+    return keyword;
 }
 
 -(enum CRSKeywordType) readKeywordWithType: (enum CRSKeywordType) keyword andRequired: (BOOL) required{
-    return -1; // TODO
+    return [self readKeywordWithTypes:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]] andRequired:required];
 }
 
 -(enum CRSKeywordType) readKeywordWithTypes: (NSArray<NSNumber *> *) keywords andRequired: (BOOL) required{

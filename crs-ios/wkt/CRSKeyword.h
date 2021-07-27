@@ -156,6 +156,15 @@ enum CRSKeywordType{
 +(NSArray<CRSKeyword *> *) keywords: (NSString *) keyword;
 
 /**
+ * Get the keyword types from the keyword
+ *
+ * @param keyword
+ *            CRS keyword
+ * @return types
+ */
++(NSArray<NSNumber *> *) types: (NSString *) keyword;
+
+/**
  * Get the required keyword types object from the keyword
  *
  * @param keyword
@@ -163,6 +172,15 @@ enum CRSKeywordType{
  * @return type objects
  */
 +(NSArray<CRSKeyword *> *) requiredKeywords: (NSString *) keyword;
+
+/**
+ * Get the required keyword types from the keyword
+ *
+ * @param keyword
+ *            CRS keyword
+ * @return types
+ */
++(NSArray<NSNumber *> *) requiredTypes: (NSString *) keyword;
 
 /**
  * Get the  keyword type object from the keyword type

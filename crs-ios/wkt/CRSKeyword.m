@@ -198,12 +198,31 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return keywords;
 }
 
++(NSArray<NSNumber *> *) types: (NSString *) keyword{
+    NSMutableArray<NSNumber *> *types = nil;
+    NSArray<CRSKeyword *> *keywords = [self keywords:keyword];
+    if(keywords != nil){
+        for(CRSKeyword *kw in keywords){
+            [types addObject:[NSNumber numberWithInt:kw.type]];
+        }
+    }
+    return types;
+}
+
 +(NSArray<CRSKeyword *> *) requiredKeywords: (NSString *) keyword{
     NSArray<CRSKeyword *> *keywords = [self keywords:keyword];
     if(keywords == nil){
         [NSException raise:@"No Keywords" format:@"No Coordinate Reference System Keywords for value: %@", keyword];
     }
     return keywords;
+}
+
++(NSArray<NSNumber *> *) requiredTypes: (NSString *) keyword{
+    NSArray<NSNumber *> *types = [self types:keyword];
+    if(types == nil){
+        [NSException raise:@"No Keyword Types" format:@"No Coordinate Reference System Keyword Types for value: %@", keyword];
+    }
+    return types;
 }
 
 +(CRSKeyword *) keywordOfType: (enum CRSKeywordType) type{

@@ -59,6 +59,15 @@ extern NSString * const CRS_TYPE_VERTICAL_NAME;
 +(NSString *) name: (enum CRSType) type;
 
 /**
+ * Get the type names
+ *
+ * @param types
+ *            types
+ * @return type names
+ */
++(NSArray<NSString *> *) names: (NSArray<NSNumber *> *) types;
+
+/**
  * Get the type from the name
  *
  * @param name

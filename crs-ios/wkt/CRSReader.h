@@ -81,10 +81,23 @@
  * @param strict
  *            strict enforcement
  * @param expected
+ *            expected type
+ * @return Coordinate Reference System
+ */
++(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict andType: (enum CRSType) expected;
+
+/**
+ * Read a Coordinate Reference System from the well-known text
+ *
+ * @param text
+ *            well-known text
+ * @param strict
+ *            strict enforcement
+ * @param expected
  *            expected types
  * @return Coordinate Reference System
  */
-+(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict withType: (enum CRSType) expected;
++(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict andTypes: (NSArray<NSNumber *> *) expected;
 
 /**
  * Read a Coordinate Reference System from the well-known text
@@ -346,6 +359,36 @@
  *  Strict rule enforcement
  */
 @property (nonatomic) BOOL strict;
+
+/**
+ * Create
+ *
+ * @param text well-known text
+ */
++(CRSReader *) createWithText: (NSString *) text;
+
+/**
+ * Create
+ *
+ * @param reader text reader
+ */
++(CRSReader *) createWithReader: (CRSTextReader *) reader;
+
+/**
+ * Create
+ *
+ * @param text well-known text
+ * @param strict strict rule enforcement
+ */
++(CRSReader *) createWithText: (NSString *) text andStrict: (BOOL) strict;
+
+/**
+ * Create
+ *
+ * @param reader text reader
+ * @param strict strict rule enforcement
+ */
++(CRSReader *) createWithReader: (CRSTextReader *) reader andStrict: (BOOL) strict;
 
 /**
  * Initializer

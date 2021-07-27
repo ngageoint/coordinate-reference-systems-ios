@@ -76,6 +76,14 @@ NSString * const CRS_TYPE_VERTICAL_NAME = @"VERTICAL";
     return name;
 }
 
++(NSArray<NSString *> *) names: (NSArray<NSNumber *> *) types{
+    NSMutableArray<NSString *> *names = [NSMutableArray alloc];
+    for(NSNumber *type in types){
+        [names addObject:[self name:[type intValue]]];
+    }
+    return names;
+}
+
 +(enum CRSType) type: (NSString *) name{
     enum CRSType value = -1;
     
