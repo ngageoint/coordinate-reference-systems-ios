@@ -156,6 +156,38 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return self;
 }
 
+-(BOOL) equals: (CRSKeyword *) keyword{
+    if (self == keyword){
+        return YES;
+    }
+    if (keyword == nil){
+        return NO;
+    }
+    if(_type != keyword.type){
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL) isEqual: (id) object{
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[CRSKeyword class]]) {
+        return NO;
+    }
+    
+    return [self equals:(CRSKeyword *)object];
+}
+
+-(NSUInteger) hash{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    result = prime * result + [[NSNumber numberWithInt:_type] hash];
+    return result;
+}
+
 +(CRSKeyword *) keyword: (NSString *) keyword{
     CRSKeyword *kw = nil;
     NSArray<CRSKeyword *> *keywords = [self keywords:keyword];

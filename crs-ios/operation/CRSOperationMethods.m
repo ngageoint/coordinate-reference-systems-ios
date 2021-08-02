@@ -158,6 +158,38 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
     return parameters;
 }
 
+-(BOOL) equals: (CRSOperationMethods *) operationMethods{
+    if (self == operationMethods){
+        return YES;
+    }
+    if (operationMethods == nil){
+        return NO;
+    }
+    if(_type != operationMethods.type){
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL) isEqual: (id) object{
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[CRSOperationMethods class]]) {
+        return NO;
+    }
+    
+    return [self equals:(CRSOperationMethods *)object];
+}
+
+-(NSUInteger) hash{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    result = prime * result + [[NSNumber numberWithInt:_type] hash];
+    return result;
+}
+
 +(CRSOperationMethods *) method: (enum CRSOperationMethodType) type{
     return [typeMethods objectForKey:[NSNumber numberWithInteger:type]];
 }

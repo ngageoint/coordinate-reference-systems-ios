@@ -199,6 +199,38 @@ static NSMutableDictionary<NSNumber *, CRSOperationParameters *> *codeParameters
     }
 }
 
+-(BOOL) equals: (CRSOperationParameters *) operationParameters{
+    if (self == operationParameters){
+        return YES;
+    }
+    if (operationParameters == nil){
+        return NO;
+    }
+    if(_type != operationParameters.type){
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL) isEqual: (id) object{
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[CRSOperationParameters class]]) {
+        return NO;
+    }
+    
+    return [self equals:(CRSOperationParameters *)object];
+}
+
+-(NSUInteger) hash{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    result = prime * result + [[NSNumber numberWithInt:_type] hash];
+    return result;
+}
+
 +(CRSOperationParameters *) parameter: (enum CRSOperationParameterType) type{
     return [typeParameters objectForKey:[NSNumber numberWithInteger:type]];
 }
