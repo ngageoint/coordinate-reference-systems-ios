@@ -7,6 +7,8 @@
 //
 
 #import "CRSReader.h"
+#import "CRSTextUtils.h"
+#import "CRSTextConstants.h"
 
 @interface CRSReader()
 
@@ -275,8 +277,8 @@
 
     CRSObject *crs = nil;
     
-    enum CRSKeywordType keyword = [self peekKeyword];
-    switch(keyword){
+    CRSKeyword *keyword = [self peekKeyword];
+    switch(keyword.type){
         case CRS_KEYWORD_GEODCRS:
         case CRS_KEYWORD_GEOGCRS:
             crs = [self readGeo];
@@ -331,7 +333,7 @@
             crs = [self readBound];
             break;
         default:
-            [NSException raise:@"Unsupported Keyword" format:@"Unsupported WKT CRS keyword: %@", [CRSKeyword keywordOfType:keyword].name];
+            [NSException raise:@"Unsupported Keyword" format:@"Unsupported WKT CRS keyword: %@", keyword.name];
     }
 
     return crs;
@@ -353,96 +355,437 @@
     return (CRSSimpleCoordinateReferenceSystem *) crs;
 }
 
--(enum CRSKeywordType) readKeyword{
+-(CRSKeyword *) readKeyword{
+    return [CRSKeyword requiredKeyword:[_reader readToken]];
+}
+
+-(enum CRSKeywordType) readKeywordType{
     return [CRSKeyword requiredType:[_reader readToken]];
 }
 
--(NSArray<NSNumber *> *) readKeywords{
+-(NSArray<CRSKeyword *> *) readKeywords{
+    return [CRSKeyword requiredKeywords:[_reader readToken]];
+}
+
+-(NSArray<NSNumber *> *) readKeywordTypes{
     return [CRSKeyword requiredTypes:[_reader readToken]];
 }
 
--(enum CRSKeywordType) readKeywordWithType: (enum CRSKeywordType) keyword{
+-(CRSKeyword *) readKeywordWithType: (enum CRSKeywordType) keyword{
     return [self readKeywordWithType:keyword andRequired:YES];
 }
 
--(enum CRSKeywordType) readKeywordWithTypes: (NSArray<NSNumber *> *) keywords{
+-(CRSKeyword *) readKeywordWithTypes: (NSArray<NSNumber *> *) keywords{
     return [self readKeywordWithTypes:keywords andRequired:YES];
 }
 
--(enum CRSKeywordType) readToKeyword: (enum CRSKeywordType) keyword{
+-(CRSKeyword *) readToKeyword: (enum CRSKeywordType) keyword{
     return [self readToKeywords:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]]];
 }
 
--(enum CRSKeywordType) readToKeywords: (NSArray<NSNumber *> *) keywords{
-    enum CRSKeywordType keyword = [self readKeywordWithTypes:keywords andRequired:NO];
-    if(keyword != -1){
-        [_reader pushToken:[CRSKeyword keywordOfType:keyword].name]; // TODO keyword object?
+-(CRSKeyword *) readToKeywords: (NSArray<NSNumber *> *) keywords{
+    CRSKeyword *keyword = [self readKeywordWithTypes:keywords andRequired:NO];
+    if(keyword != nil){
+        [_reader pushToken:keyword.name];
     }
     return keyword;
 }
 
--(enum CRSKeywordType) readKeywordWithType: (enum CRSKeywordType) keyword andRequired: (BOOL) required{
+-(CRSKeyword *) readKeywordWithType: (enum CRSKeywordType) keyword andRequired: (BOOL) required{
     return [self readKeywordWithTypes:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]] andRequired:required];
 }
 
--(enum CRSKeywordType) readKeywordWithTypes: (NSArray<NSNumber *> *) keywords andRequired: (BOOL) required{
-    return -1; // TODO
+-(CRSKeyword *) readKeywordWithTypes: (NSArray<NSNumber *> *) keywords andRequired: (BOOL) required{
+
+    CRSKeyword *keyword = nil;
+    NSSet<NSNumber *> *keywordSet = [NSSet setWithArray:keywords];
+    
+    int delimiterCount = 0;
+    
+    NSString *previousToken = nil;
+    NSString *token = [_reader readToken];
+    
+    NSMutableString *ignored = nil;
+    while(token != nil){
+        
+        if(!required){
+            if([CRSTextUtils isLeftDelimiter:token]){
+                delimiterCount++;
+            }else if([CRSTextUtils isRightDelimiter:token]){
+                delimiterCount--;
+                if(delimiterCount < 0){
+                    [_reader pushToken:token];
+                    break;
+                }
+            }
+        }
+        
+        NSArray<CRSKeyword *> *tokenKeywords = [CRSKeyword keywords:token];
+        if(tokenKeywords != nil){
+            for(CRSKeyword *kw in tokenKeywords){
+                if([keywordSet containsObject:[NSNumber numberWithInt:kw.type]]){
+                    keyword = kw;
+                    break;
+                }
+            }
+            if(keyword != nil){
+                break;
+            }
+        }
+        
+        if(previousToken != nil){
+            if(ignored == nil){
+                ignored = [NSMutableString string];
+            }
+            [ignored appendString:previousToken];
+        }
+        
+        previousToken = token;
+        token = [_reader readToken];
+    }
+    
+    if(required && keyword == nil){
+        [NSException raise:@"Not Found" format:@"Expected keyword not found: %@", [self keywordNames:keywords]];
+    }
+
+    if(previousToken != nil && (keyword == nil || ![previousToken isEqualToString:CRS_WKT_SEPARATOR])){
+        if(ignored == nil){
+            ignored = [NSMutableString string];
+        }
+        [ignored appendString:previousToken];
+    }
+
+    if(ignored != nil){
+        NSMutableString *log = [NSMutableString string];
+        if(_strict){
+            [log appendString:@"Unexpected"];
+        }else{
+            [log appendString:@"Ignored"];
+        }
+        if(keyword != nil){
+            [log appendString:@" before "];
+            [log appendFormat:@"%@", keyword.keywords];
+        }
+        [log appendString:@": \""];
+        [log appendString:ignored];
+        [log appendString:@"\""];
+        if(_strict){
+            [NSException raise:@"Unexpected" format:@"%@", log];
+        }else{
+            NSLog(@"%@", log);
+        }
+    }
+
+    return keyword;
 }
 
--(enum CRSKeywordType) peekKeyword{
-    return -1; // TODO
+-(CRSKeyword *) peekKeyword{
+    return [CRSKeyword requiredKeyword:[_reader peekToken]];
 }
 
--(NSArray<NSNumber *> *) peekKeywords{
-    return nil; // TODO
+-(enum CRSKeywordType) peekKeywordType{
+    return [CRSKeyword requiredType:[_reader peekToken]];
 }
 
--(enum CRSKeywordType) peekOptionalKeyword{
-    return -1; // TODO
+-(NSArray<CRSKeyword *> *) peekKeywords{
+    return [CRSKeyword requiredKeywords:[_reader peekToken]];
 }
 
--(NSArray<NSNumber *> *) peekOptionalKeywords{
-    return nil; // TODO
+-(NSArray<NSNumber *> *) peekKeywordTypes{
+    return [CRSKeyword requiredTypes:[_reader peekToken]];
 }
 
--(enum CRSKeywordType) peekOptionalKeywordAtNum: (int) num{
-    return -1; // TODO
+-(CRSKeyword *) peekOptionalKeyword{
+    return [CRSKeyword keyword:[_reader peekToken]];
 }
 
--(NSArray<NSNumber *> *) peekOptionalKeywordsAtNum: (int) num{
-    return nil; // TODO
+-(enum CRSKeywordType) peekOptionalKeywordType{
+    return [CRSKeyword type:[_reader peekToken]];
+}
+
+-(NSArray<CRSKeyword *> *) peekOptionalKeywords{
+    return [CRSKeyword keywords:[_reader peekToken]];
+}
+
+-(NSArray<NSNumber *> *) peekOptionalKeywordTypes{
+    return [CRSKeyword types:[_reader peekToken]];
+}
+
+-(CRSKeyword *) peekOptionalKeywordAtNum: (int) num{
+    return [CRSKeyword keyword:[_reader peekTokenAtNum:num]];
+}
+
+-(enum CRSKeywordType) peekOptionalKeywordTypeAtNum: (int) num{
+    return [CRSKeyword type:[_reader peekTokenAtNum:num]];
+}
+
+-(NSArray<CRSKeyword *> *) peekOptionalKeywordsAtNum: (int) num{
+    return [CRSKeyword keywords:[_reader peekTokenAtNum:num]];
+}
+
+-(NSArray<NSNumber *> *) peekOptionalKeywordTypesAtNum: (int) num{
+    return [CRSKeyword types:[_reader peekTokenAtNum:num]];
 }
 
 -(void) readLeftDelimiter{
-    // TODO
+    NSString *token = [_reader readExpectedToken];
+    if(![CRSTextUtils isLeftDelimiter:token]){
+        [NSException raise:@"Invalid Token" format:@"Invalid left delimiter token, expected '[' or '('. found: '%@'", token];
+    }
 }
 
 -(BOOL) peekLeftDelimiter{
-    return NO; // TODO
+    BOOL leftDelimiter = NO;
+    NSString *token = [_reader peekToken];
+    if(token != nil){
+        leftDelimiter = [CRSTextUtils isLeftDelimiter:token];
+    }
+    return leftDelimiter;
 }
 
 -(void) readRightDelimiter{
-    // TODO
+    [self readKeywordWithTypes:[NSArray array] andRequired:NO];
+    NSString *token = [_reader readExpectedToken];
+    if(![CRSTextUtils isRightDelimiter:token]){
+        [NSException raise:@"Invalid Token" format:@"Invalid right delimiter token, expected ']' or ')'. found: '%@'", token];
+    }
 }
 
 -(BOOL) peekRightDelimiter{
-    return NO; // TODO
+    BOOL rightDelimiter = NO;
+    NSString *token = [_reader peekToken];
+    if(token != nil){
+        rightDelimiter = [CRSTextUtils isRightDelimiter:token];
+    }
+    return rightDelimiter;
 }
 
 -(void) readSeparator{
-    // TODO
+    NSString *token = [_reader peekToken];
+    if([token isEqualToString:CRS_WKT_SEPARATOR]){
+        [_reader readExpectedToken];
+    }else if(_strict){
+        [NSException raise:@"Invalid Token" format:@"Invalid separator token, expected ','. found: '%@'", token];
+    }else{
+        NSLog(@"Missing expected separator before token: '%@'", token);
+    }
 }
 
 -(BOOL) peekSeparator{
-    return NO; // TODO
+    BOOL separator = NO;
+    NSString *token = [_reader peekToken];
+    if(token != nil){
+        separator = [token isEqualToString:CRS_WKT_SEPARATOR];
+    }
+    return separator;
 }
 
 -(void) readEnd{
-    // TODO
+    
+    NSString *token = [_reader readToken];
+    if(token != nil){
+        NSMutableString *ignored = [NSMutableString string];
+        do{
+            [ignored appendString:token];
+            token = [_reader readToken];
+        }while(token != nil);
+        
+        NSMutableString *log = [NSMutableString string];
+        if(_strict){
+            [log appendString:@"Unexpected"];
+        }else{
+            [log appendString:@"Ignored"];
+        }
+        [log appendString:@" end: \""];
+        [log appendString:ignored];
+        [log appendString:@"\""];
+        if(_strict){
+            [NSException raise:@"Unexpected End" format:@"%@", log];
+        }else{
+            NSLog(@"%@", log);
+        }
+    }
 }
 
 -(NSString *) readKeywordDelimitedToken: (enum CRSKeywordType) keyword{
-    return nil; // TODO
+
+    [self readKeywordWithType:keyword];
+    
+    [self readLeftDelimiter];
+    
+    NSString *token = [_reader readExpectedToken];
+    
+    [self readRightDelimiter];
+
+    return token;
+}
+
+/**
+ * Validate the keyword against the expected keywords
+ *
+ * @param keyword
+ *            keyword
+ * @param expected
+ *            expected keyword
+ * @return matching keyword
+ */
+-(enum CRSKeywordType) validateKeyword: (enum CRSKeywordType) keyword withExpectedType: (enum CRSKeywordType) expected{
+    return [self validateKeywords:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]] withExpectedType:expected];
+}
+
+/**
+ * Validate the keyword against the expected keywords
+ *
+ * @param keyword
+ *            keyword
+ * @param expected
+ *            expected keywords
+ * @return matching keyword
+ */
+-(enum CRSKeywordType) validateKeyword: (enum CRSKeywordType) keyword withExpectedTypes: (NSArray<NSNumber *> *) expected{
+    return [self validateKeywords:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]] withExpectedTypes:expected];
+}
+
+/**
+ * Validate the keyword against the expected keywords
+ *
+ * @param keywords
+ *            keywords
+ * @param expected
+ *            expected keyword
+ * @return matching keyword
+ */
+-(enum CRSKeywordType) validateKeywords: (NSArray<NSNumber *> *) keywords withExpectedType: (enum CRSKeywordType) expected{
+    return [self validateKeywords:keywords withExpectedTypes:[NSArray arrayWithObject:[NSNumber numberWithInt:expected]]];
+}
+
+/**
+ * Validate the keyword against the expected keywords
+ *
+ * @param keywords
+ *            keywords
+ * @param expected
+ *            expected keywords
+ * @return matching keyword
+ */
+-(enum CRSKeywordType) validateKeywords: (NSArray<NSNumber *> *) keywords withExpectedTypes: (NSArray<NSNumber *> *) expected{
+    enum CRSKeywordType keyword = -1;
+    NSSet<NSNumber *> *expectedSet = [NSSet setWithArray:expected];
+    for(NSNumber *kw in keywords){
+        if([expectedSet containsObject:kw]){
+            keyword = [kw intValue];
+            break;
+        }
+    }
+    if(keyword == -1){
+        [NSException raise:@"Unexpected Keyword" format:@"Unexpected keyword. found: %@, expected: %@", [self keywordNames:keywords], [self keywordNames:expected]];
+    }
+    return keyword;
+}
+
+/**
+ * Array of all keyword names from the array of keywords
+ *
+ * @param keywords
+ *            keywords
+ * @return set of names
+ */
+-(NSArray<NSString *> *) keywordNames: (NSArray<NSNumber *> *) keywords{
+    NSMutableArray<NSString *> *names = [NSMutableArray array];
+    for(CRSKeyword *keyword in keywords){
+        [names addObjectsFromArray:keyword.keywords];
+    }
+    return names;
+}
+
+/**
+ * Check if the keyword is next following an immediate next separator
+ *
+ * @param keyword
+ *            keyword
+ * @return true if next
+ */
+-(BOOL) isKeywordNext: (enum CRSKeywordType) keyword{
+    return [self isKeywordsNext:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]]];
+}
+
+/**
+ * Check if the keyword is next following an immediate next separator
+ *
+ * @param keywords
+ *            keywords
+ * @return true if next
+ */
+-(BOOL) isKeywordsNext: (NSArray<NSNumber *> *) keywords{
+    BOOL next = NO;
+    BOOL separator = [self peekSeparator];
+    if(separator || !_strict){
+        int num = separator ? 2 : 1;
+        NSArray<NSNumber *> *nextKeywords = [self peekOptionalKeywordTypesAtNum:num];
+        if(nextKeywords != nil && nextKeywords.count > 0){
+            for(NSNumber *keyword in keywords){
+                next = [nextKeywords containsObject:keyword];
+                if(next){
+                    break;
+                }
+            }
+        }
+    }
+    return next;
+}
+
+/**
+ * Check if the keyword is next following an immediate next separator
+ *
+ * @param keyword
+ *            keyword
+ * @return true if next
+ */
+-(BOOL) isNonKeywordNext{
+    BOOL next = NO;
+    if([self peekSeparator]){
+        NSArray<CRSKeyword *> *nextKeywords = [self peekOptionalKeywordsAtNum:2];
+        next = nextKeywords == nil || nextKeywords.count == 0;
+    }
+    return next;
+}
+
+/**
+ * Is a unit next following an immediate next separator
+ *
+ * @return true if next
+ */
+-(BOOL) isUnitNext{
+    return [self isKeywordsNext:[NSArray arrayWithObjects:
+                                 [NSNumber numberWithInt:CRS_KEYWORD_ANGLEUNIT],
+                                 [NSNumber numberWithInt:CRS_KEYWORD_LENGTHUNIT],
+                                 [NSNumber numberWithInt:CRS_KEYWORD_PARAMETRICUNIT],
+                                 [NSNumber numberWithInt:CRS_KEYWORD_SCALEUNIT],
+                                 [NSNumber numberWithInt:CRS_KEYWORD_TIMEUNIT],
+                                 nil]];
+}
+
+/**
+ * Is a spatial unit next following an immediate next separator
+ *
+ * @return true if next
+ */
+-(BOOL) isSpatialUnitNext{
+    return [self isKeywordsNext:[NSArray arrayWithObjects:
+                                 [NSNumber numberWithInt:CRS_KEYWORD_ANGLEUNIT],
+                                 [NSNumber numberWithInt:CRS_KEYWORD_LENGTHUNIT],
+                                 [NSNumber numberWithInt:CRS_KEYWORD_PARAMETRICUNIT],
+                                 [NSNumber numberWithInt:CRS_KEYWORD_SCALEUNIT],
+                                 nil]];
+}
+
+/**
+ * Is a time unit next following an immediate next separator
+ *
+ * @return true if next
+ */
+-(BOOL) isTimeUnitNext{
+    return [self isKeywordNext:CRS_KEYWORD_TIMEUNIT];
 }
 
 -(CRSCoordinateReferenceSystem *) readGeo{
@@ -606,7 +949,37 @@
 }
 
 -(CRSUnit *) readUnitWithType: (enum CRSUnitType) type{
-    return nil; // TODO
+    
+    CRSUnit *unit = [CRSUnit create];
+    
+    NSArray<NSNumber *> *keywords = [self readKeywordTypes];
+    if(type != CRS_UNIT){
+        enum CRSKeywordType crsType = [CRSKeyword type:[CRSUnitTypes name:type]];
+        [self validateKeywords:keywords withExpectedType:crsType];
+    }else if(keywords.count == 1){
+        type = [CRSTextUtils unitType:[[keywords firstObject] intValue]];
+    }else if(keywords.count == 0){
+        [NSException raise:@"Unexpected Keyword" format:@"Unexpected unit keyword. found: %@", [self keywordNames:keywords]];
+    }
+    [unit setType:type];
+
+    [self readLeftDelimiter];
+
+    [unit setName:[_reader readExpectedToken]];
+
+    if(type != CRS_UNIT_TIME || [self isNonKeywordNext]){
+        [self readSeparator];
+        [unit setConversionFactor:[[NSDecimalNumber alloc] initWithDouble:[_reader readUnsignedNumber]]];
+    }
+
+    CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    if(keyword.type == CRS_KEYWORD_ID){
+        [unit setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+    }
+    
+    [self readRightDelimiter];
+
+    return unit;
 }
 
 -(NSArray<CRSIdentifier *> *) readIdentifiers{
