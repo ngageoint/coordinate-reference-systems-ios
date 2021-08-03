@@ -9,6 +9,7 @@
 #import "CRSReader.h"
 #import "CRSTextUtils.h"
 #import "CRSTextConstants.h"
+#import "CRSTriaxialEllipsoid.h"
 
 @interface CRSReader()
 
@@ -677,7 +678,7 @@
             break;
         }
     }
-    if(keyword == -1){
+    if((int)keyword == -1){
         [NSException raise:@"Unexpected Keyword" format:@"Unexpected keyword. found: %@, expected: %@", [self keywordNames:keywords], [self keywordNames:expected]];
     }
     return keyword;
@@ -789,163 +790,1171 @@
 }
 
 -(CRSCoordinateReferenceSystem *) readGeo{
-    return nil; // TODO
+
+    CRSGeoCoordinateReferenceSystem *baseCrs = [CRSGeoCoordinateReferenceSystem create];
+    CRSSimpleCoordinateReferenceSystem *crs = baseCrs;
+    CRSDerivedCoordinateReferenceSystem *derivedCrs = nil;
+
+    CRSKeyword *keyword = [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                                      [NSNumber numberWithInt:CRS_KEYWORD_GEODCRS],
+                                                      [NSNumber numberWithInt:CRS_KEYWORD_GEOGCRS],
+                                                      nil]];
+    [crs setType:[CRSTextUtils coordinateReferenceSystemType:keyword.type]];
+
+    [self readLeftDelimiter];
+
+    NSString *name = [_reader readExpectedToken];
+
+    if([self isKeywordsNext:[NSArray arrayWithObjects:
+                             [NSNumber numberWithInt:CRS_KEYWORD_BASEGEODCRS],
+                             [NSNumber numberWithInt:CRS_KEYWORD_BASEGEOGCRS],
+                             nil]]){
+
+        switch(keyword.type) {
+            case CRS_KEYWORD_GEODCRS:
+                [self readKeywordWithType:CRS_KEYWORD_BASEGEODCRS];
+                break;
+            case CRS_KEYWORD_GEOGCRS:
+                [self readKeywordWithType:CRS_KEYWORD_BASEGEOGCRS];
+                break;
+            default:
+                [NSException raise:@"Unsupported Type" format:@"Unsupported Coordinate Reference System Type: %@", keyword.name];
+        }
+
+        derivedCrs = [CRSDerivedCoordinateReferenceSystem create];
+        [derivedCrs setBase:baseCrs];
+        crs = derivedCrs;
+
+        [self readLeftDelimiter];
+        [baseCrs setName:[_reader readExpectedToken]];
+    }
+
+    [crs setName:name];
+
+    BOOL isDynamic = [self isKeywordNext:CRS_KEYWORD_DYNAMIC];
+    if(isDynamic){
+        [self readSeparator];
+        [baseCrs setDynamic:[self readDynamic]];
+    }
+
+    if(isDynamic || [self isKeywordNext:CRS_KEYWORD_DATUM]) {
+        [self readSeparator];
+        CRSGeoReferenceFrame *referenceFrame = [self readGeoReferenceFrameWithCRS:crs];
+        [referenceFrame setType:baseCrs.type];
+        [baseCrs setReferenceFrame:referenceFrame];
+    }else if([self isKeywordNext:CRS_KEYWORD_ENSEMBLE]) {
+        [self readSeparator];
+        [baseCrs setDatumEnsemble:[self readGeoDatumEnsemble]];
+    } else {
+        // Validation error
+        [self readSeparator];
+        [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                    [NSNumber numberWithInt:CRS_KEYWORD_DATUM],
+                                    [NSNumber numberWithInt:CRS_KEYWORD_ENSEMBLE],
+                                    nil]];
+    }
+
+    if(derivedCrs != nil) {
+
+        keyword = [self readToKeyword:CRS_KEYWORD_ID];
+        if(keyword != nil && keyword.type == CRS_KEYWORD_ID) {
+            [baseCrs setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+        }
+
+        [self readRightDelimiter];
+
+        [self readSeparator];
+        [derivedCrs setConversion:[self readDerivingConversion]];
+
+    }
+
+    [self readSeparator];
+    [crs setCoordinateSystem:[self readCoordinateSystem]];
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(CRSProjectedCoordinateReferenceSystem *) readProjected{
-    return nil; // TODO
+    return [self readProjectedWithType:-1];
 }
 
 -(CRSProjectedCoordinateReferenceSystem *) readProjectedGeodetic{
-    return nil; // TODO
+    return [self readProjectedWithType:CRS_TYPE_GEODETIC];
 }
 
 -(CRSProjectedCoordinateReferenceSystem *) readProjectedGeographic{
-    return nil; // TODO
+    return [self readProjectedWithType:CRS_TYPE_GEOGRAPHIC];
 }
 
 -(CRSProjectedCoordinateReferenceSystem *) readProjectedWithType: (enum CRSType) expectedBaseType{
-    return nil; // TODO
+
+    CRSProjectedCoordinateReferenceSystem *crs = [CRSProjectedCoordinateReferenceSystem create];
+
+    [self readKeywordWithType:CRS_KEYWORD_PROJCRS];
+
+    [self readLeftDelimiter];
+
+    [crs setName:[_reader readExpectedToken]];
+
+    [self readSeparator];
+
+    CRSKeyword *type = [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                                      [NSNumber numberWithInt:CRS_KEYWORD_BASEGEODCRS],
+                                                      [NSNumber numberWithInt:CRS_KEYWORD_BASEGEOGCRS],
+                                                      nil]];
+    enum CRSType crsType = [CRSTextUtils coordinateReferenceSystemType:type.type];
+    if(expectedBaseType >= 0 && crsType != expectedBaseType){
+        [NSException raise:@"Unexpected Type" format:@"Unexpected Base Coordinate Reference System Type. expected: %@, found: %@", [CRSTypes name:expectedBaseType], [CRSTypes name:crsType]];
+    }
+    [crs setBaseType:crsType];
+
+    [self readLeftDelimiter];
+
+    [crs setBaseName:[_reader readExpectedToken]];
+
+    BOOL isDynamic = [self isKeywordNext:CRS_KEYWORD_DYNAMIC];
+    if(isDynamic){
+        [self readSeparator];
+        [crs setDynamic:[self readDynamic]];
+    }
+
+    if(isDynamic || [self isKeywordNext:CRS_KEYWORD_DATUM]){
+        [self readSeparator];
+        CRSGeoReferenceFrame *referenceFrame = [self readGeoReferenceFrameWithCRS:crs];
+        [referenceFrame setType:crsType];
+        [crs setReferenceFrame:referenceFrame];
+    }else if ([self isKeywordNext:CRS_KEYWORD_ENSEMBLE]){
+        [self readSeparator];
+        [crs setDatumEnsemble:[self readGeoDatumEnsemble]];
+    }else{
+        // Validation error
+        [self readSeparator];
+        [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                    [NSNumber numberWithInt:CRS_KEYWORD_DATUM],
+                                    [NSNumber numberWithInt:CRS_KEYWORD_ENSEMBLE],
+                                    nil]];
+    }
+
+    CRSKeyword *keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ANGLEUNIT],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                nil]];
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ANGLEUNIT){
+        [crs setUnit:[self readAngleUnit]];
+        keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    }
+
+    if (keyword != nil && keyword.type == CRS_KEYWORD_ID) {
+        [crs setBaseIdentifiers:[self readIdentifiers]];
+    }
+
+    [self readRightDelimiter];
+
+    [self readSeparator];
+    [crs setMapProjection:[self readMapProjection]];
+
+    [self readSeparator];
+    [crs setCoordinateSystem:[self readCoordinateSystem]];
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(CRSCoordinateReferenceSystem *) readVertical{
-    return nil; // TODO
+
+    CRSVerticalCoordinateReferenceSystem *baseCrs = [CRSVerticalCoordinateReferenceSystem create];
+    CRSSimpleCoordinateReferenceSystem *crs = baseCrs;
+    CRSDerivedCoordinateReferenceSystem *derivedCrs = nil;
+
+    [self readKeywordWithType:CRS_KEYWORD_VERTCRS];
+
+    [self readLeftDelimiter];
+
+    NSString *name = [_reader readExpectedToken];
+
+    if([self isKeywordNext:CRS_KEYWORD_BASEVERTCRS]){
+        [self readKeywordWithType:CRS_KEYWORD_BASEVERTCRS];
+
+        derivedCrs = [CRSDerivedCoordinateReferenceSystem create];
+        [derivedCrs setBase:baseCrs];
+        crs = derivedCrs;
+
+        [self readLeftDelimiter];
+        [baseCrs setName:[_reader readExpectedToken]];
+    }
+
+    [crs setName:name];
+
+    BOOL isDynamic = [self isKeywordNext:CRS_KEYWORD_DYNAMIC];
+    if(isDynamic){
+        [self readSeparator];
+        [baseCrs setDynamic:[self readDynamic]];
+    }
+
+    if(isDynamic || [self isKeywordNext:CRS_KEYWORD_VDATUM]){
+        [self readSeparator];
+        [baseCrs setReferenceFrame:[self readVerticalReferenceFrameWithCRS:crs]];
+    }else if([self isKeywordNext:CRS_KEYWORD_ENSEMBLE]){
+        [self readSeparator];
+        [baseCrs setDatumEnsemble:[self readVerticalDatumEnsemble]];
+    }else{
+        // Validation error
+        [self readSeparator];
+        [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                    [NSNumber numberWithInt:CRS_KEYWORD_VDATUM],
+                                    [NSNumber numberWithInt:CRS_KEYWORD_ENSEMBLE],
+                                    nil]];
+    }
+
+    if(derivedCrs != nil){
+
+        CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+        if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+            [baseCrs setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+        }
+
+        [self readRightDelimiter];
+
+        [self readSeparator];
+        [derivedCrs setConversion:[self readDerivingConversion]];
+
+    }
+
+    [self readSeparator];
+    [crs setCoordinateSystem:[self readCoordinateSystem]];
+
+    if(derivedCrs == nil && [self isKeywordNext:CRS_KEYWORD_GEOIDMODEL]){
+        [self readSeparator];
+        [self readKeywordWithType:CRS_KEYWORD_GEOIDMODEL];
+        [self readLeftDelimiter];
+        [baseCrs setGeoidModelName:[_reader readExpectedToken]];
+        CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+        if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+            [baseCrs setGeoidModelIdentifier:[self readIdentifier]];
+        }
+        [self readRightDelimiter];
+    }
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(CRSCoordinateReferenceSystem *) readEngineering{
-    return nil; // TODO
+
+    CRSEngineeringCoordinateReferenceSystem *baseCrs = [CRSEngineeringCoordinateReferenceSystem create];
+    CRSSimpleCoordinateReferenceSystem *crs = baseCrs;
+    CRSDerivedCoordinateReferenceSystem *derivedCrs = nil;
+
+    [self readKeywordWithType:CRS_KEYWORD_ENGCRS];
+
+    [self readLeftDelimiter];
+
+    NSString *name = [_reader readExpectedToken];
+
+    if([self isKeywordNext:CRS_KEYWORD_BASEENGCRS]){
+        [self readKeywordWithType:CRS_KEYWORD_BASEENGCRS];
+
+        derivedCrs = [CRSDerivedCoordinateReferenceSystem create];
+        [derivedCrs setBase:baseCrs];
+        crs = derivedCrs;
+
+        [self readLeftDelimiter];
+        [baseCrs setName:[_reader readExpectedToken]];
+    }
+
+    [crs setName:name];
+
+    [self readSeparator];
+    [baseCrs setDatum:[self readEngineeringDatumWithCRS:crs]];
+
+    if(derivedCrs != nil){
+
+        CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+        if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+            [baseCrs setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+        }
+
+        [self readRightDelimiter];
+
+        [self readSeparator];
+        [derivedCrs setConversion:[self readDerivingConversion]];
+
+    }
+
+    [self readSeparator];
+    [crs setCoordinateSystem:[self readCoordinateSystem]];
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(CRSCoordinateReferenceSystem *) readParametric{
-    return nil; // TODO
+
+    CRSParametricCoordinateReferenceSystem *baseCrs = [CRSParametricCoordinateReferenceSystem create];
+    CRSSimpleCoordinateReferenceSystem *crs = baseCrs;
+    CRSDerivedCoordinateReferenceSystem *derivedCrs = nil;
+
+    [self readKeywordWithType:CRS_KEYWORD_PARAMETRICCRS];
+
+    [self readLeftDelimiter];
+
+    NSString *name = [_reader readExpectedToken];
+
+    if([self isKeywordNext:CRS_KEYWORD_BASEPARAMCRS]){
+        [self readKeywordWithType:CRS_KEYWORD_BASEPARAMCRS];
+
+        derivedCrs = [CRSDerivedCoordinateReferenceSystem create];
+        [derivedCrs setBase:baseCrs];
+        crs = derivedCrs;
+
+        [self readLeftDelimiter];
+        [baseCrs setName:[_reader readExpectedToken]];
+    }
+
+    [crs setName:name];
+
+    [self readSeparator];
+    [baseCrs setDatum:[self readParametricDatumWithCRS:crs]];
+
+    if(derivedCrs != nil){
+
+        CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+        if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+            [baseCrs setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+        }
+
+        [self readRightDelimiter];
+
+        [self readSeparator];
+        [derivedCrs setConversion:[self readDerivingConversion]];
+
+    }
+
+    [self readSeparator];
+    [crs setCoordinateSystem:[self readCoordinateSystem]];
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(CRSCoordinateReferenceSystem *) readTemporal{
-    return nil; // TODO
+
+    CRSTemporalCoordinateReferenceSystem *baseCrs = [CRSTemporalCoordinateReferenceSystem create];
+    CRSSimpleCoordinateReferenceSystem *crs = baseCrs;
+    CRSDerivedCoordinateReferenceSystem *derivedCrs = nil;
+
+    [self readKeywordWithType:CRS_KEYWORD_TIMECRS];
+
+    [self readLeftDelimiter];
+
+    NSString *name = [_reader readExpectedToken];
+
+    if([self isKeywordNext:CRS_KEYWORD_BASETIMECRS]){
+        [self readKeywordWithType:CRS_KEYWORD_BASETIMECRS];
+
+        derivedCrs = [CRSDerivedCoordinateReferenceSystem create];
+        [derivedCrs setBase:baseCrs];
+        crs = derivedCrs;
+
+        [self readLeftDelimiter];
+        [baseCrs setName:[_reader readExpectedToken]];
+    }
+
+    [crs setName:name];
+    
+    [self readSeparator];
+    [baseCrs setDatum:[self readTemporalDatum]];
+
+    if(derivedCrs != nil){
+
+        CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+        if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+            [baseCrs setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+        }
+
+        [self readRightDelimiter];
+
+        [self readSeparator];
+        [derivedCrs setConversion:[self readDerivingConversion]];
+
+    }
+
+    [self readSeparator];
+    [crs setCoordinateSystem:[self readCoordinateSystem]];
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(CRSDerivedCoordinateReferenceSystem *) readDerivedProjected{
-    return nil; // TODO
+
+    CRSDerivedCoordinateReferenceSystem *crs = [CRSDerivedCoordinateReferenceSystem create];
+    CRSProjectedCoordinateReferenceSystem *projectedCrs = [CRSProjectedCoordinateReferenceSystem create];
+    [crs setBase:projectedCrs];
+
+    [self readKeywordWithType:CRS_KEYWORD_DERIVEDPROJCRS];
+
+    [self readLeftDelimiter];
+
+    [crs setName:[_reader readExpectedToken]];
+
+    [self readSeparator];
+    [self readKeywordWithType:CRS_KEYWORD_BASEPROJCRS];
+
+    [self readLeftDelimiter];
+
+    [projectedCrs setName:[_reader readExpectedToken]];
+
+    [self readSeparator];
+    CRSKeyword *keyword = [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:CRS_KEYWORD_BASEGEODCRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_BASEGEOGCRS],
+                                nil]];
+    [projectedCrs setBaseType:[CRSTextUtils coordinateReferenceSystemType:keyword.type]];
+
+    [self readLeftDelimiter];
+    [projectedCrs setBaseName:[_reader readExpectedToken]];
+
+    BOOL isDynamic = [self isKeywordNext:CRS_KEYWORD_DYNAMIC];
+    if(isDynamic){
+        [self readSeparator];
+        [projectedCrs setDynamic:[self readDynamic]];
+    }
+
+    if(isDynamic || [self isKeywordNext:CRS_KEYWORD_DATUM]){
+        [self readSeparator];
+        CRSGeoReferenceFrame *referenceFrame = [self readGeoReferenceFrameWithCRS:crs];
+        [referenceFrame setType:[projectedCrs baseType]];
+        [projectedCrs setReferenceFrame:referenceFrame];
+    }else if([self isKeywordNext:CRS_KEYWORD_ENSEMBLE]){
+        [self readSeparator];
+        [projectedCrs setDatumEnsemble:[self readGeoDatumEnsemble]];
+    }else{
+        // Validation error
+        [self readSeparator];
+        [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                    [NSNumber numberWithInt:CRS_KEYWORD_DATUM],
+                                    [NSNumber numberWithInt:CRS_KEYWORD_ENSEMBLE],
+                                    nil]];
+    }
+
+    keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [projectedCrs setBaseIdentifiers:[self readIdentifiers]];
+    }
+
+    [self readRightDelimiter];
+
+    [self readSeparator];
+    [projectedCrs setMapProjection:[self readMapProjection]];
+
+    keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [projectedCrs setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+    }
+
+    [self readRightDelimiter];
+
+    [self readSeparator];
+    [crs setConversion:[self readDerivingConversion]];
+
+    [self readSeparator];
+    [crs setCoordinateSystem:[self readCoordinateSystem]];
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(CRSCompoundCoordinateReferenceSystem *) readCompound{
-    return nil; // TODO
+
+    CRSCompoundCoordinateReferenceSystem *crs = [CRSCompoundCoordinateReferenceSystem create];
+
+    [self readKeywordWithType:CRS_KEYWORD_COMPOUNDCRS];
+
+    [self readLeftDelimiter];
+
+    [crs setName:[_reader readExpectedToken]];
+
+    while([self isKeywordsNext:[NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:CRS_KEYWORD_GEODCRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_GEOGCRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_GEOCCS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_GEOGCS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_PROJCRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_PROJCS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_VERTCRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_VERT_CS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_ENGCRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_LOCAL_CS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_PARAMETRICCRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_TIMECRS],
+                                [NSNumber numberWithInt:CRS_KEYWORD_DERIVEDPROJCRS],
+                                nil]]){
+
+        [self readSeparator];
+        [crs addCoordinateReferenceSystem:
+                [self readSimpleCoordinateReferenceSystem]];
+    }
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    if([crs numCoordinateReferenceSystems] < 2){
+        NSString *message = @"Compound Coordinate Reference System requires at least two Coordinate Reference Systems";
+        if(_strict){
+            [NSException raise:@"Compound CRS" format:@"%@", message];
+        }else{
+            NSLog(@"%@", message);
+        }
+    }
+
+    return crs;
 }
 
 -(CRSCoordinateMetadata *) readCoordinateMetadata{
-    return nil; // TODO
+
+    CRSCoordinateMetadata *metadata = [CRSCoordinateMetadata create];
+
+    [self readKeywordWithType:CRS_KEYWORD_COORDINATEMETADATA];
+
+    [self readLeftDelimiter];
+
+    [metadata setCoordinateReferenceSystem:[self readCoordinateReferenceSystem]];
+
+    if([self isKeywordNext:CRS_KEYWORD_EPOCH]){
+
+        [self readSeparator];
+        [self readKeywordWithType:CRS_KEYWORD_EPOCH];
+        [self readLeftDelimiter];
+        [metadata setEpoch:[[NSDecimalNumber alloc] initWithDouble:[_reader readUnsignedNumber]]];
+        [self readRightDelimiter];
+
+    }
+
+    [self readRightDelimiter];
+
+    return metadata;
 }
 
 -(CRSCoordinateOperation *) readCoordinateOperation{
-    return nil; // TODO
+
+    CRSCoordinateOperation *operation = [CRSCoordinateOperation create];
+
+    [self readKeywordWithType:CRS_KEYWORD_COORDINATEOPERATION];
+
+    [self readLeftDelimiter];
+
+    [operation setName:[_reader readExpectedToken]];
+
+    if([self isKeywordNext:CRS_KEYWORD_VERSION]){
+        [self readSeparator];
+        [operation setVersion:[self readVersion]];
+    }
+
+    [self readSeparator];
+    [operation setSource:[self readSource]];
+
+    [self readSeparator];
+    [operation setTarget:[self readTarget]];
+
+    [self readSeparator];
+    CRSOperationMethod *method = [self readMethod];
+    [operation setMethod:method];
+
+    if([self isKeywordsNext:[NSArray arrayWithObjects:
+                             [NSNumber numberWithInt:CRS_KEYWORD_PARAMETER],
+                             [NSNumber numberWithInt:CRS_KEYWORD_PARAMETERFILE],
+                             nil]]){
+        [self readSeparator];
+        [method setParameters:[NSMutableArray arrayWithArray:[self readCoordinateOperationParameters]]];
+    }
+
+    if([self isKeywordNext:CRS_KEYWORD_INTERPOLATIONCRS]){
+        [self readSeparator];
+        [operation setInterpolation:[self readInterpolation]];
+    }
+    
+    if([self isKeywordNext:CRS_KEYWORD_OPERATIONACCURACY]){
+        [self readSeparator];
+        [operation setAccuracy:[[NSDecimalNumber alloc] initWithDouble:[self readAccuracy]]];
+    }
+
+    [self readScopeExtentIdentifierRemark:operation];
+
+    [self readRightDelimiter];
+
+    return operation;
 }
 
 -(CRSPointMotionOperation *) readPointMotionOperation{
-    return nil; // TODO
+
+    CRSPointMotionOperation *operation = [CRSPointMotionOperation create];
+    
+    [self readKeywordWithType:CRS_KEYWORD_POINTMOTIONOPERATION];
+
+    [self readLeftDelimiter];
+    
+    [operation setName:[_reader readExpectedToken]];
+
+    if([self isKeywordNext:CRS_KEYWORD_VERSION]){
+        [self readSeparator];
+        [operation setVersion:[self readVersion]];
+    }
+
+    [self readSeparator];
+    [operation setSource:[self readSource]];
+
+    [self readSeparator];
+    CRSOperationMethod *method = [self readMethod];
+    [operation setMethod:method];
+
+    if([self isKeywordsNext:[NSArray arrayWithObjects:
+                             [NSNumber numberWithInt:CRS_KEYWORD_PARAMETER],
+                             [NSNumber numberWithInt:CRS_KEYWORD_PARAMETERFILE],
+                             nil]]){
+        [self readSeparator];
+        [method setParameters:[NSMutableArray arrayWithArray:[self readPointMotionOperationParameters]]];
+    }
+    
+    if([self isKeywordNext:CRS_KEYWORD_OPERATIONACCURACY]){
+        [self readSeparator];
+        [operation setAccuracy:[[NSDecimalNumber alloc] initWithDouble:[self readAccuracy]]];
+    }
+
+    [self readScopeExtentIdentifierRemark:operation];
+
+    [self readRightDelimiter];
+
+    return operation;
 }
 
 -(CRSConcatenatedOperation *) readConcatenatedOperation{
-    return nil; // TODO
+
+    CRSConcatenatedOperation *operation = [CRSConcatenatedOperation create];
+    
+    [self readKeywordWithType:CRS_KEYWORD_CONCATENATEDOPERATION];
+
+    [self readLeftDelimiter];
+
+    [operation setName:[_reader readExpectedToken]];
+
+    if([self isKeywordNext:CRS_KEYWORD_VERSION]){
+        [self readSeparator];
+        [operation setVersion:[self readVersion]];
+    }
+
+    [self readSeparator];
+    [operation setSource:[self readSource]];
+
+    [self readSeparator];
+    [operation setTarget:[self readTarget]];
+
+    do{
+
+        [self readSeparator];
+        [self readKeywordWithType:CRS_KEYWORD_STEP];
+
+        [self readLeftDelimiter];
+
+        CRSKeyword *keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_COORDINATEOPERATION],
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_POINTMOTIONOPERATION],
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_CONVERSION],
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_DERIVINGCONVERSION],
+                                                    nil]];
+
+        NSObject<CRSCommonOperation> *concatenable = nil;
+
+        switch(keyword.type){
+            case CRS_KEYWORD_COORDINATEOPERATION:
+                concatenable = [self readCoordinateOperation];
+                break;
+            case CRS_KEYWORD_POINTMOTIONOPERATION:
+                concatenable = [self readPointMotionOperation];
+                break;
+            case CRS_KEYWORD_CONVERSION:
+                concatenable = [self readMapProjection];
+                break;
+            case CRS_KEYWORD_DERIVINGCONVERSION:
+                concatenable = [self readDerivingConversion];
+                break;
+            default:
+                [NSException raise:@"Unsupported Operation" format:@"Unsupported concatenable operation type: %@", keyword.name];
+        }
+
+        [operation addOperation:concatenable];
+
+        [self readRightDelimiter];
+
+    }while([self isKeywordNext:CRS_KEYWORD_STEP]);
+
+    if([self isKeywordNext:CRS_KEYWORD_OPERATIONACCURACY]){
+        [self readSeparator];
+        [operation setAccuracy:[[NSDecimalNumber alloc] initWithDouble:[self readAccuracy]]];
+    }
+
+    [self readScopeExtentIdentifierRemark:operation];
+
+    [self readRightDelimiter];
+
+    return operation;
 }
 
 -(CRSBoundCoordinateReferenceSystem *) readBound{
-    return nil; // TODO
+
+    CRSBoundCoordinateReferenceSystem *crs = [CRSBoundCoordinateReferenceSystem create];
+
+    [self readKeywordWithType:CRS_KEYWORD_BOUNDCRS];
+
+    [self readLeftDelimiter];
+
+    [crs setSource:[self readSource]];
+
+    [self readSeparator];
+    [crs setTarget:[self readTarget]];
+
+    [self readSeparator];
+    [crs setTransformation:[self readAbridgedCoordinateTransformation]];
+
+    [self readScopeExtentIdentifierRemark:crs];
+
+    [self readRightDelimiter];
+
+    return crs;
 }
 
 -(void) readScopeExtentIdentifierRemark: (NSObject<CRSScopeExtentIdentifierRemark> *) object{
-    // TODO
+
+    CRSKeyword *keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                [NSNumber numberWithInt:CRS_KEYWORD_USAGE],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_REMARK],
+                                                nil]];
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_USAGE){
+        [object setUsages:[self readUsages]];
+        keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_REMARK],
+                                                    nil]];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [object setIdentifiers:[self readIdentifiers]];
+        keyword = [self readToKeyword:CRS_KEYWORD_REMARK];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_REMARK){
+        [object setRemark:[self readRemark]];
+    }
+
 }
 
 -(CRSGeoReferenceFrame *) readGeoReferenceFrame{
-    return nil; // TODO
+    return [self readGeoReferenceFrameWithCRS:nil];
 }
 
 -(CRSGeoReferenceFrame *) readGeoReferenceFrameWithCRS: (CRSSimpleCoordinateReferenceSystem *) crs{
-    return nil; // TODO
+    CRSReferenceFrame *referenceFrame = [self readReferenceFrameWithCRS:crs];
+    if(![referenceFrame isKindOfClass:[CRSGeoReferenceFrame class]]){
+        [NSException raise:@"Reference Frame" format:@"Reference frame was not an expected Geo Reference Frame"];
+    }
+    return (CRSGeoReferenceFrame *) referenceFrame;
 }
 
 -(CRSVerticalReferenceFrame *) readVerticalReferenceFrame{
-    return nil; // TODO
+    return [self readVerticalReferenceFrameWithCRS:nil];
 }
 
 -(CRSVerticalReferenceFrame *) readVerticalReferenceFrameWithCRS: (CRSSimpleCoordinateReferenceSystem *) crs{
-    return nil; // TODO
+    CRSReferenceFrame *referenceFrame = [self readReferenceFrameWithCRS:crs];
+    if(![referenceFrame isKindOfClass:[CRSVerticalReferenceFrame class]]){
+        [NSException raise:@"Reference Frame" format:@"Reference frame was not an expected Vertical Reference Frame"];
+    }
+    return (CRSVerticalReferenceFrame *) referenceFrame;
 }
 
 -(CRSEngineeringDatum *) readEngineeringDatum{
-    return nil; // TODO
+    return [self readEngineeringDatumWithCRS:nil];
 }
 
 -(CRSEngineeringDatum *) readEngineeringDatumWithCRS: (CRSSimpleCoordinateReferenceSystem *) crs{
-    return nil; // TODO
+    CRSReferenceFrame *referenceFrame = [self readReferenceFrameWithCRS:crs];
+    if(![referenceFrame isKindOfClass:[CRSEngineeringDatum class]]){
+        [NSException raise:@"Reference Frame" format:@"Reference frame was not an expected Engineering Datum"];
+    }
+    return (CRSEngineeringDatum *) referenceFrame;
 }
 
 -(CRSParametricDatum *) readParametricDatum{
-    return nil; // TODO
+    return [self readParametricDatumWithCRS:nil];
 }
 
 -(CRSParametricDatum *) readParametricDatumWithCRS: (CRSSimpleCoordinateReferenceSystem *) crs{
-    return nil; // TODO
+    CRSReferenceFrame *referenceFrame = [self readReferenceFrameWithCRS:crs];
+    if(![referenceFrame isKindOfClass:[CRSParametricDatum class]]){
+        [NSException raise:@"Reference Frame" format:@"Reference frame was not an expected Parametric Datum"];
+    }
+    return (CRSParametricDatum *) referenceFrame;
 }
 
 -(CRSReferenceFrame *) readReferenceFrame{
-    return nil; // TODO
+    return [self readReferenceFrameWithCRS:nil];
 }
 
 -(CRSReferenceFrame *) readReferenceFrameWithCRS: (CRSSimpleCoordinateReferenceSystem *) crs{
-    return nil; // TODO
+
+    CRSReferenceFrame *referenceFrame = nil;
+    CRSGeoReferenceFrame *geoReferenceFrame = nil;
+
+    CRSKeyword *type = [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                                   [NSNumber numberWithInt:CRS_KEYWORD_DATUM],
+                                                   [NSNumber numberWithInt:CRS_KEYWORD_VDATUM],
+                                                   [NSNumber numberWithInt:CRS_KEYWORD_EDATUM],
+                                                   [NSNumber numberWithInt:CRS_KEYWORD_PDATUM],
+                                                   nil]];
+    switch(type.type){
+        case CRS_KEYWORD_DATUM:
+            geoReferenceFrame = [CRSGeoReferenceFrame create];
+            referenceFrame = geoReferenceFrame;
+            break;
+        case CRS_KEYWORD_VDATUM:
+            referenceFrame = [CRSVerticalReferenceFrame create];
+            break;
+        case CRS_KEYWORD_EDATUM:
+            referenceFrame = [CRSEngineeringDatum create];
+            break;
+        case CRS_KEYWORD_PDATUM:
+            referenceFrame = [CRSParametricDatum create];
+            break;
+        default:
+            [NSException raise:@"Unexpected Type" format:@"Unexpected Reference Frame type: %@", type.name];
+    }
+
+    [self readLeftDelimiter];
+
+    [referenceFrame setName:[_reader readExpectedToken]];
+
+    if(geoReferenceFrame != nil){
+        [self readSeparator];
+        [geoReferenceFrame setEllipsoid:[self readEllipsoid]];
+    }
+
+    CRSKeyword *keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                [NSNumber numberWithInt:CRS_KEYWORD_TOWGS84],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ANCHOR],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                nil]];
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_TOWGS84){
+        NSArray<NSDecimalNumber *> *toWGS84 = [self readToWGS84Compat];
+        if(crs != nil){
+            [crs addExtra:toWGS84 withName:[CRSKeyword keywordOfType:CRS_KEYWORD_TOWGS84].name];
+        }
+        keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_ANCHOR],
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                    nil]];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ANCHOR){
+        [referenceFrame setAnchor:[self readKeywordDelimitedToken:CRS_KEYWORD_ANCHOR]];
+        keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                    [NSNumber numberWithInt:CRS_KEYWORD_TOWGS84],
+                                                    nil]];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [referenceFrame setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+        keyword = [self readToKeyword:CRS_KEYWORD_TOWGS84];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_TOWGS84){
+        NSArray<NSDecimalNumber *> *toWGS84 = [self readToWGS84Compat];
+        if(crs != nil){
+            [crs addExtra:toWGS84 withName:[CRSKeyword keywordOfType:CRS_KEYWORD_TOWGS84].name];
+        }
+    }
+
+    [self readRightDelimiter];
+
+    if(geoReferenceFrame != nil && [self isKeywordNext:CRS_KEYWORD_PRIMEM]){
+        [self readSeparator];
+        [geoReferenceFrame setPrimeMeridian:[self readPrimeMeridian]];
+    }
+
+    return referenceFrame;
 }
 
 -(CRSGeoDatumEnsemble *) readGeoDatumEnsemble{
-    return nil; // TODO
+    CRSDatumEnsemble *datumEnsemble = [self readDatumEnsemble];
+    if(![datumEnsemble isKindOfClass:[CRSGeoDatumEnsemble class]]){
+        [NSException raise:@"Datum Ensemble" format:@"Datum ensemble was not an expected Geo Datum Ensemble"];
+    }
+    return (CRSGeoDatumEnsemble *) datumEnsemble;
 }
 
 -(CRSVerticalDatumEnsemble *) readVerticalDatumEnsemble{
-    return nil; // TODO
+    CRSDatumEnsemble *datumEnsemble = [self readDatumEnsemble];
+    if(![datumEnsemble isKindOfClass:[CRSVerticalDatumEnsemble class]]){
+        [NSException raise:@"Datum Ensemble" format:@"Datum ensemble was not an expected Vertical Datum Ensemble"];
+    }
+    return (CRSVerticalDatumEnsemble *) datumEnsemble;
 }
 
 -(CRSDatumEnsemble *) readDatumEnsemble{
-    return nil; // TODO
+
+    [self readKeywordWithType:CRS_KEYWORD_ENSEMBLE];
+
+    [self readLeftDelimiter];
+
+    NSString *name = [_reader readExpectedToken];
+
+    NSMutableArray<CRSDatumEnsembleMember *> *members = [NSMutableArray array];
+    do{
+
+        [self readSeparator];
+        [members addObject:[self readDatumEnsembleMember]];
+
+    }while([self isKeywordNext:CRS_KEYWORD_MEMBER]);
+
+    CRSDatumEnsemble *datumEnsemble = nil;
+    CRSGeoDatumEnsemble *geoDatumEnsemble = nil;
+
+    if([self isKeywordNext:CRS_KEYWORD_ELLIPSOID]){
+        geoDatumEnsemble = [CRSGeoDatumEnsemble create];
+        datumEnsemble = geoDatumEnsemble;
+    }else{
+        datumEnsemble = [CRSVerticalDatumEnsemble create];
+    }
+
+    [datumEnsemble setName:name];
+    [datumEnsemble setMembers:members];
+
+    if(geoDatumEnsemble != nil){
+        [self readSeparator];
+        [geoDatumEnsemble setEllipsoid:[self readEllipsoid]];
+    }
+
+    [self readSeparator];
+    [self readKeywordWithType:CRS_KEYWORD_ENSEMBLEACCURACY];
+
+    [self readLeftDelimiter];
+
+    [datumEnsemble setAccuracy:[_reader readNumber]];
+
+    [self readRightDelimiter];
+
+    CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [datumEnsemble setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+    }
+
+    [self readRightDelimiter];
+
+    if(geoDatumEnsemble != nil && [self isKeywordNext:CRS_KEYWORD_PRIMEM]){
+        [self readSeparator];
+        [geoDatumEnsemble setPrimeMeridian:[self readPrimeMeridian]];
+    }
+
+    return datumEnsemble;
 }
 
 -(CRSDatumEnsembleMember *) readDatumEnsembleMember{
-    return nil; // TODO
+
+    CRSDatumEnsembleMember *member = [CRSDatumEnsembleMember create];
+
+    [self readKeywordWithType:CRS_KEYWORD_MEMBER];
+
+    [self readLeftDelimiter];
+
+    [member setName:[_reader readExpectedToken]];
+
+    CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [member setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+    }
+
+    [self readRightDelimiter];
+
+    return member;
 }
 
 -(CRSDynamic *) readDynamic{
-    return nil; // TODO
+
+    CRSDynamic *dynamic = [CRSDynamic create];
+
+    [self readKeywordWithType:CRS_KEYWORD_DYNAMIC];
+
+    [self readLeftDelimiter];
+
+    [self readKeywordWithType:CRS_KEYWORD_FRAMEEPOCH];
+
+    [self readLeftDelimiter];
+
+    [dynamic setReferenceEpoch:[_reader readUnsignedNumber]];
+
+    [self readRightDelimiter];
+
+    CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_MODEL];
+    if(keyword != nil && keyword.type == CRS_KEYWORD_MODEL){
+
+        [self readKeywordWithType:CRS_KEYWORD_MODEL];
+
+        [self readLeftDelimiter];
+
+        [dynamic setDeformationModelName:[_reader readExpectedToken]];
+
+        keyword = [self readToKeyword:CRS_KEYWORD_ID];
+        if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+            [dynamic setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+        }
+
+        [self readRightDelimiter];
+    }
+
+    [self readRightDelimiter];
+
+    return dynamic;
 }
 
 -(CRSPrimeMeridian *) readPrimeMeridian{
-    return nil; // TODO
+
+    CRSPrimeMeridian *primeMeridian = [CRSPrimeMeridian create];
+    
+    [self readKeywordWithType:CRS_KEYWORD_PRIMEM];
+
+    [self readLeftDelimiter];
+
+    [primeMeridian setName:[_reader readExpectedToken]];
+
+    [self readSeparator];
+    [primeMeridian setLongitude:[_reader readNumber]];
+
+    CRSKeyword *keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ANGLEUNIT],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                nil]];
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ANGLEUNIT){
+        [primeMeridian setLongitudeUnit:[self readAngleUnit]];
+        keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [primeMeridian setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+    }
+
+    [self readRightDelimiter];
+
+    return primeMeridian;
 }
 
 -(CRSEllipsoid *) readEllipsoid{
-    return nil; // TODO
+
+    CRSEllipsoid *ellipsoid = nil;
+    CRSTriaxialEllipsoid *triaxial = nil;
+
+    CRSKeyword *keyword = [self readKeywordWithTypes:[NSArray arrayWithObjects:
+                                                      [NSNumber numberWithInt:CRS_KEYWORD_ELLIPSOID],
+                                                      [NSNumber numberWithInt:CRS_KEYWORD_TRIAXIAL],
+                                                      nil]];
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_TRIAXIAL){
+        triaxial = [CRSTriaxialEllipsoid create];
+        ellipsoid = triaxial;
+    }else{
+        ellipsoid = [CRSEllipsoid create];
+    }
+
+    [self readLeftDelimiter];
+
+    [ellipsoid setName:[_reader readExpectedToken]];
+
+    [self readSeparator];
+    [ellipsoid setSemiMajorAxis:[_reader readUnsignedNumber]];
+
+    if(triaxial != nil){
+
+        [self readSeparator];
+        [triaxial setSemiMedianAxis:[_reader readUnsignedNumber]];
+
+        [self readSeparator];
+        [triaxial setSemiMinorAxis:[_reader readUnsignedNumber]];
+
+    } else {
+
+        [self readSeparator];
+        [ellipsoid setInverseFlattening:[_reader readUnsignedNumber]];
+
+    }
+
+    keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                [NSNumber numberWithInt:CRS_KEYWORD_LENGTHUNIT],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_ID],
+                                                nil]];
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_LENGTHUNIT){
+        [ellipsoid setUnit:[self readLengthUnit]];
+        keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [ellipsoid setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+    }
+
+    [self readRightDelimiter];
+
+    return ellipsoid;
 }
 
 -(CRSUnit *) readUnit{
-    return nil; // TODO
+    return [self readUnitWithType:CRS_UNIT];
 }
 
 -(CRSUnit *) readAngleUnit{
-    return nil; // TODO
+    return [self readUnitWithType:CRS_UNIT_ANGLE];
 }
 
 -(CRSUnit *) readLengthUnit{
-    return nil; // TODO
+    return [self readUnitWithType:CRS_UNIT_LENGTH];
 }
 
 -(CRSUnit *) readParametricUnit{
-    return nil; // TODO
+    return [self readUnitWithType:CRS_UNIT_PARAMETRIC];
 }
 
 -(CRSUnit *) readScaleUnit{
-    return nil; // TODO
+    return [self readUnitWithType:CRS_UNIT_SCALE];
 }
 
 -(CRSUnit *) readTimeUnit{
-    return nil; // TODO
+    return [self readUnitWithType:CRS_UNIT_TIME];
 }
 
 -(CRSUnit *) readUnitWithType: (enum CRSUnitType) type{
@@ -973,7 +1982,7 @@
     }
 
     CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
-    if(keyword.type == CRS_KEYWORD_ID){
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
         [unit setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
     }
     
@@ -983,27 +1992,130 @@
 }
 
 -(NSArray<CRSIdentifier *> *) readIdentifiers{
-    return nil; // TODO
+    
+    NSMutableArray<CRSIdentifier *> *identifiers = [NSMutableArray array];
+
+    do{
+
+        if(identifiers.count > 0){
+            [self readSeparator];
+        }
+
+        [identifiers addObject:[self readIdentifier]];
+
+    }while([self isKeywordNext:CRS_KEYWORD_ID]);
+
+    return identifiers;
 }
 
 -(CRSIdentifier *) readIdentifier{
-    return nil; // TODO
+
+    CRSIdentifier *identifier = [CRSIdentifier create];
+
+    [self readKeywordWithType:CRS_KEYWORD_ID];
+
+    [self readLeftDelimiter];
+
+    [identifier setName:[_reader readExpectedToken]];
+
+    [self readSeparator];
+    [identifier setUniqueIdentifier:[_reader readExpectedToken]];
+
+    if([self isNonKeywordNext]){
+        [self readSeparator];
+        [identifier setVersion:[_reader readExpectedToken]];
+    }
+
+    CRSKeyword *keyword = [self readToKeywords:[NSArray arrayWithObjects:
+                                                [NSNumber numberWithInt:CRS_KEYWORD_CITATION],
+                                                [NSNumber numberWithInt:CRS_KEYWORD_URI],
+                                                nil]];
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_CITATION){
+        [identifier setCitation:[self readKeywordDelimitedToken:CRS_KEYWORD_CITATION]];
+        keyword = [self readToKeyword:CRS_KEYWORD_URI];
+    }
+
+    if(keyword != nil && keyword.type == CRS_KEYWORD_URI){
+        [identifier setUri:[self readKeywordDelimitedToken:CRS_KEYWORD_URI]];
+    }
+
+    [self readRightDelimiter];
+
+    return identifier;
 }
 
 -(CRSCoordinateSystem *) readCoordinateSystem{
-    return nil; // TODO
+
+    CRSCoordinateSystem *coordinateSystem = [CRSCoordinateSystem create];
+
+    [self readKeywordWithType:CRS_KEYWORD_CS];
+
+    [self readLeftDelimiter];
+
+    NSString *csTypeName = [_reader readToken];
+    enum CRSCoordinateSystemType csType = [CRSCoordinateSystemTypes type:csTypeName];
+    if ((int)csType == -1) {
+        [NSException raise:@"Unexpected Type" format:@"Unexpected coordinate system type. found: %@", csTypeName];
+    }
+    [coordinateSystem setType:csType];
+
+    [self readSeparator];
+    [coordinateSystem setDimension:[_reader readUnsignedInteger]];
+
+    CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
+    if(keyword != nil && keyword.type == CRS_KEYWORD_ID){
+        [coordinateSystem setIdentifiers:[NSMutableArray arrayWithArray:[self readIdentifiers]]];
+    }
+
+    [self readRightDelimiter];
+
+    [self readSeparator];
+    [coordinateSystem setAxes:[NSMutableArray arrayWithArray:[self readAxesWithType:csType]]];
+
+    if([CRSTextUtils isSpatial:csType]){
+
+        if([self isUnitNext]){
+
+            [self readSeparator];
+            [coordinateSystem setUnit:[self readUnit]];
+
+        }
+
+    }
+
+    return coordinateSystem;
 }
 
 -(NSArray<CRSAxis *> *) readAxes{
-    return nil; // TODO
+    return [self readAxesWithType:-1];
 }
 
 -(NSArray<CRSAxis *> *) readAxesWithType: (enum CRSCoordinateSystemType) type{
-    return nil; // TODO
+
+    BOOL isTemporalCountMeasure = type != -1 && [CRSTextUtils isTemporalCountMeasure:type];
+
+    NSMutableArray<CRSAxis *> *axes = [NSMutableArray array];
+
+    do{
+
+        if(axes.count > 0){
+            [self readSeparator];
+        }
+
+        [axes addObject:[self readAxisWithType:type]];
+
+        if(isTemporalCountMeasure){
+            break;
+        }
+
+    }while([self isKeywordNext:CRS_KEYWORD_AXIS]);
+
+    return axes;
 }
 
 -(CRSAxis *) readAxis{
-    return nil; // TODO
+    return [self readAxisWithType:-1];
 }
 
 -(CRSAxis *) readAxisWithType: (enum CRSCoordinateSystemType) type{
