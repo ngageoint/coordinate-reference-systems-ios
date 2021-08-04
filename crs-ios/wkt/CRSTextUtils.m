@@ -99,7 +99,7 @@
         break;
 
     default:
-        [NSException raise:@"No CRS Type" format:@"No coordinate reference system type found. keyword: %@", [CRSKeyword keywordOfType:keyword].name];
+        [NSException raise:@"No CRS Type" format:@"No coordinate reference system type found. keyword: %@", [CRSKeyword nameOfType:keyword]];
     }
 
     return crsType;

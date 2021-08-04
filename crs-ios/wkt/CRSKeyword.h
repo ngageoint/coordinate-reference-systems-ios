@@ -191,4 +191,13 @@ enum CRSKeywordType{
  */
 +(CRSKeyword *) keywordOfType: (enum CRSKeywordType) type;
 
+/**
+ * Get the keyword type name from the keyword
+ *
+ * @param type
+ *            keyword type
+ * @return type name
+ */
++(NSString *) nameOfType: (enum CRSKeywordType) type;
+
 @end

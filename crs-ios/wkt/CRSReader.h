@@ -472,14 +472,14 @@
  *
  * @return keywords
  */
--(NSArray<CRSKeyword *> *) readKeywords;
+-(NSMutableArray<CRSKeyword *> *) readKeywords;
 
 /**
  * Read WKT CRS keyword types
  *
  * @return keyword types
  */
--(NSArray<NSNumber *> *) readKeywordTypes;
+-(NSMutableArray<NSNumber *> *) readKeywordTypes;
 
 /**
  * Read a specific WKT CRS keyword, next token when strict, until found when
@@ -564,14 +564,14 @@
  *
  * @return keywords
  */
--(NSArray<CRSKeyword *> *) peekKeywords;
+-(NSMutableArray<CRSKeyword *> *) peekKeywords;
 
 /**
  * Peek WKT CRS keyword types
  *
  * @return keyword types
  */
--(NSArray<NSNumber *> *) peekKeywordTypes;
+-(NSMutableArray<NSNumber *> *) peekKeywordTypes;
 
 /**
  * Peek an optional WKT CRS keyword
@@ -592,14 +592,14 @@
  *
  * @return keywords
  */
--(NSArray<CRSKeyword *> *) peekOptionalKeywords;
+-(NSMutableArray<CRSKeyword *> *) peekOptionalKeywords;
 
 /**
  * Peek at optional WKT CRS keyword types
  *
  * @return keyword types
  */
--(NSArray<NSNumber *> *) peekOptionalKeywordTypes;
+-(NSMutableArray<NSNumber *> *) peekOptionalKeywordTypes;
 
 /**
  * Peek an optional WKT CRS keyword
@@ -626,7 +626,7 @@
  *            number of tokens out to peek at
  * @return keywords
  */
--(NSArray<CRSKeyword *> *) peekOptionalKeywordsAtNum: (int) num;
+-(NSMutableArray<CRSKeyword *> *) peekOptionalKeywordsAtNum: (int) num;
 
 /**
  * Peek at optional WKT CRS keyword types
@@ -635,7 +635,7 @@
  *            number of tokens out to peek at
  * @return keyword types
  */
--(NSArray<NSNumber *> *) peekOptionalKeywordTypesAtNum: (int) num;
+-(NSMutableArray<NSNumber *> *) peekOptionalKeywordTypesAtNum: (int) num;
 
 /**
  * Read a left delimiter
@@ -1002,7 +1002,7 @@
  *
  * @return identifiers
  */
--(NSArray<CRSIdentifier *> *) readIdentifiers;
+-(NSMutableArray<CRSIdentifier *> *) readIdentifiers;
 
 /**
  * Read an Identifier
@@ -1023,7 +1023,7 @@
  *
  * @return axes
  */
--(NSArray<CRSAxis *> *) readAxes;
+-(NSMutableArray<CRSAxis *> *) readAxes;
 
 /**
  * Read Axes
@@ -1033,7 +1033,7 @@
  *
  * @return axes
  */
--(NSArray<CRSAxis *> *) readAxesWithType: (enum CRSCoordinateSystemType) type;
+-(NSMutableArray<CRSAxis *> *) readAxesWithType: (enum CRSCoordinateSystemType) type;
 
 /**
  * Read an Axis
@@ -1063,7 +1063,7 @@
  *
  * @return usages
  */
--(NSArray<CRSUsage *> *) readUsages;
+-(NSMutableArray<CRSUsage *> *) readUsages;
 
 /**
  * Read a Usage
@@ -1133,7 +1133,7 @@
  *
  * @return operation parameters
  */
--(NSArray<CRSOperationParameter *> *) readProjectedParameters;
+-(NSMutableArray<CRSOperationParameter *> *) readProjectedParameters;
 
 /**
  * Read Operation parameters
@@ -1143,7 +1143,7 @@
  *
  * @return operation parameters
  */
--(NSArray<CRSOperationParameter *> *) readParametersWithType: (enum CRSType) type;
+-(NSMutableArray<CRSOperationParameter *> *) readParametersWithType: (enum CRSType) type;
 
 /**
  * Read an Operation parameter
@@ -1174,7 +1174,7 @@
  *
  * @return derived parameters
  */
--(NSArray<CRSOperationParameter *> *) readDerivedParameters;
+-(NSMutableArray<CRSOperationParameter *> *) readDerivedParameters;
 
 /**
  * Read Operation parameters and parameter files
@@ -1184,7 +1184,7 @@
  *
  * @return operation parameters
  */
--(NSArray<CRSOperationParameter *> *) readParametersAndFilesWithType: (enum CRSType) type;
+-(NSMutableArray<CRSOperationParameter *> *) readParametersAndFilesWithType: (enum CRSType) type;
 
 /**
  * Read an Operation parameter file
@@ -1198,7 +1198,7 @@
  *
  * @return parameters
  */
--(NSArray<CRSOperationParameter *> *) readCoordinateOperationParameters;
+-(NSMutableArray<CRSOperationParameter *> *) readCoordinateOperationParameters;
 
 /**
  * Read an operation version
@@ -1250,7 +1250,7 @@
  *
  * @return parameters
  */
--(NSArray<CRSOperationParameter *> *) readPointMotionOperationParameters;
+-(NSMutableArray<CRSOperationParameter *> *) readPointMotionOperationParameters;
 
 /**
  * Read an Abridged Coordinate Transformation
@@ -1264,7 +1264,7 @@
  *
  * @return parameters
  */
--(NSArray<CRSOperationParameter *> *) readBoundParameters;
+-(NSMutableArray<CRSOperationParameter *> *) readBoundParameters;
 
 /**
  * Read a Backward Compatible Geodetic or Geographic CRS
@@ -1326,7 +1326,7 @@
  *
  * @return projected coordinate reference system
  */
--(CRSProjectedCoordinateReferenceSystem *) readProjectedCompatWithType: (enum CRSType) expectedType;
+-(CRSProjectedCoordinateReferenceSystem *) readProjectedCompatWithType: (enum CRSType) expectedBaseType;
 
 /**
  * Add transform parameters to the map projection
@@ -1427,13 +1427,13 @@
  *
  * @return abridged transformation
  */
--(NSArray<NSDecimalNumber *> *) readToWGS84Compat;
+-(NSMutableArray<NSDecimalNumber *> *) readToWGS84Compat;
 
 /**
  * Read Backward Compatible Extensions
  *
  * @return extensions
  */
--(NSDictionary<NSString *, NSObject *> *) readExtensionsCompat;
+-(NSMutableDictionary<NSString *, NSObject *> *) readExtensionsCompat;
 
 @end

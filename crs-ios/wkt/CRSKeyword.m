@@ -261,4 +261,13 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return [typeKeywords objectForKey:[NSNumber numberWithInt:type]];
 }
 
++(NSString *) nameOfType: (enum CRSKeywordType) type{
+    NSString *name = nil;
+    CRSKeyword *keyword = [self keywordOfType:type];
+    if(keyword != nil){
+        name = keyword.name;
+    }
+    return name;
+}
+
 @end
