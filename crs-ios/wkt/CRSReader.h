@@ -472,14 +472,14 @@
  *
  * @return keywords
  */
--(NSMutableArray<CRSKeyword *> *) readKeywords;
+-(NSArray<CRSKeyword *> *) readKeywords;
 
 /**
  * Read WKT CRS keyword types
  *
  * @return keyword types
  */
--(NSMutableArray<NSNumber *> *) readKeywordTypes;
+-(NSArray<NSNumber *> *) readKeywordTypes;
 
 /**
  * Read a specific WKT CRS keyword, next token when strict, until found when
@@ -564,14 +564,14 @@
  *
  * @return keywords
  */
--(NSMutableArray<CRSKeyword *> *) peekKeywords;
+-(NSArray<CRSKeyword *> *) peekKeywords;
 
 /**
  * Peek WKT CRS keyword types
  *
  * @return keyword types
  */
--(NSMutableArray<NSNumber *> *) peekKeywordTypes;
+-(NSArray<NSNumber *> *) peekKeywordTypes;
 
 /**
  * Peek an optional WKT CRS keyword
@@ -592,14 +592,14 @@
  *
  * @return keywords
  */
--(NSMutableArray<CRSKeyword *> *) peekOptionalKeywords;
+-(NSArray<CRSKeyword *> *) peekOptionalKeywords;
 
 /**
  * Peek at optional WKT CRS keyword types
  *
  * @return keyword types
  */
--(NSMutableArray<NSNumber *> *) peekOptionalKeywordTypes;
+-(NSArray<NSNumber *> *) peekOptionalKeywordTypes;
 
 /**
  * Peek an optional WKT CRS keyword
@@ -626,7 +626,7 @@
  *            number of tokens out to peek at
  * @return keywords
  */
--(NSMutableArray<CRSKeyword *> *) peekOptionalKeywordsAtNum: (int) num;
+-(NSArray<CRSKeyword *> *) peekOptionalKeywordsAtNum: (int) num;
 
 /**
  * Peek at optional WKT CRS keyword types
@@ -635,7 +635,7 @@
  *            number of tokens out to peek at
  * @return keyword types
  */
--(NSMutableArray<NSNumber *> *) peekOptionalKeywordTypesAtNum: (int) num;
+-(NSArray<NSNumber *> *) peekOptionalKeywordTypesAtNum: (int) num;
 
 /**
  * Read a left delimiter

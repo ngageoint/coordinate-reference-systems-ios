@@ -12,6 +12,8 @@
 #import "CRSTriaxialEllipsoid.h"
 #import "CRSUnits.h"
 
+NSString *const AXIS_NAME_ABBREV_PATTERN = @"((.+ )|^)\\([a-zA-Z]+\\)$";
+
 @interface CRSReader()
 
 /**
@@ -22,6 +24,18 @@
 @end
 
 @implementation CRSReader
+
+static NSRegularExpression *axisNameAbbrevExpression = nil;
+
++(void) initialize{
+    if(axisNameAbbrevExpression == nil){
+        NSError  *error = nil;
+        axisNameAbbrevExpression = [NSRegularExpression regularExpressionWithPattern:AXIS_NAME_ABBREV_PATTERN options:0 error:&error];
+        if(error){
+            [NSException raise:@"Axis Name Abbreviation Regular Expression" format:@"Failed to create regular expression with error: %@", error];
+        }
+    }
+}
 
 +(CRSObject *) read: (NSString *) text{
     return [self read:text withStrict:NO];
@@ -365,11 +379,11 @@
     return [CRSKeyword requiredType:[_reader readToken]];
 }
 
--(NSMutableArray<CRSKeyword *> *) readKeywords{
+-(NSArray<CRSKeyword *> *) readKeywords{
     return [CRSKeyword requiredKeywords:[_reader readToken]];
 }
 
--(NSMutableArray<NSNumber *> *) readKeywordTypes{
+-(NSArray<NSNumber *> *) readKeywordTypes{
     return [CRSKeyword requiredTypes:[_reader readToken]];
 }
 
@@ -489,11 +503,11 @@
     return [CRSKeyword requiredType:[_reader peekToken]];
 }
 
--(NSMutableArray<CRSKeyword *> *) peekKeywords{
+-(NSArray<CRSKeyword *> *) peekKeywords{
     return [CRSKeyword requiredKeywords:[_reader peekToken]];
 }
 
--(NSMutableArray<NSNumber *> *) peekKeywordTypes{
+-(NSArray<NSNumber *> *) peekKeywordTypes{
     return [CRSKeyword requiredTypes:[_reader peekToken]];
 }
 
@@ -505,11 +519,11 @@
     return [CRSKeyword type:[_reader peekToken]];
 }
 
--(NSMutableArray<CRSKeyword *> *) peekOptionalKeywords{
+-(NSArray<CRSKeyword *> *) peekOptionalKeywords{
     return [CRSKeyword keywords:[_reader peekToken]];
 }
 
--(NSMutableArray<NSNumber *> *) peekOptionalKeywordTypes{
+-(NSArray<NSNumber *> *) peekOptionalKeywordTypes{
     return [CRSKeyword types:[_reader peekToken]];
 }
 
@@ -521,11 +535,11 @@
     return [CRSKeyword type:[_reader peekTokenAtNum:num]];
 }
 
--(NSMutableArray<CRSKeyword *> *) peekOptionalKeywordsAtNum: (int) num{
+-(NSArray<CRSKeyword *> *) peekOptionalKeywordsAtNum: (int) num{
     return [CRSKeyword keywords:[_reader peekTokenAtNum:num]];
 }
 
--(NSMutableArray<NSNumber *> *) peekOptionalKeywordTypesAtNum: (int) num{
+-(NSArray<NSNumber *> *) peekOptionalKeywordTypesAtNum: (int) num{
     return [CRSKeyword types:[_reader peekTokenAtNum:num]];
 }
 
@@ -2132,19 +2146,16 @@
     [self readLeftDelimiter];
 
     NSString *nameAbbrev = [_reader readExpectedToken];
-    /* TODO
-    if(nameAbbrev.matches(AXIS_NAME_ABBREV_PATTERN)) {
-        int abbrevIndex = nameAbbrev
-                .lastIndexOf(WKTConstants.AXIS_ABBREV_LEFT_DELIMITER);
-        axis.setAbbreviation(nameAbbrev.substring(abbrevIndex + 1,
-                nameAbbrev.length() - 1));
-        if (abbrevIndex > 0) {
-            axis.setName(nameAbbrev.substring(0, abbrevIndex - 1));
+    NSArray *matches = [axisNameAbbrevExpression matchesInString:nameAbbrev options:0 range:NSMakeRange(0, [nameAbbrev length])];
+    if([matches count] > 0){
+        NSInteger abbrevIndex = [nameAbbrev rangeOfString:CRS_WKT_AXIS_ABBREV_LEFT_DELIMITER options:NSBackwardsSearch].location;
+        [axis setAbbreviation:[nameAbbrev substringWithRange:NSMakeRange(abbrevIndex + 1, [nameAbbrev length] - 1)]];
+        if(abbrevIndex > 0){
+            [axis setName:[nameAbbrev substringToIndex:abbrevIndex - 1]];
         }
-    } else {
-     */
+    }else{
         [axis setName:nameAbbrev];
-    //} TODO
+    }
 
     [self readSeparator];
 
