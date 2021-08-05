@@ -2149,7 +2149,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     NSArray *matches = [axisNameAbbrevExpression matchesInString:nameAbbrev options:0 range:NSMakeRange(0, [nameAbbrev length])];
     if([matches count] > 0){
         NSInteger abbrevIndex = [nameAbbrev rangeOfString:CRS_WKT_AXIS_ABBREV_LEFT_DELIMITER options:NSBackwardsSearch].location;
-        [axis setAbbreviation:[nameAbbrev substringWithRange:NSMakeRange(abbrevIndex + 1, [nameAbbrev length] - 1)]];
+        [axis setAbbreviation:[nameAbbrev substringWithRange:NSMakeRange(abbrevIndex + 1, [nameAbbrev length] - abbrevIndex - 2)]];
         if(abbrevIndex > 0){
             [axis setName:[nameAbbrev substringToIndex:abbrevIndex - 1]];
         }

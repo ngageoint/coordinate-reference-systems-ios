@@ -234,6 +234,7 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     NSMutableArray<NSNumber *> *types = nil;
     NSArray<CRSKeyword *> *keywords = [self keywords:keyword];
     if(keywords != nil){
+        types = [NSMutableArray array];
         for(CRSKeyword *kw in keywords){
             [types addObject:[NSNumber numberWithInt:kw.type]];
         }

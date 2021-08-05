@@ -166,7 +166,11 @@
 }
 
 -(void) writeNumber: (NSNumber *) number{
-    [_text appendString:[number stringValue]];
+    if([number isKindOfClass:[NSDecimalNumber class]]){
+        [self writeDouble:[number doubleValue]];
+    }else{
+        [_text appendString:[number stringValue]];
+    }
 }
 
 -(void) writeNumberOrQuotedText: (NSString *) text{
@@ -179,7 +183,10 @@
 }
 
 -(void) writeDouble: (double) value{
-    [_text appendFormat:@"%f", value];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setMinimumFractionDigits:1];
+    [numberFormatter setMaximumFractionDigits:16];
+    [_text appendFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]]];
 }
 
 -(void) writeInt: (int) value{
@@ -1016,7 +1023,7 @@
     [self writeSeparator];
     [self writeKeywordType:CRS_KEYWORD_ENSEMBLEACCURACY];
     [self writeLeftDelimiter];
-    [self writeAccuracy:datumEnsemble.accuracy];
+    [self writeDouble:datumEnsemble.accuracy];
     [self writeRightDelimiter];
 
     if([datumEnsemble hasIdentifiers]){
@@ -1136,7 +1143,7 @@
     }else{
         
         [self writeSeparator];
-        [self writeDouble:triaxial.inverseFlattening];
+        [self writeDouble:ellipsoid.inverseFlattening];
         
     }
 
