@@ -21,6 +21,12 @@
 		044224AA26A9E98800B1E1F2 /* CRSTextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224A826A9E98800B1E1F2 /* CRSTextUtils.m */; };
 		044224AD26AA0A7A00B1E1F2 /* CRSTextReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 044224AB26AA0A7A00B1E1F2 /* CRSTextReader.h */; };
 		044224AE26AA0A7A00B1E1F2 /* CRSTextReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224AC26AA0A7A00B1E1F2 /* CRSTextReader.m */; };
+		044224B426BC7E0300B1E1F2 /* CRSDateTimeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224B326BC7E0300B1E1F2 /* CRSDateTimeTest.m */; };
+		044224B726BC7F2B00B1E1F2 /* CRSReaderWriterEpsgTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224B626BC7F2B00B1E1F2 /* CRSReaderWriterEpsgTest.m */; };
+		044224BA26BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224B926BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.m */; };
+		044224BD26BC7F9000B1E1F2 /* CRSReaderWriterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224BC26BC7F9000B1E1F2 /* CRSReaderWriterTest.m */; };
+		044224C026BC7FBE00B1E1F2 /* CRSTextReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224BF26BC7FBE00B1E1F2 /* CRSTextReaderTest.m */; };
+		044224C326BC800E00B1E1F2 /* CRSTextUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */; };
 		0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */; };
 		04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */; };
 		04BCA984269CAAB40015DEC0 /* CRSCategoryTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */; };
@@ -176,6 +182,18 @@
 		044224A826A9E98800B1E1F2 /* CRSTextUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTextUtils.m; sourceTree = "<group>"; };
 		044224AB26AA0A7A00B1E1F2 /* CRSTextReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTextReader.h; sourceTree = "<group>"; };
 		044224AC26AA0A7A00B1E1F2 /* CRSTextReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTextReader.m; sourceTree = "<group>"; };
+		044224B226BC7E0300B1E1F2 /* CRSDateTimeTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSDateTimeTest.h; sourceTree = "<group>"; };
+		044224B326BC7E0300B1E1F2 /* CRSDateTimeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSDateTimeTest.m; sourceTree = "<group>"; };
+		044224B526BC7F2B00B1E1F2 /* CRSReaderWriterEpsgTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSReaderWriterEpsgTest.h; sourceTree = "<group>"; };
+		044224B626BC7F2B00B1E1F2 /* CRSReaderWriterEpsgTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSReaderWriterEpsgTest.m; sourceTree = "<group>"; };
+		044224B826BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSReaderWriterNgaTest.h; sourceTree = "<group>"; };
+		044224B926BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSReaderWriterNgaTest.m; sourceTree = "<group>"; };
+		044224BB26BC7F9000B1E1F2 /* CRSReaderWriterTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSReaderWriterTest.h; sourceTree = "<group>"; };
+		044224BC26BC7F9000B1E1F2 /* CRSReaderWriterTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSReaderWriterTest.m; sourceTree = "<group>"; };
+		044224BE26BC7FBE00B1E1F2 /* CRSTextReaderTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTextReaderTest.h; sourceTree = "<group>"; };
+		044224BF26BC7FBE00B1E1F2 /* CRSTextReaderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTextReaderTest.m; sourceTree = "<group>"; };
+		044224C126BC800E00B1E1F2 /* CRSTextUtilsTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTextUtilsTest.h; sourceTree = "<group>"; };
+		044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTextUtilsTest.m; sourceTree = "<group>"; };
 		0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "crs-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCategoryTypes.h; sourceTree = "<group>"; };
 		04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSCategoryTypes.m; sourceTree = "<group>"; };
@@ -400,6 +418,8 @@
 		042FC65A1B963FE500549A4B /* crs-iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				044224B026BC7D5C00B1E1F2 /* common */,
+				044224B126BC7D7100B1E1F2 /* wkt */,
 				041F18DF24CB2291001311E4 /* CRSReadmeTest.h */,
 				041F18E024CB2291001311E4 /* CRSReadmeTest.m */,
 				041F18E324CB3762001311E4 /* CRSSwiftReadmeTest.swift */,
@@ -417,6 +437,32 @@
 				042FC65C1B963FE500549A4B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		044224B026BC7D5C00B1E1F2 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				044224B226BC7E0300B1E1F2 /* CRSDateTimeTest.h */,
+				044224B326BC7E0300B1E1F2 /* CRSDateTimeTest.m */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		044224B126BC7D7100B1E1F2 /* wkt */ = {
+			isa = PBXGroup;
+			children = (
+				044224B526BC7F2B00B1E1F2 /* CRSReaderWriterEpsgTest.h */,
+				044224B626BC7F2B00B1E1F2 /* CRSReaderWriterEpsgTest.m */,
+				044224B826BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.h */,
+				044224B926BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.m */,
+				044224BB26BC7F9000B1E1F2 /* CRSReaderWriterTest.h */,
+				044224BC26BC7F9000B1E1F2 /* CRSReaderWriterTest.m */,
+				044224BE26BC7FBE00B1E1F2 /* CRSTextReaderTest.h */,
+				044224BF26BC7FBE00B1E1F2 /* CRSTextReaderTest.m */,
+				044224C126BC800E00B1E1F2 /* CRSTextUtilsTest.h */,
+				044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */,
+			);
+			path = wkt;
 			sourceTree = "<group>";
 		};
 		04BCA98F269CC0CC0015DEC0 /* common */ = {
@@ -929,9 +975,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044224C326BC800E00B1E1F2 /* CRSTextUtilsTest.m in Sources */,
+				044224BD26BC7F9000B1E1F2 /* CRSReaderWriterTest.m in Sources */,
+				044224B726BC7F2B00B1E1F2 /* CRSReaderWriterEpsgTest.m in Sources */,
 				04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */,
+				044224B426BC7E0300B1E1F2 /* CRSDateTimeTest.m in Sources */,
 				041F18E124CB2291001311E4 /* CRSReadmeTest.m in Sources */,
 				041F18E424CB3762001311E4 /* CRSSwiftReadmeTest.swift in Sources */,
+				044224C026BC7FBE00B1E1F2 /* CRSTextReaderTest.m in Sources */,
+				044224BA26BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
