@@ -7,9 +7,20 @@
 //
 
 #import "CRSTextReaderTest.h"
+#import "CRSTestUtils.h"
+#import "CRSTextReader.h"
 
 @implementation CRSTextReaderTest
 
-// TODO
+/**
+ * Test double quote
+ */
+-(void) testDoubleQuote{
+    
+    CRSTextReader *textReader = [CRSTextReader createWithText:@"\"Datum origin is 30°25'20\"\"N, 130°25'20\"\"E.\""];
+    NSString *text = [textReader readExpectedToken];
+    [CRSTestUtils assertEqualWithValue:@"Datum origin is 30°25'20\"N, 130°25'20\"E." andValue2:text];
+    
+}
 
 @end

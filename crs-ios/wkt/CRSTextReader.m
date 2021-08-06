@@ -266,7 +266,7 @@
 -(BOOL) isQuoteCharacter: (unichar) c{
     BOOL quote = c == '"';
     if(!quote){
-        NSCharacterSet *charset = [NSCharacterSet characterSetWithCharactersInString:@"'“”‘’„”«»「」"];
+        NSCharacterSet *charset = [NSCharacterSet characterSetWithCharactersInString:@"“”„”«»「」"];
         quote = [charset characterIsMember:c];
     }
     return quote;

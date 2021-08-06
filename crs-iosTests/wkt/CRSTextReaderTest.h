@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+/**
+ * Text Reader tests
+ */
 @interface CRSTextReaderTest : XCTestCase
 
 @end
