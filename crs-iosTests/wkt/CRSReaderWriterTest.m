@@ -136,4 +136,31 @@
     
 }
 
+/**
+ * Test usage
+ */
+-(void) testUsage{
+
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"USAGE[SCOPE[\"Spatial referencing.\"],"];
+    [text appendString:@"AREA[\"Netherlands offshore.\"],TIMEEXTENT[1976-01,2001-04]]"];
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSUsage *usage = [reader readUsage];
+    [CRSTestUtils assertNotNil:usage];
+    [CRSTestUtils assertEqualWithValue:@"Spatial referencing." andValue2:usage.scope];
+    CRSExtent *extent = usage.extent;
+    [CRSTestUtils assertNotNil:extent];
+    [CRSTestUtils assertEqualWithValue:@"Netherlands offshore." andValue2:extent.areaDescription];
+    CRSTemporalExtent *temporalExtent = extent.temporalExtent;
+    [CRSTestUtils assertNotNil:temporalExtent];
+    [CRSTestUtils assertEqualWithValue:@"1976-01" andValue2:temporalExtent.start];
+    [CRSTestUtils assertTrue:[temporalExtent hasStartDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"1976-01" andValue2:[temporalExtent.startDateTime description]];
+    [CRSTestUtils assertEqualWithValue:@"2001-04" andValue2:temporalExtent.end];
+    [CRSTestUtils assertTrue:[temporalExtent hasEndDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"2001-04" andValue2:[temporalExtent.endDateTime description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[usage description]];
+
+}
+
 @end
