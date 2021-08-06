@@ -84,7 +84,7 @@
     return [self remark] != nil;
 }
 
-- (BOOL) equals: (CRSCommon *) common{
+- (BOOL) isEqualToCommon: (CRSCommon *) common{
     if (self == common){
         return YES;
     }
@@ -134,7 +134,7 @@
         return NO;
     }
     
-    return [self equals:(CRSCommon *)object];
+    return [self isEqualToCommon:(CRSCommon *)object];
 }
 
 - (NSUInteger) hash{

@@ -103,7 +103,7 @@
     [self setMethod:[CRSOperationMethods methodFromName:[self name]]];
 }
 
-- (BOOL) equals: (CRSOperationMethod *) operationMethod{
+- (BOOL) isEqualToOperationMethod: (CRSOperationMethod *) operationMethod{
     if (self == operationMethod){
         return YES;
     }
@@ -150,7 +150,7 @@
         return NO;
     }
     
-    return [self equals:(CRSOperationMethod *)object];
+    return [self isEqualToOperationMethod:(CRSOperationMethod *)object];
 }
 
 - (NSUInteger) hash{

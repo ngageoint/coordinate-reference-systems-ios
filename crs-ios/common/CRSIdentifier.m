@@ -49,7 +49,7 @@
     return [self uri] != nil;
 }
 
-- (BOOL) equals: (CRSIdentifier *) identifier{
+- (BOOL) isEqualToIdentifier: (CRSIdentifier *) identifier{
     if (self == identifier){
         return YES;
     }
@@ -103,7 +103,7 @@
         return NO;
     }
     
-    return [self equals:(CRSIdentifier *)object];
+    return [self isEqualToIdentifier:(CRSIdentifier *)object];
 }
 
 - (NSUInteger) hash{

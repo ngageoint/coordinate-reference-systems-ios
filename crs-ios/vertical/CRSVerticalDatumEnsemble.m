@@ -29,7 +29,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSVerticalDatumEnsemble *) verticalDatumEnsemble{
+- (BOOL) isEqualToVerticalDatumEnsemble: (CRSVerticalDatumEnsemble *) verticalDatumEnsemble{
     if (self == verticalDatumEnsemble){
         return YES;
     }
@@ -51,7 +51,7 @@
         return NO;
     }
     
-    return [self equals:(CRSVerticalDatumEnsemble *)object];
+    return [self isEqualToVerticalDatumEnsemble:(CRSVerticalDatumEnsemble *)object];
 }
 
 - (NSUInteger) hash{

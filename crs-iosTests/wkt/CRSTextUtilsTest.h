@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+/**
+ * Well-Known Text Utility tests
+ */
 @interface CRSTextUtilsTest : XCTestCase
 
 @end

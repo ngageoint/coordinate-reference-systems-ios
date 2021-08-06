@@ -27,7 +27,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSTemporalCoordinateReferenceSystem *) temporalCoordinateReferenceSystem{
+- (BOOL) isEqualToTemporalCoordinateReferenceSystem: (CRSTemporalCoordinateReferenceSystem *) temporalCoordinateReferenceSystem{
     if (self == temporalCoordinateReferenceSystem){
         return YES;
     }
@@ -56,7 +56,7 @@
         return NO;
     }
     
-    return [self equals:(CRSTemporalCoordinateReferenceSystem *)object];
+    return [self isEqualToTemporalCoordinateReferenceSystem:(CRSTemporalCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

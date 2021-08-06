@@ -81,7 +81,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSDatumEnsemble *) datumEnsemble{
+- (BOOL) isEqualToDatumEnsemble: (CRSDatumEnsemble *) datumEnsemble{
     if (self == datumEnsemble){
         return YES;
     }
@@ -124,7 +124,7 @@
         return NO;
     }
     
-    return [self equals:(CRSDatumEnsemble *)object];
+    return [self isEqualToDatumEnsemble:(CRSDatumEnsemble *)object];
 }
 
 - (NSUInteger) hash{

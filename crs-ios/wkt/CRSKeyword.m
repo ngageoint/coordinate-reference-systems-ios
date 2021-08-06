@@ -156,7 +156,7 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return self;
 }
 
--(BOOL) equals: (CRSKeyword *) keyword{
+-(BOOL) isEqualToKeyword: (CRSKeyword *) keyword{
     if (self == keyword){
         return YES;
     }
@@ -178,7 +178,7 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
         return NO;
     }
     
-    return [self equals:(CRSKeyword *)object];
+    return [self isEqualToKeyword:(CRSKeyword *)object];
 }
 
 -(NSUInteger) hash{

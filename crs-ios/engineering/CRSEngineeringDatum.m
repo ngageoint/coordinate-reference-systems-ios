@@ -25,7 +25,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSEngineeringDatum *) engineeringDatum{
+- (BOOL) isEqualToEngineeringDatum: (CRSEngineeringDatum *) engineeringDatum{
     if (self == engineeringDatum){
         return YES;
     }
@@ -47,7 +47,7 @@
         return NO;
     }
     
-    return [self equals:(CRSEngineeringDatum *)object];
+    return [self isEqualToEngineeringDatum:(CRSEngineeringDatum *)object];
 }
 
 - (NSUInteger) hash{

@@ -35,7 +35,7 @@
     return [self interpolation] != nil;
 }
 
-- (BOOL) equals: (CRSCoordinateOperation *) coordinateOperation{
+- (BOOL) isEqualToCoordinateOperation: (CRSCoordinateOperation *) coordinateOperation{
     if (self == coordinateOperation){
         return YES;
     }
@@ -71,7 +71,7 @@
         return NO;
     }
     
-    return [self equals:(CRSCoordinateOperation *)object];
+    return [self isEqualToCoordinateOperation:(CRSCoordinateOperation *)object];
 }
 
 - (NSUInteger) hash{

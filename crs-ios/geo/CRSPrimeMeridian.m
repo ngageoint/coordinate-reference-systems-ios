@@ -59,7 +59,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSPrimeMeridian *) primeMeridian{
+- (BOOL) isEqualToPrimeMeridian: (CRSPrimeMeridian *) primeMeridian{
     if (self == primeMeridian){
         return YES;
     }
@@ -102,7 +102,7 @@
         return NO;
     }
     
-    return [self equals:(CRSPrimeMeridian *)object];
+    return [self isEqualToPrimeMeridian:(CRSPrimeMeridian *)object];
 }
 
 - (NSUInteger) hash{

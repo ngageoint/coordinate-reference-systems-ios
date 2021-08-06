@@ -25,7 +25,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSCoordinateReferenceSystem *) coordinateReferenceSystem{
+- (BOOL) isEqualToCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) coordinateReferenceSystem{
     if (self == coordinateReferenceSystem){
         return YES;
     }
@@ -47,7 +47,7 @@
         return NO;
     }
     
-    return [self equals:(CRSCoordinateReferenceSystem *)object];
+    return [self isEqualToCoordinateReferenceSystem:(CRSCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

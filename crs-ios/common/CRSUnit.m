@@ -77,7 +77,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSUnit *) unit{
+- (BOOL) isEqualToUnit: (CRSUnit *) unit{
     if (self == unit){
         return YES;
     }
@@ -120,7 +120,7 @@
         return NO;
     }
     
-    return [self equals:(CRSUnit *)object];
+    return [self isEqualToUnit:(CRSUnit *)object];
 }
 
 - (NSUInteger) hash{

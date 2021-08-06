@@ -100,6 +100,16 @@
     }
 }
 
++(void)assertNotEqualWithValue:(NSObject *) value andValue2: (NSObject *) value2{
+    if(value == nil){
+        if(value2 == nil){
+            [NSException raise:@"Assert Not Equal" format:@"Value 1: '%@' is equal to Value 2: '%@'", value, value2];
+        }
+    } else if([value isEqual:value2]){
+        [NSException raise:@"Assert Not Equal" format:@"Value 1: '%@' is equal to Value 2: '%@'", value, value2];
+    }
+}
+
 +(void)fail:(NSString *) message{
     [NSException raise:@"Test Failure" format:@"%@", message];
 }

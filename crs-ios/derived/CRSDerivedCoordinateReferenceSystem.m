@@ -44,7 +44,7 @@
     return [[self base] hasIdentifiers];
 }
 
-- (BOOL) equals: (CRSDerivedCoordinateReferenceSystem *) derivedCoordinateReferenceSystem{
+- (BOOL) isEqualToDerivedCoordinateReferenceSystem: (CRSDerivedCoordinateReferenceSystem *) derivedCoordinateReferenceSystem{
     if (self == derivedCoordinateReferenceSystem){
         return YES;
     }
@@ -80,7 +80,7 @@
         return NO;
     }
     
-    return [self equals:(CRSDerivedCoordinateReferenceSystem *)object];
+    return [self isEqualToDerivedCoordinateReferenceSystem:(CRSDerivedCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

@@ -64,7 +64,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSEllipsoid *) ellipsoid{
+- (BOOL) isEqualToEllipsoid: (CRSEllipsoid *) ellipsoid{
     if (self == ellipsoid){
         return YES;
     }
@@ -110,7 +110,7 @@
         return NO;
     }
     
-    return [self equals:(CRSEllipsoid *)object];
+    return [self isEqualToEllipsoid:(CRSEllipsoid *)object];
 }
 
 - (NSUInteger) hash{

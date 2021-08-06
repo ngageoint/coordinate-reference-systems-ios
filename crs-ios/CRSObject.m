@@ -145,7 +145,7 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
-- (BOOL) equals: (CRSObject *) object{
+- (BOOL) isEqualToObject: (CRSObject *) object{
     if (self == object){
         return YES;
     }
@@ -167,7 +167,7 @@
         return NO;
     }
     
-    return [self equals:(CRSObject *)object];
+    return [self isEqualToObject:(CRSObject *)object];
 }
 
 - (NSUInteger) hash{

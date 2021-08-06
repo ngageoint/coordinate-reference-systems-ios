@@ -29,7 +29,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSUsage *) usage{
+- (BOOL) isEqualToUsage: (CRSUsage *) usage{
     if (self == usage){
         return YES;
     }
@@ -62,7 +62,7 @@
         return NO;
     }
     
-    return [self equals:(CRSUsage *)object];
+    return [self isEqualToUsage:(CRSUsage *)object];
 }
 
 - (NSUInteger) hash{

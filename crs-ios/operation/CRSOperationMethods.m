@@ -158,7 +158,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
     return parameters;
 }
 
--(BOOL) equals: (CRSOperationMethods *) operationMethods{
+-(BOOL) isEqualToOperationMethods: (CRSOperationMethods *) operationMethods{
     if (self == operationMethods){
         return YES;
     }
@@ -180,7 +180,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
         return NO;
     }
     
-    return [self equals:(CRSOperationMethods *)object];
+    return [self isEqualToOperationMethods:(CRSOperationMethods *)object];
 }
 
 -(NSUInteger) hash{

@@ -199,7 +199,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationParameters *> *codeParameters
     }
 }
 
--(BOOL) equals: (CRSOperationParameters *) operationParameters{
+-(BOOL) isEqualToOperationParameters: (CRSOperationParameters *) operationParameters{
     if (self == operationParameters){
         return YES;
     }
@@ -221,7 +221,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationParameters *> *codeParameters
         return NO;
     }
     
-    return [self equals:(CRSOperationParameters *)object];
+    return [self isEqualToOperationParameters:(CRSOperationParameters *)object];
 }
 
 -(NSUInteger) hash{

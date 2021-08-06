@@ -36,6 +36,8 @@
 
 +(void)assertEqualDataWithValue:(NSData *) value andValue2: (NSData *) value2;
 
++(void)assertNotEqualWithValue:(NSObject *) value andValue2: (NSObject *) value2;
+
 +(void)fail:(NSString *) message;
 
 +(NSDecimalNumber *) roundDouble: (double) value;

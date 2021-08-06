@@ -66,7 +66,7 @@
     }
 }
 
-- (BOOL) equals: (CRSCompoundCoordinateReferenceSystem *) compoundCoordinateReferenceSystem{
+- (BOOL) isEqualToCompoundCoordinateReferenceSystem: (CRSCompoundCoordinateReferenceSystem *) compoundCoordinateReferenceSystem{
     if (self == compoundCoordinateReferenceSystem){
         return YES;
     }
@@ -95,7 +95,7 @@
         return NO;
     }
     
-    return [self equals:(CRSCompoundCoordinateReferenceSystem *)object];
+    return [self isEqualToCompoundCoordinateReferenceSystem:(CRSCompoundCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

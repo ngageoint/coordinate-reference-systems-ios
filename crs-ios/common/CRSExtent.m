@@ -36,7 +36,7 @@
     return [self temporalExtent] != nil;
 }
 
-- (BOOL) equals: (CRSExtent *) extent{
+- (BOOL) isEqualToExtent: (CRSExtent *) extent{
     if (self == extent){
         return YES;
     }
@@ -83,7 +83,7 @@
         return NO;
     }
     
-    return [self equals:(CRSExtent *)object];
+    return [self isEqualToExtent:(CRSExtent *)object];
 }
 
 - (NSUInteger) hash{

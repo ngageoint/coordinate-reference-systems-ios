@@ -58,7 +58,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSReferenceFrame *) referenceFrame{
+- (BOOL) isEqualToReferenceFrame: (CRSReferenceFrame *) referenceFrame{
     if (self == referenceFrame){
         return YES;
     }
@@ -101,7 +101,7 @@
         return NO;
     }
     
-    return [self equals:(CRSReferenceFrame *)object];
+    return [self isEqualToReferenceFrame:(CRSReferenceFrame *)object];
 }
 
 - (NSUInteger) hash{

@@ -41,7 +41,7 @@
     return [self primeMeridian] != nil;
 }
 
-- (BOOL) equals: (CRSGeoDatumEnsemble *) geoDatumEnsemble{
+- (BOOL) isEqualToGeoDatumEnsemble: (CRSGeoDatumEnsemble *) geoDatumEnsemble{
     if (self == geoDatumEnsemble){
         return YES;
     }
@@ -77,7 +77,7 @@
         return NO;
     }
     
-    return [self equals:(CRSGeoDatumEnsemble *)object];
+    return [self isEqualToGeoDatumEnsemble:(CRSGeoDatumEnsemble *)object];
 }
 
 - (NSUInteger) hash{

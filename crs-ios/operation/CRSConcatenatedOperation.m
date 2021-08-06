@@ -47,7 +47,7 @@
     [_operations addObjectsFromArray:operations];
 }
 
-- (BOOL) equals: (CRSConcatenatedOperation *) concatenatedOperation{
+- (BOOL) isEqualToConcatenatedOperation: (CRSConcatenatedOperation *) concatenatedOperation{
     if (self == concatenatedOperation){
         return YES;
     }
@@ -83,7 +83,7 @@
         return NO;
     }
     
-    return [self equals:(CRSConcatenatedOperation *)object];
+    return [self isEqualToConcatenatedOperation:(CRSConcatenatedOperation *)object];
 }
 
 - (NSUInteger) hash{

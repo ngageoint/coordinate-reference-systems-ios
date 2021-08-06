@@ -93,7 +93,7 @@
     return [self remark] != nil;
 }
 
-- (BOOL) equals: (CRSAbridgedCoordinateTransformation *) abridgedCoordinateTransformation{
+- (BOOL) isEqualToAbridgedCoordinateTransformation: (CRSAbridgedCoordinateTransformation *) abridgedCoordinateTransformation{
     if (self == abridgedCoordinateTransformation){
         return YES;
     }
@@ -154,7 +154,7 @@
         return NO;
     }
     
-    return [self equals:(CRSAbridgedCoordinateTransformation *)object];
+    return [self isEqualToAbridgedCoordinateTransformation:(CRSAbridgedCoordinateTransformation *)object];
 }
 
 - (NSUInteger) hash{

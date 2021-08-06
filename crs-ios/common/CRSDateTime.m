@@ -230,7 +230,7 @@ static NSString *MINUS_SIGN = @"-";
     [self setTimeZoneMinute:nil];
 }
 
-- (BOOL) equals: (CRSDateTime *) dateTime{
+- (BOOL) isEqualToDateTime: (CRSDateTime *) dateTime{
     if (self == dateTime){
         return YES;
     }
@@ -308,7 +308,7 @@ static NSString *MINUS_SIGN = @"-";
         return NO;
     }
     
-    return [self equals:(CRSDateTime *)object];
+    return [self isEqualToDateTime:(CRSDateTime *)object];
 }
 
 - (NSUInteger) hash{

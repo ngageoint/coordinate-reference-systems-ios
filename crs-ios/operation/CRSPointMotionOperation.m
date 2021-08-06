@@ -28,7 +28,7 @@
     return CRS_OPERATION_POINT_MOTION;
 }
 
-- (BOOL) equals: (CRSPointMotionOperation *) pointMotionOperation{
+- (BOOL) isEqualToPointMotionOperation: (CRSPointMotionOperation *) pointMotionOperation{
     if (self == pointMotionOperation){
         return YES;
     }
@@ -50,7 +50,7 @@
         return NO;
     }
     
-    return [self equals:(CRSPointMotionOperation *)object];
+    return [self isEqualToPointMotionOperation:(CRSPointMotionOperation *)object];
 }
 
 - (NSUInteger) hash{

@@ -39,7 +39,7 @@
     return [self primeMeridian] != nil;
 }
 
-- (BOOL) equals: (CRSGeoReferenceFrame *) geoReferenceFrame{
+- (BOOL) isEqualToGeoReferenceFrame: (CRSGeoReferenceFrame *) geoReferenceFrame{
     if (self == geoReferenceFrame){
         return YES;
     }
@@ -75,7 +75,7 @@
         return NO;
     }
     
-    return [self equals:(CRSGeoReferenceFrame *)object];
+    return [self isEqualToGeoReferenceFrame:(CRSGeoReferenceFrame *)object];
 }
 
 - (NSUInteger) hash{

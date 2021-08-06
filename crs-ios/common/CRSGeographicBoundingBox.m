@@ -34,7 +34,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSGeographicBoundingBox *) geographicBoundingBox{
+- (BOOL) isEqualToGeographicBoundingBox: (CRSGeographicBoundingBox *) geographicBoundingBox{
     if (self == geographicBoundingBox){
         return YES;
     }
@@ -65,7 +65,7 @@
         return NO;
     }
     
-    return [self equals:(CRSGeographicBoundingBox *)object];
+    return [self isEqualToGeographicBoundingBox:(CRSGeographicBoundingBox *)object];
 }
 
 - (NSUInteger) hash{

@@ -82,7 +82,7 @@
     _endDateTime = [CRSDateTime parse:end];
 }
 
-- (BOOL) equals: (CRSTemporalExtent *) temporalExtent{
+- (BOOL) isEqualToTemporalExtent: (CRSTemporalExtent *) temporalExtent{
     if (self == temporalExtent){
         return YES;
     }
@@ -129,7 +129,7 @@
         return NO;
     }
     
-    return [self equals:(CRSTemporalExtent *)object];
+    return [self isEqualToTemporalExtent:(CRSTemporalExtent *)object];
 }
 
 - (NSUInteger) hash{

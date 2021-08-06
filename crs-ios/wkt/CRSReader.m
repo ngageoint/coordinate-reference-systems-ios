@@ -922,7 +922,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
                                                       [NSNumber numberWithInt:CRS_KEYWORD_BASEGEOGCRS],
                                                       nil]];
     enum CRSType crsType = [CRSTextUtils coordinateReferenceSystemType:type.type];
-    if(expectedBaseType >= 0 && crsType != expectedBaseType){
+    if((int)expectedBaseType >= 0 && crsType != expectedBaseType){
         [NSException raise:@"Unexpected Type" format:@"Unexpected Base Coordinate Reference System Type. expected: %@, found: %@", [CRSTypes name:expectedBaseType], [CRSTypes name:crsType]];
     }
     [crs setBaseType:crsType];

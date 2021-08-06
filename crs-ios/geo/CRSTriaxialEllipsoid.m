@@ -43,7 +43,7 @@
     [NSException raise:@"Not Supported" format:@"Triaxial Ellipsoid does not support inverse flattening"];
 }
 
-- (BOOL) equals: (CRSTriaxialEllipsoid *) triaxialEllipsoid{
+- (BOOL) isEqualToTriaxialEllipsoid: (CRSTriaxialEllipsoid *) triaxialEllipsoid{
     if (self == triaxialEllipsoid){
         return YES;
     }
@@ -71,7 +71,7 @@
         return NO;
     }
     
-    return [self equals:(CRSTriaxialEllipsoid *)object];
+    return [self isEqualToTriaxialEllipsoid:(CRSTriaxialEllipsoid *)object];
 }
 
 - (NSUInteger) hash{

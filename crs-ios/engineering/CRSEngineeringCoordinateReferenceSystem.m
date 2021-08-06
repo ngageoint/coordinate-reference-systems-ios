@@ -27,7 +27,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSEngineeringCoordinateReferenceSystem *) engineeringCoordinateReferenceSystem{
+- (BOOL) isEqualToEngineeringCoordinateReferenceSystem: (CRSEngineeringCoordinateReferenceSystem *) engineeringCoordinateReferenceSystem{
     if (self == engineeringCoordinateReferenceSystem){
         return YES;
     }
@@ -56,7 +56,7 @@
         return NO;
     }
     
-    return [self equals:(CRSEngineeringCoordinateReferenceSystem *)object];
+    return [self isEqualToEngineeringCoordinateReferenceSystem:(CRSEngineeringCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

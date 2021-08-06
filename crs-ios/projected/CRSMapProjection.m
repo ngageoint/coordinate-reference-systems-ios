@@ -71,7 +71,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSMapProjection *) mapProjection{
+- (BOOL) isEqualToMapProjection: (CRSMapProjection *) mapProjection{
     if (self == mapProjection){
         return YES;
     }
@@ -111,7 +111,7 @@
         return NO;
     }
     
-    return [self equals:(CRSMapProjection *)object];
+    return [self isEqualToMapProjection:(CRSMapProjection *)object];
 }
 
 - (NSUInteger) hash{

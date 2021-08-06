@@ -25,7 +25,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSParametricDatum *) parametricDatum{
+- (BOOL) isEqualToParametricDatum: (CRSParametricDatum *) parametricDatum{
     if (self == parametricDatum){
         return YES;
     }
@@ -47,7 +47,7 @@
         return NO;
     }
     
-    return [self equals:(CRSParametricDatum *)object];
+    return [self isEqualToParametricDatum:(CRSParametricDatum *)object];
 }
 
 - (NSUInteger) hash{

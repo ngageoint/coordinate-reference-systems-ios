@@ -58,7 +58,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSDynamic *) dynamic{
+- (BOOL) isEqualToDynamic: (CRSDynamic *) dynamic{
     if (self == dynamic){
         return YES;
     }
@@ -94,7 +94,7 @@
         return NO;
     }
     
-    return [self equals:(CRSDynamic *)object];
+    return [self isEqualToDynamic:(CRSDynamic *)object];
 }
 
 - (NSUInteger) hash{

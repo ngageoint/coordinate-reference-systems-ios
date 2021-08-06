@@ -31,7 +31,7 @@
     return [self accuracy] != nil;
 }
 
-- (BOOL) equals: (CRSOperation *) operation{
+- (BOOL) isEqualToOperation: (CRSOperation *) operation{
     if (self == operation){
         return YES;
     }
@@ -74,7 +74,7 @@
         return NO;
     }
     
-    return [self equals:(CRSOperation *)object];
+    return [self isEqualToOperation:(CRSOperation *)object];
 }
 
 - (NSUInteger) hash{

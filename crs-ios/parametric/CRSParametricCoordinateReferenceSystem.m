@@ -27,7 +27,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSParametricCoordinateReferenceSystem *) parametricCoordinateReferenceSystem{
+- (BOOL) isEqualToParametricCoordinateReferenceSystem: (CRSParametricCoordinateReferenceSystem *) parametricCoordinateReferenceSystem{
     if (self == parametricCoordinateReferenceSystem){
         return YES;
     }
@@ -56,7 +56,7 @@
         return NO;
     }
     
-    return [self equals:(CRSParametricCoordinateReferenceSystem *)object];
+    return [self isEqualToParametricCoordinateReferenceSystem:(CRSParametricCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

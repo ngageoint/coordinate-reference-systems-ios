@@ -28,7 +28,7 @@
     return -1;
 }
 
-- (BOOL) equals: (CRSSimpleOperation *) simpleOperation{
+- (BOOL) isEqualToSimpleOperation: (CRSSimpleOperation *) simpleOperation{
     if (self == simpleOperation){
         return YES;
     }
@@ -57,7 +57,7 @@
         return NO;
     }
     
-    return [self equals:(CRSSimpleOperation *)object];
+    return [self isEqualToSimpleOperation:(CRSSimpleOperation *)object];
 }
 
 - (NSUInteger) hash{

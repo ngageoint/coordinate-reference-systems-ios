@@ -102,7 +102,7 @@
     return axisUnit;
 }
 
-- (BOOL) equals: (CRSCoordinateSystem *) coordinateSystem{
+- (BOOL) isEqualToCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     if (self == coordinateSystem){
         return YES;
     }
@@ -148,7 +148,7 @@
         return NO;
     }
     
-    return [self equals:(CRSCoordinateSystem *)object];
+    return [self isEqualToCoordinateSystem:(CRSCoordinateSystem *)object];
 }
 
 - (NSUInteger) hash{

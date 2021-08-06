@@ -84,7 +84,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSTemporalDatum *) temporalDatum{
+- (BOOL) isEqualToTemporalDatum: (CRSTemporalDatum *) temporalDatum{
     if (self == temporalDatum){
         return YES;
     }
@@ -138,7 +138,7 @@
         return NO;
     }
     
-    return [self equals:(CRSTemporalDatum *)object];
+    return [self isEqualToTemporalDatum:(CRSTemporalDatum *)object];
 }
 
 - (NSUInteger) hash{

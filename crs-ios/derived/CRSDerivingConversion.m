@@ -71,7 +71,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSDerivingConversion *) derivingConversion{
+- (BOOL) isEqualToDerivingConversion: (CRSDerivingConversion *) derivingConversion{
     if (self == derivingConversion){
         return YES;
     }
@@ -111,7 +111,7 @@
         return NO;
     }
     
-    return [self equals:(CRSDerivingConversion *)object];
+    return [self isEqualToDerivingConversion:(CRSDerivingConversion *)object];
 }
 
 - (NSUInteger) hash{

@@ -79,7 +79,7 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
-- (BOOL) equals: (CRSAxis *) axis{
+- (BOOL) isEqualToAxis: (CRSAxis *) axis{
     if (self == axis){
         return YES;
     }
@@ -157,7 +157,7 @@
         return NO;
     }
     
-    return [self equals:(CRSAxis *)object];
+    return [self isEqualToAxis:(CRSAxis *)object];
 }
 
 - (NSUInteger) hash{

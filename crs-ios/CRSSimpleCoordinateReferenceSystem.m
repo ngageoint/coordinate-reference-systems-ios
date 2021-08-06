@@ -33,7 +33,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSSimpleCoordinateReferenceSystem *) simpleCoordinateReferenceSystem{
+- (BOOL) isEqualToSimpleCoordinateReferenceSystem: (CRSSimpleCoordinateReferenceSystem *) simpleCoordinateReferenceSystem{
     if (self == simpleCoordinateReferenceSystem){
         return YES;
     }
@@ -62,7 +62,7 @@
         return NO;
     }
     
-    return [self equals:(CRSSimpleCoordinateReferenceSystem *)object];
+    return [self isEqualToSimpleCoordinateReferenceSystem:(CRSSimpleCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

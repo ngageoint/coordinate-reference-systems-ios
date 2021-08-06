@@ -16,12 +16,16 @@
 
 -(instancetype) init{
     self = [super initWithType:CRS_TYPE_PROJECTED];
+    if(self != nil){
+        _base = [CRSGeoCoordinateReferenceSystem create];
+    }
     return self;
 }
 
 -(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (enum CRSType) baseType andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:CRS_TYPE_PROJECTED andCoordinateSystem:coordinateSystem];
     if(self != nil){
+        _base = [CRSGeoCoordinateReferenceSystem create];
         [self setBaseName:baseName];
         [self setBaseType:baseType];
         [self setReferenceFrame:referenceFrame];
@@ -33,6 +37,7 @@
 -(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (enum CRSType) baseType andDatumEnsemble: (CRSGeoDatumEnsemble *) datumEnsemble andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:CRS_TYPE_PROJECTED andCoordinateSystem:coordinateSystem];
     if(self != nil){
+        _base = [CRSGeoCoordinateReferenceSystem create];
         [self setBaseName:baseName];
         [self setBaseType:baseType];
         [self setDatumEnsemble:datumEnsemble];
@@ -44,6 +49,7 @@
 -(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (enum CRSType) baseType andDynamic: (CRSDynamic *) dynamic andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:CRS_TYPE_PROJECTED andCoordinateSystem:coordinateSystem];
     if(self != nil){
+        _base = [CRSGeoCoordinateReferenceSystem create];
         [self setBaseName:baseName];
         [self setBaseType:baseType];
         [self setDynamic:dynamic];
@@ -160,7 +166,7 @@
     [cs setUnit:unit];
 }
 
-- (BOOL) equals: (CRSProjectedCoordinateReferenceSystem *) projectedCoordinateReferenceSystem{
+- (BOOL) isEqualToProjectedCoordinateReferenceSystem: (CRSProjectedCoordinateReferenceSystem *) projectedCoordinateReferenceSystem{
     if (self == projectedCoordinateReferenceSystem){
         return YES;
     }
@@ -196,7 +202,7 @@
         return NO;
     }
     
-    return [self equals:(CRSProjectedCoordinateReferenceSystem *)object];
+    return [self isEqualToProjectedCoordinateReferenceSystem:(CRSProjectedCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

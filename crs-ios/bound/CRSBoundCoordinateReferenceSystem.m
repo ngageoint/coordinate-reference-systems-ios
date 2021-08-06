@@ -38,7 +38,7 @@
     [NSException raise:@"Not Supported" format:@"Bound CRS does not support name"];
 }
 
-- (BOOL) equals: (CRSBoundCoordinateReferenceSystem *) boundCoordinateReferenceSystem{
+- (BOOL) isEqualToBoundCoordinateReferenceSystem: (CRSBoundCoordinateReferenceSystem *) boundCoordinateReferenceSystem{
     if (self == boundCoordinateReferenceSystem){
         return YES;
     }
@@ -81,7 +81,7 @@
         return NO;
     }
     
-    return [self equals:(CRSBoundCoordinateReferenceSystem *)object];
+    return [self isEqualToBoundCoordinateReferenceSystem:(CRSBoundCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

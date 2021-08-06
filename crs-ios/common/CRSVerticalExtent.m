@@ -38,7 +38,7 @@
     return [self unit] != nil;
 }
 
-- (BOOL) equals: (CRSVerticalExtent *) verticalExtent{
+- (BOOL) isEqualToVerticalExtent: (CRSVerticalExtent *) verticalExtent{
     if (self == verticalExtent){
         return YES;
     }
@@ -70,7 +70,7 @@
         return NO;
     }
     
-    return [self equals:(CRSVerticalExtent *)object];
+    return [self isEqualToVerticalExtent:(CRSVerticalExtent *)object];
 }
 
 - (NSUInteger) hash{

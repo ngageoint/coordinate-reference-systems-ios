@@ -107,7 +107,7 @@
     [self setParameter:[CRSOperationParameters parameterFromName:[self name]]];
 }
 
-- (BOOL) equals: (CRSOperationParameter *) operationParameter{
+- (BOOL) isEqualToOperationParameter: (CRSOperationParameter *) operationParameter{
     if (self == operationParameter){
         return YES;
     }
@@ -164,7 +164,7 @@
         return NO;
     }
     
-    return [self equals:(CRSOperationParameter *)object];
+    return [self isEqualToOperationParameter:(CRSOperationParameter *)object];
 }
 
 - (NSUInteger) hash{

@@ -115,7 +115,7 @@
     [_coordinateReferenceSystem setRemark:remark];
 }
 
-- (BOOL) equals: (CRSCoordinateMetadata *) coordinateMetadata{
+- (BOOL) isEqualToCoordinateMetadata: (CRSCoordinateMetadata *) coordinateMetadata{
     if (self == coordinateMetadata){
         return YES;
     }
@@ -151,7 +151,7 @@
         return NO;
     }
     
-    return [self equals:(CRSCoordinateMetadata *)object];
+    return [self isEqualToCoordinateMetadata:(CRSCoordinateMetadata *)object];
 }
 
 - (NSUInteger) hash{

@@ -64,7 +64,7 @@
     return [self geoidModelIdentifier] != nil;
 }
 
-- (BOOL) equals: (CRSVerticalCoordinateReferenceSystem *) verticalCoordinateReferenceSystem{
+- (BOOL) isEqualToVerticalCoordinateReferenceSystem: (CRSVerticalCoordinateReferenceSystem *) verticalCoordinateReferenceSystem{
     if (self == verticalCoordinateReferenceSystem){
         return YES;
     }
@@ -121,7 +121,7 @@
         return NO;
     }
     
-    return [self equals:(CRSVerticalCoordinateReferenceSystem *)object];
+    return [self isEqualToVerticalCoordinateReferenceSystem:(CRSVerticalCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{

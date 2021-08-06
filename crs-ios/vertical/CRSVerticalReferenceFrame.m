@@ -24,7 +24,7 @@
     return self;
 }
 
-- (BOOL) equals: (CRSVerticalReferenceFrame *) verticalReferenceFrame{
+- (BOOL) isEqualToVerticalReferenceFrame: (CRSVerticalReferenceFrame *) verticalReferenceFrame{
     if (self == verticalReferenceFrame){
         return YES;
     }
@@ -46,7 +46,7 @@
         return NO;
     }
     
-    return [self equals:(CRSVerticalReferenceFrame *)object];
+    return [self isEqualToVerticalReferenceFrame:(CRSVerticalReferenceFrame *)object];
 }
 
 - (NSUInteger) hash{

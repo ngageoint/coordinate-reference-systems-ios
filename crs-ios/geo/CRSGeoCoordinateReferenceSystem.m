@@ -71,7 +71,7 @@
     return datum;
 }
 
-- (BOOL) equals: (CRSGeoCoordinateReferenceSystem *) geoCoordinateReferenceSystem{
+- (BOOL) isEqualToGeoCoordinateReferenceSystem: (CRSGeoCoordinateReferenceSystem *) geoCoordinateReferenceSystem{
     if (self == geoCoordinateReferenceSystem){
         return YES;
     }
@@ -114,7 +114,7 @@
         return NO;
     }
     
-    return [self equals:(CRSGeoCoordinateReferenceSystem *)object];
+    return [self isEqualToGeoCoordinateReferenceSystem:(CRSGeoCoordinateReferenceSystem *)object];
 }
 
 - (NSUInteger) hash{
