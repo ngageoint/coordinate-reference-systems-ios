@@ -1681,4 +1681,8 @@
     [self writeRightDelimiter];
 }
 
+-(NSString *) description{
+    return [self text];
+}
+
 @end

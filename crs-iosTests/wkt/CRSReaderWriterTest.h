@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+/**
+ * CRS Reader and Writer tests
+ */
 @interface CRSReaderWriterTest : XCTestCase
 
 @end
