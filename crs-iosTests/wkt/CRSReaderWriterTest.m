@@ -75,4 +75,65 @@
     
 }
 
+/**
+ * Test vertical extent
+ */
+-(void) testVerticalExtent{
+    
+    NSString *text = @"VERTICALEXTENT[-1000,0,LENGTHUNIT[\"metre\",1.0]]";
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSVerticalExtent *verticalExtent = [reader readVerticalExtent];
+    [CRSTestUtils assertNotNil:verticalExtent];
+    [CRSTestUtils assertEqualDoubleWithValue:-1000 andValue2:verticalExtent.minimumHeight];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:verticalExtent.maximumHeight];
+    CRSUnit *lengthUnit = verticalExtent.unit;
+    [CRSTestUtils assertNotNil:lengthUnit];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:lengthUnit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:lengthUnit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[lengthUnit.conversionFactor doubleValue]];
+    text = [text stringByReplacingOccurrencesOfString:@"-1000,0" withString:@"-1000.0,0.0"];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[verticalExtent description]];
+    
+    text = @"VERTICALEXTENT[-1000,0]";
+    reader = [CRSReader createWithText:text];
+    verticalExtent = [reader readVerticalExtent];
+    [CRSTestUtils assertNotNil:verticalExtent];
+    [CRSTestUtils assertEqualDoubleWithValue:-1000 andValue2:verticalExtent.minimumHeight];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:verticalExtent.maximumHeight];
+    lengthUnit = verticalExtent.unit;
+    [CRSTestUtils assertNil:lengthUnit];
+    text = [text stringByReplacingOccurrencesOfString:@"-1000,0" withString:@"-1000.0,0.0"];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[verticalExtent description]];
+    
+}
+
+/**
+ * Test temporal extent
+ */
+-(void) testTemporalExtent{
+    
+    NSString *text = @"TIMEEXTENT[2013-01-01,2013-12-31]";
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSTemporalExtent *temporalExtent = [reader readTemporalExtent];
+    [CRSTestUtils assertNotNil:temporalExtent];
+    [CRSTestUtils assertEqualWithValue:@"2013-01-01" andValue2:temporalExtent.start];
+    [CRSTestUtils assertTrue:[temporalExtent hasStartDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"2013-01-01" andValue2:[temporalExtent.startDateTime description]];
+    [CRSTestUtils assertEqualWithValue:@"2013-12-31" andValue2:temporalExtent.end];
+    [CRSTestUtils assertTrue:[temporalExtent hasEndDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"2013-12-31" andValue2:[temporalExtent.endDateTime description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalExtent description]];
+    
+    text = @"TIMEEXTENT[\"Jurassic\",\"Quaternary\"]";
+    reader = [CRSReader createWithText:text];
+    temporalExtent = [reader readTemporalExtent];
+    [CRSTestUtils assertNotNil:temporalExtent];
+    [CRSTestUtils assertEqualWithValue:@"Jurassic" andValue2:temporalExtent.start];
+    [CRSTestUtils assertFalse:[temporalExtent hasStartDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"Quaternary" andValue2:temporalExtent.end];
+    [CRSTestUtils assertFalse:[temporalExtent hasEndDateTime]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalExtent description]];
+    
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CRSDateTime.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSDateTime
 
@@ -68,10 +69,10 @@ static NSString *MINUS_SIGN = @"-";
             if(numDateParts >= 1 && numDateParts <= 3){
                 dateTime = [CRSDateTime create];
                 
-                [dateTime setYear:[[dateParts firstObject] intValue]];
+                [dateTime setYear:[CRSTextUtils intFromString:[dateParts firstObject]]];
                 
                 if(numDateParts > 1){
-                    NSNumber *datePartTwo = [NSNumber numberWithInt:[[dateParts objectAtIndex:1] intValue]];
+                    NSNumber *datePartTwo = [NSNumber numberWithInt:[CRSTextUtils intFromString:[dateParts objectAtIndex:1]]];
                     if(numDateParts == 2){
                         if([dateParts objectAtIndex:1].length == 2){
                             [dateTime setMonth:datePartTwo];
@@ -80,7 +81,7 @@ static NSString *MINUS_SIGN = @"-";
                         }
                     }else{
                         [dateTime setMonth:datePartTwo];
-                        [dateTime setDay:[NSNumber numberWithInt:[[dateParts objectAtIndex:2] intValue]]];
+                        [dateTime setDay:[NSNumber numberWithInt:[CRSTextUtils intFromString:[dateParts objectAtIndex:2]]]];
                     }
                 }
             }
@@ -102,9 +103,9 @@ static NSString *MINUS_SIGN = @"-";
                 NSString *timeZone = [timeWithZone substringFromIndex:zoneRange.location];
                 if(![timeZone isEqualToString:UTC]){
                     NSArray<NSString *> *timeZoneParts = [timeZone componentsSeparatedByString:COLON];
-                    [dateTime setTimeZoneHour:[NSNumber numberWithInt:[[timeZoneParts firstObject] intValue]]];
+                    [dateTime setTimeZoneHour:[NSNumber numberWithInt:[CRSTextUtils intFromString:[timeZoneParts firstObject]]]];
                     if(timeZoneParts.count == 2){
-                        [dateTime setTimeZoneMinute:[NSNumber numberWithInt:[[timeZoneParts objectAtIndex:1] intValue]]];
+                        [dateTime setTimeZoneMinute:[NSNumber numberWithInt:[CRSTextUtils intFromString:[timeZoneParts objectAtIndex:1]]]];
                     }
                 }
                 
@@ -113,18 +114,18 @@ static NSString *MINUS_SIGN = @"-";
                 int numTimeParts = (int) timeParts.count;
 
                 if(numTimeParts >= 1 && numTimeParts <= 3){
-                    [dateTime setHour:[NSNumber numberWithInt:[[timeParts firstObject] intValue]]];
+                    [dateTime setHour:[NSNumber numberWithInt:[CRSTextUtils intFromString:[timeParts firstObject]]]];
                     if(numTimeParts > 1){
-                        [dateTime setMinute:[NSNumber numberWithInt:[[timeParts objectAtIndex:1] intValue]]];
+                        [dateTime setMinute:[NSNumber numberWithInt:[CRSTextUtils intFromString:[timeParts objectAtIndex:1]]]];
                         if(numTimeParts > 2){
                             NSString *seconds = [timeParts objectAtIndex:2];
                             NSRange decimalRange = [seconds rangeOfString:PERIOD];
                             if(decimalRange.length > 0){
                                 NSString *fraction = [NSString stringWithFormat:@"0%@%@", PERIOD, [seconds substringFromIndex:decimalRange.location + 1]];
-                                [dateTime setFraction:[[NSDecimalNumber alloc] initWithDouble:[fraction doubleValue]]];
+                                [dateTime setFraction:[[NSDecimalNumber alloc] initWithDouble:[CRSTextUtils doubleFromString:fraction]]];
                                 seconds = [seconds substringToIndex:decimalRange.location];
                             }
-                            [dateTime setSecond:[NSNumber numberWithInt:[seconds intValue]]];
+                            [dateTime setSecond:[NSNumber numberWithInt:[CRSTextUtils intFromString:seconds]]];
                         }
                     }
                 }

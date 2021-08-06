@@ -90,6 +90,24 @@
 +(enum CRSType) coordinateReferenceSystemType: (enum CRSKeywordType) keyword;
 
 /**
+ * Get an int from a string
+ *
+ * @param string
+ *            string int value
+ * @return integer
+ */
++(int) intFromString: (NSString *) string;
+
+/**
+ * Get an double from a string
+ *
+ * @param string
+ *            string double value
+ * @return double
+ */
++(double) doubleFromString: (NSString *) string;
+
+/**
  * Convert the WKT to a pretty WKT string, 4 space indents
  *
  * @param wkt

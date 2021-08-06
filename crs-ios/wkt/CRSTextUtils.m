@@ -105,6 +105,24 @@
     return crsType;
 }
 
++(int) intFromString: (NSString *) string{
+    int number;
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    if(![scanner scanInt:&number] || ![scanner isAtEnd]){
+        [NSException raise:@"Invalid Integer" format:@"Invalid int. found: '%@'", string];
+    }
+    return number;
+}
+
++(double) doubleFromString: (NSString *) string{
+    double number;
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    if(![scanner scanDouble:&number] || ![scanner isAtEnd]){
+        [NSException raise:@"Invalid Double" format:@"Invalid double. found: '%@'", string];
+    }
+    return number;
+}
+
 +(NSString *) pretty: (NSString *) wkt{
     return [self pretty:wkt withIndent:@"    "];
 }

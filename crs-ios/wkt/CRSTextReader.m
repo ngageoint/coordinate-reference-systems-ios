@@ -7,6 +7,7 @@
 //
 
 #import "CRSTextReader.h"
+#import "CRSTextUtils.h"
 
 @interface CRSTextReader()
 
@@ -211,7 +212,7 @@
     }else if([token caseInsensitiveCompare:@"-infinity"] == NSOrderedSame){
         number = -INFINITY;
     }else{
-        number = [token doubleValue];
+        number = [CRSTextUtils doubleFromString:token];
     }
     return number;
 }
@@ -225,13 +226,7 @@
 }
 
 -(int) readInteger{
-    NSString *token = [self readExpectedToken];
-    int number;
-    NSScanner *scanner = [NSScanner scannerWithString:token];
-    if(![scanner scanInt:&number] || ![scanner isAtEnd]){
-        [NSException raise:@"Invalid Number" format:@"Invalid integer token. found: '%@'", token];
-    }
-    return number;
+    return [CRSTextUtils intFromString:[self readExpectedToken]];
 }
 
 -(int) readUnsignedInteger{
