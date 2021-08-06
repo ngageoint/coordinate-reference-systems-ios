@@ -155,7 +155,7 @@ static NSString *MINUS_SIGN = @"-";
 }
 
 +(CRSDateTime *) create{
-    return [CRSDateTime create];
+    return [[CRSDateTime alloc] init];
 }
 
 -(instancetype) init{
@@ -354,7 +354,7 @@ static NSString *MINUS_SIGN = @"-";
                     NSString *fraction = [[self fraction] stringValue];
                     NSRange periodRange = [fraction rangeOfString:PERIOD];
                     if(periodRange.length != 0 && periodRange.location + 1 < fraction.length){
-                        [text appendString:COLON];
+                        [text appendString:PERIOD];
                         [text appendString:[fraction substringFromIndex:periodRange.location + 1]];
                     }
                 }
