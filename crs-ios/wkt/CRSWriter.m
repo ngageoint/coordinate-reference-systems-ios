@@ -186,6 +186,12 @@
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setMinimumFractionDigits:1];
     [numberFormatter setMaximumFractionDigits:16];
+    if(value != 0.0){
+        double absValue = fabs(value);
+        if(absValue < 0.001 || value >= 10000000.0){
+            [numberFormatter setNumberStyle:NSNumberFormatterScientificStyle];
+        }
+    }
     [_text appendFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]]];
 }
 
