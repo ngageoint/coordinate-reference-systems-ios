@@ -167,7 +167,11 @@
 
 -(void) writeNumber: (NSNumber *) number{
     if([number isKindOfClass:[NSDecimalNumber class]]){
-        [self writeDouble:[number doubleValue]];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setMaximumFractionDigits:16];
+        [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+        NSString *text = [numberFormatter stringFromNumber:number];
+        [self writeDouble:[text doubleValue]];
     }else{
         [_text appendString:[number stringValue]];
     }
@@ -183,16 +187,9 @@
 }
 
 -(void) writeDouble: (double) value{
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setMinimumFractionDigits:1];
-    [numberFormatter setMaximumFractionDigits:16];
-    if(value != 0.0){
-        double absValue = fabs(value);
-        if(absValue < 0.001 || value >= 10000000.0){
-            [numberFormatter setNumberStyle:NSNumberFormatterScientificStyle];
-        }
-    }
-    [_text appendFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]]];
+    NSNumber *number = [NSNumber numberWithDouble:value];
+    NSString *text = [[number stringValue] uppercaseString];
+    [_text appendString:text];
 }
 
 -(void) writeInt: (int) value{

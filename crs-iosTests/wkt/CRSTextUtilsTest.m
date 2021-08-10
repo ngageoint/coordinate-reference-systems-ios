@@ -27,17 +27,17 @@
     [text appendString:@"MEMBER[\"World Geodetic System 1984 (G1150)\",ID[\"EPSG\",1154]],"];
     [text appendString:@"MEMBER[\"World Geodetic System 1984 (G1674)\",ID[\"EPSG\",1155]],"];
     [text appendString:@"MEMBER[\"World Geodetic System 1984 (G1762)\",ID[\"EPSG\",1156]],"];
-    [text appendString:@"ELLIPSOID[\"WGS 84\",6378137.0,298.257223563,ID[\"EPSG\",7030]],"];
-    [text appendString:@"ENSEMBLEACCURACY[2.0],ID[\"EPSG\",6326]],ID[\"EPSG\",4326]],"];
+    [text appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,ID[\"EPSG\",7030]],"];
+    [text appendString:@"ENSEMBLEACCURACY[2],ID[\"EPSG\",6326]],ID[\"EPSG\",4326]],"];
     [text appendString:@"CONVERSION[\"Popular Visualisation Pseudo-Mercator\","];
     [text appendString:@"METHOD[\"Popular Visualisation Pseudo Mercator\",ID[\"EPSG\",1024]],"];
-    [text appendString:@"PARAMETER[\"Latitude of natural origin\",0.0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],"];
-    [text appendString:@"PARAMETER[\"Longitude of natural origin\",0.0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],"];
-    [text appendString:@"PARAMETER[\"False easting\",0.0,LENGTHUNIT[\"metre\",1.0,ID[\"EPSG\",9001]]],"];
-    [text appendString:@"PARAMETER[\"False northing\",0.0,LENGTHUNIT[\"metre\",1.0,ID[\"EPSG\",9001]]],"];
+    [text appendString:@"PARAMETER[\"Latitude of natural origin\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],"];
+    [text appendString:@"PARAMETER[\"Longitude of natural origin\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],"];
+    [text appendString:@"PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],"];
+    [text appendString:@"PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],"];
     [text appendString:@"ID[\"EPSG\",3856]],CS[Cartesian,2,ID[\"EPSG\",4499]],"];
     [text appendString:@"AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
-    [text appendString:@"LENGTHUNIT[\"metre\",1.0,ID[\"EPSG\",9001]],ID[\"EPSG\",3857]]"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3857]]"];
     
     CRSObject *crs = [CRSReader read:text withStrict:YES];
     

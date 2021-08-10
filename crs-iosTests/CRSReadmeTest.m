@@ -26,8 +26,8 @@
     [wkt appendString:@"MEMBER[\"World Geodetic System 1984 (G1150)\",ID[\"EPSG\",1154]],"];
     [wkt appendString:@"MEMBER[\"World Geodetic System 1984 (G1674)\",ID[\"EPSG\",1155]],"];
     [wkt appendString:@"MEMBER[\"World Geodetic System 1984 (G1762)\",ID[\"EPSG\",1156]],"];
-    [wkt appendString:@"ELLIPSOID[\"WGS 84\",6378137.0,298.257223563,ID[\"EPSG\",7030]],"];
-    [wkt appendString:@"ENSEMBLEACCURACY[2.0],ID[\"EPSG\",6326]],"];
+    [wkt appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,ID[\"EPSG\",7030]],"];
+    [wkt appendString:@"ENSEMBLEACCURACY[2],ID[\"EPSG\",6326]],"];
     [wkt appendString:@"CS[ellipsoidal,2,ID[\"EPSG\",6422]],"];
     [wkt appendString:@"AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],"];
     [wkt appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],"];
