@@ -354,9 +354,14 @@ static NSString *MINUS_SIGN = @"-";
                 if([self hasFraction]){
                     NSString *fraction = [[self fraction] stringValue];
                     NSRange periodRange = [fraction rangeOfString:PERIOD];
-                    if(periodRange.length != 0 && periodRange.location + 1 < fraction.length){
+                    if(periodRange.length != 0){
+                        if(periodRange.location + 1 < fraction.length){
+                            [text appendString:PERIOD];
+                            [text appendString:[fraction substringFromIndex:periodRange.location + 1]];
+                        }
+                    }else{
                         [text appendString:PERIOD];
-                        [text appendString:[fraction substringFromIndex:periodRange.location + 1]];
+                        [text appendString:fraction];
                     }
                 }
             }
