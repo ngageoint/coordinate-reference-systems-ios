@@ -1635,7 +1635,753 @@
     [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:projectedGeographicCrs]];
     [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:projectedGeographicCrs]];
     
-    // TODO
+    text = [NSMutableString string];
+    [text appendString:@"PROJCRS[\"NAD83 UTM 10\",BASEGEOGCRS[\"NAD83(86)\","];
+    [text appendString:@"DATUM[\"North American Datum 1983\","];
+    [text appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101]],"];
+    [text appendString:@"PRIMEM[\"Greenwich\",0]],CONVERSION[\"UTM zone 10N\","];
+    [text appendString:@"METHOD[\"Transverse Mercator\"],"];
+    [text appendString:@"PARAMETER[\"Latitude of natural origin\",0.0],"];
+    [text appendString:@"PARAMETER[\"Longitude of natural origin\",-123.0],"];
+    [text appendString:@"PARAMETER[\"Scale factor\",0.9996],"];
+    [text appendString:@"PARAMETER[\"False easting\",500000.0],"];
+    [text appendString:@"PARAMETER[\"False northing\",0.0],ID[\"EPSG\",16010]],"];
+    [text appendString:@"CS[Cartesian,2],"];
+    [text appendString:@"AXIS[\"(E)\",east,ORDER[1]],"];
+    [text appendString:@"AXIS[\"(N)\",north,ORDER[2]],LENGTHUNIT[\"metre\",1.0],"];
+    [text appendString:@"REMARK[\"In this example parameter value units are not given. This is allowed for backward compatibility. However it is strongly recommended that units are explicitly given in the string, as in the previous two examples.\"]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    projectedCrs = [CRSReader readProjected:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:projectedCrs];
+    projectedGeographicCrs = [CRSReader readProjectedGeographic:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:projectedGeographicCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_PROJECTED andValue2:projectedGeographicCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[projectedGeographicCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83 UTM 10" andValue2:projectedGeographicCrs.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:[projectedGeographicCrs baseType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83(86)" andValue2:[projectedGeographicCrs baseName]];
+    [CRSTestUtils assertEqualWithValue:@"North American Datum 1983" andValue2:[projectedGeographicCrs referenceFrame].name];
+    [CRSTestUtils assertEqualWithValue:@"GRS 1980" andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137 andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.257222101 andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualWithValue:@"Greenwich" andValue2:[projectedGeographicCrs referenceFrame].primeMeridian.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[projectedGeographicCrs referenceFrame].primeMeridian.longitude];
+    [CRSTestUtils assertEqualWithValue:@"UTM zone 10N" andValue2:projectedGeographicCrs.mapProjection.name];
+    [CRSTestUtils assertEqualWithValue:@"Transverse Mercator" andValue2:projectedGeographicCrs.mapProjection.method.name];
+    [CRSTestUtils assertEqualWithValue:@"Latitude of natural origin" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"Longitude of natural origin" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-123.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualWithValue:@"Scale factor" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.9996 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualWithValue:@"False easting" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:3].name];
+    [CRSTestUtils assertEqualDoubleWithValue:500000.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:3].value];
+    [CRSTestUtils assertEqualWithValue:@"False northing" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:4].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:4].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[projectedGeographicCrs.mapProjection identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"16010" andValue2:[projectedGeographicCrs.mapProjection identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_CARTESIAN andValue2:projectedGeographicCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:projectedGeographicCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"E" andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:[[projectedGeographicCrs.coordinateSystem axisAtIndex:0].order intValue]];
+    [CRSTestUtils assertEqualWithValue:@"N" andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:1].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:[[projectedGeographicCrs.coordinateSystem axisAtIndex:1].order intValue]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:projectedGeographicCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:projectedGeographicCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[projectedGeographicCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    [CRSTestUtils assertEqualWithValue:@"In this example parameter value units are not given. This is allowed for backward compatibility. However it is strongly recommended that units are explicitly given in the string, as in the previous two examples." andValue2:projectedGeographicCrs.remark];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[projectedGeographicCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:projectedGeographicCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:projectedGeographicCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"PROJCRS[\"WGS 84 (G1762) / UTM zone 31N 3D\",BASEGEOGCRS[\"WGS 84\","];
+    [text appendString:@"DATUM[\"World Geodetic System of 1984 (G1762)\","];
+    [text appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,LENGTHUNIT[\"metre\",1.0]]]],"];
+    [text appendString:@"CONVERSION[\"UTM zone 31N 3D\","];
+    [text appendString:@"METHOD[\"Transverse Mercator (3D)\"],"];
+    [text appendString:@"PARAMETER[\"Latitude of origin\",0.0,"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]],"];
+    [text appendString:@"PARAMETER[\"Longitude of origin\",3.0,"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]],"];
+    [text appendString:@"PARAMETER[\"Scale factor\",0.9996,SCALEUNIT[\"unity\",1.0]],"];
+    [text appendString:@"PARAMETER[\"False easting\",500000.0,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"False northing\",0.0,LENGTHUNIT[\"metre\",1.0]]],"];
+    [text appendString:@"CS[Cartesian,3],AXIS[\"(E)\",east,ORDER[1]],"];
+    [text appendString:@"AXIS[\"(N)\",north,ORDER[2]],"];
+    [text appendString:@"AXIS[\"ellipsoidal height (h)\",up,ORDER[3]],"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1.0]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    projectedCrs = [CRSReader readProjected:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:projectedCrs];
+    projectedGeographicCrs = [CRSReader readProjectedGeographic:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:projectedGeographicCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_PROJECTED andValue2:projectedGeographicCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[projectedGeographicCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"WGS 84 (G1762) / UTM zone 31N 3D" andValue2:projectedGeographicCrs.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:[projectedGeographicCrs baseType]];
+    [CRSTestUtils assertEqualWithValue:@"WGS 84" andValue2:[projectedGeographicCrs baseName]];
+    [CRSTestUtils assertEqualWithValue:@"World Geodetic System of 1984 (G1762)" andValue2:[projectedGeographicCrs referenceFrame].name];
+    [CRSTestUtils assertEqualWithValue:@"WGS 84" andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137 andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.257223563 andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:[projectedGeographicCrs referenceFrame].ellipsoid.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[[projectedGeographicCrs referenceFrame].ellipsoid.unit.conversionFactor doubleValue] andDelta:0.000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"UTM zone 31N 3D" andValue2:projectedGeographicCrs.mapProjection.name];
+    [CRSTestUtils assertEqualWithValue:@"Transverse Mercator (3D)" andValue2:projectedGeographicCrs.mapProjection.method.name];
+    [CRSTestUtils assertEqualWithValue:@"Latitude of origin" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:0].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:0].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[[projectedGeographicCrs.mapProjection.method parameterAtIndex:0].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"Longitude of origin" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:3.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:1].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:1].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[[projectedGeographicCrs.mapProjection.method parameterAtIndex:1].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"Scale factor" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.9996 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_SCALE andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:2].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"unity" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:2].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[[projectedGeographicCrs.mapProjection.method parameterAtIndex:2].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"False easting" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:3].name];
+    [CRSTestUtils assertEqualDoubleWithValue:500000.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:3].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:3].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:3].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[[projectedGeographicCrs.mapProjection.method parameterAtIndex:3].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"False northing" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:4].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:4].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:4].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:[projectedGeographicCrs.mapProjection.method parameterAtIndex:4].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[[projectedGeographicCrs.mapProjection.method parameterAtIndex:4].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_CARTESIAN andValue2:projectedGeographicCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:3 andValue2:projectedGeographicCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"E" andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:[[projectedGeographicCrs.coordinateSystem axisAtIndex:0].order intValue]];
+    [CRSTestUtils assertEqualWithValue:@"N" andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:1].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:[[projectedGeographicCrs.coordinateSystem axisAtIndex:1].order intValue]];
+    [CRSTestUtils assertEqualWithValue:@"ellipsoidal height" andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:2].name];
+    [CRSTestUtils assertEqualWithValue:@"h" andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:2].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_UP andValue2:[projectedGeographicCrs.coordinateSystem axisAtIndex:2].direction];
+    [CRSTestUtils assertEqualIntWithValue:3 andValue2:[[projectedGeographicCrs.coordinateSystem axisAtIndex:2].order intValue]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:projectedGeographicCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:projectedGeographicCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[projectedGeographicCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0," withString:@","]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[projectedGeographicCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:projectedGeographicCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:projectedGeographicCrs]];
+    
+}
+
+/**
+ * Test vertical reference frame
+ */
+-(void) testVerticalReferenceFrame{
+    
+    NSString *text = @"VDATUM[\"Newlyn\"]";
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSVerticalReferenceFrame *verticalReferenceFrame = [reader readVerticalReferenceFrame];
+    [CRSTestUtils assertEqualWithValue:@"Newlyn" andValue2:verticalReferenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[verticalReferenceFrame description]];
+    
+    text = @"VERTICALDATUM[\"Newlyn\",ANCHOR[\"Mean Sea Level 1915 to 1921.\"]]";
+    reader = [CRSReader createWithText:text];
+    verticalReferenceFrame = [reader readVerticalReferenceFrame];
+    [CRSTestUtils assertEqualWithValue:@"Newlyn" andValue2:verticalReferenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"Mean Sea Level 1915 to 1921." andValue2:verticalReferenceFrame.anchor];
+    [CRSTestUtils assertEqualWithValue:[text stringByReplacingOccurrencesOfString:@"VERTICALDATUM" withString:@"VDATUM"] andValue2:[verticalReferenceFrame description]];
+    
+}
+
+/**
+ * Test vertical coordinate reference system
+ */
+-(void) testVerticalCoordinateReferenceSystem{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"VERTCRS[\"NAVD88\","];
+    [text appendString:@"VDATUM[\"North American Vertical Datum 1988\"],"];
+    [text appendString:@"CS[vertical,1],AXIS[\"gravity-related height (H)\",up],"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1.0]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSVerticalCoordinateReferenceSystem *verticalCrs = [CRSReader readVertical:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:verticalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_VERTICAL andValue2:verticalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[verticalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"NAVD88" andValue2:verticalCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"North American Vertical Datum 1988" andValue2:verticalCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_VERTICAL andValue2:verticalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:verticalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"gravity-related height" andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"H" andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_UP andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:verticalCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:verticalCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[verticalCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[verticalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:verticalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:verticalCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"VERTCRS[\"CGVD2013\","];
+    [text appendString:@"VRF[\"Canadian Geodetic Vertical Datum of 2013\"],"];
+    [text appendString:@"CS[vertical,1],AXIS[\"gravity-related height (H)\",up],"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1.0],"];
+    [text appendString:@"GEOIDMODEL[\"CGG2013\",ID[\"EPSG\",6648]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    verticalCrs = [CRSReader readVertical:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:verticalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_VERTICAL andValue2:verticalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[verticalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"CGVD2013" andValue2:verticalCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Canadian Geodetic Vertical Datum of 2013" andValue2:verticalCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_VERTICAL andValue2:verticalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:verticalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"gravity-related height" andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"H" andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_UP andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:verticalCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:verticalCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[verticalCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    [CRSTestUtils assertEqualWithValue:@"CGG2013" andValue2:verticalCrs.geoidModelName];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:verticalCrs.geoidModelIdentifier.name];
+    [CRSTestUtils assertEqualWithValue:@"6648" andValue2:verticalCrs.geoidModelIdentifier.uniqueIdentifier];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"VRF" withString:@"VDATUM"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[verticalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:verticalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:verticalCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"VERTCRS[\"RH2000\","];
+    [text appendString:@"DYNAMIC[FRAMEEPOCH[2000.0],MODEL[\"NKG2016LU\"]],"];
+    [text appendString:@"VDATUM[\"Rikets Hojdsystem 2000\"],CS[vertical,1],"];
+    [text appendString:@"AXIS[\"gravity-related height (H)\",up],"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1.0]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    verticalCrs = [CRSReader readVertical:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:verticalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_VERTICAL andValue2:verticalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[verticalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"RH2000" andValue2:verticalCrs.name];
+    [CRSTestUtils assertEqualDoubleWithValue:2000.0 andValue2:verticalCrs.dynamic.referenceEpoch];
+    [CRSTestUtils assertEqualWithValue:@"NKG2016LU" andValue2:verticalCrs.dynamic.deformationModelName];
+    [CRSTestUtils assertEqualWithValue:@"Rikets Hojdsystem 2000" andValue2:verticalCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_VERTICAL andValue2:verticalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:verticalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"gravity-related height" andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"H" andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_UP andValue2:[verticalCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:verticalCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:verticalCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[verticalCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[verticalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:verticalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:verticalCrs]];
+    
+}
+
+/**
+ * Test engineering coordinate reference system
+ */
+-(void) testEngineeringCoordinateReferenceSystem{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"ENGCRS[\"A construction site CRS\","];
+    [text appendString:@"EDATUM[\"P1\",ANCHOR[\"Peg in south corner\"]],"];
+    [text appendString:@"CS[Cartesian,2],AXIS[\"site east\",southWest,ORDER[1]],"];
+    [text appendString:@"AXIS[\"site north\",southEast,ORDER[2]],"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1.0],"];
+    [text appendString:@"USAGE[SCOPE[\"Construction\"],TIMEEXTENT[\"date/time t1\",\"date/time t2\"]]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSEngineeringCoordinateReferenceSystem *engineeringCrs = [CRSReader readEngineering:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:engineeringCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_ENGINEERING andValue2:engineeringCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[engineeringCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"A construction site CRS" andValue2:engineeringCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"P1" andValue2:engineeringCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"Peg in south corner" andValue2:engineeringCrs.datum.anchor];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_CARTESIAN andValue2:engineeringCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:engineeringCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"site east" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_SOUTH_WEST andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:[[engineeringCrs.coordinateSystem axisAtIndex:0].order intValue]];
+    [CRSTestUtils assertEqualWithValue:@"site north" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_SOUTH_EAST andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:[[engineeringCrs.coordinateSystem axisAtIndex:1].order intValue]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:engineeringCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:engineeringCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[engineeringCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[engineeringCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:engineeringCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:engineeringCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"ENGINEERINGCRS[\"Astra Minas Grid\","];
+    [text appendString:@"ENGINEERINGDATUM[\"Astra Minas\"],CS[Cartesian,2],"];
+    [text appendString:@"AXIS[\"northing (X)\",north,ORDER[1]],"];
+    [text appendString:@"AXIS[\"westing (Y)\",west,ORDER[2]],"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1.0],ID[\"EPSG\",5800]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    engineeringCrs = [CRSReader readEngineering:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:engineeringCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_ENGINEERING andValue2:engineeringCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[engineeringCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"Astra Minas Grid" andValue2:engineeringCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Astra Minas" andValue2:engineeringCrs.datum.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_CARTESIAN andValue2:engineeringCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:engineeringCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"northing" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"X" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:[[engineeringCrs.coordinateSystem axisAtIndex:0].order intValue]];
+    [CRSTestUtils assertEqualWithValue:@"westing" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualWithValue:@"Y" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_WEST andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:[[engineeringCrs.coordinateSystem axisAtIndex:1].order intValue]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:engineeringCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:engineeringCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[engineeringCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[engineeringCrs identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"5800" andValue2:[engineeringCrs identifierAtIndex:0].uniqueIdentifier];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"ENGINEERINGCRS" withString:@"ENGCRS"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"ENGINEERINGDATUM" withString:@"EDATUM"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[engineeringCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:engineeringCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:engineeringCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"ENGCRS[\"A ship-centred CRS\","];
+    [text appendString:@"EDATUM[\"Ship reference point\",ANCHOR[\"Centre of buoyancy\"]],"];
+    [text appendString:@"CS[Cartesian,3],AXIS[\"(x)\",forward],"];
+    [text appendString:@"AXIS[\"(y)\",starboard],AXIS[\"(z)\",down],"];
+    [text appendString:@"LENGTHUNIT[\"metre\",1.0]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    engineeringCrs = [CRSReader readEngineering:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:engineeringCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_ENGINEERING andValue2:engineeringCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[engineeringCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"A ship-centred CRS" andValue2:engineeringCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Ship reference point" andValue2:engineeringCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"Centre of buoyancy" andValue2:engineeringCrs.datum.anchor];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_CARTESIAN andValue2:engineeringCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:3 andValue2:engineeringCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"x" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_FORWARD andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualWithValue:@"y" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_STARBOARD andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualWithValue:@"z" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:2].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_DOWN andValue2:[engineeringCrs.coordinateSystem axisAtIndex:2].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:engineeringCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:engineeringCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[engineeringCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[engineeringCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:engineeringCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:engineeringCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"ENGCRS[\"An analogue image CRS\","];
+    [text appendString:@"EDATUM[\"Image reference point\","];
+    [text appendString:@"ANCHOR[\"Top left corner of image = 0,0\"]],"];
+    [text appendString:@"CS[Cartesian,2],AXIS[\"Column (x)\",columnPositive],"];
+    [text appendString:@"AXIS[\"Row (y)\",rowPositive],"];
+    [text appendString:@"LENGTHUNIT[\"micrometre\",1E-6]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    engineeringCrs = [CRSReader readEngineering:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:engineeringCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_ENGINEERING andValue2:engineeringCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[engineeringCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"An analogue image CRS" andValue2:engineeringCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Image reference point" andValue2:engineeringCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"Top left corner of image = 0,0" andValue2:engineeringCrs.datum.anchor];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_CARTESIAN andValue2:engineeringCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:engineeringCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"Column" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"x" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_COLUMN_POSITIVE andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualWithValue:@"Row" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualWithValue:@"y" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_ROW_POSITIVE andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:engineeringCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"micrometre" andValue2:engineeringCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1E-6 andValue2:[engineeringCrs.coordinateSystem.unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"1E-6" withString:@"1E-06"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[engineeringCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:engineeringCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:engineeringCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"ENGCRS[\"A digital image CRS\","];
+    [text appendString:@"EDATUM[\"Image reference point\","];
+    [text appendString:@"ANCHOR[\"Top left corner of image = 0,0\"]],"];
+    [text appendString:@"CS[ordinal,2],"];
+    [text appendString:@"AXIS[\"Column pixel (x)\",columnPositive,ORDER[1]],"];
+    [text appendString:@"AXIS[\"Row pixel (y)\",rowPositive,ORDER[2]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    engineeringCrs = [CRSReader readEngineering:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:engineeringCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_ENGINEERING andValue2:engineeringCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[engineeringCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"A digital image CRS" andValue2:engineeringCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Image reference point" andValue2:engineeringCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"Top left corner of image = 0,0" andValue2:engineeringCrs.datum.anchor];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_ORDINAL andValue2:engineeringCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:engineeringCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"Column pixel" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"x" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_COLUMN_POSITIVE andValue2:[engineeringCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:[[engineeringCrs.coordinateSystem axisAtIndex:0].order intValue]];
+    [CRSTestUtils assertEqualWithValue:@"Row pixel" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualWithValue:@"y" andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_ROW_POSITIVE andValue2:[engineeringCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:[[engineeringCrs.coordinateSystem axisAtIndex:1].order intValue]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[engineeringCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:engineeringCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:engineeringCrs]];
+    
+}
+
+/**
+ * Test parametric coordinate reference system
+ */
+-(void) testParametricCoordinateReferenceSystem{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"PARAMETRICCRS[\"WMO standard atmosphere layer 0\","];
+    [text appendString:@"PDATUM[\"Mean Sea Level\",ANCHOR[\"1013.25 hPa at 15°C\"]],"];
+    [text appendString:@"CS[parametric,1],"];
+    [text appendString:@"AXIS[\"pressure (hPa)\",up],PARAMETRICUNIT[\"HectoPascal\",100.0]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSParametricCoordinateReferenceSystem *parametricCrs = [CRSReader readParametric:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:parametricCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_PARAMETRIC andValue2:parametricCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[parametricCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"WMO standard atmosphere layer 0" andValue2:parametricCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Mean Sea Level" andValue2:parametricCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"1013.25 hPa at 15°C" andValue2:parametricCrs.datum.anchor];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_PARAMETRIC andValue2:parametricCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:parametricCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"pressure" andValue2:[parametricCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"hPa" andValue2:[parametricCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_UP andValue2:[parametricCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_PARAMETRIC andValue2:parametricCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"HectoPascal" andValue2:parametricCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:100.0 andValue2:[parametricCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[parametricCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:parametricCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:parametricCrs]];
+    
+}
+
+/**
+ * Test temporal datum
+ */
+-(void) testTemporalDatum{
+    
+    NSString *text = @"TIMEDATUM[\"Gregorian calendar\",CALENDAR[\"proleptic Gregorian\"],TIMEORIGIN[0000-01-01]]";
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSTemporalDatum *temporalDatum = [reader readTemporalDatum];
+    [CRSTestUtils assertEqualWithValue:@"Gregorian calendar" andValue2:temporalDatum.name];
+    [CRSTestUtils assertEqualWithValue:@"proleptic Gregorian" andValue2:temporalDatum.calendar];
+    [CRSTestUtils assertEqualWithValue:@"0000-01-01" andValue2:temporalDatum.origin];
+    [CRSTestUtils assertTrue:[temporalDatum hasOriginDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"0000-01-01" andValue2:[temporalDatum.originDateTime description]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"TIMEDATUM" withString:@"TDATUM"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalDatum description]];
+    
+    text = @"TDATUM[\"Gregorian calendar\",TIMEORIGIN[\"0001 January 1st\"]]";
+    reader = [CRSReader createWithText:text];
+    temporalDatum = [reader readTemporalDatum];
+    [CRSTestUtils assertEqualWithValue:@"Gregorian calendar" andValue2:temporalDatum.name];
+    [CRSTestUtils assertFalse:[temporalDatum hasCalendar]];
+    [CRSTestUtils assertEqualWithValue:@"0001 January 1st" andValue2:temporalDatum.origin];
+    [CRSTestUtils assertFalse:[temporalDatum hasOriginDateTime]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalDatum description]];
+    
+    text = @"TDATUM[\"Gregorian calendar\"]";
+    reader = [CRSReader createWithText:text];
+    temporalDatum = [reader readTemporalDatum];
+    [CRSTestUtils assertFalse:[temporalDatum hasCalendar]];
+    [CRSTestUtils assertFalse:[temporalDatum hasOrigin]];
+    [CRSTestUtils assertFalse:[temporalDatum hasOriginDateTime]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalDatum description]];
+    
+}
+
+/**
+ * Test temporal coordinate reference system
+ */
+-(void) testTemporalCoordinateReferenceSystem{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"TIMECRS[\"DateTime\","];
+    [text appendString:@"TDATUM[\"Gregorian Calendar\"],"];
+    [text appendString:@"CS[TemporalDateTime,1],AXIS[\"Time (T)\",future]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSTemporalCoordinateReferenceSystem *temporalCrs = [CRSReader readTemporal:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:temporalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_TEMPORAL andValue2:temporalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[temporalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"DateTime" andValue2:temporalCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Gregorian Calendar" andValue2:temporalCrs.datum.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_TEMPORAL_DATE_TIME andValue2:temporalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:temporalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"Time" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"T" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_FUTURE andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].direction];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"TemporalDateTime" withString:@"temporalDateTime"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:temporalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:temporalCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"TIMECRS[\"GPS milliseconds\","];
+    [text appendString:@"TDATUM[\"GPS time origin\",TIMEORIGIN[1980-01-01T00:00:00.0Z]],"];
+    [text appendString:@"CS[TemporalCount,1],AXIS[\"(T)\",future,TIMEUNIT[\"millisecond (ms)\",0.001]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    temporalCrs = [CRSReader readTemporal:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:temporalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_TEMPORAL andValue2:temporalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[temporalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"GPS milliseconds" andValue2:temporalCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"GPS time origin" andValue2:temporalCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"1980-01-01T00:00:00.0Z" andValue2:temporalCrs.datum.origin];
+    [CRSTestUtils assertTrue:[temporalCrs.datum hasOriginDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"1980-01-01T00:00:00.0Z" andValue2:[temporalCrs.datum.originDateTime description]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_TEMPORAL_COUNT andValue2:temporalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:temporalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"T" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_FUTURE andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_TIME andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"millisecond (ms)" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.001 andValue2:[[temporalCrs.coordinateSystem axisAtIndex:0].unit.conversionFactor doubleValue]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"TemporalCount" withString:@"temporalCount"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:temporalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:temporalCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"TIMECRS[\"Calendar hours from 1979-12-29\","];
+    [text appendString:@"TDATUM[\"29 December 1979\",TIMEORIGIN[1979-12-29T00Z]],"];
+    [text appendString:@"CS[TemporalCount,1],AXIS[\"Time\",future,TIMEUNIT[\"hour\"]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    temporalCrs = [CRSReader readTemporal:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:temporalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_TEMPORAL andValue2:temporalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[temporalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"Calendar hours from 1979-12-29" andValue2:temporalCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"29 December 1979" andValue2:temporalCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"1979-12-29T00Z" andValue2:temporalCrs.datum.origin];
+    [CRSTestUtils assertTrue:[temporalCrs.datum hasOriginDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"1979-12-29T00Z" andValue2:[temporalCrs.datum.originDateTime description]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_TEMPORAL_COUNT andValue2:temporalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:temporalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"Time" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_FUTURE andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_TIME andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"hour" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.name];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"TemporalCount" withString:@"temporalCount"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:temporalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:temporalCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"TIMECRS[\"Decimal Years CE\","];
+    [text appendString:@"TDATUM[\"Common Era\",TIMEORIGIN[0000]],"];
+    [text appendString:@"CS[TemporalMeasure,1],AXIS[\"Decimal years (a)\",future,TIMEUNIT[\"year\"]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    temporalCrs = [CRSReader readTemporal:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:temporalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_TEMPORAL andValue2:temporalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[temporalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"Decimal Years CE" andValue2:temporalCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Common Era" andValue2:temporalCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"0000" andValue2:temporalCrs.datum.origin];
+    [CRSTestUtils assertTrue:[temporalCrs.datum hasOriginDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"0000" andValue2:[temporalCrs.datum.originDateTime description]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_TEMPORAL_MEASURE andValue2:temporalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:temporalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"Decimal years" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"a" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].abbreviation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_FUTURE andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_TIME andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"year" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.name];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"TemporalMeasure" withString:@"temporalMeasure"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:temporalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:temporalCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"TIMECRS[\"Unix time\","];
+    [text appendString:@"TDATUM[\"Unix epoch\",TIMEORIGIN[1970-01-01T00:00:00Z]],"];
+    [text appendString:@"CS[TemporalCount,1],AXIS[\"Time\",future,TIMEUNIT[\"second\"]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    temporalCrs = [CRSReader readTemporal:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:temporalCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_TEMPORAL andValue2:temporalCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[temporalCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"Unix time" andValue2:temporalCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"Unix epoch" andValue2:temporalCrs.datum.name];
+    [CRSTestUtils assertEqualWithValue:@"1970-01-01T00:00:00Z" andValue2:temporalCrs.datum.origin];
+    [CRSTestUtils assertTrue:[temporalCrs.datum hasOriginDateTime]];
+    [CRSTestUtils assertEqualWithValue:@"1970-01-01T00:00:00Z" andValue2:[temporalCrs.datum.originDateTime description]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_TEMPORAL_COUNT andValue2:temporalCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:temporalCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"Time" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_FUTURE andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_TIME andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"second" andValue2:[temporalCrs.coordinateSystem axisAtIndex:0].unit.name];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"TemporalCount" withString:@"temporalCount"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[temporalCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:temporalCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:temporalCrs]];
+    
+}
+
+/**
+ * Test deriving conversion
+ */
+-(void) testDerivingConversion{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"DERIVINGCONVERSION[\"conversion name\","];
+    [text appendString:@"METHOD[\"method name\",ID[\"authority\",123]],"];
+    [text appendString:@"PARAMETER[\"parameter 1 name\",0,"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433],"];
+    [text appendString:@"ID[\"authority\",456]],"];
+    [text appendString:@"PARAMETER[\"parameter 2 name\",-123,"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433],"];
+    [text appendString:@"ID[\"authority\",789]]]"];
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSDerivingConversion *derivingConversion = [reader readDerivingConversion];
+    [CRSTestUtils assertEqualWithValue:@"conversion name" andValue2:derivingConversion.name];
+    [CRSTestUtils assertEqualWithValue:@"method name" andValue2:derivingConversion.method.name];
+    [CRSTestUtils assertEqualWithValue:@"authority" andValue2:[derivingConversion.method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"123" andValue2:[derivingConversion.method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"parameter 1 name" andValue2:[derivingConversion.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[derivingConversion.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:[derivingConversion.method parameterAtIndex:0].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:[derivingConversion.method parameterAtIndex:0].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[[derivingConversion.method parameterAtIndex:0].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"authority" andValue2:[[derivingConversion.method parameterAtIndex:0] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"456" andValue2:[[derivingConversion.method parameterAtIndex:0] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"parameter 2 name" andValue2:[derivingConversion.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-123 andValue2:[derivingConversion.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:[derivingConversion.method parameterAtIndex:1].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:[derivingConversion.method parameterAtIndex:1].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[[derivingConversion.method parameterAtIndex:1].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"authority" andValue2:[[derivingConversion.method parameterAtIndex:1] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"789" andValue2:[[derivingConversion.method parameterAtIndex:1] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[derivingConversion description]];
+    
+}
+
+/**
+ * Test derived geographic coordinate reference system
+ */
+-(void) testDerivedGeographicCoordinateReferenceSystem{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"GEOGCRS[\"WMO Atlantic Pole\","];
+    [text appendString:@"BASEGEOGCRS[\"WGS 84 (G1762)\","];
+    [text appendString:@"DYNAMIC[FRAMEEPOCH[2005.0]],"];
+    [text appendString:@"TRF[\"World Geodetic System 1984 (G1762)\","];
+    [text appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,LENGTHUNIT[\"metre\",1.0]]]],"];
+    [text appendString:@"DERIVINGCONVERSION[\"Atlantic pole\","];
+    [text appendString:@"METHOD[\"Pole rotation\",ID[\"Authority\",1234]],"];
+    [text appendString:@"PARAMETER[\"Latitude of rotated pole\",52.0,"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]],"];
+    [text appendString:@"PARAMETER[\"Longitude of rotated pole\",-30.0,"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]],"];
+    [text appendString:@"PARAMETER[\"Axis rotation\",-25.0,"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]]],"];
+    [text appendString:@"CS[ellipsoidal,2],"];
+    [text appendString:@"AXIS[\"latitude\",north,ORDER[1]],AXIS[\"longitude\",east,ORDER[2]],"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSDerivedCoordinateReferenceSystem *derivedCrs = [CRSReader readDerived:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:derivedCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_DERIVED andValue2:derivedCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[derivedCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"WMO Atlantic Pole" andValue2:derivedCrs.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:[derivedCrs baseType]];
+    [CRSTestUtils assertEqualWithValue:@"WGS 84 (G1762)" andValue2:[derivedCrs baseName]];
+    CRSGeoCoordinateReferenceSystem *baseCrs = (CRSGeoCoordinateReferenceSystem*) [derivedCrs base];
+    [CRSTestUtils assertEqualDoubleWithValue:2005.0 andValue2:baseCrs.dynamic.referenceEpoch];
+    [CRSTestUtils assertEqualWithValue:@"World Geodetic System 1984 (G1762)" andValue2:baseCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"WGS 84" andValue2:baseCrs.referenceFrame.ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137 andValue2:baseCrs.referenceFrame.ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.257223563 andValue2:baseCrs.referenceFrame.ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:baseCrs.referenceFrame.ellipsoid.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:baseCrs.referenceFrame.ellipsoid.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[baseCrs.referenceFrame.ellipsoid.unit.conversionFactor doubleValue]];
+    [CRSTestUtils assertEqualWithValue:@"Atlantic pole" andValue2:derivedCrs.conversion.name];
+    [CRSTestUtils assertEqualWithValue:@"Pole rotation" andValue2:derivedCrs.conversion.method.name];
+    [CRSTestUtils assertEqualWithValue:@"Authority" andValue2:[derivedCrs.conversion.method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"1234" andValue2:[derivedCrs.conversion.method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Latitude of rotated pole" andValue2:[derivedCrs.conversion.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:52.0 andValue2:[derivedCrs.conversion.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:[derivedCrs.conversion.method parameterAtIndex:0].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:[derivedCrs.conversion.method parameterAtIndex:0].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[[derivedCrs.conversion.method parameterAtIndex:0].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"Longitude of rotated pole" andValue2:[derivedCrs.conversion.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-30.0 andValue2:[derivedCrs.conversion.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:[derivedCrs.conversion.method parameterAtIndex:1].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:[derivedCrs.conversion.method parameterAtIndex:1].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[[derivedCrs.conversion.method parameterAtIndex:1].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"Axis rotation" andValue2:[derivedCrs.conversion.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-25.0 andValue2:[derivedCrs.conversion.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:[derivedCrs.conversion.method parameterAtIndex:2].unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:[derivedCrs.conversion.method parameterAtIndex:2].unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[[derivedCrs.conversion.method parameterAtIndex:2].unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_ELLIPSOIDAL andValue2:derivedCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:derivedCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"latitude" andValue2:[derivedCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[derivedCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualIntWithValue:1 andValue2:[[derivedCrs.coordinateSystem axisAtIndex:0].order intValue]];
+    [CRSTestUtils assertEqualWithValue:@"longitude" andValue2:[derivedCrs.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:[derivedCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:[[derivedCrs.coordinateSystem axisAtIndex:1].order intValue]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:derivedCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:derivedCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[derivedCrs.coordinateSystem.unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"TRF" withString:@"DATUM"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0," withString:@","]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[derivedCrs description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:derivedCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:derivedCrs]];
     
 }
 
