@@ -11,6 +11,7 @@
 #import "CRSReader.h"
 #import "CRSWriter.h"
 #import "CRSTextUtils.h"
+#import "CRSTriaxialEllipsoid.h"
 
 @implementation CRSReaderWriterTest
 
@@ -3368,6 +3369,714 @@
     [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:operation]];
     [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:operation]];
 
+}
+
+/**
+ * Test concatenated operation
+ */
+-(void) testConcatenatedOperation{
+
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"CONCATENATEDOPERATION[\"RT90 to KKJ\","];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"RT90\",DATUM[\"Rikets koordinatsystem 1990\",ELLIPSOID[\"Bessel 1841\",6377397.155,299.1528128,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7004]],ID[\"EPSG\",6124]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4124]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"KKJ\",DATUM[\"Kartastokoordinaattijarjestelma (1966)\",ELLIPSOID[\"International 1924\",6378388,297,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7022]],ID[\"EPSG\",6123]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4123]]],"];
+    [text appendString:@"STEP[COORDINATEOPERATION[\"RT90 to ETRS89\","];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"RT90\",DATUM[\"Rikets koordinatsystem 1990\",ELLIPSOID[\"Bessel 1841\",6377397.155,299.1528128,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7004]],ID[\"EPSG\",6124]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4124]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"ETRS89\",ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\",MEMBER[\"European Terrestrial Reference Frame 1989\",ID[\"EPSG\",1178]],MEMBER[\"European Terrestrial Reference Frame 1990\",ID[\"EPSG\",1179]],MEMBER[\"European Terrestrial Reference Frame 1991\",ID[\"EPSG\",1180]],MEMBER[\"European Terrestrial Reference Frame 1992\",ID[\"EPSG\",1181]],MEMBER[\"European Terrestrial Reference Frame 1993\",ID[\"EPSG\",1182]],MEMBER[\"European Terrestrial Reference Frame 1994\",ID[\"EPSG\",1183]],MEMBER[\"European Terrestrial Reference Frame 1996\",ID[\"EPSG\",1184]],MEMBER[\"European Terrestrial Reference Frame 1997\",ID[\"EPSG\",1185]],MEMBER[\"European Terrestrial Reference Frame 2000\",ID[\"EPSG\",1186]],MEMBER[\"European Terrestrial Reference Frame 2005\",ID[\"EPSG\",1204]],MEMBER[\"European Terrestrial Reference Frame 2014\",ID[\"EPSG\",1206]],ELLIPSOID[\"GRS 1980\",6378137,298.2572221,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7019]],ENSEMBLEACCURACY[0.1],ID[\"EPSG\",6258]],CS[ellipsoidal,3,ID[\"EPSG\",6423]],AXIS[\"Geodetic latitude (Lat)\",north,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Geodetic longitude (Lon)\",east,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Ellipsoidal height (h)\",up,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],ID[\"EPSG\",4937]]],"];
+    [text appendString:@"METHOD[\"Coordinate Frame rotation\",ID[\"EPSG\",9607]],"];
+    [text appendString:@"PARAMETER[\"X-axis translation\",414.1,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Y-axis translation\",41.3,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Z-axis translation\",603.1,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"X-axis rotation\",0.855,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Y-axis rotation\",-2.141,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Z-axis rotation\",7.023,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Scale difference\",0.0,SCALEUNIT[\"parts per million\",1.0E-6]],"];
+    [text appendString:@"ID[\"EPSG\",1437]]],"];
+    [text appendString:@"STEP[COORDINATEOPERATION[\"KKJ to ETRS89\","];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"KKJ\",DATUM[\"Kartastokoordinaattijarjestelma (1966)\",ELLIPSOID[\"International 1924\",6378388,297,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7022]],ID[\"EPSG\",6123]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4123]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"ETRS89\",ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\",MEMBER[\"European Terrestrial Reference Frame 1989\",ID[\"EPSG\",1178]],MEMBER[\"European Terrestrial Reference Frame 1990\",ID[\"EPSG\",1179]],MEMBER[\"European Terrestrial Reference Frame 1991\",ID[\"EPSG\",1180]],MEMBER[\"European Terrestrial Reference Frame 1992\",ID[\"EPSG\",1181]],MEMBER[\"European Terrestrial Reference Frame 1993\",ID[\"EPSG\",1182]],MEMBER[\"European Terrestrial Reference Frame 1994\",ID[\"EPSG\",1183]],MEMBER[\"European Terrestrial Reference Frame 1996\",ID[\"EPSG\",1184]],MEMBER[\"European Terrestrial Reference Frame 1997\",ID[\"EPSG\",1185]],MEMBER[\"European Terrestrial Reference Frame 2000\",ID[\"EPSG\",1186]],MEMBER[\"European Terrestrial Reference Frame 2005\",ID[\"EPSG\",1204]],MEMBER[\"European Terrestrial Reference Frame 2014\",ID[\"EPSG\",1206]],ELLIPSOID[\"GRS 1980\",6378137,298.2572221,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7019]],ENSEMBLEACCURACY[0.1],ID[\"EPSG\",6258]],CS[ellipsoidal,3,ID[\"EPSG\",6423]],AXIS[\"Geodetic latitude (Lat)\",north,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Geodetic longitude (Lon)\",east,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Ellipsoidal height (h)\",up,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],ID[\"EPSG\",4937]]],"];
+    [text appendString:@"METHOD[\"Position Vector transformation\",ID[\"EPSG\",9606]],"];
+    [text appendString:@"PARAMETER[\"X-axis translation\",-96.062,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Y-axis translation\",-106.1,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Z-axis translation\",-119.2,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"X-axis rotation\",4.09,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Y-axis rotation\",0.218,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Z-axis rotation\",-1.05,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Scale difference\",1.37,SCALEUNIT[\"parts per million\",1.0E-6]],"];
+    [text appendString:@"ID[\"EPSG\",10098]]],"];
+    [text appendString:@"USAGE[SCOPE[\"Concatenated operation scope description.\"],"];
+    [text appendString:@"AREA[\"Concatenated operation area description.\"]],"];
+    [text appendString:@"REMARK[\"Step 2 is applied in reverse direction\"]]"];;
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSConcatenatedOperation *operation = [CRSReader readConcatenatedOperation:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:operation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_CONCATENATED_OPERATION andValue2:operation.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_OPERATION andValue2:[operation categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"RT90 to KKJ" andValue2:operation.name];
+    CRSGeoCoordinateReferenceSystem *geographic1 = (CRSGeoCoordinateReferenceSystem *) operation.source;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic1.type];
+    [CRSTestUtils assertEqualWithValue:@"RT90" andValue2:geographic1.name];
+    CRSGeoCoordinateReferenceSystem *geographic2 = (CRSGeoCoordinateReferenceSystem *) operation.target;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic2.type];
+    [CRSTestUtils assertEqualWithValue:@"KKJ" andValue2:geographic2.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_OPERATION_COORDINATE andValue2:[operation operationAtIndex:0].operationType];
+    [CRSTestUtils assertEqualWithValue:@"RT90 to ETRS89" andValue2:[operation operationAtIndex:0].name];
+    geographic1 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:0]).source;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic1.type];
+    [CRSTestUtils assertEqualWithValue:@"RT90" andValue2:geographic1.name];
+    geographic2 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:0]).target;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic2.type];
+    [CRSTestUtils assertEqualWithValue:@"ETRS89" andValue2:geographic2.name];
+    [CRSTestUtils assertEqualWithValue:@"Coordinate Frame rotation" andValue2:[operation operationAtIndex:0].method.name];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[operation operationAtIndex:0].method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"9607" andValue2:[[operation operationAtIndex:0].method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualIntWithValue:7 andValue2:[[operation operationAtIndex:0].method numParameters]];
+    [CRSTestUtils assertEqualWithValue:@"X-axis translation" andValue2:[[operation operationAtIndex:0].method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:414.1 andValue2:[[operation operationAtIndex:0].method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[operation operationAtIndex:0] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"1437" andValue2:[[operation operationAtIndex:0] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualIntWithValue:CRS_OPERATION_COORDINATE andValue2:[operation operationAtIndex:1].operationType];
+    [CRSTestUtils assertEqualWithValue:@"KKJ to ETRS89" andValue2:[operation operationAtIndex:1].name];
+    geographic1 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:1]).source;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic1.type];
+    [CRSTestUtils assertEqualWithValue:@"KKJ" andValue2:geographic1.name];
+    geographic2 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:1]).target;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic2.type];
+    [CRSTestUtils assertEqualWithValue:@"ETRS89" andValue2:geographic2.name];
+    [CRSTestUtils assertEqualWithValue:@"Position Vector transformation" andValue2:[operation operationAtIndex:1].method.name];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[operation operationAtIndex:1].method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"9606" andValue2:[[operation operationAtIndex:1].method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualIntWithValue:7 andValue2:[[operation operationAtIndex:1].method numParameters]];
+    [CRSTestUtils assertEqualWithValue:@"X-axis translation" andValue2:[[operation operationAtIndex:1].method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-96.062 andValue2:[[operation operationAtIndex:1].method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[operation operationAtIndex:1] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"10098" andValue2:[[operation operationAtIndex:1] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Concatenated operation scope description." andValue2:[operation usageAtIndex:0].scope];
+    [CRSTestUtils assertEqualWithValue:@"Concatenated operation area description." andValue2:[operation usageAtIndex:0].extent.areaDescription];
+    [CRSTestUtils assertEqualWithValue:@"Step 2 is applied in reverse direction" andValue2:operation.remark];
+    
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0," withString:@","]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"4.84813681109535E-6" withString:@"4.8481368111E-06"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"1.0E-6" withString:@"1E-06"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[operation description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:operation]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:operation]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"CONCATENATEDOPERATION[\"RT90 to KKJ\","];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"RT90\",DATUM[\"Rikets koordinatsystem 1990\",ELLIPSOID[\"Bessel 1841\",6377397.155,299.1528128,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7004]],ID[\"EPSG\",6124]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4124]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"KKJ\",DATUM[\"Kartastokoordinaattijarjestelma (1966)\",ELLIPSOID[\"International 1924\",6378388,297,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7022]],ID[\"EPSG\",6123]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4123]]],"];
+    [text appendString:@"STEP[COORDINATEOPERATION[\"RT90 to ETRS89\","];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"RT90\",DATUM[\"Rikets koordinatsystem 1990\",ELLIPSOID[\"Bessel 1841\",6377397.155,299.1528128,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7004]],ID[\"EPSG\",6124]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4124]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"ETRS89\",ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\",MEMBER[\"European Terrestrial Reference Frame 1989\",ID[\"EPSG\",1178]],MEMBER[\"European Terrestrial Reference Frame 1990\",ID[\"EPSG\",1179]],MEMBER[\"European Terrestrial Reference Frame 1991\",ID[\"EPSG\",1180]],MEMBER[\"European Terrestrial Reference Frame 1992\",ID[\"EPSG\",1181]],MEMBER[\"European Terrestrial Reference Frame 1993\",ID[\"EPSG\",1182]],MEMBER[\"European Terrestrial Reference Frame 1994\",ID[\"EPSG\",1183]],MEMBER[\"European Terrestrial Reference Frame 1996\",ID[\"EPSG\",1184]],MEMBER[\"European Terrestrial Reference Frame 1997\",ID[\"EPSG\",1185]],MEMBER[\"European Terrestrial Reference Frame 2000\",ID[\"EPSG\",1186]],MEMBER[\"European Terrestrial Reference Frame 2005\",ID[\"EPSG\",1204]],MEMBER[\"European Terrestrial Reference Frame 2014\",ID[\"EPSG\",1206]],ELLIPSOID[\"GRS 1980\",6378137,298.2572221,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7019]],ENSEMBLEACCURACY[0.1],ID[\"EPSG\",6258]],CS[ellipsoidal,3,ID[\"EPSG\",6423]],AXIS[\"Geodetic latitude (Lat)\",north,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Geodetic longitude (Lon)\",east,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Ellipsoidal height (h)\",up,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],ID[\"EPSG\",4937]]],"];
+    [text appendString:@"METHOD[\"Coordinate Frame rotation\",ID[\"EPSG\",9607]],"];
+    [text appendString:@"PARAMETER[\"X-axis translation\",414.1,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Y-axis translation\",41.3,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Z-axis translation\",603.1,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"X-axis rotation\",0.855,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Y-axis rotation\",-2.141,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Z-axis rotation\",7.023,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Scale difference\",0.0,SCALEUNIT[\"parts per million\",1.0E-6]]]],"];
+    [text appendString:@"STEP[COORDINATEOPERATION[\"ETRS89 to KKJ\","];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"ETRS89\",ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\",MEMBER[\"European Terrestrial Reference Frame 1989\",ID[\"EPSG\",1178]],MEMBER[\"European Terrestrial Reference Frame 1990\",ID[\"EPSG\",1179]],MEMBER[\"European Terrestrial Reference Frame 1991\",ID[\"EPSG\",1180]],MEMBER[\"European Terrestrial Reference Frame 1992\",ID[\"EPSG\",1181]],MEMBER[\"European Terrestrial Reference Frame 1993\",ID[\"EPSG\",1182]],MEMBER[\"European Terrestrial Reference Frame 1994\",ID[\"EPSG\",1183]],MEMBER[\"European Terrestrial Reference Frame 1996\",ID[\"EPSG\",1184]],MEMBER[\"European Terrestrial Reference Frame 1997\",ID[\"EPSG\",1185]],MEMBER[\"European Terrestrial Reference Frame 2000\",ID[\"EPSG\",1186]],MEMBER[\"European Terrestrial Reference Frame 2005\",ID[\"EPSG\",1204]],MEMBER[\"European Terrestrial Reference Frame 2014\",ID[\"EPSG\",1206]],ELLIPSOID[\"GRS 1980\",6378137,298.2572221,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7019]],ENSEMBLEACCURACY[0.1],ID[\"EPSG\",6258]],CS[ellipsoidal,3,ID[\"EPSG\",6423]],AXIS[\"Geodetic latitude (Lat)\",north,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Geodetic longitude (Lon)\",east,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],AXIS[\"Ellipsoidal height (h)\",up,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],ID[\"EPSG\",4937]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"KKJ\",DATUM[\"Kartastokoordinaattijarjestelma (1966)\",ELLIPSOID[\"International 1924\",6378388,297,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7022]],ID[\"EPSG\",6123]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4123]]],"];
+    [text appendString:@"METHOD[\"Position Vector transformation\"],"];
+    [text appendString:@"PARAMETER[\"X-axis translation\",96.062,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Y-axis translation\",106.1,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"Z-axis translation\",119.2,LENGTHUNIT[\"metre\",1.0]],"];
+    [text appendString:@"PARAMETER[\"X-axis rotation\",-4.09,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Y-axis rotation\",-0.218,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Z-axis rotation\",1.05,ANGLEUNIT[\"arc-second\",4.84813681109535E-6]],"];
+    [text appendString:@"PARAMETER[\"Scale difference\",-1.37,SCALEUNIT[\"parts per million\",1.0E-6]]]]]"];
+
+    crs = [CRSReader read:text withStrict:YES];
+    operation = [CRSReader readConcatenatedOperation:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:operation];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_CONCATENATED_OPERATION andValue2:operation.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_OPERATION andValue2:[operation categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"RT90 to KKJ" andValue2:operation.name];
+    geographic1 = (CRSGeoCoordinateReferenceSystem *) operation.source;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic1.type];
+    [CRSTestUtils assertEqualWithValue:@"RT90" andValue2:geographic1.name];
+    geographic2 = (CRSGeoCoordinateReferenceSystem *) operation.target;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic2.type];
+    [CRSTestUtils assertEqualWithValue:@"KKJ" andValue2:geographic2.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_OPERATION_COORDINATE andValue2:[operation operationAtIndex:0].operationType];
+    [CRSTestUtils assertEqualWithValue:@"RT90 to ETRS89" andValue2:[operation operationAtIndex:0].name];
+    geographic1 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:0]).source;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic1.type];
+    [CRSTestUtils assertEqualWithValue:@"RT90" andValue2:geographic1.name];
+    geographic2 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:0]).target;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic2.type];
+    [CRSTestUtils assertEqualWithValue:@"ETRS89" andValue2:geographic2.name];
+    [CRSTestUtils assertEqualWithValue:@"Coordinate Frame rotation" andValue2:[operation operationAtIndex:0].method.name];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[operation operationAtIndex:0].method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"9607" andValue2:[[operation operationAtIndex:0].method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualIntWithValue:7 andValue2:[[operation operationAtIndex:0].method numParameters]];
+    [CRSTestUtils assertEqualWithValue:@"X-axis translation" andValue2:[[operation operationAtIndex:0].method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:414.1 andValue2:[[operation operationAtIndex:0].method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_OPERATION_COORDINATE andValue2:[operation operationAtIndex:1].operationType];
+    [CRSTestUtils assertEqualWithValue:@"ETRS89 to KKJ" andValue2:[operation operationAtIndex:1].name];
+    geographic1 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:1]).source;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic1.type];
+    [CRSTestUtils assertEqualWithValue:@"ETRS89" andValue2:geographic1.name];
+    geographic2 = (CRSGeoCoordinateReferenceSystem *) ((CRSCoordinateOperation *) [operation operationAtIndex:1]).target;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographic2.type];
+    [CRSTestUtils assertEqualWithValue:@"KKJ" andValue2:geographic2.name];
+    [CRSTestUtils assertEqualWithValue:@"Position Vector transformation" andValue2:[operation operationAtIndex:1].method.name];
+    [CRSTestUtils assertEqualIntWithValue:7 andValue2:[[operation operationAtIndex:1].method numParameters]];
+    [CRSTestUtils assertEqualWithValue:@"X-axis translation" andValue2:[[operation operationAtIndex:1].method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:96.062 andValue2:[[operation operationAtIndex:1].method parameterAtIndex:0].value];
+
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0," withString:@","]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"4.84813681109535E-6" withString:@"4.8481368111E-06"]];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"1.0E-6" withString:@"1E-06"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[operation description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:operation]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:operation]];
+    
+}
+
+/**
+ * Test abridged coordinate transformation
+ */
+-(void) testAbridgedCoordinateTransformation{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"ABRIDGEDTRANSFORMATION[\"Tokyo to JGD2000 (GSI)\","];
+    [text appendString:@"METHOD[\"Geocentric translations\",ID[\"EPSG\",1031]],"];
+    [text appendString:@"PARAMETER[\"X-axis translation\",-146.414],"];
+    [text appendString:@"PARAMETER[\"Y-axis translation\",507.337],"];
+    [text appendString:@"PARAMETER[\"Z-axis translation\",680.507]]"];
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSAbridgedCoordinateTransformation *transformation = [reader readAbridgedCoordinateTransformation];
+    [CRSTestUtils assertEqualWithValue:@"Tokyo to JGD2000 (GSI)" andValue2:transformation.name];
+    [CRSTestUtils assertEqualWithValue:@"Geocentric translations" andValue2:transformation.method.name];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[transformation.method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"1031" andValue2:[transformation.method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"X-axis translation" andValue2:[transformation.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-146.414 andValue2:[transformation.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"Y-axis translation" andValue2:[transformation.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:507.337 andValue2:[transformation.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualWithValue:@"Z-axis translation" andValue2:[transformation.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:680.507 andValue2:[transformation.method parameterAtIndex:2].value];
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"680.507" withString:@"680.5069999999999"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[transformation description]];
+
+}
+
+/**
+ * Test bound coordinate reference system
+ */
+-(void) testBoundCoordinateReferenceSystem{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"BOUNDCRS[SOURCECRS[GEODCRS[\"NAD27\","];
+    [text appendString:@"DATUM[\"North American Datum 1927\","];
+    [text appendString:@"ELLIPSOID[\"Clarke 1866\",6378206.4,294.978698213]],"];
+    [text appendString:@"CS[ellipsoidal,2],"];
+    [text appendString:@"AXIS[\"latitude\",north],AXIS[\"longitude\",east],"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]]],"];
+    [text appendString:@"TARGETCRS[GEODCRS[\"NAD83\","];
+    [text appendString:@"DATUM[\"North American Datum 1983\","];
+    [text appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.2572221]],"];
+    [text appendString:@"CS[ellipsoidal,2],"];
+    [text appendString:@"AXIS[\"latitude\",north],AXIS[\"longitude\",east],"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]]],"];
+    [text appendString:@"ABRIDGEDTRANSFORMATION[\"NAD27 to NAD83 Alaska\","];
+    [text appendString:@"METHOD[\"NADCON\",ID[\"EPSG\",9613]],"];
+    [text appendString:@"PARAMETERFILE[\"Latitude difference file\",\"alaska.las\"],"];
+    [text appendString:@"PARAMETERFILE[\"Longitude difference file\",\"alaska.los\"]]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSBoundCoordinateReferenceSystem *bound = [CRSReader readBound:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:bound];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_BOUND andValue2:bound.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[bound categoryType]];
+    CRSGeoCoordinateReferenceSystem *geodedic1 = (CRSGeoCoordinateReferenceSystem *) bound.source;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEODETIC andValue2:geodedic1.type];
+    [CRSTestUtils assertEqualWithValue:@"NAD27" andValue2:geodedic1.name];
+    [CRSTestUtils assertEqualWithValue:@"North American Datum 1927" andValue2:geodedic1.referenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"Clarke 1866" andValue2:geodedic1.referenceFrame.ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378206.4 andValue2:geodedic1.referenceFrame.ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:294.978698213 andValue2:geodedic1.referenceFrame.ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_ELLIPSOIDAL andValue2:geodedic1.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:geodedic1.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"latitude" andValue2:[geodedic1.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[geodedic1.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualWithValue:@"longitude" andValue2:[geodedic1.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:[geodedic1.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:geodedic1.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:geodedic1.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[geodedic1.coordinateSystem.unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    CRSGeoCoordinateReferenceSystem *geodedic2 = (CRSGeoCoordinateReferenceSystem *) bound.target;
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEODETIC andValue2:geodedic2.type];
+    [CRSTestUtils assertEqualWithValue:@"NAD83" andValue2:geodedic2.name];
+    [CRSTestUtils assertEqualWithValue:@"North American Datum 1983" andValue2:geodedic2.referenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"GRS 1980" andValue2:geodedic2.referenceFrame.ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137 andValue2:geodedic2.referenceFrame.ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.2572221 andValue2:geodedic2.referenceFrame.ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_ELLIPSOIDAL andValue2:geodedic2.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:geodedic2.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"latitude" andValue2:[geodedic2.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[geodedic2.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualWithValue:@"longitude" andValue2:[geodedic2.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:[geodedic2.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_ANGLE andValue2:geodedic2.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:geodedic2.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[geodedic2.coordinateSystem.unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    [CRSTestUtils assertEqualWithValue:@"NAD27 to NAD83 Alaska" andValue2:bound.transformation.name];
+    [CRSTestUtils assertEqualWithValue:@"NADCON" andValue2:bound.transformation.method.name];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[bound.transformation.method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"9613" andValue2:[bound.transformation.method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Latitude difference file" andValue2:[bound.transformation.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"alaska.las" andValue2:[bound.transformation.method parameterAtIndex:0].fileName];
+    [CRSTestUtils assertEqualWithValue:@"Longitude difference file" andValue2:[bound.transformation.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualWithValue:@"alaska.los" andValue2:[bound.transformation.method parameterAtIndex:1].fileName];
+
+    [CRSTestUtils assertEqualWithValue:text andValue2:[bound description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:bound]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:bound]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"BOUNDCRS["];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"NAD27\",DATUM[\"North American Datum 1927\",ELLIPSOID[\"Clarke 1866\",6378206.4,294.9786982,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7008]],ID[\"EPSG\",6267]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4267]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"NAD83\",DATUM[\"North American Datum 1983\",ELLIPSOID[\"GRS 1980\",6378137,298.2572221,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7019]],ID[\"EPSG\",6269]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4269]]],"];
+    [text appendString:@"ABRIDGEDTRANSFORMATION[\"NAD27 to NAD83(86) National\","];
+    [text appendString:@"METHOD[\"NTv2\",ID[\"EPSG\",9615]],"];
+    [text appendString:@"PARAMETERFILE[\"Latitude and longitude difference file\",\"NTv2_0.gsb\"]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    bound = [CRSReader readBound:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:bound];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_BOUND andValue2:bound.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[bound categoryType]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:bound.source.type];
+    [CRSTestUtils assertEqualWithValue:@"NAD27" andValue2:bound.source.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:bound.target.type];
+    [CRSTestUtils assertEqualWithValue:@"NAD83" andValue2:bound.target.name];
+    [CRSTestUtils assertEqualWithValue:@"NAD27 to NAD83(86) National" andValue2:bound.transformation.name];
+    [CRSTestUtils assertEqualWithValue:@"NTv2" andValue2:bound.transformation.method.name];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[bound.transformation.method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"9615" andValue2:[bound.transformation.method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Latitude and longitude difference file" andValue2:[bound.transformation.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"NTv2_0.gsb" andValue2:[bound.transformation.method parameterAtIndex:0].fileName];
+    
+    [CRSTestUtils assertEqualWithValue:text andValue2:[bound description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:bound]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:bound]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"BOUNDCRS["];
+    [text appendString:@"SOURCECRS[GEOGCRS[\"Amersfoort\",DATUM[\"Amersfoort\",ELLIPSOID[\"Bessel 1841\",6377397.155,299.1528128,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7004]],ID[\"EPSG\",6289]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4289]]],"];
+    [text appendString:@"TARGETCRS[GEOGCRS[\"ETRS89\",ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\",MEMBER[\"European Terrestrial Reference Frame 1989\",ID[\"EPSG\",1178]],MEMBER[\"European Terrestrial Reference Frame 1990\",ID[\"EPSG\",1179]],MEMBER[\"European Terrestrial Reference Frame 1991\",ID[\"EPSG\",1180]],MEMBER[\"European Terrestrial Reference Frame 1992\",ID[\"EPSG\",1181]],MEMBER[\"European Terrestrial Reference Frame 1993\",ID[\"EPSG\",1182]],MEMBER[\"European Terrestrial Reference Frame 1994\",ID[\"EPSG\",1183]],MEMBER[\"European Terrestrial Reference Frame 1996\",ID[\"EPSG\",1184]],MEMBER[\"European Terrestrial Reference Frame 1997\",ID[\"EPSG\",1185]],MEMBER[\"European Terrestrial Reference Frame 2000\",ID[\"EPSG\",1186]],MEMBER[\"European Terrestrial Reference Frame 2005\",ID[\"EPSG\",1204]],MEMBER[\"European Terrestrial Reference Frame 2014\",ID[\"EPSG\",1206]],ELLIPSOID[\"GRS 1980\",6378137,298.2572221,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7019]],ENSEMBLEACCURACY[0.1],ID[\"EPSG\",6258]],CS[ellipsoidal,2,ID[\"EPSG\",6422]],AXIS[\"Geodetic latitude (Lat)\",north],AXIS[\"Geodetic longitude (Lon)\",east],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4258]]],"];
+    [text appendString:@"ABRIDGEDTRANSFORMATION[\"Amersfoort to ETRS89 (3)\","];
+    [text appendString:@"METHOD[\"Coordinate Frame\",ID[\"EPSG\",1032]],"];
+    [text appendString:@"PARAMETER[\"X-axis translation\",565.2369,ID[\"EPSG\",8605]],"];
+    [text appendString:@"PARAMETER[\"Y-axis translation\",50.0087,ID[\"EPSG\",8606]],"];
+    [text appendString:@"PARAMETER[\"Z-axis translation\",465.658,ID[\"EPSG\",8607]],"];
+    [text appendString:@"PARAMETER[\"X-axis rotation\",0.407,ID[\"EPSG\",8608]],"];
+    [text appendString:@"PARAMETER[\"Y-axis rotation\",-0.351,ID[\"EPSG\",8609]],"];
+    [text appendString:@"PARAMETER[\"Z-axis rotation\",1.870,ID[\"EPSG\",8610]],"];
+    [text appendString:@"PARAMETER[\"Scale difference\",1.000004812,ID[\"EPSG\",8611]]]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    bound = [CRSReader readBound:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:bound];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_BOUND andValue2:bound.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[bound categoryType]];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:bound.source.type];
+    [CRSTestUtils assertEqualWithValue:@"Amersfoort" andValue2:bound.source.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:bound.target.type];
+    [CRSTestUtils assertEqualWithValue:@"ETRS89" andValue2:bound.target.name];
+    [CRSTestUtils assertEqualWithValue:@"Amersfoort to ETRS89 (3)" andValue2:bound.transformation.name];
+    [CRSTestUtils assertEqualWithValue:@"Coordinate Frame" andValue2:bound.transformation.method.name];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[bound.transformation.method identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"1032" andValue2:[bound.transformation.method identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"X-axis translation" andValue2:[bound.transformation.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:565.2369 andValue2:[bound.transformation.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[bound.transformation.method parameterAtIndex:0] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"8605" andValue2:[[bound.transformation.method parameterAtIndex:0] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Y-axis translation" andValue2:[bound.transformation.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:50.0087 andValue2:[bound.transformation.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[bound.transformation.method parameterAtIndex:1] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"8606" andValue2:[[bound.transformation.method parameterAtIndex:1] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Z-axis translation" andValue2:[bound.transformation.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:465.658 andValue2:[bound.transformation.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[bound.transformation.method parameterAtIndex:2] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"8607" andValue2:[[bound.transformation.method parameterAtIndex:2] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"X-axis rotation" andValue2:[bound.transformation.method parameterAtIndex:3].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.407 andValue2:[bound.transformation.method parameterAtIndex:3].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[bound.transformation.method parameterAtIndex:3] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"8608" andValue2:[[bound.transformation.method parameterAtIndex:3] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Y-axis rotation" andValue2:[bound.transformation.method parameterAtIndex:4].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-0.351 andValue2:[bound.transformation.method parameterAtIndex:4].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[bound.transformation.method parameterAtIndex:4] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"8609" andValue2:[[bound.transformation.method parameterAtIndex:4] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Z-axis rotation" andValue2:[bound.transformation.method parameterAtIndex:5].name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.870 andValue2:[bound.transformation.method parameterAtIndex:5].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[bound.transformation.method parameterAtIndex:5] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"8610" andValue2:[[bound.transformation.method parameterAtIndex:5] identifierAtIndex:0].uniqueIdentifier];
+    [CRSTestUtils assertEqualWithValue:@"Scale difference" andValue2:[bound.transformation.method parameterAtIndex:6].name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.000004812 andValue2:[bound.transformation.method parameterAtIndex:6].value];
+    [CRSTestUtils assertEqualWithValue:@"EPSG" andValue2:[[bound.transformation.method parameterAtIndex:6] identifierAtIndex:0].name];
+    [CRSTestUtils assertEqualWithValue:@"8611" andValue2:[[bound.transformation.method parameterAtIndex:6] identifierAtIndex:0].uniqueIdentifier];
+    
+    text = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"1.870" withString:@"1.87"]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[bound description]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[CRSWriter write:bound]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:text] andValue2:[CRSWriter writePretty:bound]];
+    
+}
+
+/**
+ * Test Backward Compatibility map projection
+ */
+-(void) testMapProjectionCompat{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"PROJECTION[\"Transverse Mercator\"],"];
+    [text appendString:@"PARAMETER[\"Latitude of origin\",0],"];
+    [text appendString:@"PARAMETER[\"Central meridian\",-123],"];
+    [text appendString:@"PARAMETER[\"Scale factor\",0.9996],"];
+    [text appendString:@"PARAMETER[\"False easting\",500000],"];
+    [text appendString:@"PARAMETER[\"False northing\",0]"];
+    
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSMapProjection *mapProjection = [reader readMapProjectionCompat];
+    [CRSTestUtils assertEqualWithValue:@"Transverse Mercator" andValue2:mapProjection.name];
+    [CRSTestUtils assertEqualWithValue:@"Transverse Mercator" andValue2:mapProjection.method.name];
+    [CRSTestUtils assertEqualWithValue:@"Latitude of origin" andValue2:[mapProjection.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[mapProjection.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"Central meridian" andValue2:[mapProjection.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-123 andValue2:[mapProjection.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualWithValue:@"Scale factor" andValue2:[mapProjection.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.9996 andValue2:[mapProjection.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualWithValue:@"False easting" andValue2:[mapProjection.method parameterAtIndex:3].name];
+    [CRSTestUtils assertEqualDoubleWithValue:500000 andValue2:[mapProjection.method parameterAtIndex:3].value];
+    [CRSTestUtils assertEqualWithValue:@"False northing" andValue2:[mapProjection.method parameterAtIndex:4].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[mapProjection.method parameterAtIndex:4].value];
+    
+    NSMutableString *expectedText = [NSMutableString string];
+    [expectedText appendString:@"CONVERSION[\"Transverse Mercator\",METHOD[\"Transverse Mercator\"],"];
+    [expectedText appendString:@"PARAMETER[\"Latitude of origin\",0],"];
+    [expectedText appendString:@"PARAMETER[\"Central meridian\",-123],"];
+    [expectedText appendString:@"PARAMETER[\"Scale factor\",0.9996],"];
+    [expectedText appendString:@"PARAMETER[\"False easting\",500000],"];
+    [expectedText appendString:@"PARAMETER[\"False northing\",0]]"];
+    
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[mapProjection description]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"PROJECTION[\"UTM zone 10N\"],"];
+    [text appendString:@"PARAMETER[\"Latitude of natural origin\",0],"];
+    [text appendString:@"PARAMETER[\"Longitude of natural origin\",-123],"];
+    [text appendString:@"PARAMETER[\"Scale factor at natural origin\",0.9996],"];
+    [text appendString:@"PARAMETER[\"FE\",500000],PARAMETER[\"FN\",0]"];
+    
+    reader = [CRSReader createWithText:text];
+    mapProjection = [reader readMapProjectionCompat];
+    [CRSTestUtils assertEqualWithValue:@"UTM zone 10N" andValue2:mapProjection.name];
+    [CRSTestUtils assertEqualWithValue:@"UTM zone 10N" andValue2:mapProjection.method.name];
+    [CRSTestUtils assertEqualWithValue:@"Latitude of natural origin" andValue2:[mapProjection.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[mapProjection.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"Longitude of natural origin" andValue2:[mapProjection.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-123 andValue2:[mapProjection.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualWithValue:@"Scale factor at natural origin" andValue2:[mapProjection.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.9996 andValue2:[mapProjection.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualWithValue:@"FE" andValue2:[mapProjection.method parameterAtIndex:3].name];
+    [CRSTestUtils assertEqualDoubleWithValue:500000 andValue2:[mapProjection.method parameterAtIndex:3].value];
+    [CRSTestUtils assertEqualWithValue:@"FN" andValue2:[mapProjection.method parameterAtIndex:4].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[mapProjection.method parameterAtIndex:4].value];
+    
+    expectedText = [NSMutableString string];
+    [expectedText appendString:@"CONVERSION[\"UTM zone 10N\",METHOD[\"UTM zone 10N\"],"];
+    [expectedText appendString:@"PARAMETER[\"Latitude of natural origin\",0],"];
+    [expectedText appendString:@"PARAMETER[\"Longitude of natural origin\",-123],"];
+    [expectedText appendString:@"PARAMETER[\"Scale factor at natural origin\",0.9996],"];
+    [expectedText appendString:@"PARAMETER[\"FE\",500000],PARAMETER[\"FN\",0]]"];
+    
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[mapProjection description]];
+    
+}
+
+/**
+ * Test Backward Compatibility unit
+ */
+-(void) testUnitCompat{
+    
+    NSString *text = @"UNIT[\"German legal metre\",1.0000135965]";
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSUnit *unit = [reader readUnit];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT andValue2:unit.type];
+    [CRSTestUtils assertEqualWithValue:@"German legal metre" andValue2:unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0000135965 andValue2:[unit.conversionFactor doubleValue]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[unit description]];
+    
+}
+
+/**
+ * Test Backward Compatibility axis
+ */
+-(void) testAxisCompat{
+    
+    NSString *text = @"AXIS[\"northing\",north]";
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSAxis *axis = [reader readAxis];
+    [CRSTestUtils assertEqualWithValue:@"northing" andValue2:axis.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:axis.direction];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[axis description]];
+    
+    text = @"AXIS[\"easting\",east]";
+    reader = [CRSReader createWithText:text];
+    axis = [reader readAxis];
+    [CRSTestUtils assertEqualWithValue:@"easting" andValue2:axis.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:axis.direction];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[axis description]];
+    
+}
+
+/**
+ * Test Backward Compatibility of Geographic CRS
+ */
+-(void) testGeographicCompat{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"GEOGCS[\"NAD83\","];
+    [text appendString:@"DATUM[\"North American Datum 1983\","];
+    [text appendString:@"ELLIPSOID[\"GRS 1980\",6378137.0,298.257222101]],"];
+    [text appendString:@"PRIMEM[\"Greenwich\",0],"];
+    [text appendString:@"UNIT[\"degree\",0.0174532925199433]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSGeoCoordinateReferenceSystem *geodeticOrGeographicCrs = [CRSReader readGeoCompat:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:geodeticOrGeographicCrs];
+    CRSGeoCoordinateReferenceSystem *geographicCrs = [CRSReader readGeographicCompat:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:geographicCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographicCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[geographicCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83" andValue2:geographicCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"North American Datum 1983" andValue2:geographicCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"GRS 1980" andValue2:geographicCrs.referenceFrame.ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137.0 andValue2:geographicCrs.referenceFrame.ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.257222101 andValue2:geographicCrs.referenceFrame.ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualWithValue:@"Greenwich" andValue2:geographicCrs.referenceFrame.primeMeridian.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:geographicCrs.referenceFrame.primeMeridian.longitude];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_ELLIPSOIDAL andValue2:geographicCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:geographicCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"Lon" andValue2:[geographicCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:[geographicCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualWithValue:@"Lat" andValue2:[geographicCrs.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[geographicCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:geographicCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[geographicCrs.coordinateSystem.unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    
+    NSMutableString *expectedText = [NSMutableString string];
+    [expectedText appendString:@"GEOGCRS[\"NAD83\","];
+    [expectedText appendString:@"DATUM[\"North American Datum 1983\","];
+    [expectedText appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101]],"];
+    [expectedText appendString:@"PRIMEM[\"Greenwich\",0],CS[ellipsoidal,2],"];
+    [expectedText appendString:@"AXIS[\"Lon\",east],AXIS[\"Lat\",north],UNIT[\"degree\",0.0174532925199433]]"];
+    
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:expectedText] andValue2:[CRSWriter writePretty:crs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"GEOGCS[\"NAD83\",DATUM[\"North American Datum 1983\","];
+    [text appendString:@"SPHEROID[\"GRS 1980\",6378137.0,298.257222101]],"];
+    [text appendString:@"PRIMEM[\"Greenwich\",0],"];
+    [text appendString:@"AXIS[\"latitude\",NORTH],AXIS[\"longitude\",EAST],"];
+    [text appendString:@"UNIT[\"degree\",0.0174532925199433]]"];
+    
+    crs = [CRSReader read:text withStrict:YES];
+    geodeticOrGeographicCrs = [CRSReader readGeoCompat:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:geodeticOrGeographicCrs];
+    geographicCrs = [CRSReader readGeographicCompat:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:geographicCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:geographicCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[geographicCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83" andValue2:geographicCrs.name];
+    [CRSTestUtils assertEqualWithValue:@"North American Datum 1983" andValue2:geographicCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"GRS 1980" andValue2:geographicCrs.referenceFrame.ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137.0 andValue2:geographicCrs.referenceFrame.ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.257222101 andValue2:geographicCrs.referenceFrame.ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualWithValue:@"Greenwich" andValue2:geographicCrs.referenceFrame.primeMeridian.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:geographicCrs.referenceFrame.primeMeridian.longitude];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CS_ELLIPSOIDAL andValue2:geographicCrs.coordinateSystem.type];
+    [CRSTestUtils assertEqualIntWithValue:2 andValue2:geographicCrs.coordinateSystem.dimension];
+    [CRSTestUtils assertEqualWithValue:@"latitude" andValue2:[geographicCrs.coordinateSystem axisAtIndex:0].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_NORTH andValue2:[geographicCrs.coordinateSystem axisAtIndex:0].direction];
+    [CRSTestUtils assertEqualWithValue:@"longitude" andValue2:[geographicCrs.coordinateSystem axisAtIndex:1].name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_AXIS_EAST andValue2:[geographicCrs.coordinateSystem axisAtIndex:1].direction];
+    [CRSTestUtils assertEqualWithValue:@"degree" andValue2:geographicCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0174532925199433 andValue2:[geographicCrs.coordinateSystem.unit.conversionFactor doubleValue] andDelta:0.00000000000000001];
+    
+    expectedText = [NSMutableString string];
+    [expectedText appendString:@"GEOGCRS[\"NAD83\","];
+    [expectedText appendString:@"DATUM[\"North American Datum 1983\","];
+    [expectedText appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101]],"];
+    [expectedText appendString:@"PRIMEM[\"Greenwich\",0],CS[ellipsoidal,2],"];
+    [expectedText appendString:@"AXIS[\"latitude\",north],AXIS[\"longitude\",east],"];
+    [expectedText appendString:@"UNIT[\"degree\",0.0174532925199433]]"];
+    
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:expectedText] andValue2:[CRSWriter writePretty:crs]];
+    
+}
+
+/**
+ * Test Backward Compatibility of Projected CRS
+ */
+-(void) testProjectedCompat{
+    
+    NSMutableString *text = [NSMutableString string];
+    [text appendString:@"PROJCS[\"NAD83 / UTM zone 10N\",GEOGCS[\"NAD83\","];
+    [text appendString:@"DATUM[\"North American Datum 1983\","];
+    [text appendString:@"SPHEROID[\"GRS 1980\",6378137.0,298.257222101]],"];
+    [text appendString:@"PRIMEM[\"Greenwich\",0]],"];
+    [text appendString:@"PROJECTION[\"Transverse Mercator\"],"];
+    [text appendString:@"PARAMETER[\"Latitude of origin\",0.0],"];
+    [text appendString:@"PARAMETER[\"Longitude of origin\",-123],"];
+    [text appendString:@"PARAMETER[\"Scale factor\",0.9996],"];
+    [text appendString:@"PARAMETER[\"False easting\",500000],"];
+    [text appendString:@"PARAMETER[\"False northing\",0],UNIT[\"metre\",1.0]]"];
+    
+    CRSObject *crs = [CRSReader read:text withStrict:YES];
+    CRSProjectedCoordinateReferenceSystem *projectedCrs = [CRSReader readProjectedCompat:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:projectedCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_PROJECTED andValue2:projectedCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[projectedCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83 / UTM zone 10N" andValue2:projectedCrs.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:[projectedCrs baseType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83" andValue2:[projectedCrs baseName]];
+    [CRSTestUtils assertEqualWithValue:@"North American Datum 1983" andValue2:projectedCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"GRS 1980" andValue2:projectedCrs.referenceFrame.ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137.0 andValue2:projectedCrs.referenceFrame.ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.257222101 andValue2:projectedCrs.referenceFrame.ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualWithValue:@"Greenwich" andValue2:projectedCrs.referenceFrame.primeMeridian.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:projectedCrs.referenceFrame.primeMeridian.longitude];
+    [CRSTestUtils assertEqualWithValue:@"NAD83 / UTM zone 10N / Transverse Mercator" andValue2:projectedCrs.mapProjection.name];
+    [CRSTestUtils assertEqualWithValue:@"Transverse Mercator" andValue2:projectedCrs.mapProjection.method.name];
+    [CRSTestUtils assertEqualWithValue:@"Latitude of origin" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"Longitude of origin" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-123 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualWithValue:@"Scale factor" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.9996 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualWithValue:@"False easting" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:3].name];
+    [CRSTestUtils assertEqualDoubleWithValue:500000 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:3].value];
+    [CRSTestUtils assertEqualWithValue:@"False northing" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:4].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:4].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT andValue2:projectedCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:projectedCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[projectedCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+    
+    NSMutableString *expectedText = [NSMutableString string];
+    [expectedText appendString:@"PROJCRS[\"NAD83 / UTM zone 10N\",BASEGEOGCRS[\"NAD83\","];
+    [expectedText appendString:@"DATUM[\"North American Datum 1983\","];
+    [expectedText appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101]],"];
+    [expectedText appendString:@"PRIMEM[\"Greenwich\",0]],"];
+    [expectedText appendString:@"CONVERSION[\"NAD83 / UTM zone 10N / Transverse Mercator\",METHOD[\"Transverse Mercator\"],"];
+    [expectedText appendString:@"PARAMETER[\"Latitude of origin\",0],"];
+    [expectedText appendString:@"PARAMETER[\"Longitude of origin\",-123],"];
+    [expectedText appendString:@"PARAMETER[\"Scale factor\",0.9996],"];
+    [expectedText appendString:@"PARAMETER[\"False easting\",500000],"];
+    [expectedText appendString:@"PARAMETER[\"False northing\",0]],"];
+    [expectedText appendString:@"CS[ellipsoidal,2],AXIS[\"X\",east],AXIS[\"Y\",north],"];
+    [expectedText appendString:@"UNIT[\"metre\",1]]"];
+    
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[projectedCrs description]];
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:projectedCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:expectedText] andValue2:[CRSWriter writePretty:projectedCrs]];
+    
+    text = [NSMutableString string];
+    [text appendString:@"PROJCS[\"NAD83 / UTM zone 10N\",GEOGCS[\"NAD83\","];
+    [text appendString:@"DATUM[\"North American Datum 1983\","];
+    [text appendString:@"ELLIPSOID[\"GRS 1980\",6378137.0,298.257222101]],"];
+    [text appendString:@"PRIMEM[\"Greenwich\",0],"];
+    [text appendString:@"AXIS[\"latitude\",NORTH],AXIS[\"longitude\",EAST]],"];
+    [text appendString:@"PROJECTION[\"UTM zone 10N\"],"];
+    [text appendString:@"PARAMETER[\"Latitude of origin\",0.0],"];
+    [text appendString:@"PARAMETER[\"Longitude of origin\",-123],"];
+    [text appendString:@"PARAMETER[\"Scale factor at natural origin\",0.9996],"];
+    [text appendString:@"PARAMETER[\"FE\",500000],PARAMETER[\"FN\",0],"];
+    [text appendString:@"AXIS[\"easting\",EAST],AXIS[\"northing\",NORTH],"];
+    [text appendString:@"UNIT[\"metre\",1.0]]"];
+
+    crs = [CRSReader read:text withStrict:YES];
+    projectedCrs = [CRSReader readProjectedCompat:text];
+    [CRSTestUtils assertEqualWithValue:crs andValue2:projectedCrs];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_PROJECTED andValue2:projectedCrs.type];
+    [CRSTestUtils assertEqualIntWithValue:CRS_CATEGORY_CRS andValue2:[projectedCrs categoryType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83 / UTM zone 10N" andValue2:projectedCrs.name];
+    [CRSTestUtils assertEqualIntWithValue:CRS_TYPE_GEOGRAPHIC andValue2:[projectedCrs baseType]];
+    [CRSTestUtils assertEqualWithValue:@"NAD83" andValue2:[projectedCrs baseName]];
+    [CRSTestUtils assertEqualWithValue:@"North American Datum 1983" andValue2:projectedCrs.referenceFrame.name];
+    [CRSTestUtils assertEqualWithValue:@"GRS 1980" andValue2:projectedCrs.referenceFrame.ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:6378137.0 andValue2:projectedCrs.referenceFrame.ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:298.257222101 andValue2:projectedCrs.referenceFrame.ellipsoid.inverseFlattening];
+    [CRSTestUtils assertEqualWithValue:@"Greenwich" andValue2:projectedCrs.referenceFrame.primeMeridian.name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:projectedCrs.referenceFrame.primeMeridian.longitude];
+    [CRSTestUtils assertEqualWithValue:@"NAD83 / UTM zone 10N" andValue2:projectedCrs.mapProjection.name];
+    [CRSTestUtils assertEqualWithValue:@"UTM zone 10N" andValue2:projectedCrs.mapProjection.method.name];
+    [CRSTestUtils assertEqualWithValue:@"Latitude of origin" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:0].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.0 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:0].value];
+    [CRSTestUtils assertEqualWithValue:@"Longitude of origin" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:1].name];
+    [CRSTestUtils assertEqualDoubleWithValue:-123 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:1].value];
+    [CRSTestUtils assertEqualWithValue:@"Scale factor at natural origin" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:2].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0.9996 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:2].value];
+    [CRSTestUtils assertEqualWithValue:@"FE" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:3].name];
+    [CRSTestUtils assertEqualDoubleWithValue:500000 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:3].value];
+    [CRSTestUtils assertEqualWithValue:@"FN" andValue2:[projectedCrs.mapProjection.method parameterAtIndex:4].name];
+    [CRSTestUtils assertEqualDoubleWithValue:0 andValue2:[projectedCrs.mapProjection.method parameterAtIndex:4].value];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT andValue2:projectedCrs.coordinateSystem.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:projectedCrs.coordinateSystem.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[projectedCrs.coordinateSystem.unit.conversionFactor doubleValue]];
+
+    expectedText = [NSMutableString string];
+    [expectedText appendString:@"PROJCRS[\"NAD83 / UTM zone 10N\",BASEGEOGCRS[\"NAD83\","];
+    [expectedText appendString:@"DATUM[\"North American Datum 1983\","];
+    [expectedText appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101]],"];
+    [expectedText appendString:@"PRIMEM[\"Greenwich\",0]],"];
+    [expectedText appendString:@"CONVERSION[\"NAD83 / UTM zone 10N\",METHOD[\"UTM zone 10N\"],"];
+    [expectedText appendString:@"PARAMETER[\"Latitude of origin\",0],"];
+    [expectedText appendString:@"PARAMETER[\"Longitude of origin\",-123],"];
+    [expectedText appendString:@"PARAMETER[\"Scale factor at natural origin\",0.9996],"];
+    [expectedText appendString:@"PARAMETER[\"FE\",500000],PARAMETER[\"FN\",0]],"];
+    [expectedText appendString:@"CS[ellipsoidal,2],"];
+    [expectedText appendString:@"AXIS[\"easting\",east],AXIS[\"northing\",north],"];
+    [expectedText appendString:@"UNIT[\"metre\",1]]"];
+
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[projectedCrs description]];
+    [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:projectedCrs]];
+    [CRSTestUtils assertEqualWithValue:[CRSTextUtils pretty:expectedText] andValue2:[CRSWriter writePretty:projectedCrs]];
+    
+}
+
+/**
+ * Test triaxial ellipsoid
+ */
+-(void) testTriaxialEllipsoid{
+
+    NSString *text = @"TRIAXIAL[\"Io 2009 IAU IAG\",1829400,1819400,1815700,LENGTHUNIT[\"metre\",1]]";
+    CRSReader *reader = [CRSReader createWithText:text];
+    CRSTriaxialEllipsoid *ellipsoid = (CRSTriaxialEllipsoid *) [reader readEllipsoid];
+    
+    [CRSTestUtils assertEqualIntWithValue:CRS_ELLIPSOID_TRIAXIAL andValue2:ellipsoid.type];
+    [CRSTestUtils assertEqualWithValue:@"Io 2009 IAU IAG" andValue2:ellipsoid.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1829400 andValue2:ellipsoid.semiMajorAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:1819400 andValue2:ellipsoid.semiMedianAxis];
+    [CRSTestUtils assertEqualDoubleWithValue:1815700 andValue2:ellipsoid.semiMinorAxis];
+    [CRSTestUtils assertEqualIntWithValue:CRS_UNIT_LENGTH andValue2:ellipsoid.unit.type];
+    [CRSTestUtils assertEqualWithValue:@"metre" andValue2:ellipsoid.unit.name];
+    [CRSTestUtils assertEqualDoubleWithValue:1.0 andValue2:[ellipsoid.unit.conversionFactor doubleValue]];
+    [CRSTestUtils assertEqualWithValue:text andValue2:[ellipsoid description]];
+    
 }
 
 @end
