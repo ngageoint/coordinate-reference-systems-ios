@@ -7,7 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-
+/**
+ * CRS Reader and Writer NGA tests
+ */
 @interface CRSReaderWriterNgaTest : XCTestCase
 
 @end
