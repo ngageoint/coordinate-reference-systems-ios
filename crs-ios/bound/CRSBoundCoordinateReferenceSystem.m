@@ -30,7 +30,6 @@
 }
 
 -(NSString *) name{
-    [NSException raise:@"Not Supported" format:@"Bound CRS does not support name"];
     return nil;
 }
 
