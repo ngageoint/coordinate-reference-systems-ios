@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+/**
+ * CRS Reader and Writer EPSG tests
+ */
 @interface CRSReaderWriterEpsgTest : XCTestCase
 
 @end
