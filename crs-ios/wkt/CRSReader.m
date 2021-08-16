@@ -3203,7 +3203,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     [self readLeftDelimiter];
 
-    for(int i = 0; i < value.count; i++){
+    for(int i = 0; i < 7; i++){
 
         if(i > 0){
             [self readSeparator];
