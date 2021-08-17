@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CRSUnits Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/CRSUnits" class="dashAnchor"></a>
+    <a title="CRSUnits Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">crs-ios 1.0.0 Docs</a> (72% documented)</p>
+        <p class="header-right"><a href="https://github.com/ngageoint/coordinate-reference-systems-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">crs-ios Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CRSUnits Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CRSAbridgedCoordinateTransformation.html">CRSAbridgedCoordinateTransformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSAxis.html">CRSAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSAxisDirectionTypes.html">CRSAxisDirectionTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSBoundCoordinateReferenceSystem.html">CRSBoundCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCategoryTypes.html">CRSCategoryTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCommon.html">CRSCommon</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCompoundCoordinateReferenceSystem.html">CRSCompoundCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSConcatenatedOperation.html">CRSConcatenatedOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateMetadata.html">CRSCoordinateMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateOperation.html">CRSCoordinateOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateReferenceSystem.html">CRSCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateSystem.html">CRSCoordinateSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateSystemTypes.html">CRSCoordinateSystemTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDateTime.html">CRSDateTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDatumEnsemble.html">CRSDatumEnsemble</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDatumEnsembleMember.html">CRSDatumEnsembleMember</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDerivedCoordinateReferenceSystem.html">CRSDerivedCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDerivingConversion.html">CRSDerivingConversion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDynamic.html">CRSDynamic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEllipsoid.html">CRSEllipsoid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEllipsoidTypes.html">CRSEllipsoidTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEngineeringCoordinateReferenceSystem.html">CRSEngineeringCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEngineeringDatum.html">CRSEngineeringDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSExtent.html">CRSExtent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeoCoordinateReferenceSystem.html">CRSGeoCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeoDatumEnsemble.html">CRSGeoDatumEnsemble</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeoReferenceFrame.html">CRSGeoReferenceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeographicBoundingBox.html">CRSGeographicBoundingBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSIdentifier.html">CRSIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSKeyword.html">CRSKeyword</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSMapProjection.html">CRSMapProjection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSObject.html">CRSObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperation.html">CRSOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationMethod.html">CRSOperationMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationMethods.html">CRSOperationMethods</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationParameter.html">CRSOperationParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationParameters.html">CRSOperationParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationTypes.html">CRSOperationTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSParametricCoordinateReferenceSystem.html">CRSParametricCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSParametricDatum.html">CRSParametricDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSPointMotionOperation.html">CRSPointMotionOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSPrimeMeridian.html">CRSPrimeMeridian</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSProjectedCoordinateReferenceSystem.html">CRSProjectedCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSReader.html">CRSReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSReferenceFrame.html">CRSReferenceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSSimpleCoordinateReferenceSystem.html">CRSSimpleCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSSimpleOperation.html">CRSSimpleOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTemporalCoordinateReferenceSystem.html">CRSTemporalCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTemporalDatum.html">CRSTemporalDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTemporalExtent.html">CRSTemporalExtent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)CRSTextConstants">CRSTextConstants</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTextReader.html">CRSTextReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTextUtils.html">CRSTextUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTriaxialEllipsoid.html">CRSTriaxialEllipsoid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTypes.html">CRSTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUnit.html">CRSUnit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUnitTypes.html">CRSUnitTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUnits.html">CRSUnits</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUsage.html">CRSUsage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalCoordinateReferenceSystem.html">CRSVerticalCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalDatumEnsemble.html">CRSVerticalDatumEnsemble</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalExtent.html">CRSVerticalExtent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalReferenceFrame.html">CRSVerticalReferenceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSWriter.html">CRSWriter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_AFT_NAME">CRS_AXIS_AFT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_AWAY_FROM_NAME">CRS_AXIS_AWAY_FROM_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_CLOCKWISE_NAME">CRS_AXIS_CLOCKWISE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_COLUMN_NEGATIVE_NAME">CRS_AXIS_COLUMN_NEGATIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_COLUMN_POSITIVE_NAME">CRS_AXIS_COLUMN_POSITIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_COUNTER_CLOCKWISE_NAME">CRS_AXIS_COUNTER_CLOCKWISE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_DOWN_NAME">CRS_AXIS_DISPLAY_DOWN_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_LEFT_NAME">CRS_AXIS_DISPLAY_LEFT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_RIGHT_NAME">CRS_AXIS_DISPLAY_RIGHT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_UP_NAME">CRS_AXIS_DISPLAY_UP_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DOWN_NAME">CRS_AXIS_DOWN_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_EAST_NAME">CRS_AXIS_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_EAST_NORTH_EAST_NAME">CRS_AXIS_EAST_NORTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_EAST_SOUTH_EAST_NAME">CRS_AXIS_EAST_SOUTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_FORWARD_NAME">CRS_AXIS_FORWARD_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_FUTURE_NAME">CRS_AXIS_FUTURE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_GEOCENTRIC_X_NAME">CRS_AXIS_GEOCENTRIC_X_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_GEOCENTRIC_Y_NAME">CRS_AXIS_GEOCENTRIC_Y_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_GEOCENTRIC_Z_NAME">CRS_AXIS_GEOCENTRIC_Z_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_EAST_NAME">CRS_AXIS_NORTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_NAME">CRS_AXIS_NORTH_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_NORTH_EAST_NAME">CRS_AXIS_NORTH_NORTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_NORTH_WEST_NAME">CRS_AXIS_NORTH_NORTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_WEST_NAME">CRS_AXIS_NORTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_PAST_NAME">CRS_AXIS_PAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_PORT_NAME">CRS_AXIS_PORT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_ROW_NEGATIVE_NAME">CRS_AXIS_ROW_NEGATIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_ROW_POSITIVE_NAME">CRS_AXIS_ROW_POSITIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_EAST_NAME">CRS_AXIS_SOUTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_NAME">CRS_AXIS_SOUTH_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_SOUTH_EAST_NAME">CRS_AXIS_SOUTH_SOUTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_SOUTH_WEST_NAME">CRS_AXIS_SOUTH_SOUTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_WEST_NAME">CRS_AXIS_SOUTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_STARBOARD_NAME">CRS_AXIS_STARBOARD_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_TOWARDS_NAME">CRS_AXIS_TOWARDS_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_UNSPECIFIED_NAME">CRS_AXIS_UNSPECIFIED_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_UP_NAME">CRS_AXIS_UP_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_WEST_NAME">CRS_AXIS_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_WEST_NORTH_WEST_NAME">CRS_AXIS_WEST_NORTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_WEST_SOUTH_WEST_NAME">CRS_AXIS_WEST_SOUTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CATEGORY_CRS_NAME">CRS_CATEGORY_CRS_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CATEGORY_METADATA_NAME">CRS_CATEGORY_METADATA_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CATEGORY_OPERATION_NAME">CRS_CATEGORY_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_AFFINE_NAME">CRS_CS_AFFINE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_CARTESIAN_NAME">CRS_CS_CARTESIAN_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_CYLINDRICAL_NAME">CRS_CS_CYLINDRICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_ELLIPSOIDAL_NAME">CRS_CS_ELLIPSOIDAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_LINEAR_NAME">CRS_CS_LINEAR_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_ORDINAL_NAME">CRS_CS_ORDINAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_PARAMETRIC_NAME">CRS_CS_PARAMETRIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_POLAR_NAME">CRS_CS_POLAR_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_SPHERICAL_NAME">CRS_CS_SPHERICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_TEMPORAL_COUNT_NAME">CRS_CS_TEMPORAL_COUNT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_TEMPORAL_DATE_TIME_NAME">CRS_CS_TEMPORAL_DATE_TIME_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_TEMPORAL_MEASURE_NAME">CRS_CS_TEMPORAL_MEASURE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_VERTICAL_NAME">CRS_CS_VERTICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_ELLIPSOID_OBLATE_NAME">CRS_ELLIPSOID_OBLATE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_ELLIPSOID_TRIAXIAL_NAME">CRS_ELLIPSOID_TRIAXIAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME">CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_COORDINATE_NAME">CRS_OPERATION_COORDINATE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_DERIVING_CONVERSION_NAME">CRS_OPERATION_DERIVING_CONVERSION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_MAP_PROJECTION_NAME">CRS_OPERATION_MAP_PROJECTION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_POINT_MOTION_NAME">CRS_OPERATION_POINT_MOTION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_BOUND_NAME">CRS_TYPE_BOUND_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_COMPOUND_NAME">CRS_TYPE_COMPOUND_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_CONCATENATED_OPERATION_NAME">CRS_TYPE_CONCATENATED_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_COORDINATE_METADATA_NAME">CRS_TYPE_COORDINATE_METADATA_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_COORDINATE_OPERATION_NAME">CRS_TYPE_COORDINATE_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_DERIVED_NAME">CRS_TYPE_DERIVED_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_ENGINEERING_NAME">CRS_TYPE_ENGINEERING_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_GEODETIC_NAME">CRS_TYPE_GEODETIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_GEOGRAPHIC_NAME">CRS_TYPE_GEOGRAPHIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_PARAMETRIC_NAME">CRS_TYPE_PARAMETRIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_POINT_MOTION_OPERATION_NAME">CRS_TYPE_POINT_MOTION_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_PROJECTED_NAME">CRS_TYPE_PROJECTED_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_TEMPORAL_NAME">CRS_TYPE_TEMPORAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_VERTICAL_NAME">CRS_TYPE_VERTICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_ARC_MINUTE">CRS_UNITS_ARC_MINUTE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_ARC_SECOND">CRS_UNITS_ARC_SECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_BIN">CRS_UNITS_BIN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_CALENDAR_MONTH">CRS_UNITS_CALENDAR_MONTH</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_CALENDAR_SECOND">CRS_UNITS_CALENDAR_SECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_DAY">CRS_UNITS_DAY</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_DEGREE">CRS_UNITS_DEGREE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_GERMAN_LEGAL_METRE">CRS_UNITS_GERMAN_LEGAL_METRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_GRAD">CRS_UNITS_GRAD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_HECTOPASCAL">CRS_UNITS_HECTOPASCAL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_HOUR">CRS_UNITS_HOUR</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_KILOMETRE">CRS_UNITS_KILOMETRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_METRE">CRS_UNITS_METRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MICROMETRE">CRS_UNITS_MICROMETRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MICRORADIAN">CRS_UNITS_MICRORADIAN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MICROSECOND">CRS_UNITS_MICROSECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MILLIMETRE">CRS_UNITS_MILLIMETRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MILLIRADIAN">CRS_UNITS_MILLIRADIAN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MILLISECOND">CRS_UNITS_MILLISECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MINUTE">CRS_UNITS_MINUTE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_PARTS_PER_MILLION">CRS_UNITS_PARTS_PER_MILLION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_PASCAL">CRS_UNITS_PASCAL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_RADIAN">CRS_UNITS_RADIAN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_SECOND">CRS_UNITS_SECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_UNITY">CRS_UNITS_UNITY</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_US_SURVEY_FOOT">CRS_UNITS_US_SURVEY_FOOT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_YEAR">CRS_UNITS_YEAR</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_ANGLE_NAME">CRS_UNIT_ANGLE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_LENGTH_NAME">CRS_UNIT_LENGTH_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_NAME">CRS_UNIT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_PARAMETRIC_NAME">CRS_UNIT_PARAMETRIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_SCALE_NAME">CRS_UNIT_SCALE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_TIME_NAME">CRS_UNIT_TIME_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_ABBREV_LEFT_DELIMITER">CRS_WKT_AXIS_ABBREV_LEFT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_ABBREV_RIGHT_DELIMITER">CRS_WKT_AXIS_ABBREV_RIGHT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_DIRECTION_OTHER">CRS_WKT_AXIS_DIRECTION_OTHER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_LAT">CRS_WKT_AXIS_NAME_LAT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_LON">CRS_WKT_AXIS_NAME_LON</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_X">CRS_WKT_AXIS_NAME_X</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_Y">CRS_WKT_AXIS_NAME_Y</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_Z">CRS_WKT_AXIS_NAME_Z</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_DATUM_TYPE">CRS_WKT_DATUM_TYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_LEFT_DELIMITER">CRS_WKT_LEFT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_LEFT_DELIMITER_COMPAT">CRS_WKT_LEFT_DELIMITER_COMPAT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_RIGHT_DELIMITER">CRS_WKT_RIGHT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_RIGHT_DELIMITER_COMPAT">CRS_WKT_RIGHT_DELIMITER_COMPAT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_SEPARATOR">CRS_WKT_SEPARATOR</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CRSAxisDirectionType.html">CRSAxisDirectionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSCategoryType.html">CRSCategoryType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSEllipsoidType.html">CRSEllipsoidType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSKeywordType.html">CRSKeywordType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSOperationMethodType.html">CRSOperationMethodType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSOperationParameterType.html">CRSOperationParameterType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSOperationType.html">CRSOperationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSType.html">CRSType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSUnitType.html">CRSUnitType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSCommonOperation.html">CRSCommonOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSGeoDatum.html">CRSGeoDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSIdentifiable.html">CRSIdentifiable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSScopeExtentIdentifierRemark.html">CRSScopeExtentIdentifierRemark</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CRSUnits</h1>
+              <div class="declaration">
+                <div class="language">
+                  <p class="aside-title">Objective-C</p>
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CRSUnits</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CRSUnits</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Common Units</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L44-L269">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)micrometre"></a>
+                    <a name="//apple_ref/objc/Method/+micrometre" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)micrometre">+micrometre</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a micrometre unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">micrometre</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">micrometre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>micrometre unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L51">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)millimetre"></a>
+                    <a name="//apple_ref/objc/Method/+millimetre" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)millimetre">+millimetre</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a millimetre unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">millimetre</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">millimetre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>millimetre unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L58">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)metre"></a>
+                    <a name="//apple_ref/objc/Method/+metre" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)metre">+metre</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a metre unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">metre</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">metre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>metre unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L65">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)kilometre"></a>
+                    <a name="//apple_ref/objc/Method/+kilometre" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)kilometre">+kilometre</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a kilometre unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">kilometre</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">kilometre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>kilometre unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L72">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)GermanLegalMetre"></a>
+                    <a name="//apple_ref/objc/Method/+GermanLegalMetre" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)GermanLegalMetre">+GermanLegalMetre</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a German legal metre unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">GermanLegalMetre</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">germanLegalMetre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>German legal metre unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L79">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)USSurveyFoot"></a>
+                    <a name="//apple_ref/objc/Method/+USSurveyFoot" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)USSurveyFoot">+USSurveyFoot</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a US survey foot unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">USSurveyFoot</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">usSurveyFoot</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>US survey foot unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L86">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)microradian"></a>
+                    <a name="//apple_ref/objc/Method/+microradian" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)microradian">+microradian</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a microradian unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">microradian</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">microradian</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>microradian unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L93">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)milliradian"></a>
+                    <a name="//apple_ref/objc/Method/+milliradian" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)milliradian">+milliradian</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a milliradian unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">milliradian</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">milliradian</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>milliradian unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L100">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)radian"></a>
+                    <a name="//apple_ref/objc/Method/+radian" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)radian">+radian</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a radian unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">radian</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">radian</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>radian unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L107">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)arcSecond"></a>
+                    <a name="//apple_ref/objc/Method/+arcSecond" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)arcSecond">+arcSecond</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get an arc-second unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">arcSecond</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">arcSecond</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>arc-second unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L114">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)arcMinute"></a>
+                    <a name="//apple_ref/objc/Method/+arcMinute" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)arcMinute">+arcMinute</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get an arc-minute unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">arcMinute</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">arcMinute</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>arc-minute unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L121">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)degree"></a>
+                    <a name="//apple_ref/objc/Method/+degree" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)degree">+degree</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a degree unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">degree</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">degree</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>degree unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L128">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)grad"></a>
+                    <a name="//apple_ref/objc/Method/+grad" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)grad">+grad</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a grad unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">grad</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">grad</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>grad unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L135">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)unity"></a>
+                    <a name="//apple_ref/objc/Method/+unity" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)unity">+unity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a unity unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">unity</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unity</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>unity unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L142">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)bin"></a>
+                    <a name="//apple_ref/objc/Method/+bin" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)bin">+bin</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a bin unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">bin</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">bin</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>bin unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L149">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)partsPerMillion"></a>
+                    <a name="//apple_ref/objc/Method/+partsPerMillion" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)partsPerMillion">+partsPerMillion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a parts per million unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">partsPerMillion</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">partsPerMillion</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>parts per million unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L156">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)pascalUnit"></a>
+                    <a name="//apple_ref/objc/Method/+pascalUnit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)pascalUnit">+pascalUnit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a pascal unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">pascalUnit</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pascalUnit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>pascal unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L163">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)hectopascal"></a>
+                    <a name="//apple_ref/objc/Method/+hectopascal" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)hectopascal">+hectopascal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a hectopascal unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">hectopascal</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">hectopascal</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>hectopascal unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L170">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)microsecond"></a>
+                    <a name="//apple_ref/objc/Method/+microsecond" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)microsecond">+microsecond</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a microsecond unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">microsecond</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">microsecond</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>microsecond unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L177">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)millisecond"></a>
+                    <a name="//apple_ref/objc/Method/+millisecond" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)millisecond">+millisecond</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a millisecond unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">millisecond</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">millisecond</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>millisecond unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L184">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)second"></a>
+                    <a name="//apple_ref/objc/Method/+second" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)second">+second</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a second unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">second</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">second</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>second unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L191">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)minute"></a>
+                    <a name="//apple_ref/objc/Method/+minute" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)minute">+minute</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a minute unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">minute</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">minute</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>minute unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L198">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)hour"></a>
+                    <a name="//apple_ref/objc/Method/+hour" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)hour">+hour</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a hour unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">hour</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">hour</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>hour unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L205">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)day"></a>
+                    <a name="//apple_ref/objc/Method/+day" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)day">+day</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a day unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">day</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">day</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>day unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L212">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)year"></a>
+                    <a name="//apple_ref/objc/Method/+year" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)year">+year</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a year unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">year</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">year</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>year unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L219">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)calendarSecond"></a>
+                    <a name="//apple_ref/objc/Method/+calendarSecond" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)calendarSecond">+calendarSecond</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a calendar second unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">calendarSecond</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">calendarSecond</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>calendar second unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L226">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)calendarMonth"></a>
+                    <a name="//apple_ref/objc/Method/+calendarMonth" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)calendarMonth">+calendarMonth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a calendar month unit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="n">calendarMonth</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">calendarMonth</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>calendar month unit</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L233">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)defaultUnit:"></a>
+                    <a name="//apple_ref/objc/Method/+defaultUnit:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)defaultUnit:">+defaultUnit:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the default unit for the unit type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="nf">defaultUnit</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSUnitType.html">CRSUnitType</a></span><span class="p">)</span><span class="nv">type</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">defaultUnit</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CRSUnitType.html">CRSUnitType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>unit type</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>default unit or null if no default</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L242">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)canConvertBetweenUnit:andUnit:"></a>
+                    <a name="//apple_ref/objc/Method/+canConvertBetweenUnit:andUnit:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)canConvertBetweenUnit:andUnit:">+canConvertBetweenUnit:<wbr>andUnit:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determine if values can be converted between the two units</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">canConvertBetweenUnit</span><span class="p">:(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">unit1</span> <span class="nf">andUnit</span><span class="p">:(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">unit2</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">canConvertBetweenUnit</span><span class="p">(</span><span class="n">_</span> <span class="nv">unit1</span><span class="p">:</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span><span class="p">,</span> <span class="n">andUnit</span> <span class="nv">unit2</span><span class="p">:</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>unit1</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>first unit</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>unit2</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>second unit</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if can convert</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L253">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSUnits(cm)convertValue:fromUnit:toUnit:"></a>
+                    <a name="//apple_ref/objc/Method/+convertValue:fromUnit:toUnit:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSUnits(cm)convertValue:fromUnit:toUnit:">+convertValue:<wbr>fromUnit:<wbr>toUnit:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert the value from a unit to a same typed unit, both with conversion
+ factors</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="nf">convertValue</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">value</span>
+              <span class="nf">fromUnit</span><span class="p">:(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">from</span>
+                <span class="nf">toUnit</span><span class="p">:(</span><span class="n"><a href="../Classes/CRSUnit.html">CRSUnit</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">to</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertValue</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Classes/CRSUnit.html">CRSUnit</a></span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>value to convert</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>unit to convert from</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>unit to convert to</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>converted value</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/common/CRSUnits.h#L267">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2021-08-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

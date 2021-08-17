@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CRSTextUtils Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/CRSTextUtils" class="dashAnchor"></a>
+    <a title="CRSTextUtils Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">crs-ios 1.0.0 Docs</a> (72% documented)</p>
+        <p class="header-right"><a href="https://github.com/ngageoint/coordinate-reference-systems-ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">crs-ios Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CRSTextUtils Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CRSAbridgedCoordinateTransformation.html">CRSAbridgedCoordinateTransformation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSAxis.html">CRSAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSAxisDirectionTypes.html">CRSAxisDirectionTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSBoundCoordinateReferenceSystem.html">CRSBoundCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCategoryTypes.html">CRSCategoryTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCommon.html">CRSCommon</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCompoundCoordinateReferenceSystem.html">CRSCompoundCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSConcatenatedOperation.html">CRSConcatenatedOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateMetadata.html">CRSCoordinateMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateOperation.html">CRSCoordinateOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateReferenceSystem.html">CRSCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateSystem.html">CRSCoordinateSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSCoordinateSystemTypes.html">CRSCoordinateSystemTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDateTime.html">CRSDateTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDatumEnsemble.html">CRSDatumEnsemble</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDatumEnsembleMember.html">CRSDatumEnsembleMember</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDerivedCoordinateReferenceSystem.html">CRSDerivedCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDerivingConversion.html">CRSDerivingConversion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSDynamic.html">CRSDynamic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEllipsoid.html">CRSEllipsoid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEllipsoidTypes.html">CRSEllipsoidTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEngineeringCoordinateReferenceSystem.html">CRSEngineeringCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSEngineeringDatum.html">CRSEngineeringDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSExtent.html">CRSExtent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeoCoordinateReferenceSystem.html">CRSGeoCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeoDatumEnsemble.html">CRSGeoDatumEnsemble</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeoReferenceFrame.html">CRSGeoReferenceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSGeographicBoundingBox.html">CRSGeographicBoundingBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSIdentifier.html">CRSIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSKeyword.html">CRSKeyword</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSMapProjection.html">CRSMapProjection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSObject.html">CRSObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperation.html">CRSOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationMethod.html">CRSOperationMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationMethods.html">CRSOperationMethods</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationParameter.html">CRSOperationParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationParameters.html">CRSOperationParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSOperationTypes.html">CRSOperationTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSParametricCoordinateReferenceSystem.html">CRSParametricCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSParametricDatum.html">CRSParametricDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSPointMotionOperation.html">CRSPointMotionOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSPrimeMeridian.html">CRSPrimeMeridian</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSProjectedCoordinateReferenceSystem.html">CRSProjectedCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSReader.html">CRSReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSReferenceFrame.html">CRSReferenceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSSimpleCoordinateReferenceSystem.html">CRSSimpleCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSSimpleOperation.html">CRSSimpleOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTemporalCoordinateReferenceSystem.html">CRSTemporalCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTemporalDatum.html">CRSTemporalDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTemporalExtent.html">CRSTemporalExtent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)CRSTextConstants">CRSTextConstants</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTextReader.html">CRSTextReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTextUtils.html">CRSTextUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTriaxialEllipsoid.html">CRSTriaxialEllipsoid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSTypes.html">CRSTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUnit.html">CRSUnit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUnitTypes.html">CRSUnitTypes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUnits.html">CRSUnits</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSUsage.html">CRSUsage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalCoordinateReferenceSystem.html">CRSVerticalCoordinateReferenceSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalDatumEnsemble.html">CRSVerticalDatumEnsemble</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalExtent.html">CRSVerticalExtent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSVerticalReferenceFrame.html">CRSVerticalReferenceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CRSWriter.html">CRSWriter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_AFT_NAME">CRS_AXIS_AFT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_AWAY_FROM_NAME">CRS_AXIS_AWAY_FROM_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_CLOCKWISE_NAME">CRS_AXIS_CLOCKWISE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_COLUMN_NEGATIVE_NAME">CRS_AXIS_COLUMN_NEGATIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_COLUMN_POSITIVE_NAME">CRS_AXIS_COLUMN_POSITIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_COUNTER_CLOCKWISE_NAME">CRS_AXIS_COUNTER_CLOCKWISE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_DOWN_NAME">CRS_AXIS_DISPLAY_DOWN_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_LEFT_NAME">CRS_AXIS_DISPLAY_LEFT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_RIGHT_NAME">CRS_AXIS_DISPLAY_RIGHT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DISPLAY_UP_NAME">CRS_AXIS_DISPLAY_UP_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_DOWN_NAME">CRS_AXIS_DOWN_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_EAST_NAME">CRS_AXIS_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_EAST_NORTH_EAST_NAME">CRS_AXIS_EAST_NORTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_EAST_SOUTH_EAST_NAME">CRS_AXIS_EAST_SOUTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_FORWARD_NAME">CRS_AXIS_FORWARD_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_FUTURE_NAME">CRS_AXIS_FUTURE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_GEOCENTRIC_X_NAME">CRS_AXIS_GEOCENTRIC_X_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_GEOCENTRIC_Y_NAME">CRS_AXIS_GEOCENTRIC_Y_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_GEOCENTRIC_Z_NAME">CRS_AXIS_GEOCENTRIC_Z_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_EAST_NAME">CRS_AXIS_NORTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_NAME">CRS_AXIS_NORTH_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_NORTH_EAST_NAME">CRS_AXIS_NORTH_NORTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_NORTH_WEST_NAME">CRS_AXIS_NORTH_NORTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_NORTH_WEST_NAME">CRS_AXIS_NORTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_PAST_NAME">CRS_AXIS_PAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_PORT_NAME">CRS_AXIS_PORT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_ROW_NEGATIVE_NAME">CRS_AXIS_ROW_NEGATIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_ROW_POSITIVE_NAME">CRS_AXIS_ROW_POSITIVE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_EAST_NAME">CRS_AXIS_SOUTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_NAME">CRS_AXIS_SOUTH_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_SOUTH_EAST_NAME">CRS_AXIS_SOUTH_SOUTH_EAST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_SOUTH_WEST_NAME">CRS_AXIS_SOUTH_SOUTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_SOUTH_WEST_NAME">CRS_AXIS_SOUTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_STARBOARD_NAME">CRS_AXIS_STARBOARD_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_TOWARDS_NAME">CRS_AXIS_TOWARDS_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_UNSPECIFIED_NAME">CRS_AXIS_UNSPECIFIED_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_UP_NAME">CRS_AXIS_UP_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_WEST_NAME">CRS_AXIS_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_WEST_NORTH_WEST_NAME">CRS_AXIS_WEST_NORTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_AXIS_WEST_SOUTH_WEST_NAME">CRS_AXIS_WEST_SOUTH_WEST_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CATEGORY_CRS_NAME">CRS_CATEGORY_CRS_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CATEGORY_METADATA_NAME">CRS_CATEGORY_METADATA_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CATEGORY_OPERATION_NAME">CRS_CATEGORY_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_AFFINE_NAME">CRS_CS_AFFINE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_CARTESIAN_NAME">CRS_CS_CARTESIAN_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_CYLINDRICAL_NAME">CRS_CS_CYLINDRICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_ELLIPSOIDAL_NAME">CRS_CS_ELLIPSOIDAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_LINEAR_NAME">CRS_CS_LINEAR_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_ORDINAL_NAME">CRS_CS_ORDINAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_PARAMETRIC_NAME">CRS_CS_PARAMETRIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_POLAR_NAME">CRS_CS_POLAR_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_SPHERICAL_NAME">CRS_CS_SPHERICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_TEMPORAL_COUNT_NAME">CRS_CS_TEMPORAL_COUNT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_TEMPORAL_DATE_TIME_NAME">CRS_CS_TEMPORAL_DATE_TIME_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_TEMPORAL_MEASURE_NAME">CRS_CS_TEMPORAL_MEASURE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_CS_VERTICAL_NAME">CRS_CS_VERTICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_ELLIPSOID_OBLATE_NAME">CRS_ELLIPSOID_OBLATE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_ELLIPSOID_TRIAXIAL_NAME">CRS_ELLIPSOID_TRIAXIAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME">CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_COORDINATE_NAME">CRS_OPERATION_COORDINATE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_DERIVING_CONVERSION_NAME">CRS_OPERATION_DERIVING_CONVERSION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_MAP_PROJECTION_NAME">CRS_OPERATION_MAP_PROJECTION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_OPERATION_POINT_MOTION_NAME">CRS_OPERATION_POINT_MOTION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_BOUND_NAME">CRS_TYPE_BOUND_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_COMPOUND_NAME">CRS_TYPE_COMPOUND_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_CONCATENATED_OPERATION_NAME">CRS_TYPE_CONCATENATED_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_COORDINATE_METADATA_NAME">CRS_TYPE_COORDINATE_METADATA_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_COORDINATE_OPERATION_NAME">CRS_TYPE_COORDINATE_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_DERIVED_NAME">CRS_TYPE_DERIVED_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_ENGINEERING_NAME">CRS_TYPE_ENGINEERING_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_GEODETIC_NAME">CRS_TYPE_GEODETIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_GEOGRAPHIC_NAME">CRS_TYPE_GEOGRAPHIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_PARAMETRIC_NAME">CRS_TYPE_PARAMETRIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_POINT_MOTION_OPERATION_NAME">CRS_TYPE_POINT_MOTION_OPERATION_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_PROJECTED_NAME">CRS_TYPE_PROJECTED_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_TEMPORAL_NAME">CRS_TYPE_TEMPORAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_TYPE_VERTICAL_NAME">CRS_TYPE_VERTICAL_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_ARC_MINUTE">CRS_UNITS_ARC_MINUTE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_ARC_SECOND">CRS_UNITS_ARC_SECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_BIN">CRS_UNITS_BIN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_CALENDAR_MONTH">CRS_UNITS_CALENDAR_MONTH</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_CALENDAR_SECOND">CRS_UNITS_CALENDAR_SECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_DAY">CRS_UNITS_DAY</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_DEGREE">CRS_UNITS_DEGREE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_GERMAN_LEGAL_METRE">CRS_UNITS_GERMAN_LEGAL_METRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_GRAD">CRS_UNITS_GRAD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_HECTOPASCAL">CRS_UNITS_HECTOPASCAL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_HOUR">CRS_UNITS_HOUR</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_KILOMETRE">CRS_UNITS_KILOMETRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_METRE">CRS_UNITS_METRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MICROMETRE">CRS_UNITS_MICROMETRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MICRORADIAN">CRS_UNITS_MICRORADIAN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MICROSECOND">CRS_UNITS_MICROSECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MILLIMETRE">CRS_UNITS_MILLIMETRE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MILLIRADIAN">CRS_UNITS_MILLIRADIAN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MILLISECOND">CRS_UNITS_MILLISECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_MINUTE">CRS_UNITS_MINUTE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_PARTS_PER_MILLION">CRS_UNITS_PARTS_PER_MILLION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_PASCAL">CRS_UNITS_PASCAL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_RADIAN">CRS_UNITS_RADIAN</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_SECOND">CRS_UNITS_SECOND</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_UNITY">CRS_UNITS_UNITY</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_US_SURVEY_FOOT">CRS_UNITS_US_SURVEY_FOOT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNITS_YEAR">CRS_UNITS_YEAR</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_ANGLE_NAME">CRS_UNIT_ANGLE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_LENGTH_NAME">CRS_UNIT_LENGTH_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_NAME">CRS_UNIT_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_PARAMETRIC_NAME">CRS_UNIT_PARAMETRIC_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_SCALE_NAME">CRS_UNIT_SCALE_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_UNIT_TIME_NAME">CRS_UNIT_TIME_NAME</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_ABBREV_LEFT_DELIMITER">CRS_WKT_AXIS_ABBREV_LEFT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_ABBREV_RIGHT_DELIMITER">CRS_WKT_AXIS_ABBREV_RIGHT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_DIRECTION_OTHER">CRS_WKT_AXIS_DIRECTION_OTHER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_LAT">CRS_WKT_AXIS_NAME_LAT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_LON">CRS_WKT_AXIS_NAME_LON</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_X">CRS_WKT_AXIS_NAME_X</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_Y">CRS_WKT_AXIS_NAME_Y</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_AXIS_NAME_Z">CRS_WKT_AXIS_NAME_Z</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_DATUM_TYPE">CRS_WKT_DATUM_TYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_LEFT_DELIMITER">CRS_WKT_LEFT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_LEFT_DELIMITER_COMPAT">CRS_WKT_LEFT_DELIMITER_COMPAT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_RIGHT_DELIMITER">CRS_WKT_RIGHT_DELIMITER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_RIGHT_DELIMITER_COMPAT">CRS_WKT_RIGHT_DELIMITER_COMPAT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@CRS_WKT_SEPARATOR">CRS_WKT_SEPARATOR</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CRSAxisDirectionType.html">CRSAxisDirectionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSCategoryType.html">CRSCategoryType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSEllipsoidType.html">CRSEllipsoidType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSKeywordType.html">CRSKeywordType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSOperationMethodType.html">CRSOperationMethodType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSOperationParameterType.html">CRSOperationParameterType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSOperationType.html">CRSOperationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSType.html">CRSType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CRSUnitType.html">CRSUnitType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSCommonOperation.html">CRSCommonOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSGeoDatum.html">CRSGeoDatum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSIdentifiable.html">CRSIdentifiable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CRSScopeExtentIdentifierRemark.html">CRSScopeExtentIdentifierRemark</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CRSTextUtils</h1>
+              <div class="declaration">
+                <div class="language">
+                  <p class="aside-title">Objective-C</p>
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CRSTextUtils</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+
+                </div>
+                <div class="language">
+                  <p class="aside-title">Swift</p>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CRSTextUtils</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>CRS Well-Known Text Utilities</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L18-L188">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)isLeftDelimiter:"></a>
+                    <a name="//apple_ref/objc/Method/+isLeftDelimiter:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)isLeftDelimiter:">+isLeftDelimiter:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is the text a left delimiter</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">isLeftDelimiter</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">text</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">isLeftDelimiter</span><span class="p">(</span><span class="n">_</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>text</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>wkt text token</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if left delimiter</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)isRightDelimiter:"></a>
+                    <a name="//apple_ref/objc/Method/+isRightDelimiter:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)isRightDelimiter:">+isRightDelimiter:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is the text a right delimiter</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">isRightDelimiter</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">text</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">isRightDelimiter</span><span class="p">(</span><span class="n">_</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>text</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>wkt text token</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if right delimiter</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L36">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)isSpatial:"></a>
+                    <a name="//apple_ref/objc/Method/+isSpatial:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)isSpatial:">+isSpatial:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is the Coordinate System Type a spatial type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">isSpatial</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a></span><span class="p">)</span><span class="nv">type</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">isSpatial</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>coordinate system type</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if a spatial type</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L45">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)isTemporalCountMeasure:"></a>
+                    <a name="//apple_ref/objc/Method/+isTemporalCountMeasure:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)isTemporalCountMeasure:">+isTemporalCountMeasure:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is the Coordinate System Type a temporal count or measure type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">isTemporalCountMeasure</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a></span><span class="p">)</span><span class="nv">type</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">isTemporalCountMeasure</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>coordinate system type</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if a spatial type</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L54">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)isOrdinalDateTime:"></a>
+                    <a name="//apple_ref/objc/Method/+isOrdinalDateTime:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)isOrdinalDateTime:">+isOrdinalDateTime:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Is the Coordinate System Type an ordinal or temporal date time type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">isOrdinalDateTime</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a></span><span class="p">)</span><span class="nv">type</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">isOrdinalDateTime</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CRSCoordinateSystemType.html">CRSCoordinateSystemType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>coordinate system type</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if a spatial type</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L63">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)unitTypeOfKeyword:"></a>
+                    <a name="//apple_ref/objc/Method/+unitTypeOfKeyword:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)unitTypeOfKeyword:">+unitTypeOfKeyword:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the unit type from the keyword</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSUnitType.html">CRSUnitType</a></span><span class="p">)</span><span class="nf">unitTypeOfKeyword</span><span class="p">:(</span><span class="n"><a href="../Classes/CRSKeyword.html">CRSKeyword</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">keyword</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unitType</span><span class="p">(</span><span class="n">of</span> <span class="nv">keyword</span><span class="p">:</span> <span class="kt"><a href="../Classes/CRSKeyword.html">CRSKeyword</a></span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CRSUnitType.html">CRSUnitType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyword</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>coordinate reference system keyword</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>unit type</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L72">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)unitType:"></a>
+                    <a name="//apple_ref/objc/Method/+unitType:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)unitType:">+unitType:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the unit type from the keyword type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSUnitType.html">CRSUnitType</a></span><span class="p">)</span><span class="nf">unitType</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSKeywordType.html">CRSKeywordType</a></span><span class="p">)</span><span class="nv">keyword</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unitType</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyword</span><span class="p">:</span> <span class="kt"><a href="../Enums/CRSKeywordType.html">CRSKeywordType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CRSUnitType.html">CRSUnitType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyword</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>coordinate reference system keyword type</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>unit type</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L81">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)coordinateReferenceSystemType:"></a>
+                    <a name="//apple_ref/objc/Method/+coordinateReferenceSystemType:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)coordinateReferenceSystemType:">+coordinateReferenceSystemType:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the Coordinate Reference System Type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSType.html">CRSType</a></span><span class="p">)</span><span class="nf">coordinateReferenceSystemType</span><span class="p">:(</span><span class="k">enum</span> <span class="n"><a href="../Enums/CRSKeywordType.html">CRSKeywordType</a></span><span class="p">)</span><span class="nv">keyword</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">coordinateReferenceSystemType</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyword</span><span class="p">:</span> <span class="kt"><a href="../Enums/CRSKeywordType.html">CRSKeywordType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CRSType.html">CRSType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyword</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>coordinate reference system keyword</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>coordinate reference system type</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)intFromString:"></a>
+                    <a name="//apple_ref/objc/Method/+intFromString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)intFromString:">+intFromString:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get an int from a string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">intFromString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">int</span><span class="p">(</span><span class="n">from</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>string</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>string int value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>integer</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)doubleFromString:"></a>
+                    <a name="//apple_ref/objc/Method/+doubleFromString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)doubleFromString:">+doubleFromString:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a double from a string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="nf">doubleFromString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">double</span><span class="p">(</span><span class="n">from</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>string</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>string double value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>double</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L108">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)decimalNumberFromString:"></a>
+                    <a name="//apple_ref/objc/Method/+decimalNumberFromString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)decimalNumberFromString:">+decimalNumberFromString:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a decimal number from a string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="p">)</span><span class="nf">decimalNumberFromString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">decimalNumber</span><span class="p">(</span><span class="n">from</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSDecimalNumber</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>string</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>string double value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>decimal number</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L117">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)textFromDouble:"></a>
+                    <a name="//apple_ref/objc/Method/+textFromDouble:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)textFromDouble:">+textFromDouble:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get text from a double</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">textFromDouble</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">value</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">text</span><span class="p">(</span><span class="n">from</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>double value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>text value</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L126">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)textFromDecimalNumber:"></a>
+                    <a name="//apple_ref/objc/Method/+textFromDecimalNumber:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)textFromDecimalNumber:">+textFromDecimalNumber:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get text from a decimal number</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">textFromDecimalNumber</span><span class="p">:(</span><span class="n">NSDecimalNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">decimalNumber</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">text</span><span class="p">(</span><span class="n">from</span> <span class="nv">decimalNumber</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>decimalNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>decimal number value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>text value</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L135">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)pretty:"></a>
+                    <a name="//apple_ref/objc/Method/+pretty:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)pretty:">+pretty:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert the WKT to a pretty WKT string, 4 space indents</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">pretty</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">wkt</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pretty</span><span class="p">(</span><span class="n">_</span> <span class="nv">wkt</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>well-known text</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>pretty wkt</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L144">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)prettyTabIndent:"></a>
+                    <a name="//apple_ref/objc/Method/+prettyTabIndent:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)prettyTabIndent:">+prettyTabIndent:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert the WKT to a pretty WKT string, tab indents</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">prettyTabIndent</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">wkt</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">prettyTabIndent</span><span class="p">(</span><span class="n">_</span> <span class="nv">wkt</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>well-known text</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>pretty wkt</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L153">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)prettyNoIndent:"></a>
+                    <a name="//apple_ref/objc/Method/+prettyNoIndent:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)prettyNoIndent:">+prettyNoIndent:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert the WKT to a pretty WKT string, no indents</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">prettyNoIndent</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">wkt</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">prettyNoIndent</span><span class="p">(</span><span class="n">_</span> <span class="nv">wkt</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>well-known text</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>pretty wkt</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L162">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)pretty:withIndent:"></a>
+                    <a name="//apple_ref/objc/Method/+pretty:withIndent:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)pretty:withIndent:">+pretty:<wbr>withIndent:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert the WKT to a pretty WKT string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">pretty</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">wkt</span> <span class="nf">withIndent</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">indent</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pretty</span><span class="p">(</span><span class="n">_</span> <span class="nv">wkt</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="n">withIndent</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>well-known text</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>indent string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>pretty wkt</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L173">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CRSTextUtils(cm)pretty:withNewline:andIndent:"></a>
+                    <a name="//apple_ref/objc/Method/+pretty:withNewline:andIndent:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CRSTextUtils(cm)pretty:withNewline:andIndent:">+pretty:<wbr>withNewline:<wbr>andIndent:<wbr></a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert the WKT to a pretty WKT string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">pretty</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">wkt</span>
+         <span class="nf">withNewline</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">newline</span>
+           <span class="nf">andIndent</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">indent</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pretty</span><span class="p">(</span><span class="n">_</span> <span class="nv">wkt</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="n">withNewline</span> <span class="nv">newline</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="n">andIndent</span> <span class="nv">indent</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>well-known text</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>newline</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>newline string</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>indent string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>pretty wkt</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/ngageoint/coordinate-reference-systems-ios/tree/1.0.0/crs-ios/wkt/CRSTextUtils.h#L186">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2021-08-17)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
