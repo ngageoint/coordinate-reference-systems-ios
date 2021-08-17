@@ -21,7 +21,129 @@ View the latest [Appledoc](http://ngageoint.github.io/coordinate-reference-syste
 
 ```objectivec
 
-// TODO
+// NSString *wkt = ...
+
+CRSObject *crs = [CRSReader read:wkt];
+
+enum CRSType type = crs.type;
+enum CRSCategoryType category = crs.categoryType;
+
+NSString *text = [CRSWriter write:crs];
+NSString *prettyText = [CRSWriter writePretty:crs];
+
+switch(category){
+
+    case CRS_CATEGORY_CRS:
+    {
+        CRSCoordinateReferenceSystem *coordRefSys = (CRSCoordinateReferenceSystem *) crs;
+
+        switch (type) {
+            case CRS_TYPE_BOUND:
+            {
+                CRSBoundCoordinateReferenceSystem *bound = (CRSBoundCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_COMPOUND:
+            {
+                CRSCompoundCoordinateReferenceSystem *compound = (CRSCompoundCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_DERIVED:
+            {
+                CRSDerivedCoordinateReferenceSystem *derived = (CRSDerivedCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_ENGINEERING:
+            {
+                CRSEngineeringCoordinateReferenceSystem *engineering = (CRSEngineeringCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_GEODETIC:
+            case CRS_TYPE_GEOGRAPHIC:
+            {
+                CRSGeoCoordinateReferenceSystem *geo = (CRSGeoCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_PARAMETRIC:
+            {
+                CRSParametricCoordinateReferenceSystem *parametric = (CRSParametricCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_PROJECTED:
+            {
+                CRSProjectedCoordinateReferenceSystem *projected = (CRSProjectedCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_TEMPORAL:
+            {
+                CRSTemporalCoordinateReferenceSystem *temporal = (CRSTemporalCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            case CRS_TYPE_VERTICAL:
+            {
+                CRSVerticalCoordinateReferenceSystem *vertical = (CRSVerticalCoordinateReferenceSystem *) coordRefSys;
+                // ...
+                break;
+            }
+            default:
+                break;
+        }
+
+        // ...
+        break;
+    }
+
+    case CRS_CATEGORY_METADATA:
+    {
+
+        CRSCoordinateMetadata *metadata = (CRSCoordinateMetadata *) crs;
+
+        // ...
+        break;
+    }
+
+    case CRS_CATEGORY_OPERATION:
+    {
+
+        CRSOperation *operation = (CRSOperation *) crs;
+
+        switch (type) {
+            case CRS_TYPE_CONCATENATED_OPERATION:
+            {
+                CRSConcatenatedOperation *concatenatedOperation = (CRSConcatenatedOperation *) operation;
+                // ...
+                break;
+            }
+            case CRS_TYPE_COORDINATE_OPERATION:
+            {
+                CRSCoordinateOperation *coordinateOperation = (CRSCoordinateOperation *) operation;
+                // ...
+                break;
+            }
+            case CRS_TYPE_POINT_MOTION_OPERATION:
+            {
+                CRSPointMotionOperation *pointMotionOperation = (CRSPointMotionOperation *) operation;
+                // ...
+                break;
+            }
+            default:
+                break;
+        }
+
+        // ...
+        break;
+
+    }
+
+}
 
 ```
 
@@ -67,6 +189,99 @@ To use from Swift, import the crs-ios bridging header from the Swift project's b
 
 ```swift
 
-// TODO
+// var wkt: String = ...
+
+let crs : CRSObject = CRSReader.read(wkt)
+
+var type : CRSType = crs.type
+var category : CRSCategoryType = crs.categoryType()
+
+let text : String = CRSWriter.write(crs)
+let prettyText : String = CRSWriter.writePretty(crs)
+
+switch category{
+
+case CRS_CATEGORY_CRS:
+
+    let coordRefSys : CRSCoordinateReferenceSystem = crs as! CRSCoordinateReferenceSystem
+
+    switch type {
+    case CRS_TYPE_BOUND:
+        let bound : CRSBoundCoordinateReferenceSystem = coordRefSys as! CRSBoundCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_COMPOUND:
+        let compound : CRSCompoundCoordinateReferenceSystem = coordRefSys as! CRSCompoundCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_DERIVED:
+        let derived : CRSDerivedCoordinateReferenceSystem = coordRefSys as! CRSDerivedCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_ENGINEERING:
+        let engineering : CRSEngineeringCoordinateReferenceSystem = coordRefSys as! CRSEngineeringCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_GEODETIC, CRS_TYPE_GEOGRAPHIC:
+        let geo : CRSGeoCoordinateReferenceSystem = coordRefSys as! CRSGeoCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_PARAMETRIC:
+        let parametric : CRSParametricCoordinateReferenceSystem = coordRefSys as! CRSParametricCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_PROJECTED:
+        let projected : CRSProjectedCoordinateReferenceSystem = coordRefSys as! CRSProjectedCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_TEMPORAL:
+        let temporal : CRSTemporalCoordinateReferenceSystem = coordRefSys as! CRSTemporalCoordinateReferenceSystem
+        // ...
+        break
+    case CRS_TYPE_VERTICAL:
+        let vertical : CRSVerticalCoordinateReferenceSystem = coordRefSys as! CRSVerticalCoordinateReferenceSystem
+        // ...
+        break
+    default:
+        break
+    }
+
+    // ...
+    break
+
+case CRS_CATEGORY_METADATA:
+
+    let metadata : CRSCoordinateMetadata = crs as! CRSCoordinateMetadata
+
+    // ...
+    break
+
+case CRS_CATEGORY_OPERATION:
+
+    let operation = crs as! CRSOperation
+
+    switch type {
+    case CRS_TYPE_CONCATENATED_OPERATION:
+        let concatenatedOperation : CRSConcatenatedOperation = operation as! CRSConcatenatedOperation
+        // ...
+        break
+    case CRS_TYPE_COORDINATE_OPERATION:
+        let coordinateOperation : CRSCoordinateOperation = operation as! CRSCoordinateOperation
+        // ...
+        break
+    case CRS_TYPE_POINT_MOTION_OPERATION:
+        let pointMotionOperation : CRSPointMotionOperation = operation as! CRSPointMotionOperation
+        // ...
+        break
+    default:
+        break
+    }
+
+    // ...
+    break
+
+default:
+    break
+}
 
 ```
