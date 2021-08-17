@@ -7,6 +7,7 @@
 //
 
 #import "CRSOperation.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSOperation
 
@@ -29,6 +30,16 @@
 
 -(BOOL) hasAccuracy{
     return [self accuracy] != nil;
+}
+
+-(void) setAccuracy: (NSDecimalNumber *) accuracy{
+    _accuracy = accuracy;
+    _accuracyText = [CRSTextUtils textFromDecimalNumber:accuracy];
+}
+
+-(void) setAccuracyText: (NSString *) accuracyText{
+    _accuracyText = accuracyText;
+    _accuracy = [CRSTextUtils decimalNumberFromString:accuracyText];
 }
 
 - (BOOL) isEqualToOperation: (CRSOperation *) operation{

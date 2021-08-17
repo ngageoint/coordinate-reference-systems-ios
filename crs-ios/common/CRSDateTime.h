@@ -49,6 +49,11 @@
 @property (nonatomic, strong) NSDecimalNumber *fraction;
 
 /**
+ *  Seconds fraction Text
+ */
+@property (nonatomic, strong) NSString *fractionText;
+
+/**
  *  Local time zone hour
  */
 @property (nonatomic, strong) NSNumber *timeZoneHour;

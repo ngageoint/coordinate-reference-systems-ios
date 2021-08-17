@@ -8,6 +8,7 @@
 
 #import "CRSDatumEnsemble.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSDatumEnsemble
 
@@ -29,12 +30,32 @@
     return self;
 }
 
+-(instancetype) initWithName: (NSString *) name andMember: (CRSDatumEnsembleMember *) member andAccuracyText: (NSString *) accuracy{
+    self = [self init];
+    if(self != nil){
+        [self setName:name];
+        [self addMember:member];
+        [self setAccuracyText:accuracy];
+    }
+    return self;
+}
+
 -(instancetype) initWithName: (NSString *) name andMembers: (NSArray<CRSDatumEnsembleMember *> *) members andAccuracy: (double) accuracy{
     self = [self init];
     if(self != nil){
         [self setName:name];
         [self addMembers:members];
         [self setAccuracy:accuracy];
+    }
+    return self;
+}
+
+-(instancetype) initWithName: (NSString *) name andMembers: (NSArray<CRSDatumEnsembleMember *> *) members andAccuracyText: (NSString *) accuracy{
+    self = [self init];
+    if(self != nil){
+        [self setName:name];
+        [self addMembers:members];
+        [self setAccuracyText:accuracy];
     }
     return self;
 }
@@ -53,6 +74,16 @@
 
 -(void) addMembers: (NSArray<CRSDatumEnsembleMember *> *) members{
     [_members addObjectsFromArray:members];
+}
+
+-(void) setAccuracy: (double) accuracy{
+    _accuracy = accuracy;
+    _accuracyText = [CRSTextUtils textFromDouble:accuracy];
+}
+
+-(void) setAccuracyText: (NSString *) accuracyText{
+    _accuracyText = accuracyText;
+    _accuracy = [CRSTextUtils doubleFromString:accuracyText];
 }
 
 -(BOOL) hasIdentifiers{

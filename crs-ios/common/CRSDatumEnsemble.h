@@ -30,6 +30,11 @@
 @property (nonatomic) double accuracy;
 
 /**
+ *  Accuracy (in meters) Text
+ */
+@property (nonatomic, strong) NSString *accuracyText;
+
+/**
  * Identifiers
  */
 @property (nonatomic, strong) NSMutableArray<CRSIdentifier *> *identifiers;
@@ -60,6 +65,20 @@
  *
  * @param name
  *            name
+ * @param member
+ *            member
+ * @param accuracy
+ *            accuracy
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andMember: (CRSDatumEnsembleMember *) member andAccuracyText: (NSString *) accuracy;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
  * @param members
  *            members
  * @param accuracy
@@ -68,6 +87,20 @@
  *  @return new instance
  */
 -(instancetype) initWithName: (NSString *) name andMembers: (NSArray<CRSDatumEnsembleMember *> *) members andAccuracy: (double) accuracy;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
+ * @param members
+ *            members
+ * @param accuracy
+ *            accuracy
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andMembers: (NSArray<CRSDatumEnsembleMember *> *) members andAccuracyText: (NSString *) accuracy;
 
 /**
  * Number of members

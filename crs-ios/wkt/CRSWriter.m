@@ -167,11 +167,7 @@
 
 -(void) writeNumber: (NSNumber *) number{
     if([number isKindOfClass:[NSDecimalNumber class]]){
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-        [numberFormatter setMaximumFractionDigits:16];
-        [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-        NSString *text = [numberFormatter stringFromNumber:number];
-        [self writeDouble:[text doubleValue]];
+        [_text appendString:[CRSTextUtils textFromDecimalNumber:(NSDecimalNumber *)number]];
     }else{
         [_text appendString:[number stringValue]];
     }
@@ -187,9 +183,7 @@
 }
 
 -(void) writeDouble: (double) value{
-    NSNumber *number = [NSNumber numberWithDouble:value];
-    NSString *text = [[number stringValue] uppercaseString];
-    [_text appendString:text];
+    [_text appendString:[CRSTextUtils textFromDouble:value]];
 }
 
 -(void) writeInt: (int) value{
@@ -767,7 +761,7 @@
         [self writeSeparator];
         [self writeKeywordType:CRS_KEYWORD_EPOCH];
         [self writeLeftDelimiter];
-        [self writeNumber:metadata.epoch];
+        [_text appendString:metadata.epochText];
         [self writeRightDelimiter];
         
     }
@@ -810,7 +804,7 @@
 
     if([operation hasAccuracy]){
         [self writeSeparator];
-        [self writeAccuracy:[operation.accuracy doubleValue]];
+        [self writeAccuracyText:operation.accuracyText];
     }
 
     [self writeScopeExtentIdentifierRemark:operation];
@@ -1026,7 +1020,7 @@
     [self writeSeparator];
     [self writeKeywordType:CRS_KEYWORD_ENSEMBLEACCURACY];
     [self writeLeftDelimiter];
-    [self writeDouble:datumEnsemble.accuracy];
+    [_text appendString:datumEnsemble.accuracyText];
     [self writeRightDelimiter];
 
     if([datumEnsemble hasIdentifiers]){
@@ -1069,7 +1063,7 @@
 
     [self writeLeftDelimiter];
 
-    [self writeDouble:dynamic.referenceEpoch];
+    [_text appendString:dynamic.referenceEpochText];
 
     [self writeRightDelimiter];
 
@@ -1102,7 +1096,7 @@
     [self writeQuotedText:primeMeridian.name];
 
     [self writeSeparator];
-    [self writeDouble:primeMeridian.longitude];
+    [_text appendString:primeMeridian.longitudeText];
 
     if([primeMeridian hasLongitudeUnit]){
         [self writeSeparator];
@@ -1133,20 +1127,20 @@
     [self writeQuotedText:ellipsoid.name];
 
     [self writeSeparator];
-    [self writeDouble:ellipsoid.semiMajorAxis];
+    [_text appendString:ellipsoid.semiMajorAxisText];
 
     if(triaxial != nil){
         
         [self writeSeparator];
-        [self writeDouble:triaxial.semiMedianAxis];
+        [_text appendString:triaxial.semiMedianAxisText];
         
         [self writeSeparator];
-        [self writeDouble:triaxial.semiMinorAxis];
+        [_text appendString:triaxial.semiMinorAxisText];
         
     }else{
         
         [self writeSeparator];
-        [self writeDouble:ellipsoid.inverseFlattening];
+        [_text appendString:ellipsoid.inverseFlatteningText];
         
     }
 
@@ -1173,7 +1167,7 @@
     
     if([unit hasConversionFactor]){
         [self writeSeparator];
-        [self writeNumber:unit.conversionFactor];
+        [_text appendString:unit.conversionFactorText];
     }
 
     if([unit hasIdentifiers]){
@@ -1291,7 +1285,7 @@
                 
                 [self writeLeftDelimiter];
                 
-                [self writeNumber:axis.meridian];
+                [_text appendString:axis.meridianText];
                 
                 [self writeSeparator];
                 [self writeUnit:axis.meridianUnit];
@@ -1309,7 +1303,7 @@
             
             [self writeLeftDelimiter];
             
-            [self writeNumber:axis.bearing];
+            [_text appendString:axis.bearingText];
             
             [self writeRightDelimiter];
             
@@ -1412,16 +1406,16 @@
 
     [self writeLeftDelimiter];
 
-    [self writeDouble:geographicBoundingBox.lowerLeftLatitude];
+    [_text appendString:geographicBoundingBox.lowerLeftLatitudeText];
 
     [self writeSeparator];
-    [self writeDouble:geographicBoundingBox.lowerLeftLongitude];
+    [_text appendString:geographicBoundingBox.lowerLeftLongitudeText];
 
     [self writeSeparator];
-    [self writeDouble:geographicBoundingBox.upperRightLatitude];
+    [_text appendString:geographicBoundingBox.upperRightLatitudeText];
 
     [self writeSeparator];
-    [self writeDouble:geographicBoundingBox.upperRightLongitude];
+    [_text appendString:geographicBoundingBox.upperRightLongitudeText];
 
     [self writeRightDelimiter];
 }
@@ -1432,10 +1426,10 @@
 
     [self writeLeftDelimiter];
     
-    [self writeDouble:verticalExtent.minimumHeight];
+    [_text appendString:verticalExtent.minimumHeightText];
 
     [self writeSeparator];
-    [self writeDouble:verticalExtent.maximumHeight];
+    [_text appendString:verticalExtent.maximumHeightText];
 
     if([verticalExtent hasUnit]){
         [self writeSeparator];
@@ -1526,7 +1520,7 @@
     if([parameter isFile]){
         [self writeQuotedText:parameter.fileName];
     } else {
-        [self writeDouble:parameter.value];
+        [_text appendString:parameter.valueText];
 
         if([parameter hasUnit]){
             [self writeSeparator];
@@ -1653,6 +1647,17 @@
     [self writeLeftDelimiter];
 
     [self writeDouble:accuracy];
+
+    [self writeRightDelimiter];
+}
+
+-(void) writeAccuracyText: (NSString *) accuracy{
+    
+    [self writeKeywordType:CRS_KEYWORD_OPERATIONACCURACY];
+
+    [self writeLeftDelimiter];
+
+    [_text appendString:accuracy];
 
     [self writeRightDelimiter];
 }

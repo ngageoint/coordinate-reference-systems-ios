@@ -20,9 +20,19 @@
 @property (nonatomic) double minimumHeight;
 
 /**
+ *  Minimum Height Text
+ */
+@property (nonatomic, strong) NSString *minimumHeightText;
+
+/**
  *  Maximum Height
  */
 @property (nonatomic) double maximumHeight;
+
+/**
+ *  Maximum Height Text
+ */
+@property (nonatomic, strong) NSString *maximumHeightText;
 
 /**
  * Unit (Length)
@@ -62,12 +72,38 @@
  *            minimum height
  * @param maximumHeight
  *            maximum height
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithMinimumHeightText: (NSString *) minimumHeight andMaximumHeightText: (NSString *) maximumHeight;
+
+/**
+ *  Initialize
+ *
+ * @param minimumHeight
+ *            minimum height
+ * @param maximumHeight
+ *            maximum height
  * @param unit
  *            unit (length)
  *
  *  @return new instance
  */
 -(instancetype) initWithMinimumHeight: (double) minimumHeight andMaximumHeight: (double) maximumHeight andUnit: (CRSUnit *) unit;
+
+/**
+ *  Initialize
+ *
+ * @param minimumHeight
+ *            minimum height
+ * @param maximumHeight
+ *            maximum height
+ * @param unit
+ *            unit (length)
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithMinimumHeightText: (NSString *) minimumHeight andMaximumHeightText: (NSString *) maximumHeight andUnit: (CRSUnit *) unit;
 
 /**
  * Has a unit (length)

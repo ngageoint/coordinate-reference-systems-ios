@@ -7,6 +7,7 @@
 //
 
 #import "CRSTriaxialEllipsoid.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSTriaxialEllipsoid
 
@@ -30,6 +31,17 @@
     return self;
 }
 
+-(instancetype) initWithName: (NSString *) name andSemiMajorAxisText: (NSString *) semiMajorAxis andSemiMedianAxisText: (NSString *) semiMedianAxis andSemiMinorAxisText: (NSString *) semiMinorAxis{
+    self = [super init];
+    if(self != nil){
+        [self setName:name];
+        [self setSemiMajorAxisText:semiMajorAxis];
+        [self setSemiMedianAxisText:semiMedianAxis];
+        [self setSemiMinorAxisText:semiMinorAxis];
+    }
+    return self;
+}
+
 -(enum CRSEllipsoidType) type{
     return CRS_ELLIPSOID_TRIAXIAL;
 }
@@ -41,6 +53,26 @@
 
 -(void) setInverseFlattening: (double) inverseFlattening{
     [NSException raise:@"Not Supported" format:@"Triaxial Ellipsoid does not support inverse flattening"];
+}
+
+-(void) setSemiMedianAxis: (double) semiMedianAxis{
+    _semiMedianAxis = semiMedianAxis;
+    _semiMedianAxisText = [CRSTextUtils textFromDouble:semiMedianAxis];
+}
+
+-(void) setSemiMedianAxisText: (NSString *) semiMedianAxisText{
+    _semiMedianAxisText = semiMedianAxisText;
+    _semiMedianAxis = [CRSTextUtils doubleFromString:semiMedianAxisText];
+}
+
+-(void) setSemiMinorAxis: (double) semiMinorAxis{
+    _semiMinorAxis = semiMinorAxis;
+    _semiMinorAxisText = [CRSTextUtils textFromDouble:semiMinorAxis];
+}
+
+-(void) setSemiMinorAxisText: (NSString *) semiMinorAxisText{
+    _semiMinorAxisText = semiMinorAxisText;
+    _semiMinorAxis = [CRSTextUtils doubleFromString:semiMinorAxisText];
 }
 
 - (BOOL) isEqualToTriaxialEllipsoid: (CRSTriaxialEllipsoid *) triaxialEllipsoid{

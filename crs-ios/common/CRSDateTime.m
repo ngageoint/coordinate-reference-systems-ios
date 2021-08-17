@@ -205,13 +205,25 @@ static NSString *MINUS_SIGN = @"-";
 }
 
 -(void) setFraction: (NSDecimalNumber *) fraction{
+    [self validateFraction:fraction];
+    _fraction = fraction;
+    _fractionText = [CRSTextUtils textFromDecimalNumber:fraction];
+}
+
+-(void) setFractionText: (NSString *) fractionText{
+    NSDecimalNumber *fraction = [CRSTextUtils decimalNumberFromString:fractionText];
+    [self validateFraction:fraction];
+    _fractionText = fractionText;
+    _fraction = fraction;
+}
+
+-(void) validateFraction: (NSDecimalNumber *) fraction{
     if(fraction != nil){
         double fractionValue = [fraction doubleValue];
         if(fractionValue < 0 || fractionValue >= 1.0){
             [NSException raise:@"Invalid Fraction" format:@"Invalid fraction value: %@", fraction];
         }
     }
-    _fraction = fraction;
 }
 
 -(BOOL) hasTimeZoneHour{

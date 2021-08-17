@@ -8,6 +8,7 @@
 
 #import "CRSAxis.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSAxis
 
@@ -41,8 +42,28 @@
     return [self meridian] != nil;
 }
 
+-(void) setMeridian: (NSDecimalNumber *) meridian{
+    _meridian = meridian;
+    _meridianText = [CRSTextUtils textFromDecimalNumber:meridian];
+}
+
+-(void) setMeridianText: (NSString *) meridianText{
+    _meridianText = meridianText;
+    _meridian = [CRSTextUtils decimalNumberFromString:meridianText];
+}
+
 -(BOOL) hasBearing{
     return [self bearing] != nil;
+}
+
+-(void) setBearing: (NSDecimalNumber *) bearing{
+    _bearing = bearing;
+    _bearingText = [CRSTextUtils textFromDecimalNumber:bearing];
+}
+
+-(void) setBearingText: (NSString *) bearingText{
+    _bearingText = bearingText;
+    _bearing = [CRSTextUtils decimalNumberFromString:bearingText];
 }
 
 -(BOOL) hasOrder{

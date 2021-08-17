@@ -8,6 +8,7 @@
 
 #import "CRSVerticalExtent.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSVerticalExtent
 
@@ -24,6 +25,10 @@
     return [self initWithMinimumHeight:minimumHeight andMaximumHeight:maximumHeight andUnit:nil];
 }
 
+-(instancetype) initWithMinimumHeightText: (NSString *) minimumHeight andMaximumHeightText: (NSString *) maximumHeight{
+    return [self initWithMinimumHeightText:minimumHeight andMaximumHeightText:maximumHeight andUnit:nil];
+}
+
 -(instancetype) initWithMinimumHeight: (double) minimumHeight andMaximumHeight: (double) maximumHeight andUnit: (CRSUnit *) unit{
     self = [super init];
     if(self != nil){
@@ -32,6 +37,36 @@
         [self setUnit:unit];
     }
     return self;
+}
+
+-(instancetype) initWithMinimumHeightText: (NSString *) minimumHeight andMaximumHeightText: (NSString *) maximumHeight andUnit: (CRSUnit *) unit{
+    self = [super init];
+    if(self != nil){
+        [self setMinimumHeightText:minimumHeight];
+        [self setMaximumHeightText:maximumHeight];
+        [self setUnit:unit];
+    }
+    return self;
+}
+
+-(void) setMinimumHeight: (double) minimumHeight{
+    _minimumHeight = minimumHeight;
+    _minimumHeightText = [CRSTextUtils textFromDouble:minimumHeight];
+}
+
+-(void) setMinimumHeightText: (NSString *) minimumHeightText{
+    _minimumHeightText = minimumHeightText;
+    _minimumHeight = [CRSTextUtils doubleFromString:minimumHeightText];
+}
+
+-(void) setMaximumHeight: (double) maximumHeight{
+    _maximumHeight = maximumHeight;
+    _maximumHeightText = [CRSTextUtils textFromDouble:maximumHeight];
+}
+
+-(void) setMaximumHeightText: (NSString *) maximumHeightText{
+    _maximumHeightText = maximumHeightText;
+    _maximumHeight = [CRSTextUtils doubleFromString:maximumHeightText];
 }
 
 -(BOOL) hasUnit{

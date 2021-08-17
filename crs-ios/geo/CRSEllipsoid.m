@@ -8,6 +8,7 @@
 
 #import "CRSEllipsoid.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSEllipsoid
 
@@ -30,8 +31,38 @@
     return self;
 }
 
+-(instancetype) initWithName: (NSString *) name andSemiMajorAxisText: (NSString *) semiMajorAxis andInverseFlatteningText: (NSString *) inverseFlattening{
+    self = [super init];
+    if(self != nil){
+        [self setName:name];
+        [self setSemiMajorAxisText:semiMajorAxis];
+        [self setInverseFlatteningText:inverseFlattening];
+    }
+    return self;
+}
+
 -(enum CRSEllipsoidType) type{
     return CRS_ELLIPSOID_OBLATE;
+}
+
+-(void) setSemiMajorAxis: (double) semiMajorAxis{
+    _semiMajorAxis = semiMajorAxis;
+    _semiMajorAxisText = [CRSTextUtils textFromDouble:semiMajorAxis];
+}
+
+-(void) setSemiMajorAxisText: (NSString *) semiMajorAxisText{
+    _semiMajorAxisText = semiMajorAxisText;
+    _semiMajorAxis = [CRSTextUtils doubleFromString:semiMajorAxisText];
+}
+
+-(void) setInverseFlattening: (double) inverseFlattening{
+    _inverseFlattening = inverseFlattening;
+    _inverseFlatteningText = [CRSTextUtils textFromDouble:inverseFlattening];
+}
+
+-(void) setInverseFlatteningText: (NSString *) inverseFlatteningText{
+    _inverseFlatteningText = inverseFlatteningText;
+    _inverseFlattening = [CRSTextUtils doubleFromString:inverseFlatteningText];
 }
 
 -(BOOL) hasUnit{

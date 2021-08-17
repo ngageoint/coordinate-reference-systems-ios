@@ -30,6 +30,11 @@
 @property (nonatomic, strong) NSDecimalNumber *accuracy;
 
 /**
+ *  Coordinate operation accuracy Text
+ */
+@property (nonatomic, strong) NSString *accuracyText;
+
+/**
  *  Initialize
  *
  * @param type

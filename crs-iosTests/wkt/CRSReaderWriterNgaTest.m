@@ -29,7 +29,6 @@
     CRSObject *crs = [CRSReader read:text withStrict:YES];
     
     NSString *expectedText = [text stringByReplacingOccurrencesOfString:@"\"8047\"" withString:@"8047"];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
     
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -52,7 +51,6 @@
     CRSObject *crs = [CRSReader read:text withStrict:YES];
     
     NSString *expectedText = [text stringByReplacingOccurrencesOfString:@"\"8056\"" withString:@"8056"];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
     
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -86,7 +84,7 @@
     [expectedText appendString:@"COMPOUNDCRS[\"WGS84 Height (EGM08)\","];
     [expectedText appendString:@"GEODCRS[\"WGS 84\","];
     [expectedText appendString:@"DATUM[\"World Geodetic System 1984\","];
-    [expectedText appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,LENGTHUNIT[\"metre\",1]]],"];
+    [expectedText appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,LENGTHUNIT[\"metre\",1.0]]],"];
     [expectedText appendString:@"CS[ellipsoidal,2],"];
     [expectedText appendString:@"AXIS[\"Geodetic latitude (Lat)\",north],"];
     [expectedText appendString:@"AXIS[\"Geodetic longitude (Long)\",east],"];
@@ -94,7 +92,7 @@
     [expectedText appendString:@"VERTCRS[\"EGM2008 geoid height\","];
     [expectedText appendString:@"VDATUM[\"EGM2008 geoid\",ANCHOR[\"WGS 84 ellipsoid\"]],"];
     [expectedText appendString:@"CS[vertical,1],AXIS[\"Gravity-related height (H)\",up],"];
-    [expectedText appendString:@"LENGTHUNIT[\"metre\",1],ID[\"EPSG\",3855]],"];
+    [expectedText appendString:@"LENGTHUNIT[\"metre\",1.0],ID[\"EPSG\",3855]],"];
     [expectedText appendString:@"ID[\"NSG\",8101]]"];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];

@@ -8,6 +8,7 @@
 
 #import "CRSUnit.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSUnit
 
@@ -21,6 +22,10 @@
 
 +(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor{
     return [[CRSUnit alloc] initWithType:type andName:name andConversionFactor:conversionFactor];
+}
+
++(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor{
+    return [[CRSUnit alloc] initWithType:type andName:name andConversionFactorText:conversionFactor];
 }
 
 -(instancetype) init{
@@ -47,8 +52,28 @@
     return self;
 }
 
+-(instancetype) initWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor{
+    self = [super init];
+    if(self != nil){
+        [self setType:type];
+        [self setName:name];
+        [self setConversionFactorText:conversionFactor];
+    }
+    return self;
+}
+
 -(BOOL) hasConversionFactor{
     return [self conversionFactor] != nil;
+}
+
+-(void) setConversionFactor: (NSDecimalNumber *) conversionFactor{
+    _conversionFactor = conversionFactor;
+    _conversionFactorText = [CRSTextUtils textFromDecimalNumber:conversionFactor];
+}
+
+-(void) setConversionFactorText: (NSString *) conversionFactorText{
+    _conversionFactorText = conversionFactorText;
+    _conversionFactor = [CRSTextUtils decimalNumberFromString:conversionFactorText];
 }
 
 -(BOOL) hasIdentifiers{

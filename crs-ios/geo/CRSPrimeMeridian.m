@@ -8,6 +8,7 @@
 
 #import "CRSPrimeMeridian.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSPrimeMeridian
 
@@ -27,6 +28,25 @@
         [self setLongitude:longitude];
     }
     return self;
+}
+
+-(instancetype) initWithName: (NSString *) name andLongitudeText: (NSString *) longitude{
+    self = [super init];
+    if(self != nil){
+        [self setName:name];
+        [self setLongitudeText:longitude];
+    }
+    return self;
+}
+
+-(void) setLongitude: (double) longitude{
+    _longitude = longitude;
+    _longitudeText = [CRSTextUtils textFromDouble:longitude];
+}
+
+-(void) setLongitudeText: (NSString *) longitudeText{
+    _longitudeText = longitudeText;
+    _longitude = [CRSTextUtils doubleFromString:longitudeText];
 }
 
 -(BOOL) hasLongitudeUnit{

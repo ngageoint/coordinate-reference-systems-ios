@@ -31,6 +31,11 @@
 @property (nonatomic, strong) NSDecimalNumber *conversionFactor;
 
 /**
+ *  Conversion Factor Text
+ */
+@property (nonatomic, strong) NSString *conversionFactorText;
+
+/**
  * Identifiers
  */
 @property (nonatomic, strong) NSMutableArray<CRSIdentifier *> *identifiers;
@@ -69,6 +74,20 @@
 +(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor;
 
 /**
+ *  Create
+ *
+ * @param type
+ *            unit type
+ * @param name
+ *            name
+ * @param conversionFactor
+ *            conversion factor
+ *
+ *  @return new instance
+ */
++(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor;
+
+/**
  *  Initialize
  *
  *  @return new instance
@@ -100,6 +119,20 @@
  *  @return new instance
  */
 -(instancetype) initWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor;
+
+/**
+ *  Initialize
+ *
+ * @param type
+ *            unit type
+ * @param name
+ *            name
+ * @param conversionFactor
+ *            conversion factor
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor;
 
 /**
  * Has a conversion factor

@@ -116,11 +116,46 @@
 
 +(double) doubleFromString: (NSString *) string{
     double number;
-    NSScanner *scanner = [NSScanner scannerWithString:string];
-    if(![scanner scanDouble:&number] || ![scanner isAtEnd]){
-        [NSException raise:@"Invalid Double" format:@"Invalid double. found: '%@'", string];
+    if([string caseInsensitiveCompare:@"NaN"] == NSOrderedSame){
+        number = NAN;
+    }else if([string caseInsensitiveCompare:@"infinity"] == NSOrderedSame){
+        number = INFINITY;
+    }else if([string caseInsensitiveCompare:@"-infinity"] == NSOrderedSame){
+        number = -INFINITY;
+    }else{
+        NSScanner *scanner = [NSScanner scannerWithString:string];
+        if(![scanner scanDouble:&number] || ![scanner isAtEnd]){
+            [NSException raise:@"Invalid Double" format:@"Invalid double. found: '%@'", string];
+        }
     }
     return number;
+}
+
++(NSDecimalNumber *) decimalNumberFromString: (NSString *) string{
+    NSDecimalNumber *value = nil;
+    if(string != nil){
+        value = [[NSDecimalNumber alloc] initWithDouble:[self doubleFromString:string]];
+    }
+    return value;
+}
+
++(NSString *) textFromDouble: (double) value{
+    NSNumber *number = [NSNumber numberWithDouble:value];
+    return [[number stringValue] uppercaseString];
+}
+
++(NSString *) textFromDecimalNumber: (NSDecimalNumber *) decimalNumber{
+    NSString *result = nil;
+    if(decimalNumber != nil){
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setMaximumFractionDigits:16];
+        [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+        NSString *text = [numberFormatter stringFromNumber:decimalNumber];
+        double value = [text doubleValue];
+        NSNumber *number = [NSNumber numberWithDouble:value];
+        result = [[number stringValue] uppercaseString];
+    }
+    return result;
 }
 
 +(NSString *) pretty: (NSString *) wkt{

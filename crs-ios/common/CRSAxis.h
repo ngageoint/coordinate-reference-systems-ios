@@ -36,6 +36,11 @@
 @property (nonatomic, strong) NSDecimalNumber *meridian;
 
 /**
+ *  Meridian Text
+ */
+@property (nonatomic, strong) NSString *meridianText;
+
+/**
  * Meridian (Angle) Unit
  */
 @property (nonatomic, strong) CRSUnit *meridianUnit;
@@ -44,6 +49,11 @@
  *  Bearing
  */
 @property (nonatomic, strong) NSDecimalNumber *bearing;
+
+/**
+ *  Bearing Text
+ */
+@property (nonatomic, strong) NSString *bearingText;
 
 /**
  *  Order

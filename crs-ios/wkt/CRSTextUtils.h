@@ -99,13 +99,40 @@
 +(int) intFromString: (NSString *) string;
 
 /**
- * Get an double from a string
+ * Get a double from a string
  *
  * @param string
  *            string double value
  * @return double
  */
 +(double) doubleFromString: (NSString *) string;
+
+/**
+ * Get a decimal number from a string
+ *
+ * @param string
+ *            string double value
+ * @return decimal number
+ */
++(NSDecimalNumber *) decimalNumberFromString: (NSString *) string;
+
+/**
+ * Get text from a double
+ *
+ * @param value
+ *            double value
+ * @return text value
+ */
++(NSString *) textFromDouble: (double) value;
+
+/**
+ * Get text from a decimal number
+ *
+ * @param decimalNumber
+ *            decimal number value
+ * @return text value
+ */
++(NSString *) textFromDecimalNumber: (NSDecimalNumber *) decimalNumber;
 
 /**
  * Convert the WKT to a pretty WKT string, 4 space indents

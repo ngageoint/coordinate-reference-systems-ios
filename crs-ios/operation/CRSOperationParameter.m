@@ -8,6 +8,7 @@
 
 #import "CRSOperationParameter.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSOperationParameter
 
@@ -24,11 +25,26 @@
     return [self initWithName:name andValue:value andUnit:nil];
 }
 
+-(instancetype) initWithName: (NSString *) name andValueText: (NSString *) value{
+    return [self initWithName:name andValueText:value andUnit:nil];
+}
+
 -(instancetype) initWithName: (NSString *) name andValue: (double) value andUnit: (CRSUnit *) unit{
     self = [super init];
     if(self != nil){
         _name = name;
-        _value = value;
+        [self setValue:value];
+        _unit = unit;
+        [self updateParameter];
+    }
+    return self;
+}
+
+-(instancetype) initWithName: (NSString *) name andValueText: (NSString *) value andUnit: (CRSUnit *) unit{
+    self = [super init];
+    if(self != nil){
+        _name = name;
+        [self setValueText:value];
         _unit = unit;
         [self updateParameter];
     }
@@ -39,11 +55,26 @@
     return [self initWithParameter:parameter andValue:value andUnit:nil];
 }
 
+-(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValueText: (NSString *) value{
+    return [self initWithParameter:parameter andValueText:value andUnit:nil];
+}
+
 -(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValue: (double) value andUnit: (CRSUnit *) unit{
     self = [super init];
     if(self != nil){
         _name = parameter.name;
-        _value = value;
+        [self setValue:value];
+        _unit = unit;
+        _parameter = parameter;
+    }
+    return self;
+}
+
+-(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValueText: (NSString *) value andUnit: (CRSUnit *) unit{
+    self = [super init];
+    if(self != nil){
+        _name = parameter.name;
+        [self setValueText:value];
         _unit = unit;
         _parameter = parameter;
     }
@@ -63,6 +94,16 @@
 -(void) setName: (NSString *) name{
     _name = name;
     [self updateParameter];
+}
+
+-(void) setValue: (double) value{
+    _value = value;
+    _valueText = [CRSTextUtils textFromDouble:value];
+}
+
+-(void) setValueText: (NSString *) valueText{
+    _valueText = valueText;
+    _value = [CRSTextUtils doubleFromString:valueText];
 }
 
 -(BOOL) hasUnit{

@@ -20,6 +20,11 @@
 @property (nonatomic) double referenceEpoch;
 
 /**
+ *  Reference Epoch Text
+ */
+@property (nonatomic, strong) NSString *referenceEpochText;
+
+/**
  *  Deformation Model Name
  */
 @property (nonatomic, strong) NSString *deformationModelName;
@@ -52,6 +57,16 @@
  *  @return new instance
  */
 -(instancetype) initWithReferenceEpoch: (double) referenceEpoch;
+
+/**
+ *  Initialize
+ *
+ * @param referenceEpoch
+ *            reference epoch
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithReferenceEpochText: (NSString *) referenceEpoch;
 
 /**
  * Has a deformation model name

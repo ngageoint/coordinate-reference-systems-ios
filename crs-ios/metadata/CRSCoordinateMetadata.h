@@ -25,6 +25,11 @@
 @property (nonatomic, strong) NSDecimalNumber *epoch;
 
 /**
+ *  Coordinate Epoch Text
+ */
+@property (nonatomic, strong) NSString *epochText;
+
+/**
  *  Create
  *
  *  @return new instance
@@ -59,6 +64,18 @@
  *  @return new instance
  */
 -(instancetype) initWithCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) crs andEpoch: (NSDecimalNumber *) epoch;
+
+/**
+ *  Initialize
+ *
+ * @param crs
+ *            coordinate reference system
+ * @param epoch
+ *            coordinate epoch
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) crs andEpochText: (NSString *) epoch;
 
 /**
  * Has a coordinate epoch

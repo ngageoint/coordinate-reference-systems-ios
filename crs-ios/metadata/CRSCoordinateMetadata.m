@@ -7,6 +7,7 @@
 //
 
 #import "CRSCoordinateMetadata.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSCoordinateMetadata
 
@@ -35,8 +36,26 @@
     return self;
 }
 
+-(instancetype) initWithCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) crs andEpochText: (NSString *) epoch{
+    self = [self initWithCoordinateReferenceSystem:crs];
+    if(self != nil){
+        [self setEpochText:epoch];
+    }
+    return self;
+}
+
 -(BOOL) hasEpoch{
     return [self epoch] != nil;
+}
+
+-(void) setEpoch: (NSDecimalNumber *) epoch{
+    _epoch = epoch;
+    _epochText = [CRSTextUtils textFromDecimalNumber:epoch];
+}
+
+-(void) setEpochText: (NSString *) epochText{
+    _epochText = epochText;
+    _epoch = [CRSTextUtils decimalNumberFromString:epochText];
 }
 
 -(NSString *) name{

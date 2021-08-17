@@ -1365,7 +1365,8 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
         [self readSeparator];
         [self readKeywordWithType:CRS_KEYWORD_EPOCH];
         [self readLeftDelimiter];
-        [metadata setEpoch:[[NSDecimalNumber alloc] initWithDouble:[_reader readUnsignedNumber]]];
+        [metadata setEpochText:[_reader readExpectedToken]];
+        [self validateUnsignedDecimalNumber:metadata.epoch];
         [self readRightDelimiter];
 
     }
@@ -1415,7 +1416,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     
     if([self isKeywordNext:CRS_KEYWORD_OPERATIONACCURACY]){
         [self readSeparator];
-        [operation setAccuracy:[[NSDecimalNumber alloc] initWithDouble:[self readAccuracy]]];
+        [operation setAccuracyText:[self readAccuracyText]];
     }
 
     [self readScopeExtentIdentifierRemark:operation];
@@ -1457,7 +1458,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     
     if([self isKeywordNext:CRS_KEYWORD_OPERATIONACCURACY]){
         [self readSeparator];
-        [operation setAccuracy:[[NSDecimalNumber alloc] initWithDouble:[self readAccuracy]]];
+        [operation setAccuracyText:[self readAccuracyText]];
     }
 
     [self readScopeExtentIdentifierRemark:operation];
@@ -1533,7 +1534,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     if([self isKeywordNext:CRS_KEYWORD_OPERATIONACCURACY]){
         [self readSeparator];
-        [operation setAccuracy:[[NSDecimalNumber alloc] initWithDouble:[self readAccuracy]]];
+        [operation setAccuracyText:[self readAccuracyText]];
     }
 
     [self readScopeExtentIdentifierRemark:operation];
@@ -1785,7 +1786,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     [self readLeftDelimiter];
 
-    [datumEnsemble setAccuracy:[_reader readNumber]];
+    [datumEnsemble setAccuracyText:[_reader readExpectedToken]];
 
     [self readRightDelimiter];
 
@@ -1836,7 +1837,8 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     [self readLeftDelimiter];
 
-    [dynamic setReferenceEpoch:[_reader readUnsignedNumber]];
+    [dynamic setReferenceEpochText:[_reader readExpectedToken]];
+    [self validateUnsignedDouble:dynamic.referenceEpoch];
 
     [self readRightDelimiter];
 
@@ -1873,7 +1875,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     [primeMeridian setName:[_reader readExpectedToken]];
 
     [self readSeparator];
-    [primeMeridian setLongitude:[_reader readNumber]];
+    [primeMeridian setLongitudeText:[_reader readExpectedToken]];
 
     CRSKeyword *keyword = [self readToKeywords:[NSArray arrayWithObjects:
                                                 [NSNumber numberWithInt:CRS_KEYWORD_ANGLEUNIT],
@@ -1916,20 +1918,24 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     [ellipsoid setName:[_reader readExpectedToken]];
 
     [self readSeparator];
-    [ellipsoid setSemiMajorAxis:[_reader readUnsignedNumber]];
+    [ellipsoid setSemiMajorAxisText:[_reader readExpectedToken]];
+    [self validateUnsignedDouble:ellipsoid.semiMajorAxis];
 
     if(triaxial != nil){
 
         [self readSeparator];
-        [triaxial setSemiMedianAxis:[_reader readUnsignedNumber]];
+        [triaxial setSemiMedianAxisText:[_reader readExpectedToken]];
+        [self validateUnsignedDouble:triaxial.semiMedianAxis];
 
         [self readSeparator];
-        [triaxial setSemiMinorAxis:[_reader readUnsignedNumber]];
+        [triaxial setSemiMinorAxisText:[_reader readExpectedToken]];
+        [self validateUnsignedDouble:triaxial.semiMinorAxis];
 
     } else {
 
         [self readSeparator];
-        [ellipsoid setInverseFlattening:[_reader readUnsignedNumber]];
+        [ellipsoid setInverseFlatteningText:[_reader readExpectedToken]];
+        [self validateUnsignedDouble:ellipsoid.inverseFlattening];
 
     }
 
@@ -1997,7 +2003,8 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     if(type != CRS_UNIT_TIME || [self isNonKeywordNext]){
         [self readSeparator];
-        [unit setConversionFactor:[[NSDecimalNumber alloc] initWithDouble:[_reader readUnsignedNumber]]];
+        [unit setConversionFactorText:[_reader readExpectedToken]];
+        [self validateUnsignedDecimalNumber:unit.conversionFactor];
     }
 
     CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_ID];
@@ -2184,7 +2191,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
                     [self readLeftDelimiter];
 
-                    [axis setMeridian:[[NSDecimalNumber alloc] initWithDouble:[_reader readNumber]]];
+                    [axis setMeridianText:[_reader readExpectedToken]];
 
                     [self readSeparator];
                     [axis setMeridianUnit:[self readAngleUnit]];
@@ -2203,7 +2210,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
                 [self readLeftDelimiter];
 
-                [axis setBearing:[[NSDecimalNumber alloc] initWithDouble:[_reader readNumber]]];
+                [axis setBearingText:[_reader readExpectedToken]];
 
                 [self readRightDelimiter];
 
@@ -2357,16 +2364,16 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     [self readLeftDelimiter];
 
-    [boundingBox setLowerLeftLatitude:[_reader readNumber]];
+    [boundingBox setLowerLeftLatitudeText:[_reader readExpectedToken]];
 
     [self readSeparator];
-    [boundingBox setLowerLeftLongitude:[_reader readNumber]];
+    [boundingBox setLowerLeftLongitudeText:[_reader readExpectedToken]];
 
     [self readSeparator];
-    [boundingBox setUpperRightLatitude:[_reader readNumber]];
+    [boundingBox setUpperRightLatitudeText:[_reader readExpectedToken]];
 
     [self readSeparator];
-    [boundingBox setUpperRightLongitude:[_reader readNumber]];
+    [boundingBox setUpperRightLongitudeText:[_reader readExpectedToken]];
 
     [self readRightDelimiter];
 
@@ -2381,10 +2388,10 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     [self readLeftDelimiter];
 
-    [verticalExtent setMinimumHeight:[_reader readNumber]];
+    [verticalExtent setMinimumHeightText:[_reader readExpectedToken]];
 
     [self readSeparator];
-    [verticalExtent setMaximumHeight:[_reader readNumber]];
+    [verticalExtent setMaximumHeightText:[_reader readExpectedToken]];
 
     CRSKeyword *keyword = [self readToKeyword:CRS_KEYWORD_LENGTHUNIT];
     if(keyword != nil && keyword.type == CRS_KEYWORD_LENGTHUNIT) {
@@ -2499,7 +2506,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     [parameter setName:[_reader readExpectedToken]];
 
     [self readSeparator];
-    [parameter setValue:[_reader readNumber]];
+    [parameter setValueText:[_reader readExpectedToken]];
 
     NSArray<NSNumber *> *keywords = nil;
     switch(type){
@@ -2718,6 +2725,18 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     [self readLeftDelimiter];
 
     double accuracy = [_reader readNumber];
+
+    [self readRightDelimiter];
+
+    return accuracy;
+}
+
+-(NSString *) readAccuracyText{
+
+    [self readKeywordWithType:CRS_KEYWORD_OPERATIONACCURACY];
+    [self readLeftDelimiter];
+
+    NSString *accuracy = [_reader readExpectedToken];
 
     [self readRightDelimiter];
 
@@ -3241,6 +3260,16 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     }while([self isKeywordNext:CRS_KEYWORD_EXTENSION]);
 
     return extensions;
+}
+
+-(void) validateUnsignedDecimalNumber: (NSDecimalNumber *) decimalNumber{
+    [self validateUnsignedDouble:[decimalNumber doubleValue]];
+}
+
+-(void) validateUnsignedDouble: (double) value{
+    if(value < 0){
+        [NSException raise:@"Invalid Unsigned Number" format:@"Invalid unsigned number. found: %f", value];
+    }
 }
 
 @end

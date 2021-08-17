@@ -204,17 +204,7 @@
 
 -(double) readNumber{
     NSString *token = [self readExpectedToken];
-    double number;
-    if([token caseInsensitiveCompare:@"NaN"] == NSOrderedSame){
-        number = NAN;
-    }else if([token caseInsensitiveCompare:@"infinity"] == NSOrderedSame){
-        number = INFINITY;
-    }else if([token caseInsensitiveCompare:@"-infinity"] == NSOrderedSame){
-        number = -INFINITY;
-    }else{
-        number = [CRSTextUtils doubleFromString:token];
-    }
-    return number;
+    return [CRSTextUtils doubleFromString:token];
 }
 
 -(double) readUnsignedNumber{

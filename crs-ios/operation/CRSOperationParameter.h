@@ -27,6 +27,11 @@
 @property (nonatomic) double value;
 
 /**
+ *  Value Text
+ */
+@property (nonatomic, strong) NSString *valueText;
+
+/**
  * Unit
  */
 @property (nonatomic, strong) CRSUnit *unit;
@@ -79,12 +84,38 @@
  *            name
  * @param value
  *            value
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andValueText: (NSString *) value;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
+ * @param value
+ *            value
  * @param unit
  *            unit
  *
  *  @return new instance
  */
 -(instancetype) initWithName: (NSString *) name andValue: (double) value andUnit: (CRSUnit *) unit;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
+ * @param value
+ *            value
+ * @param unit
+ *            unit
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andValueText: (NSString *) value andUnit: (CRSUnit *) unit;
 
 /**
  *  Initialize
@@ -105,12 +136,38 @@
  *            operation parameter
  * @param value
  *            value
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValueText: (NSString *) value;
+
+/**
+ *  Initialize
+ *
+ * @param parameter
+ *            operation parameter
+ * @param value
+ *            value
  * @param unit
  *            unit
  *
  *  @return new instance
  */
 -(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValue: (double) value andUnit: (CRSUnit *) unit;
+
+/**
+ *  Initialize
+ *
+ * @param parameter
+ *            operation parameter
+ * @param value
+ *            value
+ * @param unit
+ *            unit
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValueText: (NSString *) value andUnit: (CRSUnit *) unit;
 
 /**
  *  Initialize

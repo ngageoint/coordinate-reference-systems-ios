@@ -8,6 +8,7 @@
 
 #import "CRSGeographicBoundingBox.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSGeographicBoundingBox
 
@@ -32,6 +33,60 @@
         [self setUpperRightLongitude:upperRightLongitude];
     }
     return self;
+}
+
+-(instancetype) initWithLowerLeftLatitudeText: (NSString *) lowerLeftLatitude
+                    andLowerLeftLongitudeText: (NSString *) lowerLeftLongitude
+                    andUpperRightLatitudeText: (NSString *) upperRightLatitude
+                   andUpperRightLongitudeText: (NSString *) upperRightLongitude{
+    self = [super init];
+    if(self != nil){
+        [self setLowerLeftLatitudeText:lowerLeftLatitude];
+        [self setLowerLeftLongitudeText:lowerLeftLongitude];
+        [self setUpperRightLatitudeText:upperRightLatitude];
+        [self setUpperRightLongitudeText:upperRightLongitude];
+    }
+    return self;
+}
+
+-(void) setLowerLeftLatitude: (double) lowerLeftLatitude{
+    _lowerLeftLatitude = lowerLeftLatitude;
+    _lowerLeftLatitudeText = [CRSTextUtils textFromDouble:lowerLeftLatitude];
+}
+
+-(void) setLowerLeftLatitudeText: (NSString *) lowerLeftLatitudeText{
+    _lowerLeftLatitudeText = lowerLeftLatitudeText;
+    _lowerLeftLatitude = [CRSTextUtils doubleFromString:lowerLeftLatitudeText];
+}
+
+-(void) setLowerLeftLongitude: (double) lowerLeftLongitude{
+    _lowerLeftLongitude = lowerLeftLongitude;
+    _lowerLeftLongitudeText = [CRSTextUtils textFromDouble:lowerLeftLongitude];
+}
+
+-(void) setLowerLeftLongitudeText: (NSString *) lowerLeftLongitudeText{
+    _lowerLeftLongitudeText = lowerLeftLongitudeText;
+    _lowerLeftLongitude = [CRSTextUtils doubleFromString:lowerLeftLongitudeText];
+}
+
+-(void) setUpperRightLatitude: (double) upperRightLatitude{
+    _upperRightLatitude = upperRightLatitude;
+    _upperRightLatitudeText = [CRSTextUtils textFromDouble:upperRightLatitude];
+}
+
+-(void) setUpperRightLatitudeText: (NSString *) upperRightLatitudeText{
+    _upperRightLatitudeText = upperRightLatitudeText;
+    _upperRightLatitude = [CRSTextUtils doubleFromString:upperRightLatitudeText];
+}
+
+-(void) setUpperRightLongitude: (double) upperRightLongitude{
+    _upperRightLongitude = upperRightLongitude;
+    _upperRightLongitudeText = [CRSTextUtils textFromDouble:upperRightLongitude];
+}
+
+-(void) setUpperRightLongitudeText: (NSString *) upperRightLongitudeText{
+    _upperRightLongitudeText = upperRightLongitudeText;
+    _upperRightLongitude = [CRSTextUtils doubleFromString:upperRightLongitudeText];
 }
 
 - (BOOL) isEqualToGeographicBoundingBox: (CRSGeographicBoundingBox *) geographicBoundingBox{

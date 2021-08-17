@@ -26,6 +26,11 @@
 @property (nonatomic) double longitude;
 
 /**
+ *  International Reference Meridian longitude Text
+ */
+@property (nonatomic, strong) NSString *longitudeText;
+
+/**
  * International Reference Meridian longitude unit (angle)
  */
 @property (nonatomic, strong) CRSUnit *longitudeUnit;
@@ -60,6 +65,18 @@
  *  @return new instance
  */
 -(instancetype) initWithName: (NSString *) name andLongitude: (double) longitude;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
+ * @param longitude
+ *            International Reference Meridian longitude
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andLongitudeText: (NSString *) longitude;
 
 /**
  * Has an International Reference Meridian longitude unit (angle)

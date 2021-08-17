@@ -66,7 +66,7 @@
     [expectedText appendString:@"PROJCRS[\"Rassadiran / Nakhl e Taqi\",BASEGEOGCRS[\"Rassadiran\","];
     [expectedText appendString:@"DATUM[\"Rassadiran\",ELLIPSOID[\"International 1924\",6378388,297,"];
     [expectedText appendString:@"ID[\"EPSG\",7022]],ID[\"EPSG\",6153]],"];
-    [expectedText appendString:@"PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],UNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]],ID[\"EPSG\",4153]],"];
+    [expectedText appendString:@"PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],UNIT[\"degree\",0.01745329251994328,ID[\"EPSG\",9122]],ID[\"EPSG\",4153]],"];
     [expectedText appendString:@"CONVERSION[\"Rassadiran / Nakhl e Taqi / Hotine_Oblique_Mercator\",METHOD[\"Hotine_Oblique_Mercator\"],"];
     [expectedText appendString:@"PARAMETER[\"latitude_of_center\",27.51882880555555],"];
     [expectedText appendString:@"PARAMETER[\"longitude_of_center\",52.60353916666667],"];
@@ -152,7 +152,7 @@
     [expectedText appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101,"];
     [expectedText appendString:@"ID[\"EPSG\",7019]],ID[\"EPSG\",6258]],"];
     [expectedText appendString:@"PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],"];
-    [expectedText appendString:@"UNIT[\"degree\",0.0174532925199433,"];
+    [expectedText appendString:@"UNIT[\"degree\",0.01745329251994328,"];
     [expectedText appendString:@"ID[\"EPSG\",9122]],ID[\"EPSG\",4258]],"];
     [expectedText appendString:@"CONVERSION[\"ETRS89 / ETRS-LAEA / Lambert_Azimuthal_Equal_Area\",METHOD[\"Lambert_Azimuthal_Equal_Area\"],"];
     [expectedText appendString:@"PARAMETER[\"latitude_of_center\",52],"];
@@ -343,7 +343,7 @@
     [expectedText appendString:@"DATUM[\"Geodetic_Datum_of_Malaysia_2000\","];
     [expectedText appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101,ID[\"EPSG\",7019]],"];
     [expectedText appendString:@"ID[\"EPSG\",6742]],PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],"];
-    [expectedText appendString:@"UNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]],ID[\"EPSG\",4742]],"];
+    [expectedText appendString:@"UNIT[\"degree\",0.01745329251994328,ID[\"EPSG\",9122]],ID[\"EPSG\",4742]],"];
     [expectedText appendString:@"CONVERSION[\"GDM2000 / Peninsula RSO / Hotine_Oblique_Mercator\",METHOD[\"Hotine_Oblique_Mercator\"],"];
     [expectedText appendString:@"PARAMETER[\"latitude_of_center\",4],"];
     [expectedText appendString:@"PARAMETER[\"longitude_of_center\",102.25],"];
@@ -423,7 +423,7 @@
     [expectedText appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,"];
     [expectedText appendString:@"ID[\"EPSG\",7030]],ID[\"EPSG\",6326]],"];
     [expectedText appendString:@"PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],"];
-    [expectedText appendString:@"UNIT[\"degree\",0.0174532925199433,"];
+    [expectedText appendString:@"UNIT[\"degree\",0.01745329251994328,"];
     [expectedText appendString:@"ID[\"EPSG\",9122]],ID[\"EPSG\",4326]],"];
     [expectedText appendString:@"CONVERSION[\"WGS 84 / World Mercator / Mercator_1SP\",METHOD[\"Mercator_1SP\"],"];
     [expectedText appendString:@"PARAMETER[\"central_meridian\",0],"];
@@ -462,7 +462,6 @@
     expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"\"9804\"" withString:@"9804"]];
     expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@"\"19833\"" withString:@"19833"]];
     expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@"\"3395\"" withString:@"3395"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -821,7 +820,7 @@
     [expectedText appendString:@"PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],"];
     [expectedText appendString:@"CS[ellipsoidal,2],"];
     [expectedText appendString:@"AXIS[\"Lon\",east],AXIS[\"Lat\",north],"];
-    [expectedText appendString:@"UNIT[\"degree\",0.0174532925199433,"];
+    [expectedText appendString:@"UNIT[\"degree\",0.01745329251994328,"];
     [expectedText appendString:@"ID[\"EPSG\",9122]],ID[\"EPSG\",4326]]"];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
@@ -895,13 +894,13 @@
     expectedText = [NSMutableString string];
     [expectedText appendString:@"GEOGCRS[\"WGS 84\","];
     [expectedText appendString:@"DATUM[\"World Geodetic System 1984\","];
-    [expectedText appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,"];
+    [expectedText appendString:@"ELLIPSOID[\"WGS 84\",6378137.0,298.257223563,"];
     [expectedText appendString:@"ID[\"EPSG\",7030]],ID[\"EPSG\",6326]],"];
-    [expectedText appendString:@"PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],"];
+    [expectedText appendString:@"PRIMEM[\"Greenwich\",0.0,ID[\"EPSG\",8901]],"];
     [expectedText appendString:@"CS[ellipsoidal,3],AXIS[\"Geodetic latitude\",north],"];
     [expectedText appendString:@"AXIS[\"Geodetic longitude\",east],"];
     [expectedText appendString:@"AXIS[\"Ellipsoidal height\",up],"];
-    [expectedText appendString:@"UNIT[\"degree\",0.0174532925199433],"];
+    [expectedText appendString:@"UNIT[\"degree\",0.017453292519943295],"];
     [expectedText appendString:@"ID[\"EPSG\",4979]]"];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
@@ -915,13 +914,13 @@
     [text appendString:@"AXIS[\"Geodetic latitude (Lat)\",north,"];
     [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]],"];
     [text appendString:@"AXIS[\"Geodetic longitude (Long)\",east,"];
-    [text appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433]],"];
+    [text appendString:@"ANGLEUNIT[\"degree\",0.017453292519943295]],"];
     [text appendString:@"AXIS[\"Ellipsoidal height (h)\",up,"];
     [text appendString:@"LENGTHUNIT[\"metre\",1.0]],ID[\"EPSG\",4979]]"];
 
     crs = [CRSReader read:text withStrict:YES];
 
-    expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
+    expectedText = text;
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -960,7 +959,6 @@
     CRSObject *crs = [CRSReader read:text withStrict:YES];
 
     NSMutableString *expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"South" withString:@"south"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0," withString:@","]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1078,7 +1076,6 @@
     CRSObject *crs = [CRSReader read:text withStrict:YES];
 
     NSMutableString *expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@",North" withString:@",north"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0," withString:@","]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1158,7 +1155,6 @@
     expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"\"9810\"" withString:@"9810"]];
     expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@"\"16161\"" withString:@"16161"]];
     expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@"\"5042\"" withString:@"5042"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1199,7 +1195,7 @@
     [expectedText appendString:@"VERTCRS[\"mean sea level height\","];
     [expectedText appendString:@"VDATUM[\"Mean Sea Level\",ID[\"EPSG\",5100]],"];
     [expectedText appendString:@"CS[vertical,1],AXIS[\"Gravity-related height\",up],"];
-    [expectedText appendString:@"UNIT[\"m\",1],ID[\"EPSG\",5714]]"];
+    [expectedText appendString:@"UNIT[\"m\",1.0],ID[\"EPSG\",5714]]"];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1215,7 +1211,6 @@
     crs = [CRSReader read:text withStrict:YES];
     
     expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"\"5714\"" withString:@"5714"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1255,7 +1250,7 @@
     expectedText = [NSMutableString string];
     [expectedText appendString:@"VERTCRS[\"mean sea level depth\",VDATUM[\"Mean Sea Level\",ID[\"EPSG\",5100]],"];
     [expectedText appendString:@"CS[vertical,1],AXIS[\"Gravity-related depth\",down],"];
-    [expectedText appendString:@"UNIT[\"m\",1],ID[\"EPSG\",5715]]"];
+    [expectedText appendString:@"UNIT[\"m\",1.0],ID[\"EPSG\",5715]]"];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1271,7 +1266,6 @@
     crs = [CRSReader read:text withStrict:YES];
     
     expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"\"5715\"" withString:@"5715"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1311,7 +1305,7 @@
     [expectedText appendString:@"VERTCRS[\"EGM96 geoid\","];
     [expectedText appendString:@"VDATUM[\"EGM96 geoid\",ID[\"EPSG\",5171]],"];
     [expectedText appendString:@"CS[vertical,1],AXIS[\"Gravity-related height\",up],"];
-    [expectedText appendString:@"UNIT[\"m\",1],ID[\"EPSG\",5773]]"];
+    [expectedText appendString:@"UNIT[\"m\",1.0],ID[\"EPSG\",5773]]"];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1327,7 +1321,6 @@
     crs = [CRSReader read:text withStrict:YES];
     
     expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"\"5773\"" withString:@"5773"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
@@ -1461,7 +1454,7 @@
     [expectedText appendString:@"DATUM[\"North_American_Datum_1983\","];
     [expectedText appendString:@"ELLIPSOID[\"GRS_1980\",6371000,0]],"];
     [expectedText appendString:@"PRIMEM[\"Greenwich\",0],"];
-    [expectedText appendString:@"UNIT[\"Degree\",0.0174532925199433]],"];
+    [expectedText appendString:@"UNIT[\"Degree\",0.017453292519943295]],"];
     [expectedText appendString:@"CONVERSION[\"Lambert_Conformal_Conic (1SP) / Lambert_Conformal_Conic_1SP\",METHOD[\"Lambert_Conformal_Conic_1SP\"],"];
     [expectedText appendString:@"PARAMETER[\"latitude_of_origin\",25],"];
     [expectedText appendString:@"PARAMETER[\"central_meridian\",-95],"];
@@ -1585,7 +1578,7 @@
     [expectedText appendString:@"ELLIPSOID[\"WGS 84\",6378137,298.257223563,"];
     [expectedText appendString:@"ID[\"EPSG\",7030]],ID[\"EPSG\",6326]],"];
     [expectedText appendString:@"PRIMEM[\"Greenwich\",0,ID[\"EPSG\",8901]],"];
-    [expectedText appendString:@"UNIT[\"degree\",0.0174532925199433,"];
+    [expectedText appendString:@"UNIT[\"degree\",0.01745329251994328,"];
     [expectedText appendString:@"ID[\"EPSG\",9122]],ID[\"EPSG\",4326]],"];
     [expectedText appendString:@"CONVERSION[\"WGS 84 / UTM zone 60N / Transverse_Mercator\",METHOD[\"Transverse_Mercator\"],"];
     [expectedText appendString:@"PARAMETER[\"latitude_of_origin\",0],"];

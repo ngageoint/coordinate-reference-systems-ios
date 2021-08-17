@@ -8,6 +8,7 @@
 
 #import "CRSDynamic.h"
 #import "CRSWriter.h"
+#import "CRSTextUtils.h"
 
 @implementation CRSDynamic
 
@@ -26,6 +27,24 @@
         [self setReferenceEpoch:referenceEpoch];
     }
     return self;
+}
+
+-(instancetype) initWithReferenceEpochText: (NSString *) referenceEpoch;{
+    self = [super init];
+    if(self != nil){
+        [self setReferenceEpochText:referenceEpoch];
+    }
+    return self;
+}
+
+-(void) setReferenceEpoch: (double) referenceEpoch{
+    _referenceEpoch = referenceEpoch;
+    _referenceEpochText = [CRSTextUtils textFromDouble:referenceEpoch];
+}
+
+-(void) setReferenceEpochText: (NSString *) referenceEpochText{
+    _referenceEpochText = referenceEpochText;
+    _referenceEpoch = [CRSTextUtils doubleFromString:referenceEpochText];
 }
 
 -(BOOL) hasDeformationModelName{

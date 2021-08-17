@@ -27,9 +27,19 @@
 @property (nonatomic) double semiMajorAxis;
 
 /**
+ *  Semi Major Axis Text
+ */
+@property (nonatomic, strong) NSString *semiMajorAxisText;
+
+/**
  *  Inverse Flattening
  */
 @property (nonatomic) double inverseFlattening;
+
+/**
+ *  Inverse Flattening Text
+ */
+@property (nonatomic, strong) NSString *inverseFlatteningText;
 
 /**
  * Unit
@@ -68,6 +78,20 @@
  *  @return new instance
  */
 -(instancetype) initWithName: (NSString *) name andSemiMajorAxis: (double) semiMajorAxis andInverseFlattening: (double) inverseFlattening;
+
+/**
+ *  Initialize
+ *
+ * @param name
+ *            name
+ * @param semiMajorAxis
+ *            semi major axis
+ * @param inverseFlattening
+ *            inverse flattening
+ *
+ *  @return new instance
+ */
+-(instancetype) initWithName: (NSString *) name andSemiMajorAxisText: (NSString *) semiMajorAxis andInverseFlatteningText: (NSString *) inverseFlattening;
 
 /**
  * Get the Ellipsoid Type
