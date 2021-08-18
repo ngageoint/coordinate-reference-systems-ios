@@ -87,8 +87,10 @@
 /**
  *  Initialize
  *
- * @param year
- *            year
+ * @param name
+ *            name
+ * @param direction
+ *            axis direction
  *
  *  @return new instance
  */

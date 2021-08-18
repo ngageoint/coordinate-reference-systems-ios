@@ -43,8 +43,12 @@
  *
  * @param name
  *            name
- * @param method
- *            operation method
+ * @param base
+ *            base CRS
+ * @param conversion
+ *            deriving conversion
+ * @param coordinateSystem
+ *            coordinate system
  *
  *  @return new instance
  */

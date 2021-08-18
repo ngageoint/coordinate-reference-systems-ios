@@ -753,8 +753,6 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 /**
  * Check if the keyword is next following an immediate next separator
  *
- * @param keyword
- *            keyword
  * @return true if next
  */
 -(BOOL) isNonKeywordNext{
