@@ -9,39 +9,108 @@
 #import <Foundation/Foundation.h>
 #import "CRSUnit.h"
 
+/**
+ * Common Unit Type
+ */
+enum CRSUnitsType{
+    CRS_UNITS_MICROMETRE,
+    CRS_UNITS_MILLIMETRE,
+    CRS_UNITS_METRE,
+    CRS_UNITS_KILOMETRE,
+    CRS_UNITS_GERMAN_LEGAL_METRE,
+    CRS_UNITS_US_SURVEY_FOOT,
+    CRS_UNITS_MICRORADIAN,
+    CRS_UNITS_MILLIRADIAN,
+    CRS_UNITS_RADIAN,
+    CRS_UNITS_ARC_SECOND,
+    CRS_UNITS_ARC_MINUTE,
+    CRS_UNITS_DEGREE,
+    CRS_UNITS_GRAD,
+    CRS_UNITS_UNITY,
+    CRS_UNITS_BIN,
+    CRS_UNITS_PARTS_PER_MILLION,
+    CRS_UNITS_PASCAL,
+    CRS_UNITS_HECTOPASCAL,
+    CRS_UNITS_MICROSECOND,
+    CRS_UNITS_MILLISECOND,
+    CRS_UNITS_SECOND,
+    CRS_UNITS_MINUTE,
+    CRS_UNITS_HOUR,
+    CRS_UNITS_DAY,
+    CRS_UNITS_YEAR,
+    CRS_UNITS_CALENDAR_SECOND,
+    CRS_UNITS_CALENDAR_MONTH
+};
+
 // Common Unit Names
-extern NSString * const CRS_UNITS_MICROMETRE;
-extern NSString * const CRS_UNITS_MILLIMETRE;
-extern NSString * const CRS_UNITS_METRE;
-extern NSString * const CRS_UNITS_KILOMETRE;
-extern NSString * const CRS_UNITS_GERMAN_LEGAL_METRE;
-extern NSString * const CRS_UNITS_US_SURVEY_FOOT;
-extern NSString * const CRS_UNITS_MICRORADIAN;
-extern NSString * const CRS_UNITS_MILLIRADIAN;
-extern NSString * const CRS_UNITS_RADIAN;
-extern NSString * const CRS_UNITS_ARC_SECOND;
-extern NSString * const CRS_UNITS_ARC_MINUTE;
-extern NSString * const CRS_UNITS_DEGREE;
-extern NSString * const CRS_UNITS_GRAD;
-extern NSString * const CRS_UNITS_UNITY;
-extern NSString * const CRS_UNITS_BIN;
-extern NSString * const CRS_UNITS_PARTS_PER_MILLION;
-extern NSString * const CRS_UNITS_PASCAL;
-extern NSString * const CRS_UNITS_HECTOPASCAL;
-extern NSString * const CRS_UNITS_MICROSECOND;
-extern NSString * const CRS_UNITS_MILLISECOND;
-extern NSString * const CRS_UNITS_SECOND;
-extern NSString * const CRS_UNITS_MINUTE;
-extern NSString * const CRS_UNITS_HOUR;
-extern NSString * const CRS_UNITS_DAY;
-extern NSString * const CRS_UNITS_YEAR;
-extern NSString * const CRS_UNITS_CALENDAR_SECOND;
-extern NSString * const CRS_UNITS_CALENDAR_MONTH;
+extern NSString * const CRS_UNITS_MICROMETRE_NAME;
+extern NSString * const CRS_UNITS_MILLIMETRE_NAME;
+extern NSString * const CRS_UNITS_METRE_NAME;
+extern NSString * const CRS_UNITS_KILOMETRE_NAME;
+extern NSString * const CRS_UNITS_GERMAN_LEGAL_METRE_NAME;
+extern NSString * const CRS_UNITS_US_SURVEY_FOOT_NAME;
+extern NSString * const CRS_UNITS_MICRORADIAN_NAME;
+extern NSString * const CRS_UNITS_MILLIRADIAN_NAME;
+extern NSString * const CRS_UNITS_RADIAN_NAME;
+extern NSString * const CRS_UNITS_ARC_SECOND_NAME;
+extern NSString * const CRS_UNITS_ARC_MINUTE_NAME;
+extern NSString * const CRS_UNITS_DEGREE_NAME;
+extern NSString * const CRS_UNITS_GRAD_NAME;
+extern NSString * const CRS_UNITS_UNITY_NAME;
+extern NSString * const CRS_UNITS_BIN_NAME;
+extern NSString * const CRS_UNITS_PARTS_PER_MILLION_NAME;
+extern NSString * const CRS_UNITS_PASCAL_NAME;
+extern NSString * const CRS_UNITS_HECTOPASCAL_NAME;
+extern NSString * const CRS_UNITS_MICROSECOND_NAME;
+extern NSString * const CRS_UNITS_MILLISECOND_NAME;
+extern NSString * const CRS_UNITS_SECOND_NAME;
+extern NSString * const CRS_UNITS_MINUTE_NAME;
+extern NSString * const CRS_UNITS_HOUR_NAME;
+extern NSString * const CRS_UNITS_DAY_NAME;
+extern NSString * const CRS_UNITS_YEAR_NAME;
+extern NSString * const CRS_UNITS_CALENDAR_SECOND_NAME;
+extern NSString * const CRS_UNITS_CALENDAR_MONTH_NAME;
 
 /**
  * Common Units
  */
 @interface CRSUnits : NSObject
+
+/**
+ * Get a unit from the unit name
+ *
+ * @param name
+ *            unit name
+ * @return unit
+ */
++(CRSUnit *) unitFromName: (NSString *) name;
+
+/**
+ * Get a unit from the units type
+ *
+ * @param type
+ *            units type
+ * @return unit
+ */
++(CRSUnit *) unitFromType: (enum CRSUnitsType) type;
+
+/**
+ * Get a units type from the unit name
+ *
+ * @param name
+ *            unit name
+ * @return units type
+ */
++(enum CRSUnitsType) typeFromName: (NSString *) name;
+
+/**
+ * Get a units type from the unit
+ *
+ * @param name
+ *            unit name
+ * @return units type
+ */
++(enum CRSUnitsType) typeFromUnit: (CRSUnit *) unit;
 
 /**
  * Get a micrometre unit
