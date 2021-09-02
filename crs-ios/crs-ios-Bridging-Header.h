@@ -80,5 +80,7 @@
 #import "CRSTextReader.h"
 #import "CRSTextUtils.h"
 #import "CRSWriter.h"
+#import "CRSProjParams.h"
+#import "CRSProjParser.h"
 
 #endif /* crs_ios_Bridging_Header_h */

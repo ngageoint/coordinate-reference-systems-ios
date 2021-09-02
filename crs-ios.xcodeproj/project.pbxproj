@@ -11,6 +11,10 @@
 		04021F5326E128BA00ECE9AF /* CRSEllipsoids.m in Sources */ = {isa = PBXBuildFile; fileRef = 04021F5126E128BA00ECE9AF /* CRSEllipsoids.m */; };
 		04021F5626E131C900ECE9AF /* CRSPrimeMeridians.h in Headers */ = {isa = PBXBuildFile; fileRef = 04021F5426E131C900ECE9AF /* CRSPrimeMeridians.h */; };
 		04021F5726E131C900ECE9AF /* CRSPrimeMeridians.m in Sources */ = {isa = PBXBuildFile; fileRef = 04021F5526E131C900ECE9AF /* CRSPrimeMeridians.m */; };
+		04021F5C26E14E5700ECE9AF /* CRSProjParams.h in Headers */ = {isa = PBXBuildFile; fileRef = 04021F5A26E14E5700ECE9AF /* CRSProjParams.h */; };
+		04021F5D26E14E5700ECE9AF /* CRSProjParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 04021F5B26E14E5700ECE9AF /* CRSProjParams.m */; };
+		04021F6026E150AD00ECE9AF /* CRSProjParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 04021F5E26E150AD00ECE9AF /* CRSProjParser.h */; };
+		04021F6126E150AD00ECE9AF /* CRSProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 04021F5F26E150AD00ECE9AF /* CRSProjParser.m */; };
 		041F18E124CB2291001311E4 /* CRSReadmeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 041F18E024CB2291001311E4 /* CRSReadmeTest.m */; };
 		041F18E424CB3762001311E4 /* CRSSwiftReadmeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F18E324CB3762001311E4 /* CRSSwiftReadmeTest.swift */; };
 		042FC6571B963FE500549A4B /* crs_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042FC64B1B963FE500549A4B /* crs_ios.framework */; };
@@ -172,6 +176,10 @@
 		04021F5126E128BA00ECE9AF /* CRSEllipsoids.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSEllipsoids.m; sourceTree = "<group>"; };
 		04021F5426E131C900ECE9AF /* CRSPrimeMeridians.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSPrimeMeridians.h; sourceTree = "<group>"; };
 		04021F5526E131C900ECE9AF /* CRSPrimeMeridians.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSPrimeMeridians.m; sourceTree = "<group>"; };
+		04021F5A26E14E5700ECE9AF /* CRSProjParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSProjParams.h; sourceTree = "<group>"; };
+		04021F5B26E14E5700ECE9AF /* CRSProjParams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSProjParams.m; sourceTree = "<group>"; };
+		04021F5E26E150AD00ECE9AF /* CRSProjParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSProjParser.h; sourceTree = "<group>"; };
+		04021F5F26E150AD00ECE9AF /* CRSProjParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSProjParser.m; sourceTree = "<group>"; };
 		041F18DF24CB2291001311E4 /* CRSReadmeTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSReadmeTest.h; sourceTree = "<group>"; };
 		041F18E024CB2291001311E4 /* CRSReadmeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSReadmeTest.m; sourceTree = "<group>"; };
 		041F18E224CB3762001311E4 /* crs-iosTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "crs-iosTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -358,6 +366,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04021F5826E14CB400ECE9AF /* util */ = {
+			isa = PBXGroup;
+			children = (
+				04021F5A26E14E5700ECE9AF /* CRSProjParams.h */,
+				04021F5B26E14E5700ECE9AF /* CRSProjParams.m */,
+				04021F5E26E150AD00ECE9AF /* CRSProjParser.h */,
+				04021F5F26E150AD00ECE9AF /* CRSProjParser.m */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		042FC6411B963FE500549A4B = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +411,7 @@
 				04BCAA4226A7429F0015DEC0 /* projected */,
 				04BCAA5926A7633B0015DEC0 /* temporal */,
 				04BCAA6226A768550015DEC0 /* vertical */,
+				04021F5826E14CB400ECE9AF /* util */,
 				04BCA995269DAFF50015DEC0 /* wkt */,
 				042FC6D41B96453E00549A4B /* crs_ios.h */,
 				04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */,
@@ -751,6 +771,7 @@
 				04BCA9DE26A0B3F30015DEC0 /* CRSDynamic.h in Headers */,
 				04021F5226E128BA00ECE9AF /* CRSEllipsoids.h in Headers */,
 				04BCA9A9269E06E90015DEC0 /* CRSVerticalExtent.h in Headers */,
+				04021F5C26E14E5700ECE9AF /* CRSProjParams.h in Headers */,
 				042FC6D51B96453E00549A4B /* crs_ios.h in Headers */,
 				04BCA9F226A1DBB80015DEC0 /* CRSOperationParameter.h in Headers */,
 				04BCA9E226A0BDE70015DEC0 /* CRSReferenceFrame.h in Headers */,
@@ -758,6 +779,7 @@
 				04BCAA7D26A991440015DEC0 /* CRSTriaxialEllipsoid.h in Headers */,
 				042FC6D31B96421E00549A4B /* crs-ios-Prefix.pch in Headers */,
 				044224AD26AA0A7A00B1E1F2 /* CRSTextReader.h in Headers */,
+				04021F6026E150AD00ECE9AF /* CRSProjParser.h in Headers */,
 				04BCAA5226A74E850015DEC0 /* CRSGeoReferenceFrame.h in Headers */,
 				04BCAA2E26A6EAB40015DEC0 /* CRSDerivingConversion.h in Headers */,
 				04BCA9F626A203560015DEC0 /* CRSOperationMethods.h in Headers */,
@@ -926,7 +948,9 @@
 				04BCA9D326A079A10015DEC0 /* CRSCoordinateSystem.m in Sources */,
 				04BCA9A2269DD71C0015DEC0 /* CRSUnit.m in Sources */,
 				04BCA9E326A0BDE70015DEC0 /* CRSReferenceFrame.m in Sources */,
+				04021F5D26E14E5700ECE9AF /* CRSProjParams.m in Sources */,
 				04021F5326E128BA00ECE9AF /* CRSEllipsoids.m in Sources */,
+				04021F6126E150AD00ECE9AF /* CRSProjParser.m in Sources */,
 				04BCAA6126A763AA0015DEC0 /* CRSTemporalDatum.m in Sources */,
 				04BCAA0426A5CB7B0015DEC0 /* CRSConcatenatedOperation.m in Sources */,
 				044224AE26AA0A7A00B1E1F2 /* CRSTextReader.m in Sources */,
