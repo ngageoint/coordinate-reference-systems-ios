@@ -47,10 +47,15 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     nameTypes = [NSMutableDictionary dictionary];
     
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MICROMETRE] forKey:[CRS_UNITS_MICROMETRE_NAME lowercaseString]];
+    [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MICROMETRE] forKey:[self metreToMeter:CRS_UNITS_MICROMETRE_NAME]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MILLIMETRE] forKey:[CRS_UNITS_MILLIMETRE_NAME lowercaseString]];
+    [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MILLIMETRE] forKey:[self metreToMeter:CRS_UNITS_MILLIMETRE_NAME]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_METRE] forKey:[CRS_UNITS_METRE_NAME lowercaseString]];
+    [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_METRE] forKey:[self metreToMeter:CRS_UNITS_METRE_NAME]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_KILOMETRE] forKey:[CRS_UNITS_KILOMETRE_NAME lowercaseString]];
+    [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_KILOMETRE] forKey:[self metreToMeter:CRS_UNITS_KILOMETRE_NAME]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_GERMAN_LEGAL_METRE] forKey:[CRS_UNITS_GERMAN_LEGAL_METRE_NAME lowercaseString]];
+    [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_GERMAN_LEGAL_METRE] forKey:[self metreToMeter:CRS_UNITS_GERMAN_LEGAL_METRE_NAME]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_US_SURVEY_FOOT] forKey:[CRS_UNITS_US_SURVEY_FOOT_NAME lowercaseString]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MICRORADIAN] forKey:[CRS_UNITS_MICRORADIAN_NAME lowercaseString]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MILLIRADIAN] forKey:[CRS_UNITS_MILLIRADIAN_NAME lowercaseString]];
@@ -341,6 +346,10 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     }
     
     return value * ([from.conversionFactor doubleValue] / [to.conversionFactor doubleValue]);
+}
+
++(NSString *) metreToMeter: (NSString *) metre{
+    return [[metre lowercaseString] stringByReplacingOccurrencesOfString:@"metre" withString:@"meter"];
 }
 
 @end
