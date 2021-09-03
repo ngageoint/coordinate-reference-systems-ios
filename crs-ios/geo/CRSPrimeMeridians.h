@@ -71,13 +71,4 @@ enum CRSPrimeMeridianType{
  */
 -(double) offsetFromGreenwich;
 
-/**
- * Prime Meridian offset from greenwich comparison
- *
- * @param primeMeridian
- *            prime meridian
- * @return true if equal
- */
--(BOOL) isEqualToPrimeMeridian: (CRSPrimeMeridians *) primeMeridian;
-
 @end

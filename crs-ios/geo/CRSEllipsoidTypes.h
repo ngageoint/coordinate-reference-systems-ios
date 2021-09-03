@@ -22,6 +22,9 @@ enum CRSEllipsoidType{
 extern NSString * const CRS_ELLIPSOID_OBLATE_NAME;
 extern NSString * const CRS_ELLIPSOID_TRIAXIAL_NAME;
 
+/**
+ * Ellipsoid Type
+ */
 @interface CRSEllipsoidTypes : NSObject
 
 /**

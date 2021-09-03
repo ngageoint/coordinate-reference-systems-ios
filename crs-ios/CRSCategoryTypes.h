@@ -24,6 +24,9 @@ extern NSString * const CRS_CATEGORY_CRS_NAME;
 extern NSString * const CRS_CATEGORY_OPERATION_NAME;
 extern NSString * const CRS_CATEGORY_METADATA_NAME;
 
+/**
+ * Category Type
+ */
 @interface CRSCategoryTypes : NSObject
 
 /**

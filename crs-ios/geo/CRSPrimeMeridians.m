@@ -98,10 +98,6 @@ static NSMutableDictionary<NSString *, CRSPrimeMeridians *> *namePrimeMeridians 
     return _offsetFromGreenwich;
 }
 
--(BOOL) isEqualToPrimeMeridian: (CRSPrimeMeridians *) primeMeridian{
-    return _offsetFromGreenwich == primeMeridian.offsetFromGreenwich;
-}
-
 -(NSString *) description{
     return [NSString stringWithFormat:@"%@:%f", [self name], [self offsetFromGreenwich]];
 }

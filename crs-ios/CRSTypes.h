@@ -47,6 +47,9 @@ extern NSString * const CRS_TYPE_PROJECTED_NAME;
 extern NSString * const CRS_TYPE_TEMPORAL_NAME;
 extern NSString * const CRS_TYPE_VERTICAL_NAME;
 
+/**
+ * CRS Type
+ */
 @interface CRSTypes : NSObject
 
 /**

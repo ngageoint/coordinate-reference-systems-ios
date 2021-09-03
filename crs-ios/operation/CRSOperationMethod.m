@@ -32,7 +32,7 @@
 -(instancetype) initWithMethod: (CRSOperationMethods *) method{
     self = [super init];
     if(self != nil){
-        _name = method.name;
+        _name = [method name];
         _method = method;
     }
     return self;
@@ -135,7 +135,7 @@
         if (operationMethod.method != nil){
             return NO;
         }
-    } else if (_method.type != operationMethod.method.type){
+    } else if ([_method type] != [operationMethod.method type]){
         return NO;
     }
     return YES;
@@ -159,7 +159,7 @@
     result = prime * result + ((_name == nil) ? 0 : [_name hash]);
     result = prime * result + ((_parameters == nil) ? 0 : [_parameters hash]);
     result = prime * result + ((_identifiers == nil) ? 0 : [_identifiers hash]);
-    result = prime * result + ((_method == nil) ? 0 : [[NSNumber numberWithInteger:_method.type] hash]);
+    result = prime * result + ((_method == nil) ? 0 : [[NSNumber numberWithInteger:[_method type]] hash]);
     return result;
 }
 

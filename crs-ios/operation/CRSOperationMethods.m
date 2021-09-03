@@ -8,6 +8,17 @@
 
 #import "CRSOperationMethods.h"
 
+@interface CRSOperationMethods()
+
+@property (nonatomic) enum CRSOperationMethodType type;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic) enum CRSOperationType operationType;
+@property (nonatomic, strong) NSMutableArray<NSString *> *aliases;
+@property (nonatomic) int code;
+@property (nonatomic, strong) NSMutableArray<NSNumber *> *parameterCodes;
+
+@end
+
 @implementation CRSOperationMethods
 
 /**
@@ -132,10 +143,39 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
 -(void) addAlias: (NSString *) alias{
     if(![_aliases containsObject:alias]){
         [_aliases addObject:alias];
-        NSString *underscore = [alias stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        [_aliases addObject:underscore];
-        [_aliases addObject:[[underscore stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""]];
     }
+    NSString *underscore = [alias stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    if(![_aliases containsObject:underscore]){
+        [_aliases addObject:underscore];
+    }
+    NSString *noParens = [[underscore stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""];
+    if(![_aliases containsObject:noParens]){
+        [_aliases addObject:noParens];
+    }
+}
+
+-(enum CRSOperationMethodType) type{
+    return _type;
+}
+
+-(NSString *) name{
+    return _name;
+}
+
+-(enum CRSOperationType) operationType{
+    return _operationType;
+}
+
+-(NSArray<NSString *> *) aliases{
+    return _aliases;
+}
+
+-(int) code{
+    return _code;
+}
+
+-(NSArray<NSNumber *> *) parameterCodes{
+    return _parameterCodes;
 }
 
 -(int) numParameters{

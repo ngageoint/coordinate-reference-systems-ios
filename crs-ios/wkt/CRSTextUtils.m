@@ -68,9 +68,9 @@
 
 +(enum CRSUnitType) unitTypeOfKeyword: (CRSKeyword *) keyword{
     
-    enum CRSUnitType unitType = [CRSUnitTypes type:keyword.name];
+    enum CRSUnitType unitType = [CRSUnitTypes type:[keyword name]];
     if((int)unitType < 0){
-        [NSException raise:@"No Unit Type" format:@"No unit type found. keyword: %@", keyword.name];
+        [NSException raise:@"No Unit Type" format:@"No unit type found. keyword: %@", [keyword name]];
     }
     
     return unitType;

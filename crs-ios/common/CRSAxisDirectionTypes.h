@@ -98,6 +98,9 @@ extern NSString * const CRS_AXIS_WEST_NAME;
 extern NSString * const CRS_AXIS_WEST_NORTH_WEST_NAME;
 extern NSString * const CRS_AXIS_WEST_SOUTH_WEST_NAME;
 
+/**
+ * Axis Direction Type
+ */
 @interface CRSAxisDirectionTypes : NSObject
 
 /**

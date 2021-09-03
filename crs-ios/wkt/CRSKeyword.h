@@ -93,22 +93,31 @@ enum CRSKeywordType{
     CRS_KEYWORD_VERTICALEXTENT
 };
 
+/**
+ * Keyword
+ */
 @interface CRSKeyword : NSObject
 
 /**
- * Keyword Type
+ * Get the type
+ *
+ * @return type
  */
-@property (nonatomic) enum CRSKeywordType type;
+-(enum CRSKeywordType) type;
 
 /**
- * Parameter name
+ * Get the name
+ *
+ * @return name
  */
-@property (nonatomic, strong) NSString *name;
+-(NSString *) name;
 
 /**
- * Type keywords
+ * Get the keywords
+ *
+ * @return keywords
  */
-@property (nonatomic, strong) NSMutableArray<NSString *> *keywords;
+-(NSArray<NSString *> *) keywords;
 
 /**
  * Get the keyword type object from the keyword

@@ -144,7 +144,7 @@
 }
 
 -(void) writeKeyword: (CRSKeyword *) keyword{
-    [_text appendString:keyword.name];
+    [_text appendString:[keyword name]];
 }
 
 -(void) writeLeftDelimiter{

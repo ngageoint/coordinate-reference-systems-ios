@@ -8,6 +8,14 @@
 
 #import "CRSKeyword.h"
 
+@interface CRSKeyword()
+
+@property (nonatomic) enum CRSKeywordType type;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSMutableArray<NSString *> *keywords;
+
+@end
+
 @implementation CRSKeyword
 
 /**
@@ -154,6 +162,18 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
         }
     }
     return self;
+}
+
+-(enum CRSKeywordType) type{
+    return _type;
+}
+
+-(NSString *) name{
+    return _name;
+}
+
+-(NSArray<NSString *> *) keywords{
+    return _keywords;
 }
 
 -(BOOL) isEqualToKeyword: (CRSKeyword *) keyword{

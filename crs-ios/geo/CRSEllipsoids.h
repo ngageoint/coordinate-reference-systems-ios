@@ -12,51 +12,51 @@
  * Common Ellipsoids
  */
 enum CRSEllipsoidsType{
-    CRS_ELLIPSOID_INTERNATIONAL,
-    CRS_ELLIPSOID_BESSEL,
-    CRS_ELLIPSOID_CLARKE_1866,
-    CRS_ELLIPSOID_CLARKE_1880,
-    CRS_ELLIPSOID_AIRY,
-    CRS_ELLIPSOID_WGS60,
-    CRS_ELLIPSOID_WGS66,
-    CRS_ELLIPSOID_WGS72,
-    CRS_ELLIPSOID_WGS84,
-    CRS_ELLIPSOID_KRASSOVSKY,
-    CRS_ELLIPSOID_EVEREST,
-    CRS_ELLIPSOID_INTERNATIONAL_1967,
-    CRS_ELLIPSOID_GRS80,
-    CRS_ELLIPSOID_AUSTRALIAN,
-    CRS_ELLIPSOID_MERIT,
-    CRS_ELLIPSOID_SGS85,
-    CRS_ELLIPSOID_IAU76,
-    CRS_ELLIPSOID_APL4_9,
-    CRS_ELLIPSOID_NWL9D,
-    CRS_ELLIPSOID_MOD_AIRY,
-    CRS_ELLIPSOID_ANDRAE,
-    CRS_ELLIPSOID_AUST_SA,
-    CRS_ELLIPSOID_GRS67,
-    CRS_ELLIPSOID_BESS_NAM,
-    CRS_ELLIPSOID_CPM,
-    CRS_ELLIPSOID_DELMBR,
-    CRS_ELLIPSOID_ENGELIS,
-    CRS_ELLIPSOID_EVRST48,
-    CRS_ELLIPSOID_EVRST56,
-    CRS_ELLIPSOID_EVRTS69,
-    CRS_ELLIPSOID_EVRTSTSS,
-    CRS_ELLIPSOID_FRSCH60,
-    CRS_ELLIPSOID_FSRCH60M,
-    CRS_ELLIPSOID_FSCHR68,
-    CRS_ELLIPSOID_HELMERT,
-    CRS_ELLIPSOID_HOUGH,
-    CRS_ELLIPSOID_KAULA,
-    CRS_ELLIPSOID_LERCH,
-    CRS_ELLIPSOID_MPRTS,
-    CRS_ELLIPSOID_PLESSIS,
-    CRS_ELLIPSOID_SEASIA,
-    CRS_ELLIPSOID_WALBECK,
-    CRS_ELLIPSOID_NAD27,
-    CRS_ELLIPSOID_NAD83,
-    CRS_ELLIPSOID_SPHERE
+    CRS_ELLIPSOIDS_INTERNATIONAL,
+    CRS_ELLIPSOIDS_BESSEL,
+    CRS_ELLIPSOIDS_CLARKE_1866,
+    CRS_ELLIPSOIDS_CLARKE_1880,
+    CRS_ELLIPSOIDS_AIRY,
+    CRS_ELLIPSOIDS_WGS60,
+    CRS_ELLIPSOIDS_WGS66,
+    CRS_ELLIPSOIDS_WGS72,
+    CRS_ELLIPSOIDS_WGS84,
+    CRS_ELLIPSOIDS_KRASSOVSKY,
+    CRS_ELLIPSOIDS_EVEREST,
+    CRS_ELLIPSOIDS_INTERNATIONAL_1967,
+    CRS_ELLIPSOIDS_GRS80,
+    CRS_ELLIPSOIDS_AUSTRALIAN,
+    CRS_ELLIPSOIDS_MERIT,
+    CRS_ELLIPSOIDS_SGS85,
+    CRS_ELLIPSOIDS_IAU76,
+    CRS_ELLIPSOIDS_APL4_9,
+    CRS_ELLIPSOIDS_NWL9D,
+    CRS_ELLIPSOIDS_MOD_AIRY,
+    CRS_ELLIPSOIDS_ANDRAE,
+    CRS_ELLIPSOIDS_AUST_SA,
+    CRS_ELLIPSOIDS_GRS67,
+    CRS_ELLIPSOIDS_BESS_NAM,
+    CRS_ELLIPSOIDS_CPM,
+    CRS_ELLIPSOIDS_DELMBR,
+    CRS_ELLIPSOIDS_ENGELIS,
+    CRS_ELLIPSOIDS_EVRST48,
+    CRS_ELLIPSOIDS_EVRST56,
+    CRS_ELLIPSOIDS_EVRTS69,
+    CRS_ELLIPSOIDS_EVRTSTSS,
+    CRS_ELLIPSOIDS_FRSCH60,
+    CRS_ELLIPSOIDS_FSRCH60M,
+    CRS_ELLIPSOIDS_FSCHR68,
+    CRS_ELLIPSOIDS_HELMERT,
+    CRS_ELLIPSOIDS_HOUGH,
+    CRS_ELLIPSOIDS_KAULA,
+    CRS_ELLIPSOIDS_LERCH,
+    CRS_ELLIPSOIDS_MPRTS,
+    CRS_ELLIPSOIDS_PLESSIS,
+    CRS_ELLIPSOIDS_SEASIA,
+    CRS_ELLIPSOIDS_WALBECK,
+    CRS_ELLIPSOIDS_NAD27,
+    CRS_ELLIPSOIDS_NAD83,
+    CRS_ELLIPSOIDS_SPHERE
 };
 
 /**
@@ -65,7 +65,7 @@ enum CRSEllipsoidsType{
 @interface CRSEllipsoids : NSObject
 
 /**
- * Get a predefined proj4 ellipsoid by type
+ * Get a predefined ellipsoid by type
  *
  * @param type
  *            ellipsoid type
@@ -74,7 +74,7 @@ enum CRSEllipsoidsType{
 +(CRSEllipsoids *) fromType: (enum CRSEllipsoidsType) type;
 
 /**
- * Get a predefined proj4 ellipsoid by name or short name
+ * Get a predefined ellipsoid by name or short name
  *
  * @param name
  *            name or short name
@@ -137,25 +137,5 @@ enum CRSEllipsoidsType{
  * @return eccentricity squared
  */
 -(double) eccentricitySquared;
-
-/**
- * Ellipsoid equator radius and eccentricity squared equality comparison
- *
- * @param ellipsoid
- *            ellipsoid
- * @return true if equal
- */
--(BOOL) isEqualToEllipsoid: (CRSEllipsoids *) ellipsoid;
-
-/**
- * Ellipsoid equator radius and eccentricity squared within tolerance equality comparison
- *
- * @param ellipsoid
- *            ellipsoid
- * @param e2Tolerance
- *            eccentricity squared tolerance
- * @return true if equal
- */
--(BOOL) isEqualToEllipsoid: (CRSEllipsoids *) ellipsoid withTolerance: (double) e2Tolerance;
 
 @end

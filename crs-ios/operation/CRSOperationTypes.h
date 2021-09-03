@@ -28,6 +28,9 @@ extern NSString * const CRS_OPERATION_MAP_PROJECTION_NAME;
 extern NSString * const CRS_OPERATION_DERIVING_CONVERSION_NAME;
 extern NSString * const CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME;
 
+/**
+ * Coordinate Operation Type
+ */
 @interface CRSOperationTypes : NSObject
 
 /**

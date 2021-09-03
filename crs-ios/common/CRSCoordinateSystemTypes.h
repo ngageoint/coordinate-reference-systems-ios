@@ -44,6 +44,9 @@ extern NSString * const CRS_CS_TEMPORAL_DATE_TIME_NAME;
 extern NSString * const CRS_CS_TEMPORAL_MEASURE_NAME;
 extern NSString * const CRS_CS_VERTICAL_NAME;
 
+/**
+ * Coordinate System Type
+ */
 @interface CRSCoordinateSystemTypes : NSObject
 
 /**

@@ -8,6 +8,17 @@
 
 #import "CRSOperationParameters.h"
 
+@interface CRSOperationParameters()
+
+@property (nonatomic) enum CRSOperationParameterType type;
+@property (nonatomic) int code;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic) enum CRSOperationType operationType;
+@property (nonatomic, strong) NSMutableArray<NSString *> *aliases;
+@property (nonatomic) enum CRSUnitType unitType;
+
+@end
+
 @implementation CRSOperationParameters
 
 /**
@@ -197,6 +208,30 @@ static NSMutableDictionary<NSNumber *, CRSOperationParameters *> *codeParameters
         [_aliases addObject:alias];
         [_aliases addObject:[alias stringByReplacingOccurrencesOfString:@" " withString:@"_"]];
     }
+}
+
+-(enum CRSOperationParameterType) type{
+    return _type;
+}
+
+-(int) code{
+    return _code;
+}
+
+-(NSString *) name{
+    return _name;
+}
+
+-(enum CRSOperationType) operationType{
+    return _operationType;
+}
+
+-(NSArray<NSString *> *) aliases{
+    return _aliases;
+}
+
+-(enum CRSUnitType) unitType{
+    return _unitType;
 }
 
 -(BOOL) isEqualToOperationParameters: (CRSOperationParameters *) operationParameters{

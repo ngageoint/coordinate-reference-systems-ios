@@ -31,6 +31,9 @@ extern NSString * const CRS_UNIT_SCALE_NAME;
 extern NSString * const CRS_UNIT_TIME_NAME;
 extern NSString * const CRS_UNIT_NAME;
 
+/**
+ * Unit Type
+ */
 @interface CRSUnitTypes : NSObject
 
 /**

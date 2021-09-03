@@ -59,34 +59,46 @@ enum CRSOperationParameterType{
 @interface CRSOperationParameters : NSObject
 
 /**
- * Operation Parameter Type
+ * Get the type
+ *
+ * @return type
  */
-@property (nonatomic) enum CRSOperationParameterType type;
+-(enum CRSOperationParameterType) type;
 
 /**
- * Parameter code
+ * Get the code
+ *
+ * @return code
  */
-@property (nonatomic) int code;
+-(int) code;
 
 /**
- * Parameter name
+ * Get the name
+ *
+ * @return name
  */
-@property (nonatomic, strong) NSString *name;
+-(NSString *) name;
 
 /**
- * Operation type
+ * Get the operation type
+ *
+ * @return operation type
  */
-@property (nonatomic) enum CRSOperationType operationType;
+-(enum CRSOperationType) operationType;
 
 /**
- * Aliases
+ * Get the aliases
+ *
+ * @return aliases
  */
-@property (nonatomic, strong) NSMutableArray<NSString *> *aliases;
+-(NSArray<NSString *> *) aliases;
 
 /**
- * Unit type
+ * Get the unit type
+ *
+ * @return unit type
  */
-@property (nonatomic) enum CRSUnitType unitType;
+-(enum CRSUnitType) unitType;
 
 /**
  * Get the parameter from the parameter type

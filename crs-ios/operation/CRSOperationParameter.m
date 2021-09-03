@@ -62,7 +62,7 @@
 -(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValue: (double) value andUnit: (CRSUnit *) unit{
     self = [super init];
     if(self != nil){
-        _name = parameter.name;
+        _name = [parameter name];
         [self setValue:value];
         _unit = unit;
         _parameter = parameter;
@@ -73,7 +73,7 @@
 -(instancetype) initWithParameter: (CRSOperationParameters *) parameter andValueText: (NSString *) value andUnit: (CRSUnit *) unit{
     self = [super init];
     if(self != nil){
-        _name = parameter.name;
+        _name = [parameter name];
         [self setValueText:value];
         _unit = unit;
         _parameter = parameter;
@@ -190,7 +190,7 @@
         if (operationParameter.parameter != nil){
             return NO;
         }
-    } else if (_parameter.type != operationParameter.parameter.type){
+    } else if ([_parameter type] != [operationParameter.parameter type]){
         return NO;
     }
     return YES;
@@ -216,7 +216,7 @@
     result = prime * result + ((_unit == nil) ? 0 : [_unit hash]);
     result = prime * result + ((_fileName == nil) ? 0 : [_fileName hash]);
     result = prime * result + ((_identifiers == nil) ? 0 : [_identifiers hash]);
-    result = prime * result + ((_parameter == nil) ? 0 : [[NSNumber numberWithInteger:_parameter.type] hash]);
+    result = prime * result + ((_parameter == nil) ? 0 : [[NSNumber numberWithInteger:[_parameter type]] hash]);
     return result;
 }
 

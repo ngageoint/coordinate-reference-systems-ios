@@ -13,6 +13,7 @@
 #import "CRSUnits.h"
 #import "CRSPrimeMeridians.h"
 #import "CRSTextUtils.h"
+#import "CRSGeoDatums.h"
 
 @implementation CRSProjParser
 
@@ -136,21 +137,24 @@
     
     NSString *name = [geoDatum name];
     
-    // TODO check for datum
-    //[params setDatum:name];
+    CRSGeoDatums *commonGeoDatum = [CRSGeoDatums fromName:name];
     
-    [self updateEllipsoidWithParams:params andEllipsoid:[geoDatum ellipsoid]];
-    
+    if(commonGeoDatum != nil){
+        [params setDatum:[commonGeoDatum code]];
+    }else{
+        [self updateEllipsoidWithParams:params andEllipsoid:[geoDatum ellipsoid]];
+    }
+
 }
 
 +(void) updateEllipsoidWithParams: (CRSProjParams *) params andEllipsoid: (CRSEllipsoid *) ellipsoid{
 
     NSString *name = ellipsoid.name;
     
-    CRSEllipsoids *converted = [CRSEllipsoids fromName:name];
+    CRSEllipsoids *commonEllipsoid = [CRSEllipsoids fromName:name];
     
-    if(converted != nil){
-        [params setEllps:[converted shortName]];
+    if(commonEllipsoid != nil){
+        [params setEllps:[commonEllipsoid shortName]];
     }else{
         
         [params setA:ellipsoid.semiMajorAxisText];
@@ -179,7 +183,7 @@
         
         if([parameter hasParameter]){
         
-            switch(parameter.parameter.type){
+            switch([parameter.parameter type]){
                     
                 case CRS_PARAMETER_X_AXIS_TRANSLATION:
                     [params setParam1:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
@@ -212,7 +216,6 @@
                 default:
                     break;
                     
-                    
             }
         }
     }
@@ -223,10 +226,10 @@
     
     if([geoDatum hasPrimeMeridian]){
         CRSPrimeMeridian *primeMeridian = [geoDatum primeMeridian];
-        CRSPrimeMeridians *converted = [CRSPrimeMeridians fromName:primeMeridian.name];
-        if(converted != nil){
-            if(converted.type != CRS_PM_GREENWICH){
-                [params setPm:[converted name]];
+        CRSPrimeMeridians *commonPrimeMeridian = [CRSPrimeMeridians fromName:primeMeridian.name];
+        if(commonPrimeMeridian != nil){
+            if(commonPrimeMeridian.type != CRS_PM_GREENWICH){
+                [params setPm:[commonPrimeMeridian name]];
             }
         }else{
             [params setPm:[self convertValue:primeMeridian.longitude andTextValue:primeMeridian.longitudeText
@@ -253,7 +256,7 @@
     
     if([method hasMethod]){
         
-        switch(method.method.type){
+        switch([method.method type]){
                 
             case CRS_METHOD_ALBERS_EQUAL_AREA:
                 [params setProj:@"aea"];
@@ -397,7 +400,7 @@
     
     if([parameter hasParameter]){
         
-        switch(parameter.parameter.type){
+        switch([parameter.parameter type]){
                 
             case CRS_PARAMETER_FALSE_EASTING:
             case CRS_PARAMETER_EASTING_AT_PROJECTION_CENTRE:
@@ -429,7 +432,7 @@
             case CRS_PARAMETER_LATITUDE_OF_FALSE_ORIGIN:
                 [params setLat_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                 if([method hasMethod]){
-                    switch(method.method.type){
+                    switch([method.method type]){
                         case CRS_METHOD_POLAR_STEREOGRAPHIC_A:
                         case CRS_METHOD_POLAR_STEREOGRAPHIC_B:
                         case CRS_METHOD_POLAR_STEREOGRAPHIC_C:
@@ -446,7 +449,7 @@
             case CRS_PARAMETER_LONGITUDE_OF_FALSE_ORIGIN:
             case CRS_PARAMETER_LONGITUDE_OF_ORIGIN:
                 if([method hasMethod]){
-                    switch(method.method.type){
+                    switch([method.method type]){
                         case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_A:
                         case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
                             [params setLonc:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];

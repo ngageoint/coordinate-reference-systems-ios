@@ -48,6 +48,7 @@
 #import "CRSEllipsoids.h"
 #import "CRSGeoCoordinateReferenceSystem.h"
 #import "CRSGeoDatum.h"
+#import "CRSGeoDatums.h"
 #import "CRSGeoDatumEnsemble.h"
 #import "CRSGeoReferenceFrame.h"
 #import "CRSPrimeMeridian.h"
