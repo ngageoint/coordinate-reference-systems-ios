@@ -459,17 +459,34 @@
             case CRS_PARAMETER_LATITUDE_OF_PROJECTION_CENTRE:
             case CRS_PARAMETER_LATITUDE_OF_NATURAL_ORIGIN:
             case CRS_PARAMETER_LATITUDE_OF_FALSE_ORIGIN:
-                [params setLat_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                 if([method hasMethod]){
                     switch([method.method type]){
                         case CRS_METHOD_POLAR_STEREOGRAPHIC_A:
                         case CRS_METHOD_POLAR_STEREOGRAPHIC_B:
                         case CRS_METHOD_POLAR_STEREOGRAPHIC_C:
                             [params setLat_ts:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            if([params.lat_ts doubleValue] >= 0){
+                                [params setLat_0:@"90"];
+                            }else{
+                                [params setLat_0:@"-90"];
+                            }
+                            break;
+                        case CRS_METHOD_EQUIDISTANT_CYLINDRICAL:
+                            [params setLat_ts:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            [params setLat_0:@"0"];
+                            break;
+                        case CRS_METHOD_LAMBERT_CYLINDRICAL_EQUAL_AREA:
+                        case CRS_METHOD_MERCATOR_A:
+                        case CRS_METHOD_MERCATOR_B:
+                        case CRS_METHOD_POPULAR_VISUALISATION_PSEUDO_MERCATOR:
+                            [params setLat_ts:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                             break;
                         default:
+                            [params setLat_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                             break;
                     }
+                }else{
+                    [params setLat_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                 }
                 break;
                 
