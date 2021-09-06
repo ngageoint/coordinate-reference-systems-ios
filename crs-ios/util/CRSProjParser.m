@@ -95,13 +95,12 @@
 
     [self updateDatumWithParams:params andGeoDatum:geoDatum];
 
-    CRSOperationMethod *method = mapProjection.method;
-    [self updateDatumTransformWithParams:params andOperationMethod:method];
+    [self updateDatumTransformWithParams:params andOperationMethod:mapProjection.method];
 
     [self updateProjWithParams:params andCoordinateSystem:coordinateSystem andMapProjection:mapProjection];
     [self updateUnitsWithParams:params andCoordinateSystem:coordinateSystem];
     [self updatePrimeMeridianWithParams:params andGeoDatum:geoDatum];
-    [self updateParams:params withOperationMethod:method];
+    [self updateParams:params withMapProjection:mapProjection];
     
     [params setNo_defs:YES];
     
@@ -186,31 +185,31 @@
             switch([parameter.parameter type]){
                     
                 case CRS_PARAMETER_X_AXIS_TRANSLATION:
-                    [params setParam1:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                    [params setXTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
                     break;
                     
                 case CRS_PARAMETER_Y_AXIS_TRANSLATION:
-                    [params setParam2:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                    [params setYTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
                     break;
                     
                 case CRS_PARAMETER_Z_AXIS_TRANSLATION:
-                    [params setParam3:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                    [params setZTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
                     break;
                     
                 case CRS_PARAMETER_X_AXIS_ROTATION:
-                    [params setParam4:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
+                    [params setXRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
                     break;
                     
                 case CRS_PARAMETER_Y_AXIS_ROTATION:
-                    [params setParam5:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
+                    [params setYRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
                     break;
                     
                 case CRS_PARAMETER_Z_AXIS_ROTATION:
-                    [params setParam6:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
+                    [params setZRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
                     break;
                     
                 case CRS_PARAMETER_SCALE_DIFFERENCE:
-                    [params setParam7:[self valueOfParameter:parameter inUnit:[CRSUnits partsPerMillion]]];
+                    [params setScaleDifference:[self valueOfParameter:parameter inUnit:[CRSUnits partsPerMillion]]];
                     break;
                     
                 default:
@@ -386,6 +385,36 @@
         [params setAxis:axisOrder];
     }
 
+}
+
++(void) updateParams: (CRSProjParams *) params withMapProjection: (CRSMapProjection *) mapProjection{
+    
+    NSString *name = mapProjection.name;
+    NSRange range = [name rangeOfString:@"UTM zone" options:NSCaseInsensitiveSearch];
+    if(range.length > 0){
+        NSString *utm = [[name substringFromIndex:range.location + range.length] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSArray *parts = [utm componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        BOOL south = NO;
+        if(parts.count > 0){
+            utm = [[parts objectAtIndex:0] uppercaseString];
+            south = [utm hasSuffix:@"S"];
+            if(south || [utm hasSuffix:@"N"]){
+                utm = [utm substringToIndex:utm.length - 1];
+            }
+        }
+        NSScanner *scanner = [NSScanner scannerWithString:utm];
+        if([scanner scanInt:nil]){
+            [params setZone:utm];
+            if(south){
+                [params setSouth:YES];
+            }
+        }else{
+            [self updateParams:params withOperationMethod:mapProjection.method];
+        }
+    }else{
+        [self updateParams:params withOperationMethod:mapProjection.method];
+    }
+    
 }
 
 +(void) updateParams: (CRSProjParams *) params withOperationMethod: (CRSOperationMethod *) method{

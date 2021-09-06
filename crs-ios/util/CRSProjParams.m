@@ -25,6 +25,12 @@
     if(_proj != nil){
         [description appendFormat:@"+proj=%@", _proj];
     }
+    if(_zone != nil){
+        [description appendFormat:@" +zone=%@", _zone];
+    }
+    if(_south){
+        [description appendFormat:@" +south"];
+    }
     if(_lat_1 != nil){
         [description appendFormat:@" +lat_1=%@", _lat_1];
     }
@@ -67,32 +73,32 @@
     if(_gamma != nil){
         [description appendFormat:@" +gamma=%@", _gamma];
     }
-    if(_zone != nil){
-        [description appendFormat:@" +zone=%@", _zone];
-    }
     if(_a != nil){
         [description appendFormat:@" +a=%@", _a];
     }
     if(_b != nil){
         [description appendFormat:@" +b=%@", _b];
     }
-    if(_south){
-        [description appendFormat:@" +south"];
-    }
     if(_ellps != nil){
         [description appendFormat:@" +ellps=%@", _ellps];
     }
     if(_towgs84 != nil){
         [description appendFormat:@" +towgs84=%@", _towgs84];
-    }else if(_param1 != nil || _param2 != nil || _param3 != nil || _param4 != nil || _param5 != nil || _param6 != nil || _param7 != nil){
+    }else if(_xTranslation != nil
+             || _yTranslation != nil
+             || _zTranslation != nil
+             || _xRotation != nil
+             || _yRotation != nil
+             || _zRotation != nil
+             || _scaleDifference != nil){
         [description appendFormat:@" +towgs84=%@,%@,%@,%@,%@,%@,%@",
-         _param1 != nil ? _param1 : @"0",
-         _param2 != nil ? _param2 : @"0",
-         _param3 != nil ? _param3 : @"0",
-         _param4 != nil ? _param4 : @"0",
-         _param5 != nil ? _param5 : @"0",
-         _param6 != nil ? _param6 : @"0",
-         _param7 != nil ? _param7 : @"0"];
+         _xTranslation != nil ? _xTranslation : @"0",
+         _yTranslation != nil ? _yTranslation : @"0",
+         _zTranslation != nil ? _zTranslation : @"0",
+         _xRotation != nil ? _xRotation : @"0",
+         _yRotation != nil ? _yRotation : @"0",
+         _zRotation != nil ? _zRotation : @"0",
+         _scaleDifference != nil ? _scaleDifference : @"0"];
     }
     if(_pm != nil){
         [description appendFormat:@" +pm=%@", _pm];
