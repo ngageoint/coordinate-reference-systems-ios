@@ -1405,11 +1405,11 @@
     [expectedText appendString:@"PARAMETER[\"scale_factor\",0.9996012717],"];
     [expectedText appendString:@"PARAMETER[\"false_easting\",400000],"];
     [expectedText appendString:@"PARAMETER[\"false_northing\",-100000],"];
-    [expectedText appendString:@"PARAMETER[\"X-axis translation\",446.4479999999998,LENGTHUNIT[\"metre\",1]],"];
+    [expectedText appendString:@"PARAMETER[\"X-axis translation\",446.448,LENGTHUNIT[\"metre\",1]],"];
     [expectedText appendString:@"PARAMETER[\"Y-axis translation\",-125.157,LENGTHUNIT[\"metre\",1]],"];
-    [expectedText appendString:@"PARAMETER[\"Z-axis translation\",542.0599999999997,LENGTHUNIT[\"metre\",1]],"];
+    [expectedText appendString:@"PARAMETER[\"Z-axis translation\",542.06,LENGTHUNIT[\"metre\",1]],"];
     [expectedText appendString:@"PARAMETER[\"X-axis rotation\",0.15,ANGLEUNIT[\"arc-second\",4.8481368111E-06]],"];
-    [expectedText appendString:@"PARAMETER[\"Y-axis rotation\",0.2469999999999999,ANGLEUNIT[\"arc-second\",4.8481368111E-06]],"];
+    [expectedText appendString:@"PARAMETER[\"Y-axis rotation\",0.247,ANGLEUNIT[\"arc-second\",4.8481368111E-06]],"];
     [expectedText appendString:@"PARAMETER[\"Z-axis rotation\",0.842,ANGLEUNIT[\"arc-second\",4.8481368111E-06]],"];
     [expectedText appendString:@"PARAMETER[\"Scale difference\",-20.489,SCALEUNIT[\"parts per million\",1E-06]]],"];
     [expectedText appendString:@"CS[ellipsoidal,2],AXIS[\"Easting\",east],AXIS[\"Northing\",north],"];
