@@ -1336,7 +1336,7 @@
  * @param mapProjection
  *            map projection
  */
-+(void) addTransformParameters: (NSArray<NSDecimalNumber *> *) transform toMapProjection: (CRSMapProjection *) mapProjection;
++(void) addTransformParameters: (NSArray<NSString *> *) transform toMapProjection: (CRSMapProjection *) mapProjection;
 
 /**
  * Read a Backward Compatible Vertical CRS
@@ -1427,7 +1427,7 @@
  *
  * @return abridged transformation
  */
--(NSMutableArray<NSDecimalNumber *> *) readToWGS84Compat;
+-(NSMutableArray<NSString *> *) readToWGS84Compat;
 
 /**
  * Read Backward Compatible Extensions

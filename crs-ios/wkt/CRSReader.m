@@ -1689,7 +1689,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
                                                 nil]];
 
     if(keyword != nil && keyword.type == CRS_KEYWORD_TOWGS84){
-        NSArray<NSDecimalNumber *> *toWGS84 = [self readToWGS84Compat];
+        NSArray<NSString *> *toWGS84 = [self readToWGS84Compat];
         if(crs != nil){
             [crs addExtra:toWGS84 withName:[CRSKeyword nameOfType:CRS_KEYWORD_TOWGS84]];
         }
@@ -1713,7 +1713,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     }
 
     if(keyword != nil && keyword.type == CRS_KEYWORD_TOWGS84){
-        NSArray<NSDecimalNumber *> *toWGS84 = [self readToWGS84Compat];
+        NSArray<NSString *> *toWGS84 = [self readToWGS84Compat];
         if(crs != nil){
             [crs addExtra:toWGS84 withName:[CRSKeyword nameOfType:CRS_KEYWORD_TOWGS84]];
         }
@@ -2888,7 +2888,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
     NSObject *toWGS84 = [base extraWithName:[CRSKeyword nameOfType:CRS_KEYWORD_TOWGS84]];
     if(toWGS84 != nil){
-        [CRSReader addTransformParameters:(NSArray<NSDecimalNumber *> *)toWGS84 toMapProjection:mapProjection];
+        [CRSReader addTransformParameters:(NSArray<NSString *> *)toWGS84 toMapProjection:mapProjection];
     }
 
     [crs setMapProjection:mapProjection];
@@ -2921,7 +2921,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return crs;
 }
 
-+(void) addTransformParameters: (NSArray<NSDecimalNumber *> *) transform toMapProjection: (CRSMapProjection *) mapProjection{
++(void) addTransformParameters: (NSArray<NSString *> *) transform toMapProjection: (CRSMapProjection *) mapProjection{
 
     BOOL param3 = NO;
     BOOL param7 = NO;
@@ -2954,28 +2954,28 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
 
         [method addParameter:[[CRSOperationParameter alloc] initWithParameter:
                               [CRSOperationParameters parameter:CRS_PARAMETER_X_AXIS_TRANSLATION]
-                              andValue:[[transform objectAtIndex:0] doubleValue] andUnit:[CRSUnits metre]]];
+                              andValueText:[transform objectAtIndex:0] andUnit:[CRSUnits metre]]];
         [method addParameter:[[CRSOperationParameter alloc] initWithParameter:
                               [CRSOperationParameters parameter:CRS_PARAMETER_Y_AXIS_TRANSLATION]
-                              andValue:[[transform objectAtIndex:1] doubleValue] andUnit:[CRSUnits metre]]];
+                              andValueText:[transform objectAtIndex:1] andUnit:[CRSUnits metre]]];
         [method addParameter:[[CRSOperationParameter alloc] initWithParameter:
                               [CRSOperationParameters parameter:CRS_PARAMETER_Z_AXIS_TRANSLATION]
-                              andValue:[[transform objectAtIndex:2] doubleValue] andUnit:[CRSUnits metre]]];
+                              andValueText:[transform objectAtIndex:2] andUnit:[CRSUnits metre]]];
 
         if(param7){
 
             [method addParameter:[[CRSOperationParameter alloc] initWithParameter:
                                   [CRSOperationParameters parameter:CRS_PARAMETER_X_AXIS_ROTATION]
-                                  andValue:[[transform objectAtIndex:3] doubleValue] andUnit:[CRSUnits arcSecond]]];
+                                  andValueText:[transform objectAtIndex:3] andUnit:[CRSUnits arcSecond]]];
             [method addParameter:[[CRSOperationParameter alloc] initWithParameter:
                                   [CRSOperationParameters parameter:CRS_PARAMETER_Y_AXIS_ROTATION]
-                                  andValue:[[transform objectAtIndex:4] doubleValue] andUnit:[CRSUnits arcSecond]]];
+                                  andValueText:[transform objectAtIndex:4] andUnit:[CRSUnits arcSecond]]];
             [method addParameter:[[CRSOperationParameter alloc] initWithParameter:
                                   [CRSOperationParameters parameter:CRS_PARAMETER_Z_AXIS_ROTATION]
-                                  andValue:[[transform objectAtIndex:5] doubleValue] andUnit:[CRSUnits arcSecond]]];
+                                  andValueText:[transform objectAtIndex:5] andUnit:[CRSUnits arcSecond]]];
             [method addParameter:[[CRSOperationParameter alloc] initWithParameter:
                                   [CRSOperationParameters parameter:CRS_PARAMETER_SCALE_DIFFERENCE]
-                                  andValue:[[transform objectAtIndex:6] doubleValue] andUnit:[CRSUnits partsPerMillion]]];
+                                  andValueText:[transform objectAtIndex:6] andUnit:[CRSUnits partsPerMillion]]];
         }
 
     }
@@ -3212,9 +3212,9 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return referenceFrame;
 }
 
--(NSMutableArray<NSDecimalNumber *> *) readToWGS84Compat{
+-(NSMutableArray<NSString *> *) readToWGS84Compat{
     
-    NSMutableArray<NSDecimalNumber *> *value = [NSMutableArray array];
+    NSMutableArray<NSString *> *value = [NSMutableArray array];
 
     [self readKeywordWithType:CRS_KEYWORD_TOWGS84];
 
@@ -3226,7 +3226,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
             [self readSeparator];
         }
 
-        [value addObject:[[NSDecimalNumber alloc] initWithDouble:[_reader readNumber]]];
+        [value addObject:[_reader readExpectedToken]];
     }
     [self readRightDelimiter];
 
