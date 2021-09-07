@@ -107,4 +107,18 @@
  */
 -(BOOL) hasUnit;
 
+/**
+ *  Get the pole radius
+ *
+ *  @return pole radius
+ */
+-(double) poleRadius;
+
+/**
+ *  Get the pole radius as text
+ *
+ *  @return pole radius
+ */
+-(NSString *) poleRadiusText;
+
 @end

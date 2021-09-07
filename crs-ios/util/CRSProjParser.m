@@ -95,12 +95,13 @@
     
     CRSCoordinateSystem *coordinateSystem = projected.coordinateSystem;
     CRSMapProjection *mapProjection = projected.mapProjection;
+    CRSOperationMethod *method = mapProjection.method;
 
     NSObject<CRSGeoDatum> *geoDatum = [projected geoDatum];
 
-    [self updateDatumWithParams:params andGeoDatum:geoDatum];
+    [self updateDatumWithParams:params andGeoDatum:geoDatum andOperationMethod:method];
 
-    [self updateDatumTransformWithParams:params andOperationMethod:mapProjection.method];
+    [self updateDatumTransformWithParams:params andOperationMethod:method];
 
     [self updateProjWithParams:params andCoordinateSystem:coordinateSystem andMapProjection:mapProjection];
     [self updateUnitsWithParams:params andCoordinateSystem:coordinateSystem];
@@ -139,9 +140,7 @@
 
 +(void) updateDatumWithParams: (CRSProjParams *) params andGeoDatum: (NSObject<CRSGeoDatum> *) geoDatum{
     
-    NSString *name = [geoDatum name];
-    
-    CRSGeoDatums *commonGeoDatum = [CRSGeoDatums fromName:name];
+    CRSGeoDatums *commonGeoDatum = [CRSGeoDatums fromName:[geoDatum name]];
     
     if(commonGeoDatum != nil){
         [params setDatum:[commonGeoDatum code]];
@@ -151,11 +150,28 @@
 
 }
 
-+(void) updateEllipsoidWithParams: (CRSProjParams *) params andEllipsoid: (CRSEllipsoid *) ellipsoid{
-
-    NSString *name = ellipsoid.name;
++(void) updateDatumWithParams: (CRSProjParams *) params andGeoDatum: (NSObject<CRSGeoDatum> *) geoDatum andOperationMethod: (CRSOperationMethod *) method{
     
-    CRSEllipsoids *commonEllipsoid = [CRSEllipsoids fromName:name];
+    CRSGeoDatums *commonGeoDatum = [CRSGeoDatums fromName:[geoDatum name]];
+    
+    if(commonGeoDatum != nil){
+        if(commonGeoDatum.type == CRS_DATUM_WGS84 && [method hasMethod] && method.method.type == CRS_METHOD_POPULAR_VISUALISATION_PSEUDO_MERCATOR){
+            [self updateSphericalEllipsoidWithParams:params andRadius:[geoDatum ellipsoid].semiMajorAxisText];
+        }else{
+            [params setDatum:[commonGeoDatum code]];
+        }
+    }else{
+        [self updateEllipsoidWithParams:params andEllipsoid:[geoDatum ellipsoid]];
+    }
+}
+
++(void) updateEllipsoidWithParams: (CRSProjParams *) params andEllipsoid: (CRSEllipsoid *) ellipsoid{
+    
+    CRSEllipsoids *commonEllipsoid = nil;
+    
+    if(ellipsoid.inverseFlattening != 0){
+        commonEllipsoid = [CRSEllipsoids fromName:ellipsoid.name];
+    }
     
     if(commonEllipsoid != nil){
         [params setEllps:[commonEllipsoid shortName]];
@@ -165,11 +181,7 @@
         
         switch(ellipsoid.type){
             case CRS_ELLIPSOID_OBLATE:
-                if(ellipsoid.inverseFlattening != 0.0){
-                    [params setB:ellipsoid.inverseFlatteningText];
-                }else{
-                    [params setB:ellipsoid.semiMajorAxisText];
-                }
+                [params setB:[ellipsoid poleRadiusText]];
                 break;
             case CRS_ELLIPSOID_TRIAXIAL:
             {
@@ -183,6 +195,11 @@
         
     }
 
+}
+
++(void) updateSphericalEllipsoidWithParams: (CRSProjParams *) params andRadius: (NSString *) radius{
+    [params setA:radius];
+    [params setB:radius];
 }
 
 +(void) updateDatumTransformWithParams: (CRSProjParams *) params andToWGS84: (NSArray<NSString *> *) toWGS84{

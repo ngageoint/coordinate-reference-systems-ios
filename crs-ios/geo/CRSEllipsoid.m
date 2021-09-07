@@ -69,6 +69,31 @@
     return [self unit] != nil;
 }
 
+-(double) poleRadius{
+    double poleRadius;
+    if(_inverseFlattening != 0){
+        double flattening = 1.0 / _inverseFlattening;
+        double eccentricity2 = 2 * flattening - flattening * flattening;
+        poleRadius = _semiMajorAxis * sqrt(1.0 - eccentricity2);
+    }else{
+        poleRadius = _semiMajorAxis;
+    }
+    return poleRadius;
+}
+
+-(NSString *) poleRadiusText{
+    NSString *poleRadius;
+    if(_inverseFlattening != 0){
+        double flattening = 1.0 / _inverseFlattening;
+        double eccentricity2 = 2 * flattening - flattening * flattening;
+        double value = _semiMajorAxis * sqrt(1.0 - eccentricity2);
+        poleRadius = [CRSTextUtils textFromDouble:value];
+    }else{
+        poleRadius = _semiMajorAxisText;
+    }
+    return poleRadius;
+}
+
 -(BOOL) hasIdentifiers{
     return _identifiers != nil && _identifiers.count > 0;
 }
