@@ -72,6 +72,11 @@
     
     [self updateDatumWithParams:params andGeoDatum:geoDatum];
     
+    NSObject *toWGS84 = [geo extraWithName:[CRSKeyword nameOfType:CRS_KEYWORD_TOWGS84]];
+    if(toWGS84 != nil){
+        [self updateDatumTransformWithParams:params andToWGS84:(NSArray<NSString *> *)toWGS84];
+    }
+    
     [self updateProjWithParams:params andCoordinateSystem:geo.coordinateSystem];
     [self updatePrimeMeridianWithParams:params andGeoDatum:geoDatum];
     
@@ -160,7 +165,11 @@
         
         switch(ellipsoid.type){
             case CRS_ELLIPSOID_OBLATE:
-                [params setB:ellipsoid.inverseFlatteningText];
+                if(ellipsoid.inverseFlattening != 0.0){
+                    [params setB:ellipsoid.inverseFlatteningText];
+                }else{
+                    [params setB:ellipsoid.semiMajorAxisText];
+                }
                 break;
             case CRS_ELLIPSOID_TRIAXIAL:
             {
@@ -174,6 +183,20 @@
         
     }
 
+}
+
++(void) updateDatumTransformWithParams: (CRSProjParams *) params andToWGS84: (NSArray<NSString *> *) toWGS84{
+    if(toWGS84.count >=3){
+        [params setXTranslation:[toWGS84 objectAtIndex:0]];
+        [params setYTranslation:[toWGS84 objectAtIndex:1]];
+        [params setZTranslation:[toWGS84 objectAtIndex:2]];
+        if(toWGS84.count >=7){
+            [params setXRotation:[toWGS84 objectAtIndex:3]];
+            [params setYRotation:[toWGS84 objectAtIndex:4]];
+            [params setZRotation:[toWGS84 objectAtIndex:5]];
+            [params setScaleDifference:[toWGS84 objectAtIndex:6]];
+        }
+    }
 }
 
 +(void) updateDatumTransformWithParams: (CRSProjParams *) params andOperationMethod: (CRSOperationMethod *) method{
