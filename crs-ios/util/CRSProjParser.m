@@ -95,13 +95,12 @@
     
     CRSCoordinateSystem *coordinateSystem = projected.coordinateSystem;
     CRSMapProjection *mapProjection = projected.mapProjection;
-    CRSOperationMethod *method = mapProjection.method;
 
     NSObject<CRSGeoDatum> *geoDatum = [projected geoDatum];
 
-    [self updateDatumWithParams:params andGeoDatum:geoDatum andOperationMethod:method];
+    [self updateDatumWithParams:params andGeoDatum:geoDatum andMapProjection:mapProjection];
 
-    [self updateDatumTransformWithParams:params andOperationMethod:method];
+    [self updateDatumTransformWithParams:params andOperationMethod:mapProjection.method];
 
     [self updateProjWithParams:params andCoordinateSystem:coordinateSystem andMapProjection:mapProjection];
     [self updateUnitsWithParams:params andCoordinateSystem:coordinateSystem];
@@ -150,18 +149,26 @@
 
 }
 
-+(void) updateDatumWithParams: (CRSProjParams *) params andGeoDatum: (NSObject<CRSGeoDatum> *) geoDatum andOperationMethod: (CRSOperationMethod *) method{
++(void) updateDatumWithParams: (CRSProjParams *) params andGeoDatum: (NSObject<CRSGeoDatum> *) geoDatum andMapProjection: (CRSMapProjection *) mapProjection{
     
     CRSGeoDatums *commonGeoDatum = [CRSGeoDatums fromName:[geoDatum name]];
     
     if(commonGeoDatum != nil){
-        if(commonGeoDatum.type == CRS_DATUM_WGS84 && [method hasMethod] && method.method.type == CRS_METHOD_POPULAR_VISUALISATION_PSEUDO_MERCATOR){
-            [self updateSphericalEllipsoidWithParams:params andRadius:[geoDatum ellipsoid].semiMajorAxisText];
-        }else{
-            [params setDatum:[commonGeoDatum code]];
-        }
+        [self updateDatumWithParams:params andGeoDatum:geoDatum andCommonGeoDatum:commonGeoDatum andMapProjection:mapProjection];
     }else{
         [self updateEllipsoidWithParams:params andEllipsoid:[geoDatum ellipsoid]];
+    }
+}
+
++(void) updateDatumWithParams: (CRSProjParams *) params andGeoDatum: (NSObject<CRSGeoDatum> *) geoDatum andCommonGeoDatum: (CRSGeoDatums *) commonGeoDatum andMapProjection: (CRSMapProjection *) mapProjection{
+    CRSOperationMethod *method = mapProjection.method;
+    // Check for special cases like EPSG 3857 which specifies the ellipsoid parameters instead of a datum
+    if(commonGeoDatum.type == CRS_DATUM_WGS84
+       && [method hasMethod] && method.method.type == CRS_METHOD_POPULAR_VISUALISATION_PSEUDO_MERCATOR
+       && [mapProjection.name rangeOfString:@"Pseudo" options:NSCaseInsensitiveSearch].length > 0){
+        [self updateSphericalEllipsoidWithParams:params andRadius:[geoDatum ellipsoid].semiMajorAxisText];
+    }else{
+        [params setDatum:[commonGeoDatum code]];
     }
 }
 
