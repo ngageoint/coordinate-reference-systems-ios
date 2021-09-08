@@ -404,30 +404,28 @@
         
         if(unit.type == CRS_UNIT_LENGTH || unit.type == CRS_UNIT){
             
-            if([unit.conversionFactor doubleValue] != 1.0){
-                [params setTo_meter:unit.conversionFactorText];
-            }else{
+            enum CRSUnitsType type = [CRSUnits typeFromUnit:unit];
+            if((int) type != -1){
                 
-                enum CRSUnitsType type = [CRSUnits typeFromUnit:unit];
-                if((int) type != -1){
-                    
-                    switch(type){
-                        case CRS_UNITS_MICROMETRE:
-                        case CRS_UNITS_MILLIMETRE:
-                        case CRS_UNITS_METRE:
-                        case CRS_UNITS_KILOMETRE:
-                        case CRS_UNITS_GERMAN_LEGAL_METRE:
-                            [params setUnits:@"m"];
-                            break;
-                        case CRS_UNITS_US_SURVEY_FOOT:
-                            [params setUnits:@"us-ft"];
-                            break;
-                        default:
-                            break;
-                    }
-                    
+                switch(type){
+                    case CRS_UNITS_MICROMETRE:
+                    case CRS_UNITS_MILLIMETRE:
+                    case CRS_UNITS_METRE:
+                    case CRS_UNITS_KILOMETRE:
+                    case CRS_UNITS_GERMAN_LEGAL_METRE:
+                        [params setUnits:@"m"];
+                        break;
+                    case CRS_UNITS_US_SURVEY_FOOT:
+                        [params setUnits:@"us-ft"];
+                        break;
+                    default:
+                        break;
                 }
                 
+            }
+            
+            if(params.units == nil && [unit.conversionFactor doubleValue] != 1.0){
+                [params setTo_meter:unit.conversionFactorText];
             }
             
         }
@@ -550,6 +548,13 @@
                         case CRS_METHOD_MERCATOR_B:
                         case CRS_METHOD_POPULAR_VISUALISATION_PSEUDO_MERCATOR:
                             [params setLat_ts:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            break;
+                        case CRS_METHOD_LAMBERT_CONIC_CONFORMAL_1SP:
+                        case CRS_METHOD_LAMBERT_CONIC_CONFORMAL_2SP:
+                            [params setLat_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            if(params.lat_1 == nil){
+                                [params setLat_1:params.lat_0];
+                            }
                             break;
                         default:
                             [params setLat_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
