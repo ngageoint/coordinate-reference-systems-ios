@@ -106,6 +106,9 @@
     if(_units != nil){
         [description appendFormat:@" +units=%@", _units];
     }
+    if(_to_meter != nil){
+        [description appendFormat:@" +to_meter=%@", _to_meter];
+    }
     if(_no_defs){
         [description appendFormat:@" +no_defs"];
     }

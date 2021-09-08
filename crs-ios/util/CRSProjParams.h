@@ -43,6 +43,7 @@
 @property (nonatomic, strong) NSString *scaleDifference;
 @property (nonatomic, strong) NSString *pm;
 @property (nonatomic, strong) NSString *units;
+@property (nonatomic, strong) NSString *to_meter;
 @property (nonatomic) BOOL no_defs;
 
 /**
