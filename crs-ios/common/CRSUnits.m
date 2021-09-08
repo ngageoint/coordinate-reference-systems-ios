@@ -327,13 +327,13 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
 
 +(BOOL) canConvertBetweenUnit: (CRSUnit *) unit1 andUnit: (CRSUnit *) unit2{
     return unit1 != nil && unit2 != nil
-        && unit1.type == unit2.type
+        && (unit1.type == unit2.type || unit1.type == CRS_UNIT || unit2.type == CRS_UNIT)
         && [unit1 hasConversionFactor] && [unit2 hasConversionFactor];
 }
 
 +(double) convertValue: (double) value fromUnit: (CRSUnit *) from toUnit: (CRSUnit *) to{
     
-    if(from.type != to.type){
+    if(from.type != to.type && from.type != CRS_UNIT && to.type != CRS_UNIT){
         [NSException raise:@"Incompatible Conversion" format:@"Can't convert value '%f' from unit type %@ to unit type %@", value, [CRSUnitTypes name:from.type], [CRSUnitTypes name:to.type]];
     }
     
