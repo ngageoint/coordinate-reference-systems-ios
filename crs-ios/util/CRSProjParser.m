@@ -184,16 +184,16 @@
         [params setEllps:[commonEllipsoid shortName]];
     }else{
         
-        [params setA:ellipsoid.semiMajorAxisText];
+        [params setA:[self convertValue:ellipsoid.semiMajorAxis andTextValue:ellipsoid.semiMajorAxisText fromUnit:ellipsoid.unit toUnit:[CRSUnits metre]]];
         
         switch(ellipsoid.type){
             case CRS_ELLIPSOID_OBLATE:
-                [params setB:[ellipsoid poleRadiusText]];
+                [params setB:[self convertValue:[ellipsoid poleRadius] andTextValue:[ellipsoid poleRadiusText] fromUnit:ellipsoid.unit toUnit:[CRSUnits metre]]];
                 break;
             case CRS_ELLIPSOID_TRIAXIAL:
             {
                 CRSTriaxialEllipsoid *triaxial = (CRSTriaxialEllipsoid *) ellipsoid;
-                [params setB:triaxial.semiMinorAxisText];
+                [params setB:[self convertValue:triaxial.semiMinorAxis andTextValue:triaxial.semiMinorAxisText fromUnit:ellipsoid.unit toUnit:[CRSUnits metre]]];
                 break;
             }
             default:
