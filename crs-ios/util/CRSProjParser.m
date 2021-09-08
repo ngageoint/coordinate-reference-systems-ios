@@ -496,7 +496,18 @@
                 break;
                 
             case CRS_PARAMETER_LATITUDE_OF_1ST_STANDARD_PARALLEL:
-                [params setLat_1:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                if([method hasMethod]){
+                    switch([method.method type]){
+                        case CRS_METHOD_LAMBERT_CYLINDRICAL_EQUAL_AREA:
+                            [params setLat_ts:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            break;
+                        default:
+                            [params setLat_1:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            break;
+                    }
+                }else{
+                    [params setLat_1:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                }
                 break;
                 
             case CRS_PARAMETER_LATITUDE_OF_2ND_STANDARD_PARALLEL:
