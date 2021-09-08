@@ -105,7 +105,7 @@
     [self updateProjWithParams:params andCoordinateSystem:coordinateSystem andMapProjection:mapProjection];
     [self updateUnitsWithParams:params andCoordinateSystem:coordinateSystem];
     [self updatePrimeMeridianWithParams:params andGeoDatum:geoDatum];
-    [self updateParams:params withMapProjection:mapProjection];
+    [self updateParams:params withMapProjection:mapProjection andUnit:coordinateSystem.unit];
     
     [params setNo_defs:YES];
     
@@ -400,22 +400,34 @@
     
     if([coordinateSystem hasUnit]){
         
-        enum CRSUnitsType type = [CRSUnits typeFromUnit:coordinateSystem.unit];
-        if((int) type != -1){
+        CRSUnit *unit = coordinateSystem.unit;
+        
+        if(unit.type == CRS_UNIT_LENGTH || unit.type == CRS_UNIT){
             
-            switch(type){
-                case CRS_UNITS_MICROMETRE:
-                case CRS_UNITS_MILLIMETRE:
-                case CRS_UNITS_METRE:
-                case CRS_UNITS_KILOMETRE:
-                case CRS_UNITS_GERMAN_LEGAL_METRE:
-                    [params setUnits:@"m"];
-                    break;
-                case CRS_UNITS_US_SURVEY_FOOT:
-                    [params setUnits:@"us-ft"];
-                    break;
-                default:
-                    break;
+            if([unit.conversionFactor doubleValue] != 1.0){
+                [params setTo_meter:unit.conversionFactorText];
+            }else{
+                
+                enum CRSUnitsType type = [CRSUnits typeFromUnit:unit];
+                if((int) type != -1){
+                    
+                    switch(type){
+                        case CRS_UNITS_MICROMETRE:
+                        case CRS_UNITS_MILLIMETRE:
+                        case CRS_UNITS_METRE:
+                        case CRS_UNITS_KILOMETRE:
+                        case CRS_UNITS_GERMAN_LEGAL_METRE:
+                            [params setUnits:@"m"];
+                            break;
+                        case CRS_UNITS_US_SURVEY_FOOT:
+                            [params setUnits:@"us-ft"];
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                }
+                
             }
             
         }
@@ -434,7 +446,7 @@
 
 }
 
-+(void) updateParams: (CRSProjParams *) params withMapProjection: (CRSMapProjection *) mapProjection{
++(void) updateParams: (CRSProjParams *) params withMapProjection: (CRSMapProjection *) mapProjection andUnit: (CRSUnit *) unit{
     
     NSString *name = mapProjection.name;
     NSRange range = [name rangeOfString:@"UTM zone" options:NSCaseInsensitiveSearch];
@@ -456,23 +468,23 @@
                 [params setSouth:YES];
             }
         }else{
-            [self updateParams:params withOperationMethod:mapProjection.method];
+            [self updateParams:params withOperationMethod:mapProjection.method andUnit:unit];
         }
     }else{
-        [self updateParams:params withOperationMethod:mapProjection.method];
+        [self updateParams:params withOperationMethod:mapProjection.method andUnit:unit];
     }
     
 }
 
-+(void) updateParams: (CRSProjParams *) params withOperationMethod: (CRSOperationMethod *) method{
++(void) updateParams: (CRSProjParams *) params withOperationMethod: (CRSOperationMethod *) method andUnit: (CRSUnit *) unit{
     if([method hasParameters]){
         for(CRSOperationParameter *parameter in method.parameters){
-            [self updateParams:params withOperationMethod:method andOperationParameter:parameter];
+            [self updateParams:params withOperationMethod:method andUnit:unit andOperationParameter:parameter];
         }
     }
 }
 
-+(void) updateParams: (CRSProjParams *) params withOperationMethod: (CRSOperationMethod *) method andOperationParameter: (CRSOperationParameter *) parameter{
++(void) updateParams: (CRSProjParams *) params withOperationMethod: (CRSOperationMethod *) method andUnit: (CRSUnit *) unit andOperationParameter: (CRSOperationParameter *) parameter{
     
     if([parameter hasParameter]){
         
@@ -481,13 +493,13 @@
             case CRS_PARAMETER_FALSE_EASTING:
             case CRS_PARAMETER_EASTING_AT_PROJECTION_CENTRE:
             case CRS_PARAMETER_EASTING_AT_FALSE_ORIGIN:
-                [params setX_0:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                [params setX_0:[self valueOfParameter:parameter withUnit:unit inUnit:[CRSUnits metre]]];
                 break;
                 
             case CRS_PARAMETER_FALSE_NORTHING:
             case CRS_PARAMETER_NORTHING_AT_PROJECTION_CENTRE:
             case CRS_PARAMETER_NORTHING_AT_FALSE_ORIGIN:
-                [params setY_0:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                [params setY_0:[self valueOfParameter:parameter withUnit:unit inUnit:[CRSUnits metre]]];
                 break;
                 
             case CRS_PARAMETER_SCALE_FACTOR_AT_NATURAL_ORIGIN:
@@ -643,6 +655,14 @@
     }
 
     return axisValue;
+}
+
++(NSString *) valueOfParameter: (CRSOperationParameter *) parameter withUnit: (CRSUnit*) unit inUnit: (CRSUnit *) inUnit{
+    CRSUnit *parameterUnit = parameter.unit;
+    if(parameterUnit == nil){
+        parameterUnit = unit;
+    }
+    return [self convertValue:parameter.value andTextValue:parameter.valueText fromUnit:parameterUnit toUnit:inUnit];
 }
 
 +(NSString *) valueOfParameter: (CRSOperationParameter *) parameter inUnit: (CRSUnit *) unit{
