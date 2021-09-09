@@ -81,6 +81,7 @@
 #import "CRSTextReader.h"
 #import "CRSTextUtils.h"
 #import "CRSWriter.h"
+#import "CRSProjConstants.h"
 #import "CRSProjParams.h"
 #import "CRSProjParser.h"
 

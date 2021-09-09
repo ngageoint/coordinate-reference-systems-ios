@@ -37,6 +37,8 @@
 		044224BD26BC7F9000B1E1F2 /* CRSReaderWriterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224BC26BC7F9000B1E1F2 /* CRSReaderWriterTest.m */; };
 		044224C026BC7FBE00B1E1F2 /* CRSTextReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224BF26BC7FBE00B1E1F2 /* CRSTextReaderTest.m */; };
 		044224C326BC800E00B1E1F2 /* CRSTextUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */; };
+		0458104826EAAE4E0044DC70 /* CRSProjConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0458104626EAAE4E0044DC70 /* CRSProjConstants.h */; };
+		0458104926EAAE4E0044DC70 /* CRSProjConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458104726EAAE4E0044DC70 /* CRSProjConstants.m */; };
 		0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */; };
 		04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */; };
 		04BCA984269CAAB40015DEC0 /* CRSCategoryTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */; };
@@ -214,6 +216,8 @@
 		044224BF26BC7FBE00B1E1F2 /* CRSTextReaderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTextReaderTest.m; sourceTree = "<group>"; };
 		044224C126BC800E00B1E1F2 /* CRSTextUtilsTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTextUtilsTest.h; sourceTree = "<group>"; };
 		044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTextUtilsTest.m; sourceTree = "<group>"; };
+		0458104626EAAE4E0044DC70 /* CRSProjConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSProjConstants.h; sourceTree = "<group>"; };
+		0458104726EAAE4E0044DC70 /* CRSProjConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSProjConstants.m; sourceTree = "<group>"; };
 		0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "crs-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCategoryTypes.h; sourceTree = "<group>"; };
 		04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSCategoryTypes.m; sourceTree = "<group>"; };
@@ -373,10 +377,7 @@
 		04021F5826E14CB400ECE9AF /* util */ = {
 			isa = PBXGroup;
 			children = (
-				04021F5A26E14E5700ECE9AF /* CRSProjParams.h */,
-				04021F5B26E14E5700ECE9AF /* CRSProjParams.m */,
-				04021F5E26E150AD00ECE9AF /* CRSProjParser.h */,
-				04021F5F26E150AD00ECE9AF /* CRSProjParser.m */,
+				0458104526EAADEB0044DC70 /* proj */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -495,6 +496,19 @@
 				044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */,
 			);
 			path = wkt;
+			sourceTree = "<group>";
+		};
+		0458104526EAADEB0044DC70 /* proj */ = {
+			isa = PBXGroup;
+			children = (
+				0458104626EAAE4E0044DC70 /* CRSProjConstants.h */,
+				0458104726EAAE4E0044DC70 /* CRSProjConstants.m */,
+				04021F5A26E14E5700ECE9AF /* CRSProjParams.h */,
+				04021F5B26E14E5700ECE9AF /* CRSProjParams.m */,
+				04021F5E26E150AD00ECE9AF /* CRSProjParser.h */,
+				04021F5F26E150AD00ECE9AF /* CRSProjParser.m */,
+			);
+			path = proj;
 			sourceTree = "<group>";
 		};
 		04BCA98F269CC0CC0015DEC0 /* common */ = {
@@ -788,6 +802,7 @@
 				044224AD26AA0A7A00B1E1F2 /* CRSTextReader.h in Headers */,
 				04021F6026E150AD00ECE9AF /* CRSProjParser.h in Headers */,
 				04BCAA5226A74E850015DEC0 /* CRSGeoReferenceFrame.h in Headers */,
+				0458104826EAAE4E0044DC70 /* CRSProjConstants.h in Headers */,
 				04BCAA2E26A6EAB40015DEC0 /* CRSDerivingConversion.h in Headers */,
 				04BCA9F626A203560015DEC0 /* CRSOperationMethods.h in Headers */,
 				04BCAA7526A89E000015DEC0 /* CRSEllipsoidTypes.h in Headers */,
@@ -954,6 +969,7 @@
 				04BCA99E269DC4540015DEC0 /* CRSGeographicBoundingBox.m in Sources */,
 				04BCA9D326A079A10015DEC0 /* CRSCoordinateSystem.m in Sources */,
 				04BCA9A2269DD71C0015DEC0 /* CRSUnit.m in Sources */,
+				0458104926EAAE4E0044DC70 /* CRSProjConstants.m in Sources */,
 				04BCA9E326A0BDE70015DEC0 /* CRSReferenceFrame.m in Sources */,
 				04021F5D26E14E5700ECE9AF /* CRSProjParams.m in Sources */,
 				04021F5326E128BA00ECE9AF /* CRSEllipsoids.m in Sources */,

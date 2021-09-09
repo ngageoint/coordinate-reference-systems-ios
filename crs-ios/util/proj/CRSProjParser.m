@@ -14,6 +14,7 @@
 #import "CRSPrimeMeridians.h"
 #import "CRSTextUtils.h"
 #import "CRSGeoDatums.h"
+#import "CRSProjConstants.h"
 
 @implementation CRSProjParser
 
@@ -295,9 +296,9 @@
     CRSUnit *unit = [coordinateSystem axisUnit];
 
     if(unit != nil && (unit.type == CRS_UNIT_ANGLE || (unit.type == CRS_UNIT && [[unit.name lowercaseString] hasPrefix:@"deg"]))){
-        [params setProj:@"longlat"];
+        [params setProj:CRS_PROJ_NAME_LONGLAT];
     }else{
-        [params setProj:@"merc"];
+        [params setProj:CRS_PROJ_NAME_MERC];
     }
 }
 
@@ -310,81 +311,81 @@
         switch([method.method type]){
                 
             case CRS_METHOD_ALBERS_EQUAL_AREA:
-                [params setProj:@"aea"];
+                [params setProj:CRS_PROJ_NAME_AEA];
                 break;
                 
             case CRS_METHOD_AMERICAN_POLYCONIC:
-                [params setProj:@"poly"];
+                [params setProj:CRS_PROJ_NAME_POLY];
                 break;
                 
             case CRS_METHOD_CASSINI_SOLDNER:
-                [params setProj:@"cass"];
+                [params setProj:CRS_PROJ_NAME_CASS];
                 break;
                 
             case CRS_METHOD_EQUIDISTANT_CYLINDRICAL:
-                [params setProj:@"eqc"];
+                [params setProj:CRS_PROJ_NAME_EQC];
                 break;
                 
             case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_A:
                 [params setNo_uoff:YES];
-                [params setProj:@"omerc"];
+                [params setProj:CRS_PROJ_NAME_OMERC];
                 break;
                 
             case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
                 if([[mapProjection.name lowercaseString] containsString:@"swiss oblique mercator"]
                    || [[method.name lowercaseString] containsString:@"hotine_oblique_mercator_azimuth_center"]){
-                    [params setProj:@"somerc"];
+                    [params setProj:CRS_PROJ_NAME_SOMERC];
                 }else{
-                    [params setProj:@"omerc"];
+                    [params setProj:CRS_PROJ_NAME_OMERC];
                 }
                 break;
                 
             case CRS_METHOD_KROVAK:
-                [params setProj:@"krovak"];
+                [params setProj:CRS_PROJ_NAME_KROVAK];
                 break;
                 
             case CRS_METHOD_LAMBERT_AZIMUTHAL_EQUAL_AREA:
-                [params setProj:@"laea"];
+                [params setProj:CRS_PROJ_NAME_LAEA];
                 break;
                 
             case CRS_METHOD_LAMBERT_CONIC_CONFORMAL_1SP:
             case CRS_METHOD_LAMBERT_CONIC_CONFORMAL_2SP:
-                [params setProj:@"lcc"];
+                [params setProj:CRS_PROJ_NAME_LCC];
                 break;
                 
             case CRS_METHOD_LAMBERT_CYLINDRICAL_EQUAL_AREA:
-                [params setProj:@"cea"];
+                [params setProj:CRS_PROJ_NAME_CEA];
                 break;
                 
             case CRS_METHOD_MERCATOR_A:
             case CRS_METHOD_MERCATOR_B:
-                [params setProj:@"merc"];
+                [params setProj:CRS_PROJ_NAME_MERC];
                 break;
                 
             case CRS_METHOD_NEW_ZEALAND_MAP_GRID:
-                [params setProj:@"nzmg"];
+                [params setProj:CRS_PROJ_NAME_NZMG];
                 break;
                 
             case CRS_METHOD_OBLIQUE_STEREOGRAPHIC:
-                [params setProj:@"sterea"];
+                [params setProj:CRS_PROJ_NAME_STEREA];
                 break;
                 
             case CRS_METHOD_POLAR_STEREOGRAPHIC_A:
             case CRS_METHOD_POLAR_STEREOGRAPHIC_B:
             case CRS_METHOD_POLAR_STEREOGRAPHIC_C:
-                [params setProj:@"stere"];
+                [params setProj:CRS_PROJ_NAME_STERE];
                 break;
                 
             case CRS_METHOD_POPULAR_VISUALISATION_PSEUDO_MERCATOR:
-                [params setProj:@"merc"];
+                [params setProj:CRS_PROJ_NAME_MERC];
                 break;
                 
             case CRS_METHOD_TRANSVERSE_MERCATOR:
             case CRS_METHOD_TRANSVERSE_MERCATOR_SOUTH_ORIENTATED:
                 if([[mapProjection.name lowercaseString] containsString:@"utm zone"]){
-                    [params setProj:@"utm"];
+                    [params setProj:CRS_PROJ_NAME_UTM];
                 }else{
-                    [params setProj:@"tmerc"];
+                    [params setProj:CRS_PROJ_NAME_TMERC];
                 }
                 break;
                 
@@ -422,10 +423,10 @@
                     case CRS_UNITS_METRE:
                     case CRS_UNITS_KILOMETRE:
                     case CRS_UNITS_GERMAN_LEGAL_METRE:
-                        [params setUnits:@"m"];
+                        [params setUnits:CRS_PROJ_UNITS_METRE];
                         break;
                     case CRS_UNITS_US_SURVEY_FOOT:
-                        [params setUnits:@"us-ft"];
+                        [params setUnits:CRS_PROJ_UNITS_US_SURVEY_FOOT];
                         break;
                     default:
                         break;
@@ -444,13 +445,8 @@
 }
 
 +(void) updateAxisWithParams: (CRSProjParams *) params andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
-
     NSString *axisOrder = [self convertAxes:coordinateSystem.axes];
-    // Only known proj4 axis specification is wsu
-    if([axisOrder isEqualToString:@"wsu"]) {
-        [params setAxis:axisOrder];
-    }
-
+    [params setAxis:axisOrder];
 }
 
 +(void) updateParams: (CRSProjParams *) params withMapProjection: (CRSMapProjection *) mapProjection andUnit: (CRSUnit *) unit{
@@ -585,7 +581,7 @@
                             [params setLonc:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                             break;
                         case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
-                            if(params.proj != nil && [params.proj isEqualToString:@"somerc"]){
+                            if(params.proj != nil && [params.proj isEqualToString:CRS_PROJ_NAME_SOMERC]){
                                 [params setLon_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                             }else{
                                 [params setLonc:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
@@ -605,7 +601,7 @@
                 if([method hasMethod]){
                     switch([method.method type]){
                         case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
-                            if(params.proj == nil || ![params.proj isEqualToString:@"somerc"]){
+                            if(params.proj == nil || ![params.proj isEqualToString:CRS_PROJ_NAME_SOMERC]){
                                 [params setAlpha:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                             }
                             break;
@@ -622,7 +618,7 @@
                 if([method hasMethod]){
                     switch([method.method type]){
                         case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
-                            if(params.proj == nil || ![params.proj isEqualToString:@"somerc"]){
+                            if(params.proj == nil || ![params.proj isEqualToString:CRS_PROJ_NAME_SOMERC]){
                                 [params setGamma:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
                             }
                             break;
@@ -658,27 +654,27 @@
             switch(axis.direction){
 
                 case CRS_AXIS_EAST:
-                    [axisString appendString:@"e"];
+                    [axisString appendString:CRS_PROJ_AXIS_EAST];
                     break;
 
                 case CRS_AXIS_WEST:
-                    [axisString appendString:@"w"];
+                    [axisString appendString:CRS_PROJ_AXIS_WEST];
                     break;
 
                 case CRS_AXIS_NORTH:
-                    [axisString appendString:@"n"];
+                    [axisString appendString:CRS_PROJ_AXIS_NORTH];
                     break;
 
                 case CRS_AXIS_SOUTH:
-                    [axisString appendString:@"s"];
+                    [axisString appendString:CRS_PROJ_AXIS_SOUTH];
                     break;
 
                 case CRS_AXIS_UP:
-                    [axisString appendString:@"u"];
+                    [axisString appendString:CRS_PROJ_AXIS_UP];
                     break;
 
                 case CRS_AXIS_DOWN:
-                    [axisString appendString:@"d"];
+                    [axisString appendString:CRS_PROJ_AXIS_DOWN];
                     break;
 
                 default:
@@ -695,7 +691,7 @@
         if(axisString != nil){
 
             if(axesCount == 2){
-                [axisString appendString:@"u"];
+                [axisString appendString:CRS_PROJ_AXIS_UP];
             }
 
         }
