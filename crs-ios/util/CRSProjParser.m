@@ -506,6 +506,7 @@
                 
             case CRS_PARAMETER_SCALE_FACTOR_AT_NATURAL_ORIGIN:
             case CRS_PARAMETER_SCALE_FACTOR_ON_INITIAL_LINE:
+            case CRS_PARAMETER_SCALE_FACTOR_ON_PSEUDO_STANDARD_PARALLEL:
                 [params setK_0:[self valueOfParameter:parameter inUnit:[CRSUnits unity]]];
                 break;
                 
@@ -595,6 +596,7 @@
                 break;
                 
             case CRS_PARAMETER_AZIMUTH_OF_INITIAL_LINE:
+            case CRS_PARAMETER_CO_LATITUDE_OF_CONE_AXIS:
                 if([method hasMethod]){
                     switch([method.method type]){
                         case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
