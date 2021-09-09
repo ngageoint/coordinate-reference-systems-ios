@@ -322,8 +322,12 @@
                 
             case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_A:
                 [params setNo_uoff:YES];
+                [params setProj:@"omerc"];
+                break;
+                
             case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
-                if([[mapProjection.name lowercaseString] containsString:@"swiss oblique mercator"]){
+                if([[mapProjection.name lowercaseString] containsString:@"swiss oblique mercator"]
+                   || [[method.name lowercaseString] containsString:@"hotine_oblique_mercator_azimuth_center"]){
                     [params setProj:@"somerc"];
                 }else{
                     [params setProj:@"omerc"];
@@ -572,8 +576,14 @@
                 if([method hasMethod]){
                     switch([method.method type]){
                         case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_A:
-                        case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
                             [params setLonc:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            break;
+                        case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
+                            if(params.proj != nil && [params.proj isEqualToString:@"somerc"]){
+                                [params setLon_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            }else{
+                                [params setLonc:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            }
                             break;
                         default:
                             [params setLon_0:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
@@ -585,11 +595,37 @@
                 break;
                 
             case CRS_PARAMETER_AZIMUTH_OF_INITIAL_LINE:
-                [params setAlpha:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                if([method hasMethod]){
+                    switch([method.method type]){
+                        case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
+                            if(params.proj == nil || ![params.proj isEqualToString:@"somerc"]){
+                                [params setAlpha:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            }
+                            break;
+                        default:
+                            [params setAlpha:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            break;
+                    }
+                }else{
+                    [params setAlpha:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                }
                 break;
                 
             case CRS_PARAMETER_ANGLE_FROM_RECTIFIED_TO_SKEW_GRID:
-                [params setGamma:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                if([method hasMethod]){
+                    switch([method.method type]){
+                        case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
+                            if(params.proj == nil || ![params.proj isEqualToString:@"somerc"]){
+                                [params setGamma:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            }
+                            break;
+                        default:
+                            [params setGamma:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                            break;
+                    }
+                }else{
+                    [params setGamma:[self valueOfParameter:parameter inUnit:[CRSUnits degree]]];
+                }
                 break;
                 
             default:
