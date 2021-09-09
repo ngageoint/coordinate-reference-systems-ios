@@ -72,10 +72,7 @@
     
     [self updateDatumWithParams:params andGeoDatum:geoDatum];
     
-    NSObject *toWGS84 = [geo extraWithName:[CRSKeyword nameOfType:CRS_KEYWORD_TOWGS84]];
-    if(toWGS84 != nil){
-        [self updateDatumTransformWithParams:params andToWGS84:(NSArray<NSString *> *)toWGS84];
-    }
+    [self updateDatumTransformWithParams:params andCRS:geo];
     
     [self updateProjWithParams:params andCoordinateSystem:geo.coordinateSystem];
     [self updatePrimeMeridianWithParams:params andGeoDatum:geoDatum];
@@ -100,6 +97,7 @@
 
     [self updateDatumWithParams:params andGeoDatum:geoDatum andMapProjection:mapProjection];
 
+    [self updateDatumTransformWithParams:params andCRS:projected.base];
     [self updateDatumTransformWithParams:params andOperationMethod:mapProjection.method];
 
     [self updateProjWithParams:params andCoordinateSystem:coordinateSystem andMapProjection:mapProjection];
@@ -207,6 +205,13 @@
 +(void) updateSphericalEllipsoidWithParams: (CRSProjParams *) params andRadius: (NSString *) radius{
     [params setA:radius];
     [params setB:radius];
+}
+
++(void) updateDatumTransformWithParams: (CRSProjParams *) params andCRS: (CRSObject *) crs{
+    NSObject *toWGS84 = [crs extraWithName:[CRSKeyword nameOfType:CRS_KEYWORD_TOWGS84]];
+    if(toWGS84 != nil){
+        [self updateDatumTransformWithParams:params andToWGS84:(NSArray<NSString *> *)toWGS84];
+    }
 }
 
 +(void) updateDatumTransformWithParams: (CRSProjParams *) params andToWGS84: (NSArray<NSString *> *) toWGS84{
