@@ -95,7 +95,9 @@ static NSMutableDictionary<NSString *, CRSEllipsoids *> *nameEllipsoids = nil;
         NSRange range = [lowercaseName rangeOfString:@"("];
         if(range.length > 0){
             NSString *namePrefix = [[lowercaseName substringToIndex:range.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            [nameEllipsoids setObject:ellipsoid forKey:namePrefix];
+            if([nameEllipsoids objectForKey:namePrefix] == nil){
+                [nameEllipsoids setObject:ellipsoid forKey:namePrefix];
+            }
         }
     }
 }
