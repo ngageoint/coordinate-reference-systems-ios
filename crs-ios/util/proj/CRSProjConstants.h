@@ -66,5 +66,6 @@ extern NSString * const CRS_PROJ_AXIS_DOWN;
 
 extern NSString * const CRS_PROJ_UNITS_METRE;
 extern NSString * const CRS_PROJ_UNITS_US_SURVEY_FOOT;
+extern NSString * const CRS_PROJ_UNITS_FOOT;
 
 @end

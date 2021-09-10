@@ -63,5 +63,6 @@ NSString * const CRS_PROJ_AXIS_DOWN = @"d";
 
 NSString * const CRS_PROJ_UNITS_METRE = @"m";
 NSString * const CRS_PROJ_UNITS_US_SURVEY_FOOT = @"us-ft";
+NSString * const CRS_PROJ_UNITS_FOOT = @"ft";
 
 @end

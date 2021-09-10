@@ -428,6 +428,9 @@
                     case CRS_UNITS_US_SURVEY_FOOT:
                         [params setUnits:CRS_PROJ_UNITS_US_SURVEY_FOOT];
                         break;
+                    case CRS_UNITS_FOOT:
+                        [params setUnits:CRS_PROJ_UNITS_FOOT];
+                        break;
                     default:
                         break;
                 }
