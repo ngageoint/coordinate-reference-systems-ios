@@ -11,6 +11,12 @@
 
 @implementation CRSProjParams
 
+static NSString *axisWestSouthUp;
+
++(void) initialize{
+    axisWestSouthUp = [NSString stringWithFormat:@"%@%@%@", CRS_PROJ_AXIS_WEST, CRS_PROJ_AXIS_SOUTH, CRS_PROJ_AXIS_UP];
+}
+
 +(CRSProjParams *) params{
     return [[CRSProjParams alloc] init];
 }
@@ -62,7 +68,7 @@
     if(_y_0 != nil){
         [description appendFormat:@" +%@=%@", CRS_PROJ_PARAM_Y_0, _y_0];
     }
-    if(_axis != nil && [_axis isEqualToString:@"wsu"]){
+    if(_axis != nil && [_axis isEqualToString:axisWestSouthUp]){
         // Only known proj4 axis specification is wsu
         [description appendFormat:@" +%@=%@", CRS_PROJ_PARAM_AXIS, _axis];
     }
