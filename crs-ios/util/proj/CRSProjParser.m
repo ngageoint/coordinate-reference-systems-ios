@@ -422,7 +422,6 @@
                     case CRS_UNITS_MILLIMETRE:
                     case CRS_UNITS_METRE:
                     case CRS_UNITS_KILOMETRE:
-                    case CRS_UNITS_GERMAN_LEGAL_METRE:
                         [params setUnits:CRS_PROJ_UNITS_METRE];
                         break;
                     case CRS_UNITS_US_SURVEY_FOOT:
@@ -697,6 +696,7 @@
                 [axisString appendString:CRS_PROJ_AXIS_UP];
             }
 
+            axisValue = axisString;
         }
 
     }
