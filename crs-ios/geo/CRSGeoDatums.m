@@ -34,7 +34,7 @@ static NSMutableDictionary<NSString *, CRSGeoDatums *> *nameDatums = nil;
     typeDatums = [NSMutableDictionary dictionary];
     nameDatums = [NSMutableDictionary dictionary];
     
-    [self initializeDatum:[self createWithType:CRS_DATUM_WGS84 andCode:@"WGS84" andTranslationX:0 andTranslationY:0 andTranslationZ:0 andEllipsoid:[CRSEllipsoids fromType:CRS_ELLIPSOIDS_WGS84] andNames:[NSArray arrayWithObjects:@"WGS84", @"World Geodetic System 1984 ensemble", @"WGS 1984", @"WGS 84", nil]]];
+    [self initializeDatum:[self createWithType:CRS_DATUM_WGS84 andCode:@"WGS84" andTranslationX:0 andTranslationY:0 andTranslationZ:0 andEllipsoid:[CRSEllipsoids fromType:CRS_ELLIPSOIDS_WGS84] andNames:[NSArray arrayWithObjects:@"WGS84", @"World Geodetic System 1984 ensemble", @"WGS 1984", @"WGS 84", @"World Geodetic System 1984", nil]]];
     [self initializeDatum:[self createWithType:CRS_DATUM_GGRS87 andCode:@"GGRS87" andTranslationX:-199.87 andTranslationY:74.79 andTranslationZ:246.62 andEllipsoid:[CRSEllipsoids fromType:CRS_ELLIPSOIDS_GRS80] andName:@"Greek Geodetic Reference System 1987"]];
     [self initializeDatum:[self createWithType:CRS_DATUM_NAD83 andCode:@"NAD83" andTranslationX:0 andTranslationY:0 andTranslationZ:0 andEllipsoid:[CRSEllipsoids fromType:CRS_ELLIPSOIDS_GRS80] andName:@"North American Datum 1983"]];
     [self initializeDatum:[self createWithType:CRS_DATUM_NAD27 andCode:@"NAD27" andEllipsoid:[CRSEllipsoids fromType:CRS_ELLIPSOIDS_CLARKE_1866] andName:@"North American Datum 1927"]];
