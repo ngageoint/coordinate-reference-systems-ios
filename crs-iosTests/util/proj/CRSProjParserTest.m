@@ -70,6 +70,8 @@
  */
 -(void) test2046{
     
+    // +proj=tmerc +lat_0=0 +lon_0=15 +k=1 +x_0=0 +y_0=0 +axis=wsu +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Hartebeesthoek94 / Lo15\",BASEGEOGCRS[\"Hartebeesthoek94\","];
     [definition appendString:@"DATUM[\"Hartebeesthoek94\","];
@@ -85,7 +87,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",6503]],AXIS[\"Westing (Y)\",west],AXIS[\"Southing (X)\",south],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2046]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=0 +lon_0=15 +k_0=1 +x_0=0 +y_0=0 +axis=wsu +ellps=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -113,7 +115,7 @@
     [definition appendString:@"AXIS[\"X\",SOUTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2046\"]]"];
     
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=0 +lon_0=15 +k_0=1 +x_0=0 +y_0=0 +axis=wsu +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
 }
 
@@ -121,6 +123,8 @@
  * Test EPSG 2056
  */
 -(void) test2056{
+    
+    // +proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"CH1903+ / LV95\",BASEGEOGCRS[\"CH1903+\",DATUM[\"CH1903+\","];
@@ -141,7 +145,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2056]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=somerc +lat_0=46.952405556 +lon_0=7.439583333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -171,7 +175,7 @@
     [definition appendString:@"AXIS[\"X\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2056\"]]"];
     
-    expected = @"";
+    expected = @"+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -181,6 +185,8 @@
  */
 -(void) test2057{
 
+    // +proj=omerc +lat_0=27.51882880555555 +lonc=52.60353916666667 +alpha=0.5716611944444444 +k=0.999895934 +x_0=658377.437 +y_0=3044969.194 +gamma=0.5716611944444444 +ellps=intl +towgs84=-133.63,-157.5,-158.62,0,0,0,0 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Rassadiran / Nakhl e Taqi\",BASEGEOGCRS[\"Rassadiran\","];
     [definition appendString:@"DATUM[\"Rassadiran\",ELLIPSOID[\"International 1924\",6378388,297,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],"];
@@ -200,7 +206,7 @@
     [definition appendString:@"AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2057]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=omerc +lat_0=27.518828806 +lonc=52.603539167 +alpha=0.571661194 +k_0=0.999895934 +x_0=658377.437 +y_0=3044969.194 +gamma=0.571661194 +ellps=intl +towgs84=-133.63,-157.5,-158.62,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -219,7 +225,7 @@
     [definition appendString:@"PARAMETER[\"false_northing\",3044969.194],AUTHORITY[\"EPSG\",\"2057\"],"];
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]"];
 
-    expected = @"";
+    expected = @"+proj=omerc +lat_0=27.51882880555555 +lonc=52.60353916666667 +alpha=0.5716611944444444 +k_0=0.999895934 +x_0=658377.437 +y_0=3044969.194 +gamma=0.5716611944444444 +ellps=intl +towgs84=-133.63,-157.5,-158.62,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
 
 }
@@ -228,6 +234,8 @@
  * Test EPSG 2065
  */
 -(void) test2065{
+    
+    // +proj=krovak +lat_0=49.5 +lon_0=42.5 +alpha=30.28813972222222 +k=0.9999 +x_0=0 +y_0=0 +ellps=bessel +towgs84=589,76,480,0,0,0,0 +pm=ferro +units=m +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"S-JTSK (Ferro) / Krovak\",BASEGEOGCRS[\"S-JTSK (Ferro)\","];
@@ -249,7 +257,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",6501]],AXIS[\"Southing (X)\",south],AXIS[\"Westing (Y)\",west],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2065]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=krovak +lat_0=49.5 +lon_0=42.5 +alpha=30.288139753 +k_0=0.9999 +x_0=0 +y_0=0 +ellps=bessel +towgs84=589,76,480,0,0,0,0 +pm=ferro +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -279,7 +287,7 @@
     [definition appendString:@"AXIS[\"Y\",WEST],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2065\"]]"];
     
-    expected = @"";
+    expected = @"+proj=krovak +lat_0=49.5 +lon_0=42.5 +alpha=30.28813972222222 +k_0=0.9999 +x_0=0 +y_0=0 +ellps=bessel +towgs84=589,76,480,0,0,0,0 +pm=ferro +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -288,6 +296,8 @@
  * Test EPSG 2066
  */
 -(void) test2066{
+    
+    // +proj=cass +lat_0=11.25217861111111 +lon_0=-60.68600888888889 +x_0=37718.66159325 +y_0=36209.91512952 +a=6378293.645208759 +b=6356617.987679838 +to_meter=0.201166195164 +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Mount Dillon / Tobago Grid\",BASEGEOGCRS[\"Mount Dillon\","];
@@ -303,7 +313,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4407]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"Clarke's link\",0.201166195164,ID[\"EPSG\",9039]],ID[\"EPSG\",2066]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=cass +lat_0=11.252178611 +lon_0=-60.686008889 +x_0=37718.66159324999 +y_0=36209.91512951999 +a=6378293.645208759 +b=6356617.987682102 +to_meter=0.201166195164 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -329,7 +339,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2066\"]]"];
     
-    expected = @"";
+    expected = @"+proj=cass +lat_0=11.25217861111111 +lon_0=-60.68600888888889 +x_0=37718.66159324999 +y_0=36209.91512951999 +a=6378293.645208759 +b=6356617.987679838 +to_meter=0.201166195164 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -338,6 +348,8 @@
  * Test EPSG 2085
  */
 -(void) test2085{
+    
+    // +proj=lcc +lat_1=22.35 +lat_0=22.35 +lon_0=-81 +k_0=0.99993602 +x_0=500000 +y_0=280296.016 +datum=NAD27 +units=m +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"NAD27 / Cuba Norte\",BASEGEOGCRS[\"NAD27\","];
@@ -354,7 +366,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4532]],AXIS[\"Northing (Y)\",north],AXIS[\"Easting (X)\",east],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2085]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=lcc +lat_1=22.35 +lat_0=22.35 +lon_0=-81 +k_0=0.99993602 +x_0=500000 +y_0=280296.016 +datum=NAD27 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -379,7 +391,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9001\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2085\"]]"];
     
-    expected = @"";
+    expected = @"+proj=lcc +lat_1=22.35 +lat_0=22.35 +lon_0=-81 +k_0=0.99993602 +x_0=500000 +y_0=280296.016 +datum=NAD27 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -388,6 +400,8 @@
  * Test EPSG 2088
  */
 -(void) test2088{
+    
+    // +proj=tmerc +lat_0=0 +lon_0=11 +k=0.9996 +x_0=500000 +y_0=0 +datum=carthage +units=m +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Carthage / TM 11 NE\",BASEGEOGCRS[\"Carthage\","];
@@ -404,7 +418,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2088]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=0 +lon_0=11 +k_0=0.9996 +x_0=500000 +y_0=0 +datum=carthage +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -432,7 +446,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2088\"]]"];
     
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=0 +lon_0=11 +k_0=0.9996 +x_0=500000 +y_0=0 +datum=carthage +towgs84=-263,6,431,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -441,6 +455,8 @@
  * Test EPSG 2155
  */
 -(void) test2155{
+    
+    // +proj=lcc +lat_1=-14.26666666666667 +lat_0=-14.26666666666667 +lon_0=170 +k_0=1 +x_0=152400.3048006096 +y_0=0 +ellps=clrk66 +towgs84=-115,118,426,0,0,0,0 +units=us-ft +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"American Samoa 1962 / American Samoa Lambert\",BASEGEOGCRS[\"American Samoa 1962\","];
@@ -460,7 +476,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4497]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"US survey foot\",0.304800609601219,ID[\"EPSG\",9003]],ID[\"EPSG\",2155]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=lcc +lat_1=-14.266666667 +lat_0=-14.266666667 +lon_0=170 +k_0=1 +x_0=152400.3048006096 +y_0=0 +ellps=clrk66 +towgs84=-115,118,426,0,0,0,0 +units=us-ft +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -488,7 +504,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2155\"]]"];
     
-    expected = @"";
+    expected = @"+proj=lcc +lat_1=-14.26666666666667 +lat_0=-14.26666666666667 +lon_0=170 +k_0=1 +x_0=152400.3048006096 +y_0=0 +ellps=clrk66 +towgs84=-115,118,426,0,0,0,0 +units=us-ft +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
 }
 
@@ -497,6 +513,8 @@
  */
 -(void) test2163{
 
+    // +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"US National Atlas Equal Area\",BASEGEOGCRS[\"Unspecified datum based upon the Clarke 1866 Authalic Sphere\","];
     [definition appendString:@"DATUM[\"Not specified (based on Clarke 1866 Authalic Sphere)\","];
@@ -511,7 +529,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4499]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2163]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -537,7 +555,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2163\"]]"];
     
-    expected = @"";
+    expected = @"+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -547,6 +565,8 @@
  */
 -(void) test2171{
 
+    // +proj=sterea +lat_0=50.625 +lon_0=21.08333333333333 +k=0.9998 +x_0=4637000 +y_0=5647000 +ellps=krass +towgs84=33.4,-146.6,-76.3,-0.359,-0.053,0.844,-0.84 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Pulkovo 1942(58) / Poland zone I\",BASEGEOGCRS[\"Pulkovo 1942(58)\","];
     [definition appendString:@"DATUM[\"Pulkovo 1942(58)\","];
@@ -569,7 +589,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4530]],AXIS[\"Northing (X)\",north],AXIS[\"Easting (Y)\",east],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2171]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=sterea +lat_0=50.625 +lon_0=21.083333333 +k_0=0.9998 +x_0=4637000 +y_0=5647000 +ellps=krass +towgs84=33.4,-146.6,-76.3,-0.359,-0.053,0.844,-0.84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -595,7 +615,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9001\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2171\"]]"];
     
-    expected = @"";
+    expected = @"+proj=sterea +lat_0=50.625 +lon_0=21.08333333333333 +k_0=0.9998 +x_0=4637000 +y_0=5647000 +ellps=krass +towgs84=33.4,-146.6,-76.3,-0.359,-0.053,0.844,-0.84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -605,6 +625,8 @@
  */
 -(void) test2200{
 
+    // +proj=sterea +lat_0=46.5 +lon_0=-66.5 +k=0.999912 +x_0=300000 +y_0=800000 +a=6378135 +b=6356750.304921594 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"ATS77 / New Brunswick Stereographic (ATS77)\",BASEGEOGCRS[\"ATS77\","];
     [definition appendString:@"DATUM[\"Average Terrestrial System 1977\","];
@@ -620,7 +642,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4500]],AXIS[\"Northing (N)\",north],AXIS[\"Easting (E)\",east],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",2200]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=sterea +lat_0=46.5 +lon_0=-66.5 +k_0=0.999912 +x_0=300000 +y_0=800000 +a=6378135 +b=6356750.304921594 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -645,7 +667,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9001\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2200\"]]"];
     
-    expected = @"";
+    expected = @"+proj=sterea +lat_0=46.5 +lon_0=-66.5 +k_0=0.999912 +x_0=300000 +y_0=800000 +a=6378135 +b=6356750.304921594 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -655,6 +677,8 @@
  */
 -(void) test2251{
 
+    // +proj=lcc +lat_1=47.08333333333334 +lat_2=45.48333333333333 +lat_0=44.78333333333333 +lon_0=-87 +x_0=7999999.999968001 +y_0=0 +datum=NAD83 +units=ft +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"NAD83 / Michigan North (ft)\",BASEGEOGCRS[\"NAD83\","];
     [definition appendString:@"DATUM[\"North American Datum 1983\","];
@@ -671,7 +695,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4495]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"foot\",0.3048,ID[\"EPSG\",9002]],ID[\"EPSG\",2251]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=lcc +lat_1=47.083333333 +lat_2=45.483333333 +lat_0=44.783333333 +lon_0=-87 +x_0=7999999.999968001 +y_0=0 +datum=NAD83 +units=ft +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -700,7 +724,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"2251\"]]"];
     
-    expected = @"";
+    expected = @"+proj=lcc +lat_1=47.08333333333334 +lat_2=45.48333333333333 +lat_0=44.78333333333333 +lon_0=-87 +x_0=7999999.999968001 +y_0=0 +datum=NAD83 +towgs84=0,0,0,0,0,0,0 +units=ft +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -710,6 +734,8 @@
  */
 -(void) test3035{
 
+    // +proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"ETRS89-extended / LAEA Europe\",BASEGEOGCRS[\"ETRS89\","];
     [definition appendString:@"ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\","];
@@ -735,7 +761,7 @@
     [definition appendString:@"AXIS[\"Northing (Y)\",north],AXIS[\"Easting (X)\",east],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3035]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -757,7 +783,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3035\"],"];
     [definition appendString:@"AXIS[\"X\",EAST],AXIS[\"Y\",NORTH]]"];
 
-    expected = @"";
+    expected = @"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -778,7 +804,7 @@
     [definition appendString:@"UNIT[\"metre\",1,ID[\"EPSG\",\"9001\"]],"];
     [definition appendString:@"ID[\"EPSG\",\"3035\"]]"];
 
-    expected = @"";
+    expected = @"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -787,6 +813,8 @@
  * Test EPSG 3068
  */
 -(void) test3068{
+    
+    // +proj=cass +lat_0=52.41864827777778 +lon_0=13.62720366666667 +x_0=40000 +y_0=10000 +datum=potsdam +units=m +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"DHDN / Soldner Berlin\",BASEGEOGCRS[\"DHDN\","];
@@ -802,7 +830,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4531]],AXIS[\"Northing (x)\",north],AXIS[\"Easting (y)\",east],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3068]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=cass +lat_0=52.418648278 +lon_0=13.627203667 +x_0=40000 +y_0=10000 +datum=potsdam +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -827,7 +855,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9001\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3068\"]]"];
     
-    expected = @"";
+    expected = @"+proj=cass +lat_0=52.41864827777778 +lon_0=13.62720366666667 +x_0=40000 +y_0=10000 +datum=potsdam +towgs84=598.1,73.7,418.2,0.202,0.045,-2.455,6.7 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -836,6 +864,8 @@
  * Test EPSG 3083
  */
 -(void) test3083{
+    
+    // +proj=aea +lat_1=27.5 +lat_2=35 +lat_0=18 +lon_0=-100 +x_0=1500000 +y_0=6000000 +datum=NAD83 +units=m +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"NAD83 / Texas Centric Albers Equal Area\",BASEGEOGCRS[\"NAD83\","];
@@ -853,7 +883,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4499]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3083]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=aea +lat_1=27.5 +lat_2=35 +lat_0=18 +lon_0=-100 +x_0=1500000 +y_0=6000000 +datum=NAD83 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -882,7 +912,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3083\"]]"];
     
-    expected = @"";
+    expected = @"+proj=aea +lat_1=27.5 +lat_2=35 +lat_0=18 +lon_0=-100 +x_0=1500000 +y_0=6000000 +datum=NAD83 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -892,6 +922,8 @@
  */
 -(void) test3375{
 
+    // +proj=omerc +lat_0=4 +lonc=102.25 +alpha=323.0257964666666 +k=0.99984 +x_0=804671 +y_0=0 +no_uoff +gamma=323.1301023611111 +ellps=GRS80 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"GDM2000 / Peninsula RSO\",BASEGEOGCRS[\"GDM2000\","];
     [definition appendString:@"DATUM[\"Geodetic Datum of Malaysia 2000\","];
@@ -910,7 +942,7 @@
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],"];
     [definition appendString:@"ID[\"EPSG\",3375]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=omerc +lat_0=4 +lonc=102.25 +alpha=323.0257964666666 +k_0=0.99984 +x_0=804671 +y_0=0 +no_uoff +gamma=323.1301023611111 +ellps=GRS80 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -930,7 +962,7 @@
     [definition appendString:@"PARAMETER[\"false_northing\",0],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3375\"],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]"];
 
-    expected = @"";
+    expected = @"+proj=omerc +lat_0=4 +lonc=102.25 +alpha=323.0257964666666 +k_0=0.99984 +x_0=804671 +y_0=0 +no_uoff +gamma=323.1301023611111 +ellps=GRS80 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
 
 }
@@ -940,6 +972,8 @@
  */
 -(void) test3376{
 
+    // +proj=omerc +lat_0=4 +lonc=115 +alpha=53.31580995 +k=0.99984 +x_0=0 +y_0=0 +no_uoff +gamma=53.13010236111111 +ellps=GRS80 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"GDM2000 / East Malaysia BRSO\",BASEGEOGCRS[\"GDM2000\","];
     [definition appendString:@"DATUM[\"Geodetic Datum of Malaysia 2000\","];
@@ -957,7 +991,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3376]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=omerc +lat_0=4 +lonc=115 +alpha=53.31580995 +k_0=0.99984 +x_0=0 +y_0=0 +no_uoff +gamma=53.130102361 +ellps=GRS80 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -977,7 +1011,7 @@
     [definition appendString:@"PARAMETER[\"false_northing\",0],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3376\"],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]"];
 
-    expected = @"";
+    expected = @"+proj=omerc +lat_0=4 +lonc=115 +alpha=53.31580995 +k_0=0.99984 +x_0=0 +y_0=0 +no_uoff +gamma=53.13010236111111 +ellps=GRS80 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -987,6 +1021,8 @@
  */
 -(void) test3395{
 
+    // +proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"WGS 84 / World Mercator\",BASEGEOGCRS[\"WGS 84\","];
     [definition appendString:@"ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
@@ -1008,7 +1044,7 @@
     [definition appendString:@"AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3395]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=merc +lat_ts=0 +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1030,7 +1066,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3395\"],"];
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]"];
 
-    expected = @"";
+    expected = @"+proj=merc +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1052,7 +1088,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3395\"],"];
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]"];
 
-    expected = @"";
+    expected = @"+proj=merc +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1075,7 +1111,7 @@
     [definition appendString:@"AXIS[\"Northing (N)\",north,ORDER[2]],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1.0],ID[\"EPSG\",\"3395\"]]"];
 
-    expected = @"";
+    expected = @"+proj=merc +lat_ts=0 +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1085,6 +1121,8 @@
  */
 -(void) test3410{
 
+    // +proj=cea +lon_0=0 +lat_ts=30 +x_0=0 +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"NSIDC EASE-Grid Global\",BASEGEOGCRS[\"Unspecified datum based upon the International 1924 Authalic Sphere\","];
     [definition appendString:@"DATUM[\"Not specified (based on International 1924 Authalic Sphere)\","];
@@ -1099,7 +1137,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4499]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3410]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=cea +lat_ts=30 +lon_0=0 +x_0=0 +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1125,7 +1163,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3410\"]]"];
     
-    expected = @"";
+    expected = @"+proj=cea +lat_ts=30 +lon_0=0 +x_0=0 +y_0=0 +a=6371228 +b=6371228 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1135,6 +1173,8 @@
  */
 -(void) test3786{
 
+    // +proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +a=6371007 +b=6371007 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"World Equidistant Cylindrical (Sphere)\",BASEGEOGCRS[\"Unspecified datum based upon the GRS 1980 Authalic Sphere\","];
     [definition appendString:@"DATUM[\"Not specified (based on GRS 1980 Authalic Sphere)\","];
@@ -1149,7 +1189,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4499]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3786]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=eqc +lat_0=0 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +a=6371007 +b=6371007 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1175,7 +1215,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3786\"]]"];
     
-    expected = @"";
+    expected = @"+proj=eqc +lat_0=0 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +a=6371007 +b=6371007 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1185,6 +1225,8 @@
  */
 -(void) test3787{
 
+    // +proj=tmerc +lat_0=0 +lon_0=15 +k=0.9999 +x_0=500000 +y_0=-5000000 +datum=hermannskogel +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"MGI / Slovene National Grid\",BASEGEOGCRS[\"MGI\","];
     [definition appendString:@"DATUM[\"Militar-Geographische Institut\","];
@@ -1200,7 +1242,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4498]],AXIS[\"Easting (Y)\",east],AXIS[\"Northing (X)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3787]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=0 +lon_0=15 +k_0=0.9999 +x_0=500000 +y_0=-5000000 +datum=hermannskogel +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1228,7 +1270,7 @@
     [definition appendString:@"AXIS[\"X\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3787\"]]"];
     
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=0 +lon_0=15 +k_0=0.9999 +x_0=500000 +y_0=-5000000 +datum=hermannskogel +towgs84=577.326,90.129,463.919,5.137,1.474,5.297,2.4232 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1238,6 +1280,8 @@
  */
 -(void) test3857{
 
+    // +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"WGS 84 / Pseudo-Mercator\",BASEGEOGCRS[\"WGS 84\","];
     [definition appendString:@"ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
@@ -1259,7 +1303,7 @@
     [definition appendString:@"AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3857]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=merc +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1282,7 +1326,7 @@
     [definition appendString:@"EXTENSION[\"PROJ4\",\"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs\"],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3857\"]]"];
 
-    expected = @"";
+    expected = @"+proj=merc +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1302,7 +1346,7 @@
     [definition appendString:@",AXIS[\"X\",EAST],AXIS[\"Y\",NORTH]"];
     [definition appendString:@",ID[\"EPSG\",\"3857\"]]"];
 
-    expected = @"";
+    expected = @"+proj=merc +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1312,6 +1356,8 @@
  */
 -(void) test3978{
 
+    // +proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"NAD83 / Canada Atlas Lambert\",BASEGEOGCRS[\"NAD83\","];
     [definition appendString:@"DATUM[\"North American Datum 1983\","];
@@ -1328,7 +1374,7 @@
     [definition appendString:@"AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3978]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1351,7 +1397,7 @@
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3978\"]]"];
 
-    expected = @"";
+    expected = @"+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +datum=NAD83 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1375,7 +1421,7 @@
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"ID[\"EPSG\",\"3978\"]]"];
 
-    expected = @"";
+    expected = @"+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +datum=NAD83 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1385,6 +1431,8 @@
  */
 -(void) test3997{
 
+    // +proj=tmerc +lat_0=0 +lon_0=55.33333333333334 +k=1 +x_0=500000 +y_0=0 +datum=WGS84 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"WGS 84 / Dubai Local TM\",BASEGEOGCRS[\"WGS 84\","];
     [definition appendString:@"ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
@@ -1406,7 +1454,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",3997]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=0 +lon_0=55.333333333 +k_0=1 +x_0=500000 +y_0=0 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1433,7 +1481,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"3997\"]]"];
 
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=0 +lon_0=55.33333333333334 +k_0=1 +x_0=500000 +y_0=0 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1443,6 +1491,8 @@
  */
 -(void) test4005{
 
+    // +proj=longlat +a=6377492.018 +b=6356173.508712696 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"GEOGCRS[\"Unknown datum based upon the Bessel Modified ellipsoid\","];
     [definition appendString:@"DATUM[\"Not specified (based on Bessel Modified ellipsoid)\","];
@@ -1452,7 +1502,7 @@
     [definition appendString:@"AXIS[\"latitude (Lat)\",north],AXIS[\"longitude (Lon)\",east],"];
     [definition appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4005]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +a=6377492.018 +b=6356173.508712696 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1467,7 +1517,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9122\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4005\"]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +a=6377492.018 +b=6356173.508712696 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1477,6 +1527,8 @@
  */
 -(void) test4023{
 
+    // +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"GEOGCRS[\"MOLDREF99\","];
     [definition appendString:@"DATUM[\"MOLDREF99\","];
@@ -1488,7 +1540,7 @@
     [definition appendString:@"AXIS[\"latitude (Lat)\",north],AXIS[\"longitude (Lon)\",east],"];
     [definition appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4023]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1504,7 +1556,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9122\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4023\"]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1514,6 +1566,8 @@
  */
 -(void) test4035{
 
+    // +proj=longlat +a=6371000 +b=6371000 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"GEOGCRS[\"Unknown datum based upon the Authalic Sphere\","];
     [definition appendString:@"DATUM[\"Not specified (based on Authalic Sphere)\","];
@@ -1523,7 +1577,7 @@
     [definition appendString:@"AXIS[\"latitude (Lat)\",north],AXIS[\"longitude (Long)\",east],"];
     [definition appendString:@"ANGLEUNIT[\"degree minute second hemisphere\",1,ID[\"EPSG\",9108]],ID[\"EPSG\",4035]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +a=6371000 +b=6371000 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1538,7 +1592,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9108\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4035\"]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +a=6371000 +b=6371000 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1548,6 +1602,8 @@
  */
 -(void) test4047{
 
+    // +proj=longlat +a=6371007 +b=6371007 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"GEOGCRS[\"Unspecified datum based upon the GRS 1980 Authalic Sphere\","];
     [definition appendString:@"DATUM[\"Not specified (based on GRS 1980 Authalic Sphere)\","];
@@ -1557,7 +1613,7 @@
     [definition appendString:@"AXIS[\"latitude (Lat)\",north],AXIS[\"longitude (Lon)\",east],"];
     [definition appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4047]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +a=6371007 +b=6371007 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1572,7 +1628,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9122\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4047\"]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +a=6371007 +b=6371007 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1582,6 +1638,8 @@
  */
 -(void) test4055{
 
+    // +proj=longlat +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"GEOGCRS[\"Popular Visualisation CRS\","];
     [definition appendString:@"DATUM[\"Popular Visualisation Datum\","];
@@ -1593,7 +1651,7 @@
     [definition appendString:@"AXIS[\"latitude (Lat)\",north],AXIS[\"longitude (Lon)\",east],"];
     [definition appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4055]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1613,7 +1671,7 @@
     [definition appendString:@"AXIS[\"latitude (Lat)\",north],AXIS[\"longitude (Lon)\",east],"];
     [definition appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],ID[\"EPSG\",4055]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1629,7 +1687,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9122\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4055\"]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1639,6 +1697,8 @@
  */
 -(void) test4071{
 
+    // +proj=utm +zone=23 +south +ellps=intl +towgs84=-134,229,-29,0,0,0,0 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Chua / UTM zone 23S\",BASEGEOGCRS[\"Chua\","];
     [definition appendString:@"DATUM[\"Chua\","];
@@ -1657,7 +1717,7 @@
     [definition appendString:@"AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",4071]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=utm +zone=23 +south +ellps=intl +towgs84=-134,229,-29,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1685,7 +1745,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4071\"]]"];
 
-    expected = @"";
+    expected = @"+proj=utm +zone=23 +south +ellps=intl +towgs84=-134,229,-29,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1694,6 +1754,8 @@
  * Test EPSG 4326
  */
 -(void) test4326{
+    
+    // +proj=longlat +datum=WGS84 +no_defs
     
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"GEOGCRS[\"WGS 84\",ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
@@ -1710,7 +1772,7 @@
     [definition appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],"];
     [definition appendString:@"ID[\"EPSG\",4326]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +datum=WGS84 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1723,7 +1785,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9122\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4326\"]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +datum=WGS84 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1732,7 +1794,7 @@
     [definition appendString:@"PRIMEM[\"Greenwich\",0],"];
     [definition appendString:@"UNIT[\"degree\",0.0174532925199433]]"];
     
-    expected = @"";
+    expected = @"+proj=longlat +datum=WGS84 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1742,6 +1804,8 @@
  */
 -(void) test4979{
 
+    // +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"GEOGCRS[\"WGS 84\",ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
     [definition appendString:@"MEMBER[\"World Geodetic System 1984 (Transit)\",ID[\"EPSG\",1166]],"];
@@ -1757,7 +1821,7 @@
     [definition appendString:@"AXIS[\"Geodetic longitude (Lon)\",east,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]]],"];
     [definition appendString:@"AXIS[\"Ellipsoidal height (h)\",up,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],ID[\"EPSG\",4979]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +datum=WGS84 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1773,7 +1837,7 @@
     [definition appendString:@"AXIS[\"Ellipsoidal height\",UP],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"4979\"]]"];
 
-    expected = @"";
+    expected = @"+proj=longlat +datum=WGS84 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1787,7 +1851,7 @@
     [definition appendString:@"AXIS[\"Ellipsoidal height (h)\",up,"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1.0]],ID[\"EPSG\",4979]]"];
 
-    expected = @"";
+    expected = @"+proj=longlat +datum=WGS84 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1797,6 +1861,8 @@
  */
 -(void) test5041{
 
+    // +proj=stere +lat_0=90 +lat_ts=90 +lon_0=0 +k=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"WGS 84 / UPS North (E,N)\",BASEGEOGCRS[\"WGS 84\","];
     [definition appendString:@"ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
@@ -1820,7 +1886,7 @@
     [definition appendString:@"AXIS[\"Northing (N)\",South,MERIDIAN[180.0,ANGLEUNIT[\"degree\",0.0174532925199433]]],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",5041]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=stere +lat_0=90 +lat_ts=90 +lon_0=0 +k_0=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1843,7 +1909,7 @@
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"5041\"]]"];
 
-    expected = @"";
+    expected = @"+proj=stere +lat_0=90 +lat_ts=90 +lon_0=0 +k_0=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1871,7 +1937,7 @@
     [definition appendString:@"ORDER[2]],LENGTHUNIT[\"metre\",1.0],"];
     [definition appendString:@"ID[\"EPSG\",\"5041\"]]"];
 
-    expected = @"";
+    expected = @"+proj=stere +lat_0=90 +lat_ts=90 +lon_0=0 +k_0=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1881,6 +1947,8 @@
  */
 -(void) test5042{
 
+    // +proj=stere +lat_0=-90 +lat_ts=-90 +lon_0=0 +k=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"WGS 84 / UPS South (E,N)\",BASEGEOGCRS[\"WGS 84\","];
     [definition appendString:@"ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
@@ -1904,7 +1972,7 @@
     [definition appendString:@"AXIS[\"Northing (N)\",North,MERIDIAN[0.0,ANGLEUNIT[\"degree\",0.0174532925199433]]],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",5042]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=stere +lat_0=-90 +lat_ts=-90 +lon_0=0 +k_0=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1927,7 +1995,7 @@
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"5042\"]]"];
 
-    expected = @"";
+    expected = @"+proj=stere +lat_0=-90 +lat_ts=-90 +lon_0=0 +k_0=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -1955,7 +2023,7 @@
     [definition appendString:@"ORDER[2]],LENGTHUNIT[\"metre\",1.0],"];
     [definition appendString:@"ID[\"EPSG\",\"5042\"]]"];
 
-    expected = @"";
+    expected = @"+proj=stere +lat_0=-90 +lat_ts=-90 +lon_0=0 +k_0=0.994 +x_0=2000000 +y_0=2000000 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -1965,6 +2033,8 @@
  */
 -(void) test5472{
 
+    // +proj=poly +lat_0=8.25 +lon_0=-81 +x_0=914391.7962 +y_0=999404.7217154861 +ellps=clrk66 +to_meter=0.9143917962 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Panama-Colon 1911 / Panama Polyconic\",BASEGEOGCRS[\"Panama-Colon 1911\","];
     [definition appendString:@"DATUM[\"Panama-Colon 1911\","];
@@ -1979,7 +2049,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",1028]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"Clarke's yard\",0.9143917962,ID[\"EPSG\",9037]],ID[\"EPSG\",5472]]"];
     
-    NSString *expected = @"";
+    NSString *expected = @"+proj=poly +lat_0=8.25 +lon_0=-81 +x_0=914391.7962000003 +y_0=999404.7217154865 +ellps=clrk66 +to_meter=0.9143917962 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2005,7 +2075,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"5472\"]]"];
     
-    expected = @"";
+    expected = @"+proj=poly +lat_0=8.25 +lon_0=-81 +x_0=914391.7962000003 +y_0=999404.7217154865 +ellps=clrk66 +to_meter=0.9143917962 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2015,6 +2085,9 @@
  */
 -(void) test7405{
 
+    // 27700:
+    // +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"COMPOUNDCRS[\"OSGB36 / British National Grid + ODN height\","];
     [definition appendString:@"PROJCRS[\"OSGB36 / British National Grid\",BASEGEOGCRS[\"OSGB36\","];
@@ -2027,13 +2100,6 @@
     [definition appendString:@"PARAMETER[\"Scale factor at natural origin\",0.9996012717,SCALEUNIT[\"unity\",1,ID[\"EPSG\",9201]]],"];
     [definition appendString:@"PARAMETER[\"False easting\",400000,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],"];
     [definition appendString:@"PARAMETER[\"False northing\",-100000,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],"];
-    [definition appendString:@"PARAMETER[\"X-axis translation\",446.448,LENGTHUNIT[\"metre\",1.0]],"];
-    [definition appendString:@"PARAMETER[\"Y-axis translation\",-125.157,LENGTHUNIT[\"metre\",1.0]],"];
-    [definition appendString:@"PARAMETER[\"Z-axis translation\",542.06,LENGTHUNIT[\"metre\",1.0]],"];
-    [definition appendString:@"PARAMETER[\"X-axis rotation\",0.15,ANGLEUNIT[\"arc-second\",4.84813681109535993589914102357E-06]],"];
-    [definition appendString:@"PARAMETER[\"Y-axis rotation\",0.247,ANGLEUNIT[\"arc-second\",4.84813681109535993589914102357E-06]],"];
-    [definition appendString:@"PARAMETER[\"Z-axis rotation\",0.842,ANGLEUNIT[\"arc-second\",4.84813681109535993589914102357E-06]],"];
-    [definition appendString:@"PARAMETER[\"Scale difference\",-20.489,SCALEUNIT[\"parts per million\",1E-06]],"];
     [definition appendString:@"ID[\"EPSG\",19916]],CS[Cartesian,2,ID[\"EPSG\",4400]],"];
     [definition appendString:@"AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",27700]],"];
@@ -2043,7 +2109,7 @@
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",5701]],"];
     [definition appendString:@"ID[\"EPSG\",7405]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2072,7 +2138,7 @@
     [definition appendString:@"AXIS[\"Up\",UP],AUTHORITY[\"EPSG\",\"5701\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"7405\"]]"];
 
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +towgs84=446.448,-125.157,542.0599999999999,0.15,0.247,0.842,-20.489 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2082,6 +2148,9 @@
  */
 -(void) test8101{
 
+    // 4326:
+    // +proj=longlat +datum=WGS84 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"COMPOUNDCRS[“WGS84 Height (EGM08)”,"];
     [definition appendString:@"GEODCRS[\"WGS 84\","];
@@ -2097,7 +2166,7 @@
     [definition appendString:@"LENGTHUNIT[\"metre\",1.0]ID[\"EPSG\",\"3855\"]],"];
     [definition appendString:@"ID[“NSG”,”8101”]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=longlat +datum=WGS84 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2123,7 +2192,7 @@
     [definition appendString:@"PARAMETER[\"standard_parallel_1\",25],"];
     [definition appendString:@"UNIT[\"Meter\",1],AUTHORITY[\"EPSG\",\"9801\"]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=lcc +lat_1=25 +lat_0=25 +lon_0=-95 +k_0=1 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2149,7 +2218,7 @@
     [definition appendString:@"PARAMETER[\"false_northing\",0],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"9802\"]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=lcc +lat_1=30 +lat_2=60 +lat_0=30 +lon_0=126 +x_0=0 +y_0=0 +datum=NAD83 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2159,6 +2228,8 @@
  */
 -(void) test21780{
 
+    // +proj=somerc +lat_0=46.95240555555556 +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +pm=bern +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Bern 1898 (Bern) / LV03C\",BASEGEOGCRS[\"Bern 1898 (Bern)\","];
     [definition appendString:@"DATUM[\"CH1903 (Bern)\","];
@@ -2179,7 +2250,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4498]],AXIS[\"Easting (Y)\",east],AXIS[\"Northing (X)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",21780]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=somerc +lat_0=46.952405556 +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +pm=bern +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2209,7 +2280,7 @@
     [definition appendString:@"AXIS[\"X\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"21780\"]]"];
 
-    expected = @"";
+    expected = @"+proj=somerc +lat_0=46.95240555555556 +lon_0=0 +k_0=1 +x_0=0 +y_0=0 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +pm=bern +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2219,6 +2290,8 @@
  */
 -(void) test22275{
 
+    // +proj=tmerc +lat_0=0 +lon_0=15 +k=1 +x_0=0 +y_0=0 +axis=wsu +a=6378249.145 +b=6356514.966398753 +towgs84=-136,-108,-292,0,0,0,0 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Cape / Lo15\",BASEGEOGCRS[\"Cape\","];
     [definition appendString:@"DATUM[\"Cape\","];
@@ -2237,7 +2310,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",6503]],AXIS[\"Westing (Y)\",west],AXIS[\"Southing (X)\",south],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",22275]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=0 +lon_0=15 +k_0=1 +x_0=0 +y_0=0 +axis=wsu +a=6378249.145 +b=6356514.966398753 +towgs84=-136,-108,-292,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2265,7 +2338,7 @@
     [definition appendString:@"AXIS[\"X\",SOUTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"22275\"]]"];
 
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=0 +lon_0=15 +k_0=1 +x_0=0 +y_0=0 +axis=wsu +a=6378249.145 +b=6356514.966398753 +towgs84=-136,-108,-292,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2275,6 +2348,8 @@
  */
 -(void) test27200{
 
+    // +proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +datum=nzgd49 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"NZGD49 / New Zealand Map Grid\",BASEGEOGCRS[\"NZGD49\","];
     [definition appendString:@"DATUM[\"New Zealand Geodetic Datum 1949\","];
@@ -2289,7 +2364,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",27200]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +datum=nzgd49 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2316,7 +2391,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"27200\"]]"];
 
-    expected = @"";
+    expected = @"+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +datum=nzgd49 +towgs84=59.47,-5.04,187.44,0.47,-0.1,1.024,-4.5993 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2326,6 +2401,8 @@
  */
 -(void) test27258{
 
+    // +proj=utm +zone=58 +south +datum=nzgd49 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"NZGD49 / UTM zone 58S\",BASEGEOGCRS[\"NZGD49\","];
     [definition appendString:@"DATUM[\"New Zealand Geodetic Datum 1949\","];
@@ -2341,7 +2418,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",27258]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=utm +zone=58 +south +datum=nzgd49 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2369,7 +2446,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"27258\"]]"];
 
-    expected = @"";
+    expected = @"+proj=utm +zone=58 +south +datum=nzgd49 +towgs84=59.47,-5.04,187.44,0.47,-0.1,1.024,-4.5993 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2379,6 +2456,8 @@
  */
 -(void) test27700{
 
+    // +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"OSGB36 / British National Grid\",BASEGEOGCRS[\"OSGB36\","];
     [definition appendString:@"DATUM[\"Ordnance Survey of Great Britain 1936\","];
@@ -2394,7 +2473,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",27700]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.999601272 +x_0=400000 +y_0=-100000 +datum=OSGB36 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2422,7 +2501,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"27700\"]]"];
 
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +towgs84=446.448,-125.157,542.0599999999999,0.15,0.247,0.842,-20.489 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2432,6 +2511,8 @@
  */
 -(void) test28991{
 
+    // +proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=0 +y_0=0 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Amersfoort / RD Old\",BASEGEOGCRS[\"Amersfoort\","];
     [definition appendString:@"DATUM[\"Amersfoort\","];
@@ -2454,7 +2535,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4499]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",28991]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=sterea +lat_0=52.156160556 +lon_0=5.387638889 +k_0=0.9999079 +x_0=0 +y_0=0 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2482,7 +2563,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"28991\"]]"];
 
-    expected = @"";
+    expected = @"+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k_0=0.9999079 +x_0=0 +y_0=0 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2492,6 +2573,8 @@
  */
 -(void) test29371{
 
+    // +proj=tmerc +lat_0=-22 +lon_0=11 +k=1 +x_0=0 +y_0=0 +axis=wsu +ellps=bess_nam +towgs84=616,97,-251,0,0,0,0 +to_meter=1.0000135965 +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Schwarzeck / Lo22/11\",BASEGEOGCRS[\"Schwarzeck\","];
     [definition appendString:@"DATUM[\"Schwarzeck\","];
@@ -2510,7 +2593,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",6502]],AXIS[\"Westing (Y)\",west],AXIS[\"Southing (X)\",south],"];
     [definition appendString:@"LENGTHUNIT[\"German legal metre\",1.0000135965,ID[\"EPSG\",9031]],ID[\"EPSG\",29371]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=-22 +lon_0=11 +k_0=1 +x_0=0 +y_0=0 +axis=wsu +ellps=bess_nam +towgs84=616,97,-251,0,0,0,0 +to_meter=1.0000135965 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2538,7 +2621,7 @@
     [definition appendString:@"AXIS[\"X\",SOUTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"29371\"]]"];
 
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=-22 +lon_0=11 +k_0=1 +x_0=0 +y_0=0 +axis=wsu +ellps=bess_nam +towgs84=616,97,-251,0,0,0,0 +to_meter=1.0000135965 +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2548,6 +2631,8 @@
  */
 -(void) test29900{
 
+    // +proj=tmerc +lat_0=53.5 +lon_0=-8 +k=1.000035 +x_0=200000 +y_0=250000 +datum=ire65 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"TM65 / Irish National Grid\",BASEGEOGCRS[\"TM65\","];
     [definition appendString:@"DATUM[\"TM65\","];
@@ -2563,7 +2648,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",29900]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=tmerc +lat_0=53.5 +lon_0=-8 +k_0=1.000035 +x_0=200000 +y_0=250000 +datum=ire65 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2591,7 +2676,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"29900\"]]"];
 
-    expected = @"";
+    expected = @"+proj=tmerc +lat_0=53.5 +lon_0=-8 +k_0=1.000035 +x_0=200000 +y_0=250000 +datum=ire65 +towgs84=482.5,-130.6,564.6,-1.042,-0.214,-0.631,8.15 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2601,6 +2686,8 @@
  */
 -(void) test31600{
 
+    // +proj=sterea +lat_0=45.9 +lon_0=25.39246588888889 +k=0.9996667 +x_0=500000 +y_0=500000 +ellps=intl +towgs84=103.25,-100.4,-307.19,0,0,0,0 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"Dealul Piscului 1930 / Stereo 33\",BASEGEOGCRS[\"Dealul Piscului 1930\","];
     [definition appendString:@"DATUM[\"Dealul Piscului 1930\","];
@@ -2619,7 +2706,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4499]],AXIS[\"Easting (X)\",east],AXIS[\"Northing (Y)\",north]"];
     [definition appendString:@",LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",31600]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=sterea +lat_0=45.9 +lon_0=25.392465889 +k_0=0.9996667 +x_0=500000 +y_0=500000 +ellps=intl +towgs84=103.25,-100.4,-307.19,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2647,7 +2734,7 @@
     [definition appendString:@"AXIS[\"Y\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"31600\"]]"];
 
-    expected = @"";
+    expected = @"+proj=sterea +lat_0=45.9 +lon_0=25.39246588888889 +k_0=0.9996667 +x_0=500000 +y_0=500000 +ellps=intl +towgs84=103.25,-100.4,-307.19,0,0,0,0 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2657,6 +2744,8 @@
  */
 -(void) test32660{
 
+    // +proj=utm +zone=60 +datum=WGS84 +units=m +no_defs
+    
     NSMutableString *definition = [NSMutableString string];
     [definition appendString:@"PROJCRS[\"WGS 84 / UTM zone 60N\",BASEGEOGCRS[\"WGS 84\","];
     [definition appendString:@"ENSEMBLE[\"World Geodetic System 1984 ensemble\","];
@@ -2678,7 +2767,7 @@
     [definition appendString:@"CS[Cartesian,2,ID[\"EPSG\",4400]],AXIS[\"Easting (E)\",east],AXIS[\"Northing (N)\",north],"];
     [definition appendString:@"LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",32660]]"];
 
-    NSString *expected = @"";
+    NSString *expected = @"+proj=utm +zone=60 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2701,7 +2790,7 @@
     [definition appendString:@"AUTHORITY[\"EPSG\",\"32660\"],"];
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]"];
 
-    expected = @"";
+    expected = @"+proj=utm +zone=60 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
     definition = [NSMutableString string];
@@ -2722,7 +2811,7 @@
     [definition appendString:@"AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"ID[\"EPSG\",\"32660\"]]"];
 
-    expected = @"";
+    expected = @"+proj=utm +zone=60 +datum=WGS84 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
