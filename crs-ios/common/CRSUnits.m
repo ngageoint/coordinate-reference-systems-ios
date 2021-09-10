@@ -14,6 +14,7 @@ NSString * const CRS_UNITS_METRE_NAME = @"metre";
 NSString * const CRS_UNITS_KILOMETRE_NAME = @"kilometre";
 NSString * const CRS_UNITS_GERMAN_LEGAL_METRE_NAME = @"German legal metre";
 NSString * const CRS_UNITS_US_SURVEY_FOOT_NAME = @"US survey foot";
+NSString * const CRS_UNITS_FOOT_NAME = @"foot";
 NSString * const CRS_UNITS_MICRORADIAN_NAME = @"microradian";
 NSString * const CRS_UNITS_MILLIRADIAN_NAME = @"milliradian";
 NSString * const CRS_UNITS_RADIAN_NAME = @"radian";
@@ -57,6 +58,7 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_GERMAN_LEGAL_METRE] forKey:[CRS_UNITS_GERMAN_LEGAL_METRE_NAME lowercaseString]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_GERMAN_LEGAL_METRE] forKey:[self metreToMeter:CRS_UNITS_GERMAN_LEGAL_METRE_NAME]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_US_SURVEY_FOOT] forKey:[CRS_UNITS_US_SURVEY_FOOT_NAME lowercaseString]];
+    [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_FOOT] forKey:[CRS_UNITS_FOOT_NAME lowercaseString]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MICRORADIAN] forKey:[CRS_UNITS_MICRORADIAN_NAME lowercaseString]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_MILLIRADIAN] forKey:[CRS_UNITS_MILLIRADIAN_NAME lowercaseString]];
     [nameTypes setObject:[NSNumber numberWithInt:CRS_UNITS_RADIAN] forKey:[CRS_UNITS_RADIAN_NAME lowercaseString]];
@@ -112,6 +114,9 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
             break;
         case CRS_UNITS_US_SURVEY_FOOT:
             unit = [self USSurveyFoot];
+            break;
+        case CRS_UNITS_FOOT:
+            unit = [self foot];
             break;
         case CRS_UNITS_MICRORADIAN:
             unit = [self microradian];
@@ -218,6 +223,10 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
 
 +(CRSUnit *) USSurveyFoot{
     return [CRSUnit createWithType:CRS_UNIT_LENGTH andName:CRS_UNITS_US_SURVEY_FOOT_NAME andConversionFactor:0.304800609601219];
+}
+
++(CRSUnit *) foot{
+    return [CRSUnit createWithType:CRS_UNIT_LENGTH andName:CRS_UNITS_FOOT_NAME andConversionFactor:0.3048];
 }
 
 +(CRSUnit *) microradian{

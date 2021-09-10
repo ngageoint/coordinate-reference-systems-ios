@@ -19,6 +19,7 @@ enum CRSUnitsType{
     CRS_UNITS_KILOMETRE,
     CRS_UNITS_GERMAN_LEGAL_METRE,
     CRS_UNITS_US_SURVEY_FOOT,
+    CRS_UNITS_FOOT,
     CRS_UNITS_MICRORADIAN,
     CRS_UNITS_MILLIRADIAN,
     CRS_UNITS_RADIAN,
@@ -49,6 +50,7 @@ extern NSString * const CRS_UNITS_METRE_NAME;
 extern NSString * const CRS_UNITS_KILOMETRE_NAME;
 extern NSString * const CRS_UNITS_GERMAN_LEGAL_METRE_NAME;
 extern NSString * const CRS_UNITS_US_SURVEY_FOOT_NAME;
+extern NSString * const CRS_UNITS_FOOT_NAME;
 extern NSString * const CRS_UNITS_MICRORADIAN_NAME;
 extern NSString * const CRS_UNITS_MILLIRADIAN_NAME;
 extern NSString * const CRS_UNITS_RADIAN_NAME;
@@ -153,6 +155,13 @@ extern NSString * const CRS_UNITS_CALENDAR_MONTH_NAME;
  * @return US survey foot unit
  */
 +(CRSUnit *) USSurveyFoot;
+
+/**
+ * Get a foot unit
+ *
+ * @return foot unit
+ */
++(CRSUnit *) foot;
 
 /**
  * Get a microradian unit
