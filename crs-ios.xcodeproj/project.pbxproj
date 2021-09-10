@@ -39,6 +39,7 @@
 		044224C326BC800E00B1E1F2 /* CRSTextUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */; };
 		0458104826EAAE4E0044DC70 /* CRSProjConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0458104626EAAE4E0044DC70 /* CRSProjConstants.h */; };
 		0458104926EAAE4E0044DC70 /* CRSProjConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458104726EAAE4E0044DC70 /* CRSProjConstants.m */; };
+		0458104E26EB9B550044DC70 /* CRSProjParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458104D26EB9B550044DC70 /* CRSProjParserTest.m */; };
 		0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */; };
 		04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */; };
 		04BCA984269CAAB40015DEC0 /* CRSCategoryTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */; };
@@ -218,6 +219,8 @@
 		044224C226BC800E00B1E1F2 /* CRSTextUtilsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSTextUtilsTest.m; sourceTree = "<group>"; };
 		0458104626EAAE4E0044DC70 /* CRSProjConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSProjConstants.h; sourceTree = "<group>"; };
 		0458104726EAAE4E0044DC70 /* CRSProjConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSProjConstants.m; sourceTree = "<group>"; };
+		0458104C26EB9B550044DC70 /* CRSProjParserTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSProjParserTest.h; sourceTree = "<group>"; };
+		0458104D26EB9B550044DC70 /* CRSProjParserTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSProjParserTest.m; sourceTree = "<group>"; };
 		0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "crs-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCategoryTypes.h; sourceTree = "<group>"; };
 		04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSCategoryTypes.m; sourceTree = "<group>"; };
@@ -452,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				044224B026BC7D5C00B1E1F2 /* common */,
+				0458104A26EB998A0044DC70 /* util */,
 				044224B126BC7D7100B1E1F2 /* wkt */,
 				041F18DF24CB2291001311E4 /* CRSReadmeTest.h */,
 				041F18E024CB2291001311E4 /* CRSReadmeTest.m */,
@@ -507,6 +511,23 @@
 				04021F5B26E14E5700ECE9AF /* CRSProjParams.m */,
 				04021F5E26E150AD00ECE9AF /* CRSProjParser.h */,
 				04021F5F26E150AD00ECE9AF /* CRSProjParser.m */,
+			);
+			path = proj;
+			sourceTree = "<group>";
+		};
+		0458104A26EB998A0044DC70 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				0458104B26EB99980044DC70 /* proj */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		0458104B26EB99980044DC70 /* proj */ = {
+			isa = PBXGroup;
+			children = (
+				0458104C26EB9B550044DC70 /* CRSProjParserTest.h */,
+				0458104D26EB9B550044DC70 /* CRSProjParserTest.m */,
 			);
 			path = proj;
 			sourceTree = "<group>";
@@ -1045,6 +1066,7 @@
 				04F4562F209B6D1000FC299E /* CRSTestUtils.m in Sources */,
 				044224B426BC7E0300B1E1F2 /* CRSDateTimeTest.m in Sources */,
 				041F18E124CB2291001311E4 /* CRSReadmeTest.m in Sources */,
+				0458104E26EB9B550044DC70 /* CRSProjParserTest.m in Sources */,
 				041F18E424CB3762001311E4 /* CRSSwiftReadmeTest.swift in Sources */,
 				044224C026BC7FBE00B1E1F2 /* CRSTextReaderTest.m in Sources */,
 				044224BA26BC7F4E00B1E1F2 /* CRSReaderWriterNgaTest.m in Sources */,
