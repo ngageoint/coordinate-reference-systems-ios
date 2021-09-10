@@ -34,6 +34,8 @@ NSString * const CRS_PROJ_PARAM_TOWGS84 = @"towgs84";
 NSString * const CRS_PROJ_PARAM_PM = @"pm";
 NSString * const CRS_PROJ_PARAM_UNITS = @"units";
 NSString * const CRS_PROJ_PARAM_TO_METER = @"to_meter";
+NSString * const CRS_PROJ_PARAM_NADGRIDS = @"nadgrids";
+NSString * const CRS_PROJ_PARAM_WKTEXT = @"wktext";
 NSString * const CRS_PROJ_PARAM_NO_DEFS = @"no_defs";
 
 NSString * const CRS_PROJ_NAME_AEA = @"aea";

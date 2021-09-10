@@ -37,6 +37,8 @@ extern NSString * const CRS_PROJ_PARAM_TOWGS84;
 extern NSString * const CRS_PROJ_PARAM_PM;
 extern NSString * const CRS_PROJ_PARAM_UNITS;
 extern NSString * const CRS_PROJ_PARAM_TO_METER;
+extern NSString * const CRS_PROJ_PARAM_NADGRIDS;
+extern NSString * const CRS_PROJ_PARAM_WKTEXT;
 extern NSString * const CRS_PROJ_PARAM_NO_DEFS;
 
 extern NSString * const CRS_PROJ_NAME_AEA;

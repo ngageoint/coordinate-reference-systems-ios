@@ -118,6 +118,12 @@ static NSString *axisWestSouthUp;
     if(_to_meter != nil){
         [description appendFormat:@" +%@=%@", CRS_PROJ_PARAM_TO_METER, _to_meter];
     }
+    if(_nadgrids != nil){
+        [description appendFormat:@" +%@=%@", CRS_PROJ_PARAM_NADGRIDS, _nadgrids];
+    }
+    if(_wktext){
+        [description appendFormat:@" +%@", CRS_PROJ_PARAM_WKTEXT];
+    }
     if(_no_defs){
         [description appendFormat:@" +%@", CRS_PROJ_PARAM_NO_DEFS];
     }

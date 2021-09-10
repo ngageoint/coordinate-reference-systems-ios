@@ -44,6 +44,8 @@
 @property (nonatomic, strong) NSString *pm;
 @property (nonatomic, strong) NSString *units;
 @property (nonatomic, strong) NSString *to_meter;
+@property (nonatomic, strong) NSString *nadgrids;
+@property (nonatomic) BOOL wktext;
 @property (nonatomic) BOOL no_defs;
 
 /**
