@@ -77,7 +77,7 @@ NSString * const CRS_TYPE_VERTICAL_NAME = @"VERTICAL";
 }
 
 +(NSArray<NSString *> *) names: (NSArray<NSNumber *> *) types{
-    NSMutableArray<NSString *> *names = [NSMutableArray alloc];
+    NSMutableArray<NSString *> *names = [NSMutableArray array];
     for(NSNumber *type in types){
         [names addObject:[self name:[type intValue]]];
     }
