@@ -108,8 +108,8 @@ extern NSString * const CRS_UNITS_CALENDAR_MONTH_NAME;
 /**
  * Get a units type from the unit
  *
- * @param name
- *            unit name
+ * @param unit
+ *            unit
  * @return units type
  */
 +(enum CRSUnitsType) typeFromUnit: (CRSUnit *) unit;
