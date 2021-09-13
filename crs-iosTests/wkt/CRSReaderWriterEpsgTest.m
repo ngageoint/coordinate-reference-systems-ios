@@ -11,7 +11,7 @@
 #import "CRSTextUtils.h"
 #import "CRSReader.h"
 #import "CRSWriter.h"
-#import "CRSTextConstants.h""
+#import "CRSTextConstants.h"
 
 @implementation CRSReaderWriterEpsgTest
 
