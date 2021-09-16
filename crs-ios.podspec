@@ -14,8 +14,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'crs-ios/**/*.{h,m}'
 
-  s.exclude_files = 'crs-ios/**/Info.plist'
-  s.resource_bundle = { 'crs-ios' => ['crs-ios/**/*.plist'] }
   s.frameworks = 'Foundation'
-
 end
