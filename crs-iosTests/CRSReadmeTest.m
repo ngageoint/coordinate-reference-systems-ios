@@ -10,6 +10,7 @@
 #import "CRSTestUtils.h"
 #import "CRSReader.h"
 #import "CRSWriter.h"
+#import "CRSProjParser.h"
 
 @implementation CRSReadmeTest
 
@@ -34,6 +35,9 @@
     [wkt appendString:@"ID[\"EPSG\",4326]]"];;
     
     [CRSTestUtils assertEqualWithValue:wkt andValue2:[self testCRSWithText:wkt]];
+    
+    [CRSTestUtils assertEqualWithValue:@"+proj=longlat +datum=WGS84 +no_defs" andValue2:[self testProjWithText:wkt]];
+    
 }
 
 /**
@@ -170,6 +174,27 @@
     }
      
     return text;
+}
+
+/**
+ * Test proj
+ *
+ * @param wkt
+ *            crs well-known text
+ * @return proj text
+ */
+-(NSString *) testProjWithText: (NSString *) wkt{
+    
+    // NSString *wkt = ...
+    
+    CRSObject *crs = [CRSReader read:wkt];
+    
+    CRSProjParams *projParamsFromCRS = [CRSProjParser paramsFromCRS:crs];
+    NSString *projTextFromCRS = [CRSProjParser paramsTextFromCRS:crs];
+    CRSProjParams *projParamsFromWKT = [CRSProjParser paramsFromText:wkt];
+    NSString *projTextFromWKT = [CRSProjParser paramsTextFromText:wkt];
+    
+    return projTextFromWKT;
 }
 
 @end

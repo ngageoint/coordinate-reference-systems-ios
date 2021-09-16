@@ -147,6 +147,21 @@ switch(category){
 
 ```
 
+#### PROJ ####
+
+```objectivec
+
+// NSString *wkt = ...
+
+CRSObject *crs = [CRSReader read:wkt];
+
+CRSProjParams *projParamsFromCRS = [CRSProjParser paramsFromCRS:crs];
+NSString *projTextFromCRS = [CRSProjParser paramsTextFromCRS:crs];
+CRSProjParams *projParamsFromWKT = [CRSProjParser paramsFromText:wkt];
+NSString *projTextFromWKT = [CRSProjParser paramsTextFromText:wkt];
+
+```
+
 ### Build ###
 
 [![Build & Test](https://github.com/ngageoint/coordinate-reference-systems-ios/workflows/Build%20&%20Test/badge.svg)](https://github.com/ngageoint/coordinate-reference-systems-ios/actions/workflows/build-test.yml)
@@ -283,5 +298,20 @@ case CRS_CATEGORY_OPERATION:
 default:
     break
 }
+
+```
+
+#### PROJ ####
+
+```swift
+
+// var wkt: String = ...
+
+let crs : CRSObject = CRSReader.read(wkt)
+
+let projParamsFromCRS : CRSProjParams = CRSProjParser.params(fromCRS: crs)
+let projTextFromCRS : String = CRSProjParser.paramsText(fromCRS: crs)
+let projParamsFromWKT : CRSProjParams = CRSProjParser.params(fromText: wkt)
+let projTextFromWKT : String = CRSProjParser.paramsText(fromText: wkt)
 
 ```

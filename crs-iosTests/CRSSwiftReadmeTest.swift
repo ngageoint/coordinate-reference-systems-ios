@@ -33,6 +33,9 @@ class CRSSwiftReadmeTest: XCTestCase{
             + "ID[\"EPSG\",4326]]"
         
         CRSTestUtils.assertEqual(withValue: wkt as NSObject, andValue2: testCRS(wkt) as NSObject)
+        
+        CRSTestUtils.assertEqual(withValue: "+proj=longlat +datum=WGS84 +no_defs" as NSObject, andValue2: testProj(wkt) as NSObject)
+        
     }
  
     /**
@@ -140,6 +143,27 @@ class CRSSwiftReadmeTest: XCTestCase{
         }
         
         return text
+    }
+    
+    /**
+     * Test proj
+     *
+     * @param wkt
+     *            crs well-known text
+     * @return proj text
+     */
+    func testProj(_ wkt: String) -> String{
+        
+        // var wkt: String = ...
+        
+        let crs : CRSObject = CRSReader.read(wkt)
+        
+        let projParamsFromCRS : CRSProjParams = CRSProjParser.params(fromCRS: crs)
+        let projTextFromCRS : String = CRSProjParser.paramsText(fromCRS: crs)
+        let projParamsFromWKT : CRSProjParams = CRSProjParser.params(fromText: wkt)
+        let projTextFromWKT : String = CRSProjParser.paramsText(fromText: wkt)
+        
+        return projTextFromWKT
     }
     
 }
