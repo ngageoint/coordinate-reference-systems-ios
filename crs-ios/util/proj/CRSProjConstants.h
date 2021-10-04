@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * proj constants
+ * PROJ constants
  */
 @interface CRSProjConstants : NSObject
 

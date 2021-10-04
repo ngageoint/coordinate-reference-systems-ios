@@ -150,7 +150,7 @@ class CRSSwiftReadmeTest: XCTestCase{
      *
      * @param wkt
      *            crs well-known text
-     * @return proj text
+     * @return PROJ text
      */
     func testProj(_ wkt: String) -> String{
         

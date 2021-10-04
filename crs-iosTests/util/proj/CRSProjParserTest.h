@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 /**
- * CRS to proj4 parser tests
+ * CRS to PROJ parser tests
  */
 @interface CRSProjParserTest : XCTestCase
 

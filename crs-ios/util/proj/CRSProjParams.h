@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * proj4 params
+ * PROJ params
  */
 @interface CRSProjParams : NSObject
 

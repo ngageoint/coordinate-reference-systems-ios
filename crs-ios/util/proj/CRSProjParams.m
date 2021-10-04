@@ -69,7 +69,7 @@ static NSString *axisWestSouthUp;
         [description appendFormat:@" +%@=%@", CRS_PROJ_PARAM_Y_0, _y_0];
     }
     if(_axis != nil && [_axis isEqualToString:axisWestSouthUp]){
-        // Only known proj4 axis specification is wsu
+        // Only known PROJ axis specification is wsu
         [description appendFormat:@" +%@=%@", CRS_PROJ_PARAM_AXIS, _axis];
     }
     if(_datum != nil){

@@ -181,7 +181,7 @@
  *
  * @param wkt
  *            crs well-known text
- * @return proj text
+ * @return PROJ text
  */
 -(NSString *) testProjWithText: (NSString *) wkt{
     
