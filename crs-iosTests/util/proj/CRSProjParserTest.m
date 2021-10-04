@@ -2138,7 +2138,7 @@
     [definition appendString:@"AXIS[\"Up\",UP],AUTHORITY[\"EPSG\",\"5701\"]],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"7405\"]]"];
 
-    expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +towgs84=446.448,-125.157,542.0599999999999,0.15,0.247,0.842,-20.489 +units=m +no_defs";
+    expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +towgs84=446.448,-125.157,542.06,0.15,0.247,0.842,-20.489 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }
@@ -2501,7 +2501,7 @@
     [definition appendString:@"AXIS[\"Northing\",NORTH],"];
     [definition appendString:@"AUTHORITY[\"EPSG\",\"27700\"]]"];
 
-    expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +towgs84=446.448,-125.157,542.0599999999999,0.15,0.247,0.842,-20.489 +units=m +no_defs";
+    expected = @"+proj=tmerc +lat_0=49 +lon_0=-2 +k_0=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +towgs84=446.448,-125.157,542.06,0.15,0.247,0.842,-20.489 +units=m +no_defs";
     [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
     
 }

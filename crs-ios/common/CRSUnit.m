@@ -102,6 +102,10 @@
     [_identifiers addObjectsFromArray:identifiers];
 }
 
+- (BOOL) isEqualNameToUnit: (CRSUnit *) unit{
+    return [[_name lowercaseString] isEqualToString:[unit.name lowercaseString]];
+}
+
 - (BOOL) isEqualToUnit: (CRSUnit *) unit{
     if (self == unit){
         return YES;

@@ -442,7 +442,7 @@ static NSString *utmZoneName = @"utm zone";
                 
             }
             
-            if(params.units == nil && [unit.conversionFactor doubleValue] != 1.0){
+            if(params.units == nil && [unit hasConversionFactor] && [unit.conversionFactor doubleValue] != 1.0){
                 [params setTo_meter:unit.conversionFactorText];
             }
             
@@ -728,7 +728,7 @@ static NSString *utmZoneName = @"utm zone";
         fromUnit = [CRSUnits defaultUnit:toUnit.type];
     }
     
-    if([CRSUnits canConvertBetweenUnit:fromUnit andUnit:toUnit]){
+    if([CRSUnits canConvertBetweenUnit:fromUnit andUnit:toUnit] && ![fromUnit isEqualNameToUnit:toUnit]){
         value = [CRSUnits convertValue:value fromUnit:fromUnit toUnit:toUnit];
         textValue = [CRSTextUtils textFromDouble:value];
     }

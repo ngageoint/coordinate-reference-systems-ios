@@ -141,4 +141,11 @@
  */
 -(BOOL) hasConversionFactor;
 
+/**
+ * Determine if the unit names are equal, ignoring case
+ *
+ * @return true if equal names
+ */
+-(BOOL) isEqualNameToUnit: (CRSUnit *) unit;
+
 @end

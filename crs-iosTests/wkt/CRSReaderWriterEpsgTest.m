@@ -1036,8 +1036,6 @@
     expectedText = [NSMutableString stringWithString:[text stringByReplacingOccurrencesOfString:@"\"9810\"" withString:@"9810"]];
     expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@"\"16061\"" withString:@"16061"]];
     expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@"\"5041\"" withString:@"5041"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0]" withString:@"]"]];
-    expectedText = [NSMutableString stringWithString:[expectedText stringByReplacingOccurrencesOfString:@".0," withString:@","]];
 
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[crs description]];
     [CRSTestUtils assertEqualWithValue:expectedText andValue2:[CRSWriter write:crs]];
