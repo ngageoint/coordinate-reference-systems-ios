@@ -62,9 +62,16 @@ NSString * const CRS_PROJ_AXIS_NORTH = @"n";
 NSString * const CRS_PROJ_AXIS_SOUTH = @"s";
 NSString * const CRS_PROJ_AXIS_UP = @"u";
 NSString * const CRS_PROJ_AXIS_DOWN = @"d";
+NSString * const CRS_PROJ_AXIS_WEST_SOUTH_UP = @"wsu";
 
 NSString * const CRS_PROJ_UNITS_METRE = @"m";
 NSString * const CRS_PROJ_UNITS_US_SURVEY_FOOT = @"us-ft";
 NSString * const CRS_PROJ_UNITS_FOOT = @"ft";
+NSString * const CRS_PROJ_UNITS_DEGREE = @"deg";
+
+NSString * const CRS_PROJ_PSEUDO_MERCATOR = @"pseudo";
+NSString * const CRS_PROJ_SWISS_OBLIQUE_MERCATOR = @"swiss oblique mercator";
+NSString * const CRS_PROJ_SWISS_OBLIQUE_MERCATOR_COMPAT = @"hotine_oblique_mercator_azimuth_center";
+NSString * const CRS_PROJ_UTM_ZONE = @"utm zone";
 
 @end

@@ -65,9 +65,16 @@ extern NSString * const CRS_PROJ_AXIS_NORTH;
 extern NSString * const CRS_PROJ_AXIS_SOUTH;
 extern NSString * const CRS_PROJ_AXIS_UP;
 extern NSString * const CRS_PROJ_AXIS_DOWN;
+extern NSString * const CRS_PROJ_AXIS_WEST_SOUTH_UP;
 
 extern NSString * const CRS_PROJ_UNITS_METRE;
 extern NSString * const CRS_PROJ_UNITS_US_SURVEY_FOOT;
 extern NSString * const CRS_PROJ_UNITS_FOOT;
+extern NSString * const CRS_PROJ_UNITS_DEGREE;
+
+extern NSString * const CRS_PROJ_PSEUDO_MERCATOR;
+extern NSString * const CRS_PROJ_SWISS_OBLIQUE_MERCATOR;
+extern NSString * const CRS_PROJ_SWISS_OBLIQUE_MERCATOR_COMPAT;
+extern NSString * const CRS_PROJ_UTM_ZONE;
 
 @end

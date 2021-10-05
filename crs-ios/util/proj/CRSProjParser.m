@@ -18,12 +18,6 @@
 
 @implementation CRSProjParser
 
-static NSString *pseudoMercatorNameCheck = @"Pseudo";
-static NSString *degreeUnitNameCheck = @"deg";
-static NSString *swissObliqueMercatorName = @"swiss oblique mercator";
-static NSString *swissObliqueMercatorCompatName = @"hotine_oblique_mercator_azimuth_center";
-static NSString *utmZoneName = @"utm zone";
-
 +(CRSProjParams *) paramsFromText: (NSString *) wkt{
     
     CRSObject *crs = [CRSReader read:wkt];
@@ -170,7 +164,7 @@ static NSString *utmZoneName = @"utm zone";
     // Check for special cases like EPSG 3857 which specifies the ellipsoid parameters instead of a datum
     if(commonGeoDatum.type == CRS_DATUM_WGS84
        && [method hasMethod] && method.method.type == CRS_METHOD_POPULAR_VISUALISATION_PSEUDO_MERCATOR
-       && [mapProjection.name rangeOfString:pseudoMercatorNameCheck options:NSCaseInsensitiveSearch].length > 0){
+       && [mapProjection.name rangeOfString:CRS_PROJ_PSEUDO_MERCATOR options:NSCaseInsensitiveSearch].length > 0){
         [self updateSphericalEllipsoidWithParams:params andRadius:[geoDatum ellipsoid].semiMajorAxisText];
     }else{
         [params setDatum:[commonGeoDatum code]];
@@ -301,7 +295,7 @@ static NSString *utmZoneName = @"utm zone";
     
     CRSUnit *unit = [coordinateSystem axisUnit];
 
-    if(unit != nil && (unit.type == CRS_UNIT_ANGLE || (unit.type == CRS_UNIT && [[unit.name lowercaseString] hasPrefix:degreeUnitNameCheck]))){
+    if(unit != nil && (unit.type == CRS_UNIT_ANGLE || (unit.type == CRS_UNIT && [[unit.name lowercaseString] hasPrefix:CRS_PROJ_UNITS_DEGREE]))){
         [params setProj:CRS_PROJ_NAME_LONGLAT];
     }else{
         [params setProj:CRS_PROJ_NAME_MERC];
@@ -338,8 +332,8 @@ static NSString *utmZoneName = @"utm zone";
                 break;
                 
             case CRS_METHOD_HOTINE_OBLIQUE_MERCATOR_B:
-                if([[mapProjection.name lowercaseString] containsString:swissObliqueMercatorName]
-                   || [[method.name lowercaseString] containsString:swissObliqueMercatorCompatName]){
+                if([[mapProjection.name lowercaseString] containsString:CRS_PROJ_SWISS_OBLIQUE_MERCATOR]
+                   || [[method.name lowercaseString] containsString:CRS_PROJ_SWISS_OBLIQUE_MERCATOR_COMPAT]){
                     [params setProj:CRS_PROJ_NAME_SOMERC];
                 }else{
                     [params setProj:CRS_PROJ_NAME_OMERC];
@@ -388,7 +382,7 @@ static NSString *utmZoneName = @"utm zone";
                 
             case CRS_METHOD_TRANSVERSE_MERCATOR:
             case CRS_METHOD_TRANSVERSE_MERCATOR_SOUTH_ORIENTATED:
-                if([[mapProjection.name lowercaseString] containsString:utmZoneName]){
+                if([[mapProjection.name lowercaseString] containsString:CRS_PROJ_UTM_ZONE]){
                     [params setProj:CRS_PROJ_NAME_UTM];
                 }else{
                     [params setProj:CRS_PROJ_NAME_TMERC];
@@ -460,7 +454,7 @@ static NSString *utmZoneName = @"utm zone";
 +(void) updateParams: (CRSProjParams *) params withMapProjection: (CRSMapProjection *) mapProjection andUnit: (CRSUnit *) unit{
     
     NSString *name = mapProjection.name;
-    NSRange range = [name rangeOfString:utmZoneName options:NSCaseInsensitiveSearch];
+    NSRange range = [name rangeOfString:CRS_PROJ_UTM_ZONE options:NSCaseInsensitiveSearch];
     if(range.length > 0){
         NSString *utm = [[name substringFromIndex:range.location + range.length] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         NSArray *parts = [utm componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
