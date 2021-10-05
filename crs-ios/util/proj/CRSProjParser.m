@@ -728,7 +728,7 @@ static NSString *utmZoneName = @"utm zone";
         fromUnit = [CRSUnits defaultUnit:toUnit.type];
     }
     
-    if([CRSUnits canConvertBetweenUnit:fromUnit andUnit:toUnit] && ![fromUnit isEqualNameToUnit:toUnit]){
+    if(value != 0.0 && [CRSUnits canConvertBetweenUnit:fromUnit andUnit:toUnit] && ![fromUnit isEqualNameToUnit:toUnit]){
         value = [CRSUnits convertValue:value fromUnit:fromUnit toUnit:toUnit];
         textValue = [CRSTextUtils textFromDouble:value];
     }
