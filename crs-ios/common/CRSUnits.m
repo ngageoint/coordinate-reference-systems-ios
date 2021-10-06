@@ -313,6 +313,15 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     return [CRSUnit createWithType:CRS_UNIT_TIME andName:CRS_UNITS_CALENDAR_MONTH_NAME];
 }
 
++(enum CRSUnitType) unitTypeFromName: (NSString *) name{
+    enum CRSUnitType type = -1;
+    CRSUnit *unit = [self unitFromName:name];
+    if(unit != nil){
+        type = unit.type;
+    }
+    return type;
+}
+
 +(CRSUnit *) defaultUnit: (enum CRSUnitType) type{
     
     CRSUnit *defaultUnit = nil;
