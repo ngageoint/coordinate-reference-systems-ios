@@ -231,47 +231,51 @@
 
 +(void) updateDatumTransformWithParams: (CRSProjParams *) params andOperationMethod: (CRSOperationMethod *) method{
     
-    for(CRSOperationParameter *parameter in method.parameters){
-        
-        if([parameter hasParameter]){
-        
-            switch([parameter.parameter type]){
-                    
-                case CRS_PARAMETER_X_AXIS_TRANSLATION:
-                    [params setXTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
-                    break;
-                    
-                case CRS_PARAMETER_Y_AXIS_TRANSLATION:
-                    [params setYTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
-                    break;
-                    
-                case CRS_PARAMETER_Z_AXIS_TRANSLATION:
-                    [params setZTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
-                    break;
-                    
-                case CRS_PARAMETER_X_AXIS_ROTATION:
-                    [params setXRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
-                    break;
-                    
-                case CRS_PARAMETER_Y_AXIS_ROTATION:
-                    [params setYRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
-                    break;
-                    
-                case CRS_PARAMETER_Z_AXIS_ROTATION:
-                    [params setZRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
-                    break;
-                    
-                case CRS_PARAMETER_SCALE_DIFFERENCE:
-                    [params setScaleDifference:[self valueOfParameter:parameter inUnit:[CRSUnits partsPerMillion]]];
-                    break;
-                    
-                default:
-                    break;
-                    
+    if([method hasParameters]){
+    
+        for(CRSOperationParameter *parameter in method.parameters){
+            
+            if([parameter hasParameter]){
+            
+                switch([parameter.parameter type]){
+                        
+                    case CRS_PARAMETER_X_AXIS_TRANSLATION:
+                        [params setXTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                        break;
+                        
+                    case CRS_PARAMETER_Y_AXIS_TRANSLATION:
+                        [params setYTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                        break;
+                        
+                    case CRS_PARAMETER_Z_AXIS_TRANSLATION:
+                        [params setZTranslation:[self valueOfParameter:parameter inUnit:[CRSUnits metre]]];
+                        break;
+                        
+                    case CRS_PARAMETER_X_AXIS_ROTATION:
+                        [params setXRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
+                        break;
+                        
+                    case CRS_PARAMETER_Y_AXIS_ROTATION:
+                        [params setYRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
+                        break;
+                        
+                    case CRS_PARAMETER_Z_AXIS_ROTATION:
+                        [params setZRotation:[self valueOfParameter:parameter inUnit:[CRSUnits arcSecond]]];
+                        break;
+                        
+                    case CRS_PARAMETER_SCALE_DIFFERENCE:
+                        [params setScaleDifference:[self valueOfParameter:parameter inUnit:[CRSUnits partsPerMillion]]];
+                        break;
+                        
+                    default:
+                        break;
+                        
+                }
             }
         }
-    }
     
+    }
+        
 }
 
 +(void) updatePrimeMeridianWithParams: (CRSProjParams *) params andGeoDatum: (NSObject<CRSGeoDatum> *) geoDatum{
