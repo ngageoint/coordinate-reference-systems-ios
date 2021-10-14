@@ -4,6 +4,10 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## 1.0.2 (TBD)
+
+* TBD
+
 ## [1.0.1](https://github.com/ngageoint/coordinate-reference-systems-ios/releases/tag/1.0.1) (10-14-2021)
 
 * Adjustment to OSGB36 datum name and transform
