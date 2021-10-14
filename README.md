@@ -185,12 +185,12 @@ Include this repository by specifying it in a Podfile using a supported option.
 
 Pull from [CocoaPods](https://cocoapods.org/pods/crs-ios):
 
-    pod 'crs-ios', '~> 1.0.0'
+    pod 'crs-ios', '~> 1.0.1'
 
 Pull from GitHub:
 
     pod 'crs-ios', :git => 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :branch => 'master'
-    pod 'crs-ios', :git => 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :tag => '1.0.0'
+    pod 'crs-ios', :git => 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :tag => '1.0.1'
 
 Include as local project:
 
