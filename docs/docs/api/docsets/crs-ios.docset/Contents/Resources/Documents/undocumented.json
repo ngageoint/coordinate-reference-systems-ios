@@ -36,13 +36,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/CRSCategoryTypes.h",
-      "line": 27,
-      "symbol": "CRSCategoryTypes",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/CRSTypes.h",
       "line": 16,
       "symbol": "CRSType.CRS_TYPE_BOUND",
@@ -229,13 +222,6 @@
       "line": 48,
       "symbol": "CRS_TYPE_VERTICAL_NAME",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/CRSTypes.h",
-      "line": 50,
-      "symbol": "CRSTypes",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
       "warning": "undocumented"
     },
     {
@@ -792,13 +778,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSAxisDirectionTypes.h",
-      "line": 101,
-      "symbol": "CRSAxisDirectionTypes",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSCoordinateSystemTypes.h",
       "line": 15,
       "symbol": "CRSCoordinateSystemType.CRS_CS_AFFINE",
@@ -974,13 +953,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSCoordinateSystemTypes.h",
-      "line": 47,
-      "symbol": "CRSCoordinateSystemTypes",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnitTypes.h",
       "line": 15,
       "symbol": "CRSUnitType.CRS_UNIT_NONE",
@@ -1065,198 +1037,394 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnitTypes.h",
-      "line": 34,
-      "symbol": "CRSUnitTypes",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
-      "line": 13,
-      "symbol": "CRS_UNITS_MICROMETRE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
-      "line": 14,
-      "symbol": "CRS_UNITS_MILLIMETRE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
-      "line": 15,
-      "symbol": "CRS_UNITS_METRE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 16,
-      "symbol": "CRS_UNITS_KILOMETRE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_MICROMETRE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 17,
-      "symbol": "CRS_UNITS_GERMAN_LEGAL_METRE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_MILLIMETRE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 18,
-      "symbol": "CRS_UNITS_US_SURVEY_FOOT",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_METRE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 19,
-      "symbol": "CRS_UNITS_MICRORADIAN",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_KILOMETRE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 20,
-      "symbol": "CRS_UNITS_MILLIRADIAN",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_GERMAN_LEGAL_METRE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 21,
-      "symbol": "CRS_UNITS_RADIAN",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_US_SURVEY_FOOT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 22,
-      "symbol": "CRS_UNITS_ARC_SECOND",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_FOOT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 23,
-      "symbol": "CRS_UNITS_ARC_MINUTE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_MICRORADIAN",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 24,
-      "symbol": "CRS_UNITS_DEGREE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_MILLIRADIAN",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 25,
-      "symbol": "CRS_UNITS_GRAD",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_RADIAN",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 26,
-      "symbol": "CRS_UNITS_UNITY",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_ARC_SECOND",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 27,
-      "symbol": "CRS_UNITS_BIN",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_ARC_MINUTE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 28,
-      "symbol": "CRS_UNITS_PARTS_PER_MILLION",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_DEGREE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 29,
-      "symbol": "CRS_UNITS_PASCAL",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_GRAD",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 30,
-      "symbol": "CRS_UNITS_HECTOPASCAL",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_UNITY",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 31,
-      "symbol": "CRS_UNITS_MICROSECOND",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_BIN",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 32,
-      "symbol": "CRS_UNITS_MILLISECOND",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_PARTS_PER_MILLION",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 33,
-      "symbol": "CRS_UNITS_SECOND",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_PASCAL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 34,
-      "symbol": "CRS_UNITS_MINUTE",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_HECTOPASCAL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 35,
-      "symbol": "CRS_UNITS_HOUR",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_MICROSECOND",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 36,
-      "symbol": "CRS_UNITS_DAY",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_MILLISECOND",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 37,
-      "symbol": "CRS_UNITS_YEAR",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_SECOND",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 38,
-      "symbol": "CRS_UNITS_CALENDAR_SECOND",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "symbol": "CRSUnitsType.CRS_UNITS_MINUTE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
       "line": 39,
-      "symbol": "CRS_UNITS_CALENDAR_MONTH",
+      "symbol": "CRSUnitsType.CRS_UNITS_HOUR",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 40,
+      "symbol": "CRSUnitsType.CRS_UNITS_DAY",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 41,
+      "symbol": "CRSUnitsType.CRS_UNITS_YEAR",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 42,
+      "symbol": "CRSUnitsType.CRS_UNITS_CALENDAR_SECOND",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 43,
+      "symbol": "CRSUnitsType.CRS_UNITS_CALENDAR_MONTH",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 47,
+      "symbol": "CRS_UNITS_MICROMETRE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 48,
+      "symbol": "CRS_UNITS_MILLIMETRE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 49,
+      "symbol": "CRS_UNITS_METRE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 50,
+      "symbol": "CRS_UNITS_KILOMETRE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 51,
+      "symbol": "CRS_UNITS_GERMAN_LEGAL_METRE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 52,
+      "symbol": "CRS_UNITS_US_SURVEY_FOOT_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 53,
+      "symbol": "CRS_UNITS_FOOT_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 54,
+      "symbol": "CRS_UNITS_MICRORADIAN_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 55,
+      "symbol": "CRS_UNITS_MILLIRADIAN_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 56,
+      "symbol": "CRS_UNITS_RADIAN_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 57,
+      "symbol": "CRS_UNITS_ARC_SECOND_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 58,
+      "symbol": "CRS_UNITS_ARC_MINUTE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 59,
+      "symbol": "CRS_UNITS_DEGREE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 60,
+      "symbol": "CRS_UNITS_GRAD_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 61,
+      "symbol": "CRS_UNITS_UNITY_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 62,
+      "symbol": "CRS_UNITS_BIN_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 63,
+      "symbol": "CRS_UNITS_PARTS_PER_MILLION_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 64,
+      "symbol": "CRS_UNITS_PASCAL_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 65,
+      "symbol": "CRS_UNITS_HECTOPASCAL_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 66,
+      "symbol": "CRS_UNITS_MICROSECOND_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 67,
+      "symbol": "CRS_UNITS_MILLISECOND_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 68,
+      "symbol": "CRS_UNITS_SECOND_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 69,
+      "symbol": "CRS_UNITS_MINUTE_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 70,
+      "symbol": "CRS_UNITS_HOUR_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 71,
+      "symbol": "CRS_UNITS_DAY_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 72,
+      "symbol": "CRS_UNITS_YEAR_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 73,
+      "symbol": "CRS_UNITS_CALENDAR_SECOND_NAME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/common/CRSUnits.h",
+      "line": 74,
+      "symbol": "CRS_UNITS_CALENDAR_MONTH_NAME",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
@@ -1282,10 +1450,479 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoidTypes.h",
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 15,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_INTERNATIONAL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 16,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_BESSEL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 17,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_CLARKE_1866",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 18,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_CLARKE_1880",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 19,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_AIRY",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 20,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_WGS60",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 21,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_WGS66",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 22,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_WGS72",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 23,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_WGS84",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 24,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_KRASSOVSKY",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
       "line": 25,
-      "symbol": "CRSEllipsoidTypes",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_EVEREST",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 26,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_INTERNATIONAL_1967",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 27,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_GRS80",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 28,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_AUSTRALIAN",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 29,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_MERIT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 30,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_SGS85",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 31,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_IAU76",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 32,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_APL4_9",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 33,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_NWL9D",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 34,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_MOD_AIRY",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 35,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_ANDRAE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 36,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_AUST_SA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 37,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_GRS67",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 38,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_BESS_NAM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 39,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_CPM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 40,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_DELMBR",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 41,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_ENGELIS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 42,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_EVRST48",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 43,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_EVRST56",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 44,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_EVRTS69",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 45,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_EVRTSTSS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 46,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_FRSCH60",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 47,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_FSRCH60M",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 48,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_FSCHR68",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 49,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_HELMERT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 50,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_HOUGH",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 51,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_KAULA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 52,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_LERCH",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 53,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_MPRTS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 54,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_PLESSIS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 55,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_SEASIA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 56,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_WALBECK",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 57,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_NAD27",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 58,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_NAD83",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSEllipsoids.h",
+      "line": 59,
+      "symbol": "CRSEllipsoidsType.CRS_ELLIPSOIDS_SPHERE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 16,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_WGS84",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 17,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_GGRS87",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 18,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_NAD27",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 19,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_NAD83",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 20,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_POTSDAM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 21,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_CARTHAGE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 22,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_HERMANNSKOGEL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 23,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_IRE65",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 24,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_NZGD49",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
+      "line": 25,
+      "symbol": "CRSGeoDatumType.CRS_DATUM_OSGB36",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 15,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_GREENWICH",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 16,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_LISBON",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 17,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_PARIS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 18,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_BOGOTA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 19,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_MADRID",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 20,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_ROME",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 21,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_BERN",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 22,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_JAKARTA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 23,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_FERRO",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 24,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_BRUSSELS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 25,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_STOCKHOLM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 26,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_ATHENS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSPrimeMeridians.h",
+      "line": 27,
+      "symbol": "CRSPrimeMeridianType.CRS_PM_OSLO",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
@@ -1821,17 +2458,661 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/operation/CRSOperationTypes.h",
-      "line": 31,
-      "symbol": "CRSOperationTypes",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/temporal/CRSTemporalDatum.h",
       "line": 13,
       "symbol": "CRSTemporalDatum",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 16,
+      "symbol": "CRS_PROJ_PARAM_PROJ",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 17,
+      "symbol": "CRS_PROJ_PARAM_ZONE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 18,
+      "symbol": "CRS_PROJ_PARAM_SOUTH",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 19,
+      "symbol": "CRS_PROJ_PARAM_LAT_1",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 20,
+      "symbol": "CRS_PROJ_PARAM_LAT_2",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 21,
+      "symbol": "CRS_PROJ_PARAM_LAT_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 22,
+      "symbol": "CRS_PROJ_PARAM_LAT_TS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 23,
+      "symbol": "CRS_PROJ_PARAM_LON_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 24,
+      "symbol": "CRS_PROJ_PARAM_LONC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 25,
+      "symbol": "CRS_PROJ_PARAM_ALPHA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 26,
+      "symbol": "CRS_PROJ_PARAM_K_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 27,
+      "symbol": "CRS_PROJ_PARAM_X_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 28,
+      "symbol": "CRS_PROJ_PARAM_Y_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 29,
+      "symbol": "CRS_PROJ_PARAM_AXIS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 30,
+      "symbol": "CRS_PROJ_PARAM_DATUM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 31,
+      "symbol": "CRS_PROJ_PARAM_NO_UOFF",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 32,
+      "symbol": "CRS_PROJ_PARAM_GAMMA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 33,
+      "symbol": "CRS_PROJ_PARAM_A",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 34,
+      "symbol": "CRS_PROJ_PARAM_B",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 35,
+      "symbol": "CRS_PROJ_PARAM_ELLPS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 36,
+      "symbol": "CRS_PROJ_PARAM_TOWGS84",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 37,
+      "symbol": "CRS_PROJ_PARAM_PM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 38,
+      "symbol": "CRS_PROJ_PARAM_UNITS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 39,
+      "symbol": "CRS_PROJ_PARAM_TO_METER",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 40,
+      "symbol": "CRS_PROJ_PARAM_NADGRIDS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 41,
+      "symbol": "CRS_PROJ_PARAM_WKTEXT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 42,
+      "symbol": "CRS_PROJ_PARAM_NO_DEFS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 44,
+      "symbol": "CRS_PROJ_NAME_AEA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 45,
+      "symbol": "CRS_PROJ_NAME_CASS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 46,
+      "symbol": "CRS_PROJ_NAME_CEA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 47,
+      "symbol": "CRS_PROJ_NAME_EQC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 48,
+      "symbol": "CRS_PROJ_NAME_KROVAK",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 49,
+      "symbol": "CRS_PROJ_NAME_LAEA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 50,
+      "symbol": "CRS_PROJ_NAME_LCC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 51,
+      "symbol": "CRS_PROJ_NAME_LONGLAT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 52,
+      "symbol": "CRS_PROJ_NAME_MERC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 53,
+      "symbol": "CRS_PROJ_NAME_NZMG",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 54,
+      "symbol": "CRS_PROJ_NAME_OMERC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 55,
+      "symbol": "CRS_PROJ_NAME_POLY",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 56,
+      "symbol": "CRS_PROJ_NAME_SOMERC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 57,
+      "symbol": "CRS_PROJ_NAME_STERE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 58,
+      "symbol": "CRS_PROJ_NAME_STEREA",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 59,
+      "symbol": "CRS_PROJ_NAME_TMERC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 60,
+      "symbol": "CRS_PROJ_NAME_UTM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 62,
+      "symbol": "CRS_PROJ_AXIS_EAST",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 63,
+      "symbol": "CRS_PROJ_AXIS_WEST",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 64,
+      "symbol": "CRS_PROJ_AXIS_NORTH",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 65,
+      "symbol": "CRS_PROJ_AXIS_SOUTH",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 66,
+      "symbol": "CRS_PROJ_AXIS_UP",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 67,
+      "symbol": "CRS_PROJ_AXIS_DOWN",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 68,
+      "symbol": "CRS_PROJ_AXIS_WEST_SOUTH_UP",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 70,
+      "symbol": "CRS_PROJ_UNITS_METRE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 71,
+      "symbol": "CRS_PROJ_UNITS_US_SURVEY_FOOT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 72,
+      "symbol": "CRS_PROJ_UNITS_FOOT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 73,
+      "symbol": "CRS_PROJ_UNITS_DEGREE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 75,
+      "symbol": "CRS_PROJ_PSEUDO_MERCATOR",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 76,
+      "symbol": "CRS_PROJ_SWISS_OBLIQUE_MERCATOR",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 77,
+      "symbol": "CRS_PROJ_SWISS_OBLIQUE_MERCATOR_COMPAT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 78,
+      "symbol": "CRS_PROJ_UTM_ZONE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 16,
+      "symbol": "CRSProjParams.proj",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 17,
+      "symbol": "CRSProjParams.zone",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 18,
+      "symbol": "CRSProjParams.south",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 19,
+      "symbol": "CRSProjParams.lat_1",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 20,
+      "symbol": "CRSProjParams.lat_2",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 21,
+      "symbol": "CRSProjParams.lat_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 22,
+      "symbol": "CRSProjParams.lat_ts",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 23,
+      "symbol": "CRSProjParams.lon_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 24,
+      "symbol": "CRSProjParams.lonc",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 25,
+      "symbol": "CRSProjParams.alpha",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 26,
+      "symbol": "CRSProjParams.k_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 27,
+      "symbol": "CRSProjParams.x_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 28,
+      "symbol": "CRSProjParams.y_0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 29,
+      "symbol": "CRSProjParams.axis",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 30,
+      "symbol": "CRSProjParams.datum",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 31,
+      "symbol": "CRSProjParams.no_uoff",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 32,
+      "symbol": "CRSProjParams.gamma",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 33,
+      "symbol": "CRSProjParams.a",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 34,
+      "symbol": "CRSProjParams.b",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 35,
+      "symbol": "CRSProjParams.ellps",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 36,
+      "symbol": "CRSProjParams.towgs84",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 37,
+      "symbol": "CRSProjParams.xTranslation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 38,
+      "symbol": "CRSProjParams.yTranslation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 39,
+      "symbol": "CRSProjParams.zTranslation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 40,
+      "symbol": "CRSProjParams.xRotation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 41,
+      "symbol": "CRSProjParams.yRotation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 42,
+      "symbol": "CRSProjParams.zRotation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 43,
+      "symbol": "CRSProjParams.scaleDifference",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 44,
+      "symbol": "CRSProjParams.pm",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 45,
+      "symbol": "CRSProjParams.units",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 46,
+      "symbol": "CRSProjParams.to_meter",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 47,
+      "symbol": "CRSProjParams.nadgrids",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 48,
+      "symbol": "CRSProjParams.wktext",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjParams.h",
+      "line": 49,
+      "symbol": "CRSProjParams.no_defs",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
       "warning": "undocumented"
     },
     {
@@ -2385,13 +3666,6 @@
       "line": 93,
       "symbol": "CRSKeywordType.CRS_KEYWORD_VERTICALEXTENT",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/wkt/CRSKeyword.h",
-      "line": 96,
-      "symbol": "CRSKeyword",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
       "warning": "undocumented"
     },
     {

@@ -1830,7 +1830,7 @@
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/geo/CRSGeoDatums.h",
       "line": 25,
-      "symbol": "CRSGeoDatumType.CRS_DATUM_OSEB36",
+      "symbol": "CRSGeoDatumType.CRS_DATUM_OSGB36",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
@@ -2816,22 +2816,64 @@
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
-      "line": 69,
-      "symbol": "CRS_PROJ_UNITS_METRE",
+      "line": 68,
+      "symbol": "CRS_PROJ_AXIS_WEST_SOUTH_UP",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
       "line": 70,
-      "symbol": "CRS_PROJ_UNITS_US_SURVEY_FOOT",
+      "symbol": "CRS_PROJ_UNITS_METRE",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
       "line": 71,
+      "symbol": "CRS_PROJ_UNITS_US_SURVEY_FOOT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 72,
       "symbol": "CRS_PROJ_UNITS_FOOT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 73,
+      "symbol": "CRS_PROJ_UNITS_DEGREE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 75,
+      "symbol": "CRS_PROJ_PSEUDO_MERCATOR",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 76,
+      "symbol": "CRS_PROJ_SWISS_OBLIQUE_MERCATOR",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 77,
+      "symbol": "CRS_PROJ_SWISS_OBLIQUE_MERCATOR_COMPAT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/osbornb/git/coordinate-reference-systems-ios/crs-ios/util/proj/CRSProjConstants.h",
+      "line": 78,
+      "symbol": "CRS_PROJ_UTM_ZONE",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },

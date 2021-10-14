@@ -16,19 +16,19 @@
     <a title="crs-ios  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">crs-ios 1.0.0 Docs</a> (65% documented)</p>
-        <p class="header-right"><a href="https://github.com/ngageoint/coordinate-reference-systems-ios"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right">
+        <p><a href="index.html">crs-ios 1.0.1 Docs</a> (65% documented)</p>
+        <p class="header-right"><a href="https://github.com/ngageoint/coordinate-reference-systems-ios"><img src="img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
           </form>
-        </p>
+        </div>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="index.html">crs-ios Reference</a>
-        <img id="carat" src="img/carat.png" />
+        <img id="carat" src="img/carat.png" alt=""/>
         crs-ios  Reference
       </p>
     </div>
@@ -461,6 +461,9 @@
                 <a href="Constants.html#/c:@CRS_PROJ_AXIS_WEST">CRS_PROJ_AXIS_WEST</a>
               </li>
               <li class="nav-group-task">
+                <a href="Constants.html#/c:@CRS_PROJ_AXIS_WEST_SOUTH_UP">CRS_PROJ_AXIS_WEST_SOUTH_UP</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Constants.html#/c:@CRS_PROJ_NAME_AEA">CRS_PROJ_NAME_AEA</a>
               </li>
               <li class="nav-group-task">
@@ -593,6 +596,18 @@
                 <a href="Constants.html#/c:@CRS_PROJ_PARAM_ZONE">CRS_PROJ_PARAM_ZONE</a>
               </li>
               <li class="nav-group-task">
+                <a href="Constants.html#/c:@CRS_PROJ_PSEUDO_MERCATOR">CRS_PROJ_PSEUDO_MERCATOR</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:@CRS_PROJ_SWISS_OBLIQUE_MERCATOR">CRS_PROJ_SWISS_OBLIQUE_MERCATOR</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:@CRS_PROJ_SWISS_OBLIQUE_MERCATOR_COMPAT">CRS_PROJ_SWISS_OBLIQUE_MERCATOR_COMPAT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:@CRS_PROJ_UNITS_DEGREE">CRS_PROJ_UNITS_DEGREE</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Constants.html#/c:@CRS_PROJ_UNITS_FOOT">CRS_PROJ_UNITS_FOOT</a>
               </li>
               <li class="nav-group-task">
@@ -600,6 +615,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Constants.html#/c:@CRS_PROJ_UNITS_US_SURVEY_FOOT">CRS_PROJ_UNITS_US_SURVEY_FOOT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Constants.html#/c:@CRS_PROJ_UTM_ZONE">CRS_PROJ_UTM_ZONE</a>
               </li>
               <li class="nav-group-task">
                 <a href="Constants.html#/c:@CRS_TYPE_BOUND_NAME">CRS_TYPE_BOUND_NAME</a>
@@ -1002,6 +1020,18 @@
 <span class="p">}</span>
 
 </code></pre>
+<h4 id='proj' class='heading'>PROJ</h4>
+<pre class="highlight objective_c"><code>
+<span class="c1">// NSString *wkt = ...</span>
+
+<span class="n">CRSObject</span> <span class="o">*</span><span class="n">crs</span> <span class="o">=</span> <span class="p">[</span><span class="n">CRSReader</span> <span class="nf">read</span><span class="p">:</span><span class="n">wkt</span><span class="p">];</span>
+
+<span class="n">CRSProjParams</span> <span class="o">*</span><span class="n">projParamsFromCRS</span> <span class="o">=</span> <span class="p">[</span><span class="n">CRSProjParser</span> <span class="nf">paramsFromCRS</span><span class="p">:</span><span class="n">crs</span><span class="p">];</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">projTextFromCRS</span> <span class="o">=</span> <span class="p">[</span><span class="n">CRSProjParser</span> <span class="nf">paramsTextFromCRS</span><span class="p">:</span><span class="n">crs</span><span class="p">];</span>
+<span class="n">CRSProjParams</span> <span class="o">*</span><span class="n">projParamsFromWKT</span> <span class="o">=</span> <span class="p">[</span><span class="n">CRSProjParser</span> <span class="nf">paramsFromText</span><span class="p">:</span><span class="n">wkt</span><span class="p">];</span>
+<span class="n">NSString</span> <span class="o">*</span><span class="n">projTextFromWKT</span> <span class="o">=</span> <span class="p">[</span><span class="n">CRSProjParser</span> <span class="nf">paramsTextFromText</span><span class="p">:</span><span class="n">wkt</span><span class="p">];</span>
+
+</code></pre>
 <h3 id='build' class='heading'>Build</h3>
 
 <p><a href="https://github.com/ngageoint/coordinate-reference-systems-ios/actions/workflows/build-test.yml"><img src="https://github.com/ngageoint/coordinate-reference-systems-ios/workflows/Build%20&%20Test/badge.svg" alt="Build &amp; Test"></a></p>
@@ -1023,12 +1053,12 @@ pod install
 <p>Include this repository by specifying it in a Podfile using a supported option.</p>
 
 <p>Pull from <a href="https://cocoapods.org/pods/crs-ios">CocoaPods</a>:</p>
-<pre class="highlight plaintext"><code>pod 'crs-ios', '~&gt; 1.0.0'
+<pre class="highlight plaintext"><code>pod 'crs-ios', '~&gt; 1.0.1'
 </code></pre>
 
 <p>Pull from GitHub:</p>
 <pre class="highlight plaintext"><code>pod 'crs-ios', :git =&gt; 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :branch =&gt; 'master'
-pod 'crs-ios', :git =&gt; 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :tag =&gt; '1.0.0'
+pod 'crs-ios', :git =&gt; 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :tag =&gt; '1.0.1'
 </code></pre>
 
 <p>Include as local project:</p>
@@ -1136,15 +1166,26 @@ pod 'crs-ios', :git =&gt; 'https://github.com/ngageoint/coordinate-reference-sys
 <span class="p">}</span>
 
 </code></pre>
+<h4 id='proj' class='heading'>PROJ</h4>
+<pre class="highlight swift"><code>
+<span class="c1">// var wkt: String = ...</span>
+
+<span class="k">let</span> <span class="nv">crs</span> <span class="p">:</span> <span class="kt">CRSObject</span> <span class="o">=</span> <span class="kt">CRSReader</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="n">wkt</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">projParamsFromCRS</span> <span class="p">:</span> <span class="kt">CRSProjParams</span> <span class="o">=</span> <span class="kt">CRSProjParser</span><span class="o">.</span><span class="nf">params</span><span class="p">(</span><span class="nv">fromCRS</span><span class="p">:</span> <span class="n">crs</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">projTextFromCRS</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">CRSProjParser</span><span class="o">.</span><span class="nf">paramsText</span><span class="p">(</span><span class="nv">fromCRS</span><span class="p">:</span> <span class="n">crs</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">projParamsFromWKT</span> <span class="p">:</span> <span class="kt">CRSProjParams</span> <span class="o">=</span> <span class="kt">CRSProjParser</span><span class="o">.</span><span class="nf">params</span><span class="p">(</span><span class="nv">fromText</span><span class="p">:</span> <span class="n">wkt</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">projTextFromWKT</span> <span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">CRSProjParser</span><span class="o">.</span><span class="nf">paramsText</span><span class="p">(</span><span class="nv">fromText</span><span class="p">:</span> <span class="n">wkt</span><span class="p">)</span>
+
+</code></pre>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://www.nga.mil" target="_blank" rel="external">NGA</a>. All rights reserved. (Last updated: 2021-09-13)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://www.nga.mil" target="_blank" rel="external noopener">NGA</a>. All rights reserved. (Last updated: 2021-10-14)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
   </body>
-</div>
 </html>
