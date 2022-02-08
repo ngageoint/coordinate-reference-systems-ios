@@ -118,6 +118,13 @@ enum CRSEllipsoidsType{
 -(double) equatorRadius;
 
 /**
+ * Get the reciprocal flattening
+ *
+ * @return reciprocal flattening
+ */
+-(double) reciprocalFlattening;
+
+/**
  * Get the a
  *
  * @return a

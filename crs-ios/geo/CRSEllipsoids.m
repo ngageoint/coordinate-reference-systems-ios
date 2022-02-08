@@ -11,10 +11,11 @@
 @interface CRSEllipsoids()
 
 @property (nonatomic) enum CRSEllipsoidsType type;
-@property (nonatomic, strong) NSArray<NSString *> *names;
+@property (nonatomic, strong) NSMutableArray<NSString *> *names;
 @property (nonatomic, strong) NSString *shortName;
 @property (nonatomic) double equatorRadius;
 @property (nonatomic) double poleRadius;
+@property (nonatomic) double reciprocalFlattening;
 @property (nonatomic) double eccentricity;
 @property (nonatomic) double eccentricity2;
 
@@ -91,13 +92,8 @@ static NSMutableDictionary<NSString *, CRSEllipsoids *> *nameEllipsoids = nil;
     [nameEllipsoids setObject:ellipsoid forKey:[ellipsoid.shortName lowercaseString]];
     for(NSString *name in ellipsoid.names){
         NSString *lowercaseName = [name lowercaseString];
-        [nameEllipsoids setObject:ellipsoid forKey:lowercaseName];
-        NSRange range = [lowercaseName rangeOfString:@"("];
-        if(range.length > 0){
-            NSString *namePrefix = [[lowercaseName substringToIndex:range.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            if([nameEllipsoids objectForKey:namePrefix] == nil){
-                [nameEllipsoids setObject:ellipsoid forKey:namePrefix];
-            }
+        if([nameEllipsoids objectForKey:lowercaseName] == nil){
+            [nameEllipsoids setObject:ellipsoid forKey:lowercaseName];
         }
     }
 }
@@ -106,16 +102,8 @@ static NSMutableDictionary<NSString *, CRSEllipsoids *> *nameEllipsoids = nil;
     return [[CRSEllipsoids alloc] initWithType:type andShortName:shortName andEquatorRadius:equatorRadius andPoleRadius:poleRadius andReciprocalFlattening:reciprocalFlattening andName:name];
 }
 
-+(CRSEllipsoids *) createWithType: (enum CRSEllipsoidsType) type andShortName: (NSString *) shortName andEquatorRadius: (double) equatorRadius andEccentricity2: (double) eccentricity2 andName: (NSString *) name{
-    return [[CRSEllipsoids alloc] initWithType:type andShortName:shortName andEquatorRadius:equatorRadius andEccentricity2:eccentricity2 andName:name];
-}
-
 +(CRSEllipsoids *) createWithType: (enum CRSEllipsoidsType) type andShortName: (NSString *) shortName andEquatorRadius: (double) equatorRadius andPoleRadius: (double) poleRadius andReciprocalFlattening: (double) reciprocalFlattening andNames: (NSArray<NSString *> *) names{
     return [[CRSEllipsoids alloc] initWithType:type andShortName:shortName andEquatorRadius:equatorRadius andPoleRadius:poleRadius andReciprocalFlattening:reciprocalFlattening andNames:names];
-}
-
-+(CRSEllipsoids *) createWithType: (enum CRSEllipsoidsType) type andShortName: (NSString *) shortName andEquatorRadius: (double) equatorRadius andEccentricity2: (double) eccentricity2 andNames: (NSArray<NSString *> *) names{
-    return [[CRSEllipsoids alloc] initWithType:type andShortName:shortName andEquatorRadius:equatorRadius andEccentricity2:eccentricity2 andNames:names];
 }
 
 +(CRSEllipsoids *) fromType: (enum CRSEllipsoidsType) type{
@@ -130,18 +118,23 @@ static NSMutableDictionary<NSString *, CRSEllipsoids *> *nameEllipsoids = nil;
     return [self initWithType:type andShortName:shortName andEquatorRadius:equatorRadius andPoleRadius:poleRadius andReciprocalFlattening:reciprocalFlattening andNames:[NSArray arrayWithObject:name]];
 }
 
--(instancetype) initWithType: (enum CRSEllipsoidsType) type andShortName: (NSString *) shortName andEquatorRadius: (double) equatorRadius andEccentricity2: (double) eccentricity2 andName: (NSString *) name{
-    return [self initWithType:type andShortName:shortName andEquatorRadius:equatorRadius andEccentricity2:eccentricity2 andNames:[NSArray arrayWithObject:name]];
-}
-
 -(instancetype) initWithType: (enum CRSEllipsoidsType) type andShortName: (NSString *) shortName andEquatorRadius: (double) equatorRadius andPoleRadius: (double) poleRadius andReciprocalFlattening: (double) reciprocalFlattening andNames: (NSArray<NSString *> *) names{
     self = [super init];
     if(self != nil){
         _type = type;
         _shortName = shortName;
-        _names = names;
+        _names = [NSMutableArray array];
         _equatorRadius = equatorRadius;
         _poleRadius = poleRadius;
+        _reciprocalFlattening = reciprocalFlattening;
+        
+        for(NSString *name in names) {
+            NSRange range = [name rangeOfString:@"("];
+            if(range.length > 0){
+                [_names addObject:[[name substringToIndex:range.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+            }
+            [_names addObject:name];
+        }
         
         if(poleRadius == 0.0 && reciprocalFlattening == 0.0){
             [NSException raise:@"Invalid Ellipsoid" format:@"One of poleRadius or reciprocalFlattening must be specified"];
@@ -157,18 +150,6 @@ static NSMutableDictionary<NSString *, CRSEllipsoids *> *nameEllipsoids = nil;
                     / (equatorRadius * equatorRadius);
         }
         _eccentricity = sqrt(_eccentricity2);
-    }
-    return self;
-}
-
--(instancetype) initWithType: (enum CRSEllipsoidsType) type andShortName: (NSString *) shortName andEquatorRadius: (double) equatorRadius andEccentricity2: (double) eccentricity2 andNames: (NSArray<NSString *> *) names{
-    self = [super init];
-    if(self != nil){
-        _type = type;
-        _shortName = shortName;
-        _names = names;
-        _equatorRadius = equatorRadius;
-        [self setEccentricitySquared:eccentricity2];
     }
     return self;
 }
@@ -191,6 +172,10 @@ static NSMutableDictionary<NSString *, CRSEllipsoids *> *nameEllipsoids = nil;
 
 -(double) equatorRadius{
     return _equatorRadius;
+}
+
+-(double) reciprocalFlattening{
+    return _reciprocalFlattening;
 }
 
 -(double) a{
