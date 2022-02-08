@@ -152,7 +152,8 @@
     
     CRSGeoDatums *commonGeoDatum = [CRSGeoDatums fromName:[geoDatum name]];
     
-    if(commonGeoDatum != nil){
+    // Check for special cases like EPSG 3035 which specify the ellipsoid
+    if(commonGeoDatum != nil && commonGeoDatum.type != CRS_DATUM_ETRS89){
         [self updateDatumWithParams:params andGeoDatum:geoDatum andCommonGeoDatum:commonGeoDatum andMapProjection:mapProjection];
     }else{
         [self updateEllipsoidWithParams:params andEllipsoid:[geoDatum ellipsoid]];
@@ -285,7 +286,7 @@
         CRSPrimeMeridians *commonPrimeMeridian = [CRSPrimeMeridians fromName:primeMeridian.name];
         if(commonPrimeMeridian != nil){
             if(commonPrimeMeridian.type != CRS_PM_GREENWICH){
-                [params setPm:[commonPrimeMeridian name]];
+                [params setPm:[[commonPrimeMeridian name] lowercaseString]];
             }
         }else{
             [params setPm:[self convertValue:primeMeridian.longitude andTextValue:primeMeridian.longitudeText
