@@ -6,7 +6,11 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ## 1.0.2 (TBD)
 
-* TBD
+* ETRS89 Geo Datums enumeration
+* Additional included names in Ellipsoids
+* Ellipsoids saved reciprocal flattening value
+* Prime Meridians name capitalizations
+* Prime Meridians offset from greenwich in degrees
 
 ## [1.0.1](https://github.com/ngageoint/coordinate-reference-systems-ios/releases/tag/1.0.1) (10-14-2021)
 
