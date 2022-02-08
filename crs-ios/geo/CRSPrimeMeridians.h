@@ -65,10 +65,17 @@ enum CRSPrimeMeridianType{
 -(NSString *) name;
 
 /**
- * Get the offset from greenwich
+ * Get the offset from greenwich in radians
  *
- * @return offset from greenwich
+ * @return offset longitude in radians
  */
 -(double) offsetFromGreenwich;
+
+/**
+ * Get the offset from greenwich in degrees
+ *
+ * @return offset longitude in degrees
+ */
+-(double) offsetFromGreenwichDegrees;
 
 @end

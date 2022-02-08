@@ -7,6 +7,7 @@
 //
 
 #import "CRSPrimeMeridians.h"
+#import "CRSUnits.h"
 
 @interface CRSPrimeMeridians()
 
@@ -32,19 +33,19 @@ static NSMutableDictionary<NSString *, CRSPrimeMeridians *> *namePrimeMeridians 
     typePrimeMeridians = [NSMutableDictionary dictionary];
     namePrimeMeridians = [NSMutableDictionary dictionary];
  
-    [self initializePrimeMeridian:[self createWithType:CRS_PM_GREENWICH andName:@"greenwich" andOffset:0]];
-    [self initializePrimeMeridian:[self westWithType:CRS_PM_LISBON andName:@"lisbon" andDegree:9 andMinute:7 andSecond:54.862]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_PARIS andName:@"paris" andDegree:2 andMinute:20 andSecond:14.025]];
-    [self initializePrimeMeridian:[self westWithType:CRS_PM_BOGOTA andName:@"bogota" andDegree:74 andMinute:04 andSecond:51.3]];
-    [self initializePrimeMeridian:[self westWithType:CRS_PM_MADRID andName:@"madrid" andDegree:3 andMinute:41 andSecond:16.58]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_ROME andName:@"rome" andDegree:12 andMinute:27 andSecond:8.4]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_BERN andName:@"bern" andDegree:7 andMinute:26 andSecond:22.5]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_JAKARTA andName:@"jakarta" andDegree:106 andMinute:48 andSecond:27.79]];
-    [self initializePrimeMeridian:[self westWithType:CRS_PM_FERRO andName:@"ferro" andDegree:17 andMinute:40 andSecond:0]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_BRUSSELS andName:@"brussels" andDegree:4 andMinute:22 andSecond:4.71]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_STOCKHOLM andName:@"stockholm" andDegree:18 andMinute:3 andSecond:29.8]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_ATHENS andName:@"athens" andDegree:23 andMinute:42 andSecond:58.815]];
-    [self initializePrimeMeridian:[self eastWithType:CRS_PM_OSLO andName:@"oslo" andDegree:10 andMinute:43 andSecond:22.5]];
+    [self initializePrimeMeridian:[self createWithType:CRS_PM_GREENWICH andName:@"Greenwich" andOffset:0]];
+    [self initializePrimeMeridian:[self westWithType:CRS_PM_LISBON andName:@"Lisbon" andDegree:9 andMinute:7 andSecond:54.862]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_PARIS andName:@"Paris" andDegree:2 andMinute:20 andSecond:14.025]];
+    [self initializePrimeMeridian:[self westWithType:CRS_PM_BOGOTA andName:@"Bogota" andDegree:74 andMinute:04 andSecond:51.3]];
+    [self initializePrimeMeridian:[self westWithType:CRS_PM_MADRID andName:@"Madrid" andDegree:3 andMinute:41 andSecond:16.58]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_ROME andName:@"Rome" andDegree:12 andMinute:27 andSecond:8.4]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_BERN andName:@"Bern" andDegree:7 andMinute:26 andSecond:22.5]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_JAKARTA andName:@"Jakarta" andDegree:106 andMinute:48 andSecond:27.79]];
+    [self initializePrimeMeridian:[self westWithType:CRS_PM_FERRO andName:@"Ferro" andDegree:17 andMinute:40 andSecond:0]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_BRUSSELS andName:@"Brussels" andDegree:4 andMinute:22 andSecond:4.71]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_STOCKHOLM andName:@"Stockholm" andDegree:18 andMinute:3 andSecond:29.8]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_ATHENS andName:@"Athens" andDegree:23 andMinute:42 andSecond:58.815]];
+    [self initializePrimeMeridian:[self eastWithType:CRS_PM_OSLO andName:@"Oslo" andDegree:10 andMinute:43 andSecond:22.5]];
     
 }
 
@@ -96,6 +97,10 @@ static NSMutableDictionary<NSString *, CRSPrimeMeridians *> *namePrimeMeridians 
 
 -(double) offsetFromGreenwich{
     return _offsetFromGreenwich;
+}
+
+-(double) offsetFromGreenwichDegrees{
+    return [CRSUnits convertValue:_offsetFromGreenwich fromUnit:[CRSUnits radian] toUnit:[CRSUnits degree]];
 }
 
 -(NSString *) description{
