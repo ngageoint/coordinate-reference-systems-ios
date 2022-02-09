@@ -4,7 +4,7 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 1.0.2 (TBD)
+## [1.0.2](https://github.com/ngageoint/coordinate-reference-systems-ios/releases/tag/1.0.2) (02-09-2022)
 
 * ETRS89 Geo Datums enumeration
 * Additional included names in Ellipsoids
