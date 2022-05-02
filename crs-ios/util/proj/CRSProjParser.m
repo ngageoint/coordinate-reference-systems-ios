@@ -140,7 +140,8 @@
     
     CRSGeoDatums *commonGeoDatum = [CRSGeoDatums fromName:[geoDatum name]];
     
-    if(commonGeoDatum != nil){
+    // Check for special cases like EPSG 4258 which specify the ellipsoid
+    if(commonGeoDatum != nil && commonGeoDatum.type != CRS_DATUM_ETRS89){
         [params setDatum:[commonGeoDatum code]];
     }else{
         [self updateEllipsoidWithParams:params andEllipsoid:[geoDatum ellipsoid]];

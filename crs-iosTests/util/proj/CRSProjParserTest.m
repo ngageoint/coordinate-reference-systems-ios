@@ -1752,6 +1752,54 @@
 }
 
 /**
+ * Test EPSG 4258
+ */
+-(void) test4258{
+    
+    // +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs
+    
+    NSMutableString *definition = [NSMutableString string];
+    [definition appendString:@"GEOGCRS[\"ETRS89\",ENSEMBLE[\"European Terrestrial Reference System 1989 ensemble\","];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1989\", ID[\"EPSG\",1178]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1990\", ID[\"EPSG\",1179]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1991\", ID[\"EPSG\",1180]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1992\", ID[\"EPSG\",1181]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1993\", ID[\"EPSG\",1182]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1994\", ID[\"EPSG\",1183]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1996\", ID[\"EPSG\",1184]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 1997\", ID[\"EPSG\",1185]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 2000\", ID[\"EPSG\",1186]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 2005\", ID[\"EPSG\",1204]],"];
+    [definition appendString:@"MEMBER[\"European Terrestrial Reference Frame 2014\", ID[\"EPSG\",1206]],"];
+    [definition appendString:@"ELLIPSOID[\"GRS 1980\",6378137,298.257222101,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",7019]],"];
+    [definition appendString:@"ENSEMBLEACCURACY[0.1],ID[\"EPSG\",6258]],"];
+    [definition appendString:@"CS[ellipsoidal,2,ID[\"EPSG\",6422]],"];
+    [definition appendString:@"AXIS[\"latitude (Lat)\",north],AXIS[\"longitude (Lon)\",east],"];
+    [definition appendString:@"ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9102]],"];
+    [definition appendString:@"ID[\"EPSG\",4258]]"];
+    
+    NSString *expected = @"+proj=longlat +ellps=GRS80 +no_defs";
+    [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
+    
+    definition = [NSMutableString string];
+    [definition appendString:@"GEOGCS[\"ETRS89\","];
+    [definition appendString:@"DATUM[\"European_Terrestrial_Reference_System_1989\","];
+    [definition appendString:@"SPHEROID[\"GRS 1980\",6378137,298.257222101,"];
+    [definition appendString:@"AUTHORITY[\"EPSG\",\"7019\"]],"];
+    [definition appendString:@"TOWGS84[0,0,0,0,0,0,0],"];
+    [definition appendString:@"AUTHORITY[\"EPSG\",\"6258\"]],"];
+    [definition appendString:@"PRIMEM[\"Greenwich\",0,"];
+    [definition appendString:@"AUTHORITY[\"EPSG\",\"8901\"]],"];
+    [definition appendString:@"UNIT[\"degree\",0.0174532925199433,"];
+    [definition appendString:@"AUTHORITY[\"EPSG\",\"9122\"]],"];
+    [definition appendString:@"AUTHORITY[\"EPSG\",\"4258\"]]"];
+    
+    expected = @"+proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs";
+    [CRSTestUtils assertEqualWithValue:expected andValue2:[CRSProjParser paramsTextFromText:definition]];
+    
+}
+
+/**
  * Test EPSG 4326
  */
 -(void) test4326{
