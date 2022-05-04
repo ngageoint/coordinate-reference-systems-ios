@@ -4,6 +4,10 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## 1.0.4 (TBD)
+
+* TBD
+
 ## [1.0.3](https://github.com/ngageoint/coordinate-reference-systems-ios/releases/tag/1.0.3) (05-04-2022)
 
 * Non projected ETRS89 GeoDatum fix (EPSG:4258)
