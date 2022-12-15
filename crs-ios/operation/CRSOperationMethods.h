@@ -6,8 +6,6 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "CRSOperationTypes.h"
 #import "CRSOperationParameters.h"
 
 /**

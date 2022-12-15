@@ -9,7 +9,6 @@
 #ifndef CRSScopeExtentIdentifierRemark_h
 #define CRSScopeExtentIdentifierRemark_h
 
-#import "CRSIdentifiable.h"
 #import "CRSUsage.h"
 
 /**

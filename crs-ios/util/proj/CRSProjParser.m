@@ -8,7 +8,6 @@
 
 #import "CRSProjParser.h"
 #import "CRSReader.h"
-#import "CRSEllipsoids.h"
 #import "CRSTriaxialEllipsoid.h"
 #import "CRSUnits.h"
 #import "CRSPrimeMeridians.h"

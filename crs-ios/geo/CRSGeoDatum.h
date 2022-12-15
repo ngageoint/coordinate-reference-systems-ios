@@ -9,7 +9,6 @@
 #ifndef CRSGeoDatum_h
 #define CRSGeoDatum_h
 
-#import "CRSIdentifiable.h"
 #import "CRSEllipsoid.h"
 #import "CRSPrimeMeridian.h"
 

@@ -9,8 +9,6 @@
 #ifndef CRSCommonOperation_h
 #define CRSCommonOperation_h
 
-#import "CRSIdentifiable.h"
-#import "CRSOperationTypes.h"
 #import "CRSOperationMethod.h"
 
 /**

@@ -7,7 +7,6 @@
 //
 
 #import "CRSParametricDatum.h"
-#import "CRSWriter.h"
 
 @implementation CRSParametricDatum
 

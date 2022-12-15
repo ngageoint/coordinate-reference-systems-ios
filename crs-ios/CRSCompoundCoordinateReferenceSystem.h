@@ -6,7 +6,6 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCoordinateReferenceSystem.h"
 #import "CRSSimpleCoordinateReferenceSystem.h"
 
 /**

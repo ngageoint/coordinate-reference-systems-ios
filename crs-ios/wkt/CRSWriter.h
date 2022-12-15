@@ -6,10 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "CRSObject.h"
 #import "CRSKeyword.h"
-#import "CRSGeoCoordinateReferenceSystem.h"
 #import "CRSProjectedCoordinateReferenceSystem.h"
 #import "CRSVerticalCoordinateReferenceSystem.h"
 #import "CRSEngineeringCoordinateReferenceSystem.h"
@@ -22,27 +19,6 @@
 #import "CRSPointMotionOperation.h"
 #import "CRSConcatenatedOperation.h"
 #import "CRSBoundCoordinateReferenceSystem.h"
-#import "CRSReferenceFrame.h"
-#import "CRSDatumEnsemble.h"
-#import "CRSDatumEnsembleMember.h"
-#import "CRSDynamic.h"
-#import "CRSPrimeMeridian.h"
-#import "CRSEllipsoid.h"
-#import "CRSUnit.h"
-#import "CRSIdentifier.h"
-#import "CRSCoordinateSystem.h"
-#import "CRSAxis.h"
-#import "CRSUsage.h"
-#import "CRSExtent.h"
-#import "CRSGeographicBoundingBox.h"
-#import "CRSVerticalExtent.h"
-#import "CRSTemporalExtent.h"
-#import "CRSMapProjection.h"
-#import "CRSOperationMethod.h"
-#import "CRSOperationParameter.h"
-#import "CRSTemporalDatum.h"
-#import "CRSDerivingConversion.h"
-#import "CRSAbridgedCoordinateTransformation.h"
 
 /**
  * Well-Known Text writer

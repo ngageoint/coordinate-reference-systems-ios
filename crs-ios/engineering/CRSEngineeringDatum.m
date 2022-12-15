@@ -7,7 +7,6 @@
 //
 
 #import "CRSEngineeringDatum.h"
-#import "CRSWriter.h"
 
 @implementation CRSEngineeringDatum
 

@@ -6,7 +6,6 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "CRSGeographicBoundingBox.h"
 #import "CRSVerticalExtent.h"
 #import "CRSTemporalExtent.h"

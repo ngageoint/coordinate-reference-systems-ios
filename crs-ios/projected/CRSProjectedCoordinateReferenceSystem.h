@@ -6,12 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSSimpleCoordinateReferenceSystem.h"
 #import "CRSGeoCoordinateReferenceSystem.h"
 #import "CRSMapProjection.h"
-#import "CRSGeoReferenceFrame.h"
-#import "CRSGeoDatumEnsemble.h"
-#import "CRSDynamic.h"
 
 /**
  * Projected Coordinate Reference System
