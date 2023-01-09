@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'crs-ios'
-  s.version          = '1.0.4'
+  s.version          = '1.0.5'
   s.license          =  {:type => 'MIT', :file => 'LICENSE' }
   s.summary          = 'iOS SDK for Coordinate Reference Systems'
   s.homepage         = 'https://github.com/ngageoint/coordinate-reference-systems-ios'
