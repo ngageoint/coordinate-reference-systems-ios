@@ -4,6 +4,10 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## 1.0.6 (TBD)
+
+* TBD
+
 ## [1.0.5](https://github.com/ngageoint/coordinate-reference-systems-ios/releases/tag/1.0.5) (11-07-2023)
 
 * Module definition
