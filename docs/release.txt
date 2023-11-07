@@ -1,0 +1,20 @@
+
+Xcode Build:
+
+xcodebuild -workspace 'crs-ios.xcworkspace' -scheme crs-ios build
+
+Xcode Test:
+
+xcodebuild test -workspace 'crs-ios.xcworkspace' -scheme crs-ios -destination 'platform=iOS Simulator,name=iPhone 15'
+
+CocoaPods Local Lint:
+
+pod lib lint crs-ios.podspec
+
+CocoaPods GitHub Release Lint:
+
+pod spec lint crs-ios.podspec
+
+CocoaPods Deploy To Trunk:
+
+pod trunk push crs-ios.podspec

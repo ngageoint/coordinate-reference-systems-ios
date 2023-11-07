@@ -41,6 +41,7 @@
 		0458104926EAAE4E0044DC70 /* CRSProjConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458104726EAAE4E0044DC70 /* CRSProjConstants.m */; };
 		0458104E26EB9B550044DC70 /* CRSProjParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458104D26EB9B550044DC70 /* CRSProjParserTest.m */; };
 		0472B51B1C03590500496B87 /* crs-ios-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */; };
+		0493A5942AE83F54000B75E6 /* crs_ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493A5932AE83F54000B75E6 /* crs_ios.swift */; };
 		04BCA983269CAAB40015DEC0 /* CRSCategoryTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */; };
 		04BCA984269CAAB40015DEC0 /* CRSCategoryTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */; };
 		04BCA987269CAE880015DEC0 /* CRSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 04BCA985269CAE880015DEC0 /* CRSTypes.h */; };
@@ -222,6 +223,7 @@
 		0458104C26EB9B550044DC70 /* CRSProjParserTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSProjParserTest.h; sourceTree = "<group>"; };
 		0458104D26EB9B550044DC70 /* CRSProjParserTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSProjParserTest.m; sourceTree = "<group>"; };
 		0472B51A1C03590500496B87 /* crs-ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "crs-ios-Bridging-Header.h"; sourceTree = "<group>"; };
+		0493A5932AE83F54000B75E6 /* crs_ios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crs_ios.swift; sourceTree = "<group>"; };
 		04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSCategoryTypes.h; sourceTree = "<group>"; };
 		04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRSCategoryTypes.m; sourceTree = "<group>"; };
 		04BCA985269CAE880015DEC0 /* CRSTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRSTypes.h; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				04021F5826E14CB400ECE9AF /* util */,
 				04BCA995269DAFF50015DEC0 /* wkt */,
 				042FC6D41B96453E00549A4B /* crs_ios.h */,
+				0493A5932AE83F54000B75E6 /* crs_ios.swift */,
 				04BCA981269CAAB40015DEC0 /* CRSCategoryTypes.h */,
 				04BCA982269CAAB40015DEC0 /* CRSCategoryTypes.m */,
 				04BCA9BB269F505E0015DEC0 /* CRSCommon.h */,
@@ -896,6 +899,7 @@
 				TargetAttributes = {
 					042FC64A1B963FE500549A4B = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 1500;
 					};
 					042FC6551B963FE500549A4B = {
 						CreatedOnToolsVersion = 6.4;
@@ -1028,6 +1032,7 @@
 				04BCA9AE269E18320015DEC0 /* CRSDateTime.m in Sources */,
 				04BCA9A6269DD78A0015DEC0 /* CRSUnitTypes.m in Sources */,
 				04BCAA4F26A749510015DEC0 /* CRSGeoCoordinateReferenceSystem.m in Sources */,
+				0493A5942AE83F54000B75E6 /* crs_ios.swift in Sources */,
 				04BCAA7226A8905E0015DEC0 /* CRSEllipsoid.m in Sources */,
 				04021F6526E1699200ECE9AF /* CRSGeoDatums.m in Sources */,
 				04BCAA7E26A991440015DEC0 /* CRSTriaxialEllipsoid.m in Sources */,
@@ -1204,6 +1209,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FD24597D37A9C5402B3279A /* Pods-crs-ios.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1215,6 +1221,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mil.nga.crs;
 				PRODUCT_NAME = crs_ios;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1222,6 +1230,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDE9611B54A8A4AC3941F59D /* Pods-crs-ios.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1233,6 +1242,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mil.nga.crs;
 				PRODUCT_NAME = crs_ios;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1240,6 +1250,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6179C77188B4A0E8D4DEDBEB /* Pods-crs-iosTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1262,6 +1273,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B17E59AE80997CC09DD740D6 /* Pods-crs-iosTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
