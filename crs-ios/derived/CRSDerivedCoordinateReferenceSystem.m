@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSDerivedCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSDerivedCoordinateReferenceSystem.h>
 
 @implementation CRSDerivedCoordinateReferenceSystem
 
@@ -32,7 +32,7 @@
     return [self base].name;
 }
 
--(enum CRSType) baseType{
+-(CRSType) baseType{
     return [self base].type;
 }
 

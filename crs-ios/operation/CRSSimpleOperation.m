@@ -6,16 +6,16 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSSimpleOperation.h"
+#import <CoordinateReferenceSystems/CRSSimpleOperation.h>
 
 @implementation CRSSimpleOperation
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super initWithType:type];
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type andSource: (CRSCoordinateReferenceSystem *) source andMethod: (CRSOperationMethod *) method{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type andSource: (CRSCoordinateReferenceSystem *) source andMethod: (CRSOperationMethod *) method{
     self = [super initWithName:name andType:type andSource:source];
     if(self != nil){
         [self setMethod:method];
@@ -23,7 +23,7 @@
     return self;
 }
 
--(enum CRSOperationType) operationType{
+-(CRSOperationType) operationType{
     [self doesNotRecognizeSelector:_cmd];
     return -1;
 }

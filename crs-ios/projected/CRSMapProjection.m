@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSMapProjection.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSMapProjection.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSMapProjection
 
@@ -29,7 +29,7 @@
     return self;
 }
 
--(enum CRSOperationType) operationType{
+-(CRSOperationType) operationType{
     return CRS_OPERATION_MAP_PROJECTION;
 }
 

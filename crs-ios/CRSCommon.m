@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCommon.h"
+#import <CoordinateReferenceSystems/CRSCommon.h>
 
 @implementation CRSCommon
 
@@ -15,12 +15,12 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super initWithType:type];
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type{
     self = [super initWithType:type];
     if(self != nil){
         [self setName:name];

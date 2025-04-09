@@ -6,9 +6,9 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTextUtils.h"
-#import "CRSTextConstants.h"
-#import "CRSTextReader.h"
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
+#import <CoordinateReferenceSystems/CRSTextConstants.h>
+#import <CoordinateReferenceSystems/CRSTextReader.h>
 
 @implementation CRSTextUtils
 
@@ -20,7 +20,7 @@
     return [text isEqualToString:CRS_WKT_RIGHT_DELIMITER] || [text isEqualToString:CRS_WKT_RIGHT_DELIMITER_COMPAT];
 }
 
-+(BOOL) isSpatial: (enum CRSCoordinateSystemType) type{
++(BOOL) isSpatial: (CRSCoordinateSystemType) type{
     BOOL value = NO;
     switch (type) {
     case CRS_CS_AFFINE:
@@ -40,7 +40,7 @@
     return value;
 }
 
-+(BOOL) isTemporalCountMeasure: (enum CRSCoordinateSystemType) type{
++(BOOL) isTemporalCountMeasure: (CRSCoordinateSystemType) type{
     BOOL value = NO;
     switch (type) {
     case CRS_CS_TEMPORAL_COUNT:
@@ -53,7 +53,7 @@
     return value;
 }
 
-+(BOOL) isOrdinalDateTime: (enum CRSCoordinateSystemType) type{
++(BOOL) isOrdinalDateTime: (CRSCoordinateSystemType) type{
     BOOL value = NO;
     switch (type) {
     case CRS_CS_ORDINAL:
@@ -66,9 +66,9 @@
     return value;
 }
 
-+(enum CRSUnitType) unitTypeOfKeyword: (CRSKeyword *) keyword{
++(CRSUnitType) unitTypeOfKeyword: (CRSKeyword *) keyword{
     
-    enum CRSUnitType unitType = [CRSUnitTypes type:[keyword name]];
+    CRSUnitType unitType = [CRSUnitTypes type:[keyword name]];
     if((int)unitType < 0){
         [NSException raise:@"No Unit Type" format:@"No unit type found. keyword: %@", [keyword name]];
     }
@@ -76,13 +76,13 @@
     return unitType;
 }
 
-+(enum CRSUnitType) unitType: (enum CRSKeywordType) keyword{
++(CRSUnitType) unitType: (CRSKeywordType) keyword{
     return [self unitTypeOfKeyword:[CRSKeyword keywordOfType:keyword]];
 }
 
-+(enum CRSType) coordinateReferenceSystemType: (enum CRSKeywordType) keyword{
++(CRSType) coordinateReferenceSystemType: (CRSKeywordType) keyword{
     
-    enum CRSType crsType = -1;
+    CRSType crsType = -1;
 
     switch (keyword) {
 

@@ -8,10 +8,7 @@
 
 #import "CRSReaderWriterEpsgTest.h"
 #import "CRSTestUtils.h"
-#import "CRSTextUtils.h"
-#import "CRSReader.h"
-#import "CRSWriter.h"
-#import "CRSTextConstants.h"
+@import CoordinateReferenceSystems;
 
 @implementation CRSReaderWriterEpsgTest
 

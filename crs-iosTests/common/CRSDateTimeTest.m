@@ -8,7 +8,7 @@
 
 #import "CRSDateTimeTest.h"
 #import "CRSTestUtils.h"
-#import "CRSDateTime.h"
+@import CoordinateReferenceSystems;
 
 @implementation CRSDateTimeTest
 

@@ -6,9 +6,9 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSUnit.h"
-#import "CRSWriter.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSUnit.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSUnit
 
@@ -16,15 +16,15 @@
     return [[CRSUnit alloc] init];
 }
 
-+(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name{
++(CRSUnit *) createWithType: (CRSUnitType) type andName: (NSString *) name{
     return [[CRSUnit alloc] initWithType:type andName:name];
 }
 
-+(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor{
++(CRSUnit *) createWithType: (CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor{
     return [[CRSUnit alloc] initWithType:type andName:name andConversionFactor:conversionFactor];
 }
 
-+(CRSUnit *) createWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor{
++(CRSUnit *) createWithType: (CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor{
     return [[CRSUnit alloc] initWithType:type andName:name andConversionFactorText:conversionFactor];
 }
 
@@ -33,7 +33,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSUnitType) type andName: (NSString *) name{
+-(instancetype) initWithType: (CRSUnitType) type andName: (NSString *) name{
     self = [super init];
     if(self != nil){
         [self setType:type];
@@ -42,7 +42,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor{
+-(instancetype) initWithType: (CRSUnitType) type andName: (NSString *) name andConversionFactor: (double) conversionFactor{
     self = [super init];
     if(self != nil){
         [self setType:type];
@@ -52,7 +52,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor{
+-(instancetype) initWithType: (CRSUnitType) type andName: (NSString *) name andConversionFactorText: (NSString *) conversionFactor{
     self = [super init];
     if(self != nil){
         [self setType:type];

@@ -8,9 +8,7 @@
 
 #import "CRSReadmeTest.h"
 #import "CRSTestUtils.h"
-#import "CRSReader.h"
-#import "CRSWriter.h"
-#import "CRSProjParser.h"
+@import CoordinateReferenceSystems;
 
 @implementation CRSReadmeTest
 
@@ -53,8 +51,8 @@
 
     CRSObject *crs = [CRSReader read:wkt];
 
-    enum CRSType type = crs.type;
-    enum CRSCategoryType category = crs.categoryType;
+    CRSType type = crs.type;
+    CRSCategoryType category = crs.categoryType;
 
     NSString *text = [CRSWriter write:crs];
     NSString *prettyText = [CRSWriter writePretty:crs];

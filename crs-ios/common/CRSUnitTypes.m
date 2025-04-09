@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSUnitTypes.h"
+#import <CoordinateReferenceSystems/CRSUnitTypes.h>
 
 NSString * const CRS_UNIT_ANGLE_NAME = @"ANGLEUNIT";
 NSString * const CRS_UNIT_LENGTH_NAME = @"LENGTHUNIT";
@@ -17,7 +17,7 @@ NSString * const CRS_UNIT_NAME = @"UNIT";
 
 @implementation CRSUnitTypes
 
-+(NSString *) name: (enum CRSUnitType) type{
++(NSString *) name: (CRSUnitType) type{
     NSString * name = nil;
     
     switch(type){
@@ -46,8 +46,8 @@ NSString * const CRS_UNIT_NAME = @"UNIT";
     return name;
 }
 
-+(enum CRSUnitType) type: (NSString *) name{
-    enum CRSUnitType value = -1;
++(CRSUnitType) type: (NSString *) name{
+    CRSUnitType value = -1;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -62,7 +62,7 @@ NSString * const CRS_UNIT_NAME = @"UNIT";
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum CRSUnitType)[enumValue intValue];
+            value = (CRSUnitType)[enumValue intValue];
         }
     }
     

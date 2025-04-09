@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSConcatenatedOperation.h"
+#import <CoordinateReferenceSystems/CRSConcatenatedOperation.h>
 
 @implementation CRSConcatenatedOperation
 

@@ -6,11 +6,11 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSGeoDatums.h"
+#import <CoordinateReferenceSystems/CRSGeoDatums.h>
 
 @interface CRSGeoDatums()
 
-@property (nonatomic) enum CRSGeoDatumType type;
+@property (nonatomic) CRSGeoDatumType type;
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSArray<NSString *> *names;
 @property (nonatomic, strong) NSArray<NSDecimalNumber *> *transform;
@@ -59,39 +59,39 @@ static NSMutableDictionary<NSString *, CRSGeoDatums *> *nameDatums = nil;
     }
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andEllipsoid:ellipsoid andName:name];
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andTranslationX:xTranslation andTranslationY:yTranslation andTranslationZ:zTranslation andEllipsoid:ellipsoid andName:name];
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andTranslationX:xTranslation andTranslationY:yTranslation andTranslationZ:zTranslation andRotationX:xRotation andRotationY:yRotation andRotationZ:zRotation andScaleDifference:scaleDifference andEllipsoid:ellipsoid andName:name];
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andTransform:transform andEllipsoid:ellipsoid andName:name];
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andEllipsoid:ellipsoid andNames:names];
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andTranslationX:xTranslation andTranslationY:yTranslation andTranslationZ:zTranslation andEllipsoid:ellipsoid andNames:names];
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andTranslationX:xTranslation andTranslationY:yTranslation andTranslationZ:zTranslation andRotationX:xRotation andRotationY:yRotation andRotationZ:zRotation andScaleDifference:scaleDifference andEllipsoid:ellipsoid andNames:names];
 }
 
-+(CRSGeoDatums *) createWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
++(CRSGeoDatums *) createWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     return [[CRSGeoDatums alloc] initWithType:type andCode:code andTransform:transform andEllipsoid:ellipsoid andNames:names];
 }
 
-+(CRSGeoDatums *) fromType: (enum CRSGeoDatumType) type{
++(CRSGeoDatums *) fromType: (CRSGeoDatumType) type{
     return [typeDatums objectForKey:[NSNumber numberWithInt:type]];
 }
 
@@ -99,27 +99,27 @@ static NSMutableDictionary<NSString *, CRSGeoDatums *> *nameDatums = nil;
     return [nameDatums objectForKey:[name lowercaseString]];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [self initWithType:type andCode:code andEllipsoid:ellipsoid andNames:[NSArray arrayWithObject:name]];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [self initWithType:type andCode:code andTranslationX:xTranslation andTranslationY:yTranslation andTranslationZ:zTranslation andEllipsoid:ellipsoid andNames:[NSArray arrayWithObject:name]];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [self initWithType:type andCode:code andTranslationX:xTranslation andTranslationY:yTranslation andTranslationZ:zTranslation andRotationX:xRotation andRotationY:yRotation andRotationZ:zRotation andScaleDifference:scaleDifference andEllipsoid:ellipsoid andNames:[NSArray arrayWithObject:name]];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andName: (NSString *) name{
     return [self initWithType:type andCode:code andTransform:transform andEllipsoid:ellipsoid andNames:[NSArray arrayWithObject:name]];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     return [self initWithType:type andCode:code andTransform:nil andEllipsoid:ellipsoid andNames:names];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     return [self initWithType:type andCode:code
                  andTransform:[NSArray arrayWithObjects:
                                [[NSDecimalNumber alloc] initWithDouble:xTranslation],
@@ -129,7 +129,7 @@ static NSMutableDictionary<NSString *, CRSGeoDatums *> *nameDatums = nil;
                  andEllipsoid:ellipsoid andNames:names];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTranslationX: (double) xTranslation andTranslationY: (double) yTranslation andTranslationZ: (double) zTranslation andRotationX: (double) xRotation andRotationY: (double) yRotation andRotationZ: (double) zRotation andScaleDifference: (double) scaleDifference andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     return [self initWithType:type andCode:code
                  andTransform:[NSArray arrayWithObjects:
                                [[NSDecimalNumber alloc] initWithDouble:xTranslation],
@@ -143,7 +143,7 @@ static NSMutableDictionary<NSString *, CRSGeoDatums *> *nameDatums = nil;
                  andEllipsoid:ellipsoid andNames:names];
 }
 
--(instancetype) initWithType: (enum CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
+-(instancetype) initWithType: (CRSGeoDatumType) type andCode: (NSString *) code andTransform: (NSArray<NSDecimalNumber *> *) transform andEllipsoid: (CRSEllipsoids *) ellipsoid andNames: (NSArray<NSString *> *) names{
     self = [super init];
     if(self != nil){
         _type = type;
@@ -165,7 +165,7 @@ static NSMutableDictionary<NSString *, CRSGeoDatums *> *nameDatums = nil;
     return self;
 }
 
--(enum CRSGeoDatumType) type{
+-(CRSGeoDatumType) type{
     return _type;
 }
 

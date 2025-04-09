@@ -6,14 +6,14 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSProjParser.h"
-#import "CRSReader.h"
-#import "CRSTriaxialEllipsoid.h"
-#import "CRSUnits.h"
-#import "CRSPrimeMeridians.h"
-#import "CRSTextUtils.h"
-#import "CRSGeoDatums.h"
-#import "CRSProjConstants.h"
+#import <CoordinateReferenceSystems/CRSProjParser.h>
+#import <CoordinateReferenceSystems/CRSReader.h>
+#import <CoordinateReferenceSystems/CRSTriaxialEllipsoid.h>
+#import <CoordinateReferenceSystems/CRSUnits.h>
+#import <CoordinateReferenceSystems/CRSPrimeMeridians.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
+#import <CoordinateReferenceSystems/CRSGeoDatums.h>
+#import <CoordinateReferenceSystems/CRSProjConstants.h>
 
 @implementation CRSProjParser
 
@@ -419,7 +419,7 @@
         
         if(unit.type == CRS_UNIT_LENGTH || unit.type == CRS_UNIT){
             
-            enum CRSUnitsType type = [CRSUnits typeFromUnit:unit];
+            CRSUnitsType type = [CRSUnits typeFromUnit:unit];
             if((int) type != -1){
                 
                 switch(type){

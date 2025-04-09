@@ -6,12 +6,12 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSReferenceFrame.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSReferenceFrame.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSReferenceFrame
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super init];
     if(self != nil){
         [self setType:type];
@@ -19,7 +19,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type{
     self = [super init];
     if(self != nil){
         [self setName:name];

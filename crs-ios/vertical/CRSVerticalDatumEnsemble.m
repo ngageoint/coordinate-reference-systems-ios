@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSVerticalDatumEnsemble.h"
+#import <CoordinateReferenceSystems/CRSVerticalDatumEnsemble.h>
 
 @implementation CRSVerticalDatumEnsemble
 

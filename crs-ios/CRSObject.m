@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSObject.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSObject.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSObject
 
@@ -16,7 +16,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super init];
     if(self != nil){
         [self setType:type];
@@ -24,7 +24,7 @@
     return self;
 }
 
--(enum CRSCategoryType) categoryType{
+-(CRSCategoryType) categoryType{
     return [CRSTypes categoryType:_type];
 }
 

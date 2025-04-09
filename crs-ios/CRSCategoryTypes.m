@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCategoryTypes.h"
+#import <CoordinateReferenceSystems/CRSCategoryTypes.h>
 
 NSString * const CRS_CATEGORY_CRS_NAME = @"CRS";
 NSString * const CRS_CATEGORY_OPERATION_NAME = @"OPERATION";
@@ -14,7 +14,7 @@ NSString * const CRS_CATEGORY_METADATA_NAME = @"METADATA";
 
 @implementation CRSCategoryTypes
 
-+(NSString *) name: (enum CRSCategoryType) type{
++(NSString *) name: (CRSCategoryType) type{
     NSString * name = nil;
     
     switch(type){
@@ -32,8 +32,8 @@ NSString * const CRS_CATEGORY_METADATA_NAME = @"METADATA";
     return name;
 }
 
-+(enum CRSCategoryType) type: (NSString *) name{
-    enum CRSCategoryType value = -1;
++(CRSCategoryType) type: (NSString *) name{
+    CRSCategoryType value = -1;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -45,7 +45,7 @@ NSString * const CRS_CATEGORY_METADATA_NAME = @"METADATA";
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum CRSCategoryType)[enumValue intValue];
+            value = (CRSCategoryType)[enumValue intValue];
         }
     }
     

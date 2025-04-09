@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSGeoCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSGeoCoordinateReferenceSystem.h>
 
 @implementation CRSGeoCoordinateReferenceSystem
 
@@ -19,12 +19,12 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super initWithType:type];
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:type andCoordinateSystem:coordinateSystem];
     if(self != nil){
         [self setReferenceFrame:referenceFrame];
@@ -32,7 +32,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type andDatumEnsemble: (CRSGeoDatumEnsemble *) datumEnsemble andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type andDatumEnsemble: (CRSGeoDatumEnsemble *) datumEnsemble andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:type andCoordinateSystem:coordinateSystem];
     if(self != nil){
         [self setDatumEnsemble:datumEnsemble];
@@ -40,7 +40,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type andDynamic: (CRSDynamic *) dynamic andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type andDynamic: (CRSDynamic *) dynamic andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:type andCoordinateSystem:coordinateSystem];
     if(self != nil){
         [self setDynamic:dynamic];

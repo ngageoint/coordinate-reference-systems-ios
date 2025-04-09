@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSGeoDatumEnsemble.h"
+#import <CoordinateReferenceSystems/CRSGeoDatumEnsemble.h>
 
 @implementation CRSGeoDatumEnsemble
 

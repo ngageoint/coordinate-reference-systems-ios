@@ -6,9 +6,9 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSPrimeMeridian.h"
-#import "CRSWriter.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSPrimeMeridian.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSPrimeMeridian
 

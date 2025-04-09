@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSParametricCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSParametricCoordinateReferenceSystem.h>
 
 @implementation CRSParametricCoordinateReferenceSystem
 

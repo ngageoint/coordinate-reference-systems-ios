@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSSimpleCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSSimpleCoordinateReferenceSystem.h>
 
 @implementation CRSSimpleCoordinateReferenceSystem
 
@@ -15,17 +15,17 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super initWithType:type];
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type{
     self = [super initWithName:name andType:type];
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:type];
     if(self != nil){
         [self setCoordinateSystem:coordinateSystem];

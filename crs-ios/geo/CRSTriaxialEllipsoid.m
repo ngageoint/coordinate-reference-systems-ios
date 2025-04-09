@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTriaxialEllipsoid.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSTriaxialEllipsoid.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSTriaxialEllipsoid
 
@@ -42,7 +42,7 @@
     return self;
 }
 
--(enum CRSEllipsoidType) type{
+-(CRSEllipsoidType) type{
     return CRS_ELLIPSOID_TRIAXIAL;
 }
 

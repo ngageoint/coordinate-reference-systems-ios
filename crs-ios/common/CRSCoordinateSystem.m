@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCoordinateSystem.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSCoordinateSystem.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSCoordinateSystem
 
@@ -23,7 +23,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSCoordinateSystemType) type andDimension: (int) dimension andAxis: (CRSAxis *) axis{
+-(instancetype) initWithType: (CRSCoordinateSystemType) type andDimension: (int) dimension andAxis: (CRSAxis *) axis{
     self = [self init];
     if(self != nil){
         [self setType:type];
@@ -33,7 +33,7 @@
     return self;
 }
 
--(instancetype) initWithType: (enum CRSCoordinateSystemType) type andDimension: (int) dimension andAxes: (NSArray<CRSAxis *> *) axes{
+-(instancetype) initWithType: (CRSCoordinateSystemType) type andDimension: (int) dimension andAxes: (NSArray<CRSAxis *> *) axes{
     self = [self init];
     if(self != nil){
         [self setType:type];

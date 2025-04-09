@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTemporalDatum.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSTemporalDatum.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSTemporalDatum
 

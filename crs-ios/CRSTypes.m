@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTypes.h"
+#import <CoordinateReferenceSystems/CRSTypes.h>
 
 NSString * const CRS_TYPE_BOUND_NAME = @"BOUND";
 NSString * const CRS_TYPE_COMPOUND_NAME = @"COMPOUND";
@@ -25,7 +25,7 @@ NSString * const CRS_TYPE_VERTICAL_NAME = @"VERTICAL";
 
 @implementation CRSTypes
 
-+(NSString *) name: (enum CRSType) type{
++(NSString *) name: (CRSType) type{
     NSString * name = nil;
     
     switch(type){
@@ -84,8 +84,8 @@ NSString * const CRS_TYPE_VERTICAL_NAME = @"VERTICAL";
     return names;
 }
 
-+(enum CRSType) type: (NSString *) name{
-    enum CRSType value = -1;
++(CRSType) type: (NSString *) name{
+    CRSType value = -1;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -108,16 +108,16 @@ NSString * const CRS_TYPE_VERTICAL_NAME = @"VERTICAL";
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum CRSType)[enumValue intValue];
+            value = (CRSType)[enumValue intValue];
         }
     }
     
     return value;
 }
 
-+(enum CRSCategoryType) categoryType: (enum CRSType) crsType{
++(CRSCategoryType) categoryType: (CRSType) crsType{
     
-    enum CRSCategoryType category = -1;
+    CRSCategoryType category = -1;
     
     switch(crsType){
             

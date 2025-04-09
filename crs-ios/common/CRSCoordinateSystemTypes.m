@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCoordinateSystemTypes.h"
+#import <CoordinateReferenceSystems/CRSCoordinateSystemTypes.h>
 
 NSString * const CRS_CS_AFFINE_NAME = @"affine";
 NSString * const CRS_CS_CARTESIAN_NAME = @"Cartesian";
@@ -24,7 +24,7 @@ NSString * const CRS_CS_VERTICAL_NAME = @"vertical";
 
 @implementation CRSCoordinateSystemTypes
 
-+(NSString *) name: (enum CRSCoordinateSystemType) type{
++(NSString *) name: (CRSCoordinateSystemType) type{
     NSString * name = nil;
     
     switch(type){
@@ -72,8 +72,8 @@ NSString * const CRS_CS_VERTICAL_NAME = @"vertical";
     return name;
 }
 
-+(enum CRSCoordinateSystemType) type: (NSString *) name{
-    enum CRSCoordinateSystemType value = -1;
++(CRSCoordinateSystemType) type: (NSString *) name{
+    CRSCoordinateSystemType value = -1;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -95,7 +95,7 @@ NSString * const CRS_CS_VERTICAL_NAME = @"vertical";
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum CRSCoordinateSystemType)[enumValue intValue];
+            value = (CRSCoordinateSystemType)[enumValue intValue];
         }
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCompoundCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSCompoundCoordinateReferenceSystem.h>
 
 @implementation CRSCompoundCoordinateReferenceSystem
 
@@ -22,7 +22,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type{
     self = [super initWithName:name andType:type];
     if(self != nil){
         _coordinateReferenceSystems = [NSMutableArray array];

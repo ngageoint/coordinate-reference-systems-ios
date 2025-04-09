@@ -6,13 +6,13 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSOperationMethods.h"
+#import <CoordinateReferenceSystems/CRSOperationMethods.h>
 
 @interface CRSOperationMethods()
 
-@property (nonatomic) enum CRSOperationMethodType type;
+@property (nonatomic) CRSOperationMethodType type;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic) enum CRSOperationType operationType;
+@property (nonatomic) CRSOperationType operationType;
 @property (nonatomic, strong) NSMutableArray<NSString *> *aliases;
 @property (nonatomic) int code;
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *parameterCodes;
@@ -96,27 +96,27 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
     
 }
 
-+(CRSOperationMethods *) createWithType: (enum CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (enum CRSOperationType) operationType andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
++(CRSOperationMethods *) createWithType: (CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (CRSOperationType) operationType andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
     return [[CRSOperationMethods alloc] initWithType:type andCode:code andName:name andOperationType:operationType andParameterCodes:parameterCodes];
 }
 
-+(CRSOperationMethods *) createWithType: (enum CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (enum CRSOperationType) operationType andAlias: (NSString *) alias andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
++(CRSOperationMethods *) createWithType: (CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (CRSOperationType) operationType andAlias: (NSString *) alias andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
     return [[CRSOperationMethods alloc] initWithType:type andCode:code andName:name andOperationType:operationType andAlias:alias andParameterCodes:parameterCodes];
 }
 
-+(CRSOperationMethods *) createWithType: (enum CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (enum CRSOperationType) operationType andAliases: (NSArray<NSString *> *) aliases andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
++(CRSOperationMethods *) createWithType: (CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (CRSOperationType) operationType andAliases: (NSArray<NSString *> *) aliases andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
     return [[CRSOperationMethods alloc] initWithType:type andCode:code andName:name andOperationType:operationType andAliases:aliases andParameterCodes:parameterCodes];
 }
 
--(instancetype) initWithType: (enum CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (enum CRSOperationType) operationType andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
+-(instancetype) initWithType: (CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (CRSOperationType) operationType andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
     return [self initWithType:type andCode:code andName:name andOperationType:operationType andAliases:nil andParameterCodes:parameterCodes];
 }
 
--(instancetype) initWithType: (enum CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (enum CRSOperationType) operationType andAlias: (NSString *) alias andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
+-(instancetype) initWithType: (CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (CRSOperationType) operationType andAlias: (NSString *) alias andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
     return [self initWithType:type andCode:code andName:name andOperationType:operationType andAliases:[NSArray arrayWithObject:alias] andParameterCodes:parameterCodes];
 }
 
--(instancetype) initWithType: (enum CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (enum CRSOperationType) operationType andAliases: (NSArray<NSString *> *) aliases andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
+-(instancetype) initWithType: (CRSOperationMethodType) type andCode: (int) code andName: (NSString *) name andOperationType: (CRSOperationType) operationType andAliases: (NSArray<NSString *> *) aliases andParameterCodes: (NSArray<NSNumber *> *) parameterCodes{
     self = [super init];
     if(self != nil){
         _aliases = [NSMutableArray array];
@@ -154,7 +154,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
     }
 }
 
--(enum CRSOperationMethodType) type{
+-(CRSOperationMethodType) type{
     return _type;
 }
 
@@ -162,7 +162,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
     return _name;
 }
 
--(enum CRSOperationType) operationType{
+-(CRSOperationType) operationType{
     return _operationType;
 }
 
@@ -230,7 +230,7 @@ static NSMutableDictionary<NSNumber *, CRSOperationMethods *> *codeMethods = nil
     return result;
 }
 
-+(CRSOperationMethods *) method: (enum CRSOperationMethodType) type{
++(CRSOperationMethods *) method: (CRSOperationMethodType) type{
     return [typeMethods objectForKey:[NSNumber numberWithInteger:type]];
 }
 

@@ -6,10 +6,10 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSWriter.h"
-#import "CRSTextUtils.h"
-#import "CRSTextConstants.h"
-#import "CRSTriaxialEllipsoid.h"
+#import <CoordinateReferenceSystems/CRSWriter.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
+#import <CoordinateReferenceSystems/CRSTextConstants.h>
+#import <CoordinateReferenceSystems/CRSTriaxialEllipsoid.h>
 
 @interface CRSWriter()
 
@@ -139,7 +139,7 @@
 
 }
 
--(void) writeKeywordType: (enum CRSKeywordType) keyword{
+-(void) writeKeywordType: (CRSKeywordType) keyword{
     [self writeKeyword:[CRSKeyword keywordOfType:keyword]];
 }
 
@@ -190,7 +190,7 @@
     [_text appendFormat:@"%d", value];
 }
 
--(void) writeKeywordType: (enum CRSKeywordType) keyword withDelimitedQuotedText: (NSString *) text{
+-(void) writeKeywordType: (CRSKeywordType) keyword withDelimitedQuotedText: (NSString *) text{
     [self writeKeyword:[CRSKeyword keywordOfType:keyword] withDelimitedQuotedText:text];
 }
 
@@ -207,7 +207,7 @@
 
 -(void) writeGeo: (CRSGeoCoordinateReferenceSystem *) crs{
 
-    enum CRSKeywordType keyword;
+    CRSKeywordType keyword;
     switch (crs.type) {
         case CRS_TYPE_GEODETIC:
             keyword = CRS_KEYWORD_GEODCRS;
@@ -252,7 +252,7 @@
 
     [self writeQuotedText:crs.name];
 
-    enum CRSKeywordType baseKeyword;
+    CRSKeywordType baseKeyword;
     switch([crs baseType]){
         case CRS_TYPE_GEODETIC:
             baseKeyword = CRS_KEYWORD_BASEGEODCRS;
@@ -433,8 +433,8 @@
 
 -(void) writeDerivedGeoCRS: (CRSDerivedCoordinateReferenceSystem *) crs{
 
-    enum CRSKeywordType keyword;
-    enum CRSKeywordType baseKeyword;
+    CRSKeywordType keyword;
+    CRSKeywordType baseKeyword;
     switch([crs baseType]){
         case CRS_TYPE_GEODETIC:
             keyword = CRS_KEYWORD_GEODCRS;
@@ -510,7 +510,7 @@
 
     [self writeQuotedText:projectedCrs.name];
 
-    enum CRSKeywordType keyword;
+    CRSKeywordType keyword;
     switch([projectedCrs baseType]){
         case CRS_TYPE_GEODETIC:
             keyword = CRS_KEYWORD_BASEGEODCRS;
@@ -1630,7 +1630,7 @@
     [self writeCoordinateReferenceSystem:crs withKeywordType:CRS_KEYWORD_INTERPOLATIONCRS];
 }
 
--(void) writeCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) crs withKeywordType: (enum CRSKeywordType) keyword{
+-(void) writeCoordinateReferenceSystem: (CRSCoordinateReferenceSystem *) crs withKeywordType: (CRSKeywordType) keyword{
 
     [self writeKeywordType:keyword];
     [self writeLeftDelimiter];

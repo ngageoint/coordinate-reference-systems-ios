@@ -6,9 +6,9 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSEllipsoid.h"
-#import "CRSWriter.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSEllipsoid.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSEllipsoid
 
@@ -41,7 +41,7 @@
     return self;
 }
 
--(enum CRSEllipsoidType) type{
+-(CRSEllipsoidType) type{
     return CRS_ELLIPSOID_OBLATE;
 }
 

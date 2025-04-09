@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSAbridgedCoordinateTransformation.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSAbridgedCoordinateTransformation.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSAbridgedCoordinateTransformation
 
@@ -29,7 +29,7 @@
     return self;
 }
 
--(enum CRSOperationType) operationType{
+-(CRSOperationType) operationType{
     return CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION;
 }
 

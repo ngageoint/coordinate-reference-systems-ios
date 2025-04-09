@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSIdentifier.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSIdentifier.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSIdentifier
 

@@ -6,11 +6,11 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSReader.h"
-#import "CRSTextUtils.h"
-#import "CRSTextConstants.h"
-#import "CRSTriaxialEllipsoid.h"
-#import "CRSUnits.h"
+#import <CoordinateReferenceSystems/CRSReader.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
+#import <CoordinateReferenceSystems/CRSTextConstants.h>
+#import <CoordinateReferenceSystems/CRSTriaxialEllipsoid.h>
+#import <CoordinateReferenceSystems/CRSUnits.h>
 
 NSString *const AXIS_NAME_ABBREV_PATTERN = @"((.+ )|^)\\([a-zA-Z]+\\)$";
 
@@ -48,7 +48,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return crs;
 }
 
-+(CRSObject *) read: (NSString *) text withType: (enum CRSType) expected{
++(CRSObject *) read: (NSString *) text withType: (CRSType) expected{
     return [self read:text withStrict:NO andType:expected];
 }
 
@@ -56,7 +56,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self read:text withStrict:NO andTypes:expected];
 }
 
-+(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict andType: (enum CRSType) expected{
++(CRSObject *) read: (NSString *) text withStrict: (BOOL) strict andType: (CRSType) expected{
     return [self read:text withStrict:strict andTypes:[NSArray arrayWithObject:[NSNumber numberWithInt:expected]]];
 }
 
@@ -375,7 +375,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [CRSKeyword requiredKeyword:[_reader readToken]];
 }
 
--(enum CRSKeywordType) readKeywordType{
+-(CRSKeywordType) readKeywordType{
     return [CRSKeyword requiredType:[_reader readToken]];
 }
 
@@ -387,7 +387,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [CRSKeyword requiredTypes:[_reader readToken]];
 }
 
--(CRSKeyword *) readKeywordWithType: (enum CRSKeywordType) keyword{
+-(CRSKeyword *) readKeywordWithType: (CRSKeywordType) keyword{
     return [self readKeywordWithType:keyword andRequired:YES];
 }
 
@@ -395,7 +395,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readKeywordWithTypes:keywords andRequired:YES];
 }
 
--(CRSKeyword *) readToKeyword: (enum CRSKeywordType) keyword{
+-(CRSKeyword *) readToKeyword: (CRSKeywordType) keyword{
     return [self readToKeywords:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]]];
 }
 
@@ -407,7 +407,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return keyword;
 }
 
--(CRSKeyword *) readKeywordWithType: (enum CRSKeywordType) keyword andRequired: (BOOL) required{
+-(CRSKeyword *) readKeywordWithType: (CRSKeywordType) keyword andRequired: (BOOL) required{
     return [self readKeywordWithTypes:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]] andRequired:required];
 }
 
@@ -499,7 +499,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [CRSKeyword requiredKeyword:[_reader peekToken]];
 }
 
--(enum CRSKeywordType) peekKeywordType{
+-(CRSKeywordType) peekKeywordType{
     return [CRSKeyword requiredType:[_reader peekToken]];
 }
 
@@ -515,7 +515,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [CRSKeyword keyword:[_reader peekToken]];
 }
 
--(enum CRSKeywordType) peekOptionalKeywordType{
+-(CRSKeywordType) peekOptionalKeywordType{
     return [CRSKeyword type:[_reader peekToken]];
 }
 
@@ -531,7 +531,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [CRSKeyword keyword:[_reader peekTokenAtNum:num]];
 }
 
--(enum CRSKeywordType) peekOptionalKeywordTypeAtNum: (int) num{
+-(CRSKeywordType) peekOptionalKeywordTypeAtNum: (int) num{
     return [CRSKeyword type:[_reader peekTokenAtNum:num]];
 }
 
@@ -623,7 +623,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     }
 }
 
--(NSString *) readKeywordDelimitedToken: (enum CRSKeywordType) keyword{
+-(NSString *) readKeywordDelimitedToken: (CRSKeywordType) keyword{
 
     [self readKeywordWithType:keyword];
     
@@ -645,7 +645,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
  *            expected keyword
  * @return matching keyword
  */
--(enum CRSKeywordType) validateKeyword: (enum CRSKeywordType) keyword withExpectedType: (enum CRSKeywordType) expected{
+-(CRSKeywordType) validateKeyword: (CRSKeywordType) keyword withExpectedType: (CRSKeywordType) expected{
     return [self validateKeywords:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]] withExpectedType:expected];
 }
 
@@ -658,7 +658,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
  *            expected keywords
  * @return matching keyword
  */
--(enum CRSKeywordType) validateKeyword: (enum CRSKeywordType) keyword withExpectedTypes: (NSArray<NSNumber *> *) expected{
+-(CRSKeywordType) validateKeyword: (CRSKeywordType) keyword withExpectedTypes: (NSArray<NSNumber *> *) expected{
     return [self validateKeywords:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]] withExpectedTypes:expected];
 }
 
@@ -671,7 +671,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
  *            expected keyword
  * @return matching keyword
  */
--(enum CRSKeywordType) validateKeywords: (NSArray<NSNumber *> *) keywords withExpectedType: (enum CRSKeywordType) expected{
+-(CRSKeywordType) validateKeywords: (NSArray<NSNumber *> *) keywords withExpectedType: (CRSKeywordType) expected{
     return [self validateKeywords:keywords withExpectedTypes:[NSArray arrayWithObject:[NSNumber numberWithInt:expected]]];
 }
 
@@ -684,8 +684,8 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
  *            expected keywords
  * @return matching keyword
  */
--(enum CRSKeywordType) validateKeywords: (NSArray<NSNumber *> *) keywords withExpectedTypes: (NSArray<NSNumber *> *) expected{
-    enum CRSKeywordType keyword = -1;
+-(CRSKeywordType) validateKeywords: (NSArray<NSNumber *> *) keywords withExpectedTypes: (NSArray<NSNumber *> *) expected{
+    CRSKeywordType keyword = -1;
     NSSet<NSNumber *> *expectedSet = [NSSet setWithArray:expected];
     for(NSNumber *kw in keywords){
         if([expectedSet containsObject:kw]){
@@ -721,7 +721,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
  *            keyword
  * @return true if next
  */
--(BOOL) isKeywordNext: (enum CRSKeywordType) keyword{
+-(BOOL) isKeywordNext: (CRSKeywordType) keyword{
     return [self isKeywordsNext:[NSArray arrayWithObject:[NSNumber numberWithInt:keyword]]];
 }
 
@@ -903,7 +903,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readProjectedWithType:CRS_TYPE_GEOGRAPHIC];
 }
 
--(CRSProjectedCoordinateReferenceSystem *) readProjectedWithType: (enum CRSType) expectedBaseType{
+-(CRSProjectedCoordinateReferenceSystem *) readProjectedWithType: (CRSType) expectedBaseType{
 
     CRSProjectedCoordinateReferenceSystem *crs = [CRSProjectedCoordinateReferenceSystem create];
 
@@ -919,7 +919,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
                                                       [NSNumber numberWithInt:CRS_KEYWORD_BASEGEODCRS],
                                                       [NSNumber numberWithInt:CRS_KEYWORD_BASEGEOGCRS],
                                                       nil]];
-    enum CRSType crsType = [CRSTextUtils coordinateReferenceSystemType:type.type];
+    CRSType crsType = [CRSTextUtils coordinateReferenceSystemType:type.type];
     if((int)expectedBaseType >= 0 && crsType != expectedBaseType){
         [NSException raise:@"Unexpected Type" format:@"Unexpected Base Coordinate Reference System Type. expected: %@, found: %@", [CRSTypes name:expectedBaseType], [CRSTypes name:crsType]];
     }
@@ -1980,13 +1980,13 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readUnitWithType:CRS_UNIT_TIME];
 }
 
--(CRSUnit *) readUnitWithType: (enum CRSUnitType) type{
+-(CRSUnit *) readUnitWithType: (CRSUnitType) type{
     
     CRSUnit *unit = [CRSUnit create];
     
     NSArray<NSNumber *> *keywords = [self readKeywordTypes];
     if(type != CRS_UNIT){
-        enum CRSKeywordType crsType = [CRSKeyword type:[CRSUnitTypes name:type]];
+        CRSKeywordType crsType = [CRSKeyword type:[CRSUnitTypes name:type]];
         [self validateKeywords:keywords withExpectedType:crsType];
     }else if(keywords.count == 1){
         type = [CRSTextUtils unitType:[[keywords firstObject] intValue]];
@@ -2078,7 +2078,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     [self readLeftDelimiter];
 
     NSString *csTypeName = [_reader readToken];
-    enum CRSCoordinateSystemType csType = [CRSCoordinateSystemTypes type:csTypeName];
+    CRSCoordinateSystemType csType = [CRSCoordinateSystemTypes type:csTypeName];
     if ((int)csType == -1) {
         [NSException raise:@"Unexpected Type" format:@"Unexpected coordinate system type. found: %@", csTypeName];
     }
@@ -2115,7 +2115,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readAxesWithType:-1];
 }
 
--(NSMutableArray<CRSAxis *> *) readAxesWithType: (enum CRSCoordinateSystemType) type{
+-(NSMutableArray<CRSAxis *> *) readAxesWithType: (CRSCoordinateSystemType) type{
 
     BOOL isTemporalCountMeasure = (int) type != -1 && [CRSTextUtils isTemporalCountMeasure:type];
 
@@ -2142,7 +2142,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readAxisWithType:-1];
 }
 
--(CRSAxis *) readAxisWithType: (enum CRSCoordinateSystemType) type{
+-(CRSAxis *) readAxisWithType: (CRSCoordinateSystemType) type{
 
     CRSAxis *axis = [CRSAxis create];
 
@@ -2165,7 +2165,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     [self readSeparator];
 
     NSString *axisDirectionTypeName = [_reader readToken];
-    enum CRSAxisDirectionType axisDirectionType = [CRSAxisDirectionTypes type:axisDirectionTypeName];
+    CRSAxisDirectionType axisDirectionType = [CRSAxisDirectionTypes type:axisDirectionTypeName];
     if((int)axisDirectionType == -1){
         if([axisDirectionTypeName caseInsensitiveCompare:CRS_WKT_AXIS_DIRECTION_OTHER] == NSOrderedSame){
             axisDirectionType = CRS_AXIS_UNSPECIFIED;
@@ -2476,7 +2476,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readParametersWithType:CRS_TYPE_PROJECTED];
 }
 
--(NSMutableArray<CRSOperationParameter *> *) readParametersWithType: (enum CRSType) type{
+-(NSMutableArray<CRSOperationParameter *> *) readParametersWithType: (CRSType) type{
 
     NSMutableArray<CRSOperationParameter *> *parameters = [NSMutableArray array];
 
@@ -2493,7 +2493,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return parameters;
 }
 
--(CRSOperationParameter *) readParameterWithType: (enum CRSType) type{
+-(CRSOperationParameter *) readParameterWithType: (CRSType) type{
 
     CRSOperationParameter *parameter = [CRSOperationParameter create];
     
@@ -2627,7 +2627,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readParametersAndFilesWithType:CRS_TYPE_DERIVED];
 }
 
--(NSMutableArray<CRSOperationParameter *> *) readParametersAndFilesWithType: (enum CRSType) type{
+-(NSMutableArray<CRSOperationParameter *> *) readParametersAndFilesWithType: (CRSType) type{
 
     NSMutableArray<CRSOperationParameter *> *parameters = [NSMutableArray array];
     
@@ -2705,7 +2705,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readCoordinateReferenceSystemWithKeyword:CRS_KEYWORD_INTERPOLATIONCRS];
 }
 
--(CRSCoordinateReferenceSystem *) readCoordinateReferenceSystemWithKeyword: (enum CRSKeywordType) keyword{
+-(CRSCoordinateReferenceSystem *) readCoordinateReferenceSystemWithKeyword: (CRSKeywordType) keyword{
 
     [self readKeywordWithType:keyword];
     [self readLeftDelimiter];
@@ -2795,7 +2795,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readGeoCompatWithType:CRS_TYPE_GEOGRAPHIC];
 }
 
--(CRSGeoCoordinateReferenceSystem *) readGeoCompatWithType: (enum CRSType) expectedType{
+-(CRSGeoCoordinateReferenceSystem *) readGeoCompatWithType: (CRSType) expectedType{
 
     CRSGeoCoordinateReferenceSystem *crs = [CRSGeoCoordinateReferenceSystem create];
 
@@ -2805,7 +2805,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
                                            [NSNumber numberWithInt:CRS_KEYWORD_GEODCRS],
                                            [NSNumber numberWithInt:CRS_KEYWORD_GEOGCRS],
                                            nil]];
-    enum CRSType crsType = [CRSTextUtils coordinateReferenceSystemType:type.type];
+    CRSType crsType = [CRSTextUtils coordinateReferenceSystemType:type.type];
     if((int)expectedType != -1 && crsType != expectedType){
         [NSException raise:@"Unexpected Type" format:@"Unexpected Coordinate Reference System Type. expected: %@, found: %@", [CRSTypes name:expectedType], [CRSTypes name:crsType]];
     }
@@ -2853,7 +2853,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return [self readProjectedCompatWithType:CRS_TYPE_GEOGRAPHIC];
 }
 
--(CRSProjectedCoordinateReferenceSystem *) readProjectedCompatWithType: (enum CRSType) expectedBaseType{
+-(CRSProjectedCoordinateReferenceSystem *) readProjectedCompatWithType: (CRSType) expectedBaseType{
 
     CRSProjectedCoordinateReferenceSystem *crs = [CRSProjectedCoordinateReferenceSystem create];
 
@@ -3074,7 +3074,7 @@ static NSRegularExpression *axisNameAbbrevExpression = nil;
     return mapProjection;
 }
 
--(CRSCoordinateSystem *) readCoordinateSystemCompatWithType: (enum CRSType) type andReferenceFrame: (CRSReferenceFrame *) datum{
+-(CRSCoordinateSystem *) readCoordinateSystemCompatWithType: (CRSType) type andReferenceFrame: (CRSReferenceFrame *) datum{
 
     CRSCoordinateSystem *coordinateSystem = [CRSCoordinateSystem create];
 

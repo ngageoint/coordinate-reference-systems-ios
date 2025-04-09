@@ -6,12 +6,12 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSPrimeMeridians.h"
-#import "CRSUnits.h"
+#import <CoordinateReferenceSystems/CRSPrimeMeridians.h>
+#import <CoordinateReferenceSystems/CRSUnits.h>
 
 @interface CRSPrimeMeridians()
 
-@property (nonatomic) enum CRSPrimeMeridianType type;
+@property (nonatomic) CRSPrimeMeridianType type;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) double offsetFromGreenwich;
 
@@ -56,20 +56,20 @@ static NSMutableDictionary<NSString *, CRSPrimeMeridians *> *namePrimeMeridians 
 
 }
 
-+(CRSPrimeMeridians *) eastWithType: (enum CRSPrimeMeridianType) type andName: (NSString *) name andDegree: (double) deg andMinute: (double) min andSecond: (double) sec{
++(CRSPrimeMeridians *) eastWithType: (CRSPrimeMeridianType) type andName: (NSString *) name andDegree: (double) deg andMinute: (double) min andSecond: (double) sec{
     double longitude = ((sec / 60. + min) / 60. + deg) * (M_PI / 180.0);
     return [self createWithType:type andName:name andOffset:longitude];
 }
 
-+(CRSPrimeMeridians *) westWithType: (enum CRSPrimeMeridianType) type andName: (NSString *) name andDegree: (double) deg andMinute: (double) min andSecond: (double) sec{
++(CRSPrimeMeridians *) westWithType: (CRSPrimeMeridianType) type andName: (NSString *) name andDegree: (double) deg andMinute: (double) min andSecond: (double) sec{
     return [self eastWithType:type andName:name andDegree:-deg andMinute:-min andSecond:-sec];
 }
 
-+(CRSPrimeMeridians *) createWithType: (enum CRSPrimeMeridianType) type andName: (NSString *) name andOffset: (double) offsetFromGreenwich{
++(CRSPrimeMeridians *) createWithType: (CRSPrimeMeridianType) type andName: (NSString *) name andOffset: (double) offsetFromGreenwich{
     return [[CRSPrimeMeridians alloc] initWithType:type andName:name andOffset:offsetFromGreenwich];
 }
 
-+(CRSPrimeMeridians *) fromType: (enum CRSPrimeMeridianType) type{
++(CRSPrimeMeridians *) fromType: (CRSPrimeMeridianType) type{
     return [typePrimeMeridians objectForKey:[NSNumber numberWithInt:type]];
 }
 
@@ -77,7 +77,7 @@ static NSMutableDictionary<NSString *, CRSPrimeMeridians *> *namePrimeMeridians 
     return [namePrimeMeridians objectForKey:[name lowercaseString]];
 }
 
--(instancetype) initWithType: (enum CRSPrimeMeridianType) type andName: (NSString *) name andOffset: (double) offsetFromGreenwich{
+-(instancetype) initWithType: (CRSPrimeMeridianType) type andName: (NSString *) name andOffset: (double) offsetFromGreenwich{
     self = [super init];
     if(self != nil){
         _type = type;
@@ -87,7 +87,7 @@ static NSMutableDictionary<NSString *, CRSPrimeMeridians *> *namePrimeMeridians 
     return self;
 }
 
--(enum CRSPrimeMeridianType) type{
+-(CRSPrimeMeridianType) type{
     return _type;
 }
 

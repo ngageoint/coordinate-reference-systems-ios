@@ -8,9 +8,7 @@
 
 #import "CRSReaderWriterNgaTest.h"
 #import "CRSTestUtils.h"
-#import "CRSTextUtils.h"
-#import "CRSReader.h"
-#import "CRSWriter.h"
+@import CoordinateReferenceSystems;
 
 @implementation CRSReaderWriterNgaTest
 

@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSProjectedCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSProjectedCoordinateReferenceSystem.h>
 
 @implementation CRSProjectedCoordinateReferenceSystem
 
@@ -22,7 +22,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (enum CRSType) baseType andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+-(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (CRSType) baseType andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:CRS_TYPE_PROJECTED andCoordinateSystem:coordinateSystem];
     if(self != nil){
         _base = [CRSGeoCoordinateReferenceSystem create];
@@ -34,7 +34,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (enum CRSType) baseType andDatumEnsemble: (CRSGeoDatumEnsemble *) datumEnsemble andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+-(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (CRSType) baseType andDatumEnsemble: (CRSGeoDatumEnsemble *) datumEnsemble andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:CRS_TYPE_PROJECTED andCoordinateSystem:coordinateSystem];
     if(self != nil){
         _base = [CRSGeoCoordinateReferenceSystem create];
@@ -46,7 +46,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (enum CRSType) baseType andDynamic: (CRSDynamic *) dynamic andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
+-(instancetype) initWithName: (NSString *) name andBaseName: (NSString *) baseName andBaseType: (CRSType) baseType andDynamic: (CRSDynamic *) dynamic andReferenceFrame: (CRSGeoReferenceFrame *) referenceFrame andMapProjection: (CRSMapProjection *) mapProjection andCoordinateSystem: (CRSCoordinateSystem *) coordinateSystem{
     self = [super initWithName:name andType:CRS_TYPE_PROJECTED andCoordinateSystem:coordinateSystem];
     if(self != nil){
         _base = [CRSGeoCoordinateReferenceSystem create];
@@ -67,11 +67,11 @@
     [[self base] setName:baseName];
 }
 
--(enum CRSType) baseType{
+-(CRSType) baseType{
     return [self base].type;
 }
 
--(void) setBaseType: (enum CRSType) baseType{
+-(void) setBaseType: (CRSType) baseType{
     [[self base] setType:baseType];
 }
 

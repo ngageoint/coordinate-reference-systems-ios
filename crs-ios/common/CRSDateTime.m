@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSDateTime.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSDateTime.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSDateTime
 

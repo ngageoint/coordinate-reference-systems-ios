@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSGeoReferenceFrame.h"
+#import <CoordinateReferenceSystems/CRSGeoReferenceFrame.h>
 
 @implementation CRSGeoReferenceFrame
 
@@ -18,7 +18,7 @@
     return [self initWithType:CRS_TYPE_GEODETIC];
 }
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super initWithType:type];
     return self;
 }
@@ -27,7 +27,7 @@
     return [self initWithName:name andType:CRS_TYPE_GEODETIC andEllipsoid:ellipsoid];
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type andEllipsoid: (CRSEllipsoid *) ellipsoid{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type andEllipsoid: (CRSEllipsoid *) ellipsoid{
     self = [super initWithName:name andType:type];
     if(self != nil){
         [self setEllipsoid:ellipsoid];

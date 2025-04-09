@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSDerivingConversion.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSDerivingConversion.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSDerivingConversion
 
@@ -29,7 +29,7 @@
     return self;
 }
 
--(enum CRSOperationType) operationType{
+-(CRSOperationType) operationType{
     return CRS_OPERATION_DERIVING_CONVERSION;
 }
 

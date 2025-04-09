@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSPointMotionOperation.h"
+#import <CoordinateReferenceSystems/CRSPointMotionOperation.h>
 
 @implementation CRSPointMotionOperation
 
@@ -24,7 +24,7 @@
     return self;
 }
 
--(enum CRSOperationType) operationType{
+-(CRSOperationType) operationType{
     return CRS_OPERATION_POINT_MOTION;
 }
 

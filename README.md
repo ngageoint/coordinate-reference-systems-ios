@@ -20,13 +20,14 @@ For projection conversions between coordinates, see [Projections](https://ngageo
 View the latest [Appledoc](http://ngageoint.github.io/coordinate-reference-systems-ios/docs/api/)
 
 ```objectivec
+@import CoordinateReferenceSystems;
 
 // NSString *wkt = ...
 
 CRSObject *crs = [CRSReader read:wkt];
 
-enum CRSType type = crs.type;
-enum CRSCategoryType category = crs.categoryType;
+CRSType type = crs.type;
+CRSCategoryType category = crs.categoryType;
 
 NSString *text = [CRSWriter write:crs];
 NSString *prettyText = [CRSWriter writePretty:crs];
@@ -164,45 +165,50 @@ NSString *projTextFromWKT = [CRSProjParser paramsTextFromText:wkt];
 
 ### Build ###
 
-[![Build & Test](https://github.com/ngageoint/coordinate-reference-systems-ios/workflows/Build%20&%20Test/badge.svg)](https://github.com/ngageoint/coordinate-reference-systems-ios/actions/workflows/build-test.yml)
+[![Build](https://github.com/ngageoint/coordinate-reference-systems-ios/actions/workflows/build.yml/badge.svg)](https://github.com/ngageoint/coordinate-reference-systems-ios/actions/workflows/build.yml)
 
-Build this repository using Xcode and/or CocoaPods:
+Build this repository using Swift Package Manager:
 
-    pod repo update
-    pod install
+    swift build
 
-Open crs-ios.xcworkspace in Xcode or build from command line:
-
-    xcodebuild -workspace 'crs-ios.xcworkspace' -scheme crs-ios build
 
 Run tests from Xcode or from command line:
 
-    xcodebuild test -workspace 'crs-ios.xcworkspace' -scheme crs-ios -destination 'platform=iOS Simulator,name=iPhone 15'
+    swift test
+
+Open the Swift Package in Xcode from command line:
+
+    open Package.swift
 
 ### Include Library ###
 
-Include this repository by specifying it in a Podfile using a supported option.
+Use this library via SPM in your Package.swift:
 
-Pull from [CocoaPods](https://cocoapods.org/pods/crs-ios):
+    dependencies: [
+        .package(url: "https://github.com/ngageoint/coordinate-reference-systems-ios.git", branch: "release/2.0.0"),
+    ]
+    
+Or as a tagged release:
 
-    pod 'crs-ios', '~> 1.0.5'
+    dependencies: [
+        .package(url: "https://github.com/ngageoint/coordinate-reference-systems-ios.git", from: "2.0.0"),
+    ]
 
-Pull from GitHub:
+Reference it in your Package.swift target:
 
-    pod 'crs-ios', :git => 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :branch => 'master'
-    pod 'crs-ios', :git => 'https://github.com/ngageoint/coordinate-reference-systems-ios.git', :tag => '1.0.5'
-
-Include as local project:
-
-    pod 'crs-ios', :path => '../coordinate-reference-systems-ios'
+    .target(
+        name: "projections",
+        dependencies: [
+            .product(name: "CoordinateReferenceSystems", package: "coordinate-reference-systems-ios"),
+        ],
+    ),
 
 ### Swift ###
 
-To use from Swift, import the crs-ios bridging header from the Swift project's bridging header
-
-    #import "crs-ios-Bridging-Header.h"
+Import the framework in Swift.
 
 ```swift
+import CoordinateReferenceSystems
 
 // var wkt: String = ...
 
@@ -216,44 +222,44 @@ let prettyText : String = CRSWriter.writePretty(crs)
 
 switch category{
 
-case CRS_CATEGORY_CRS:
+case .CATEGORY_CRS:
 
     let coordRefSys : CRSCoordinateReferenceSystem = crs as! CRSCoordinateReferenceSystem
 
     switch type {
-    case CRS_TYPE_BOUND:
+    case .TYPE_BOUND:
         let bound : CRSBoundCoordinateReferenceSystem = coordRefSys as! CRSBoundCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_COMPOUND:
+    case .TYPE_COMPOUND:
         let compound : CRSCompoundCoordinateReferenceSystem = coordRefSys as! CRSCompoundCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_DERIVED:
+    case .TYPE_DERIVED:
         let derived : CRSDerivedCoordinateReferenceSystem = coordRefSys as! CRSDerivedCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_ENGINEERING:
+    case .TYPE_ENGINEERING:
         let engineering : CRSEngineeringCoordinateReferenceSystem = coordRefSys as! CRSEngineeringCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_GEODETIC, CRS_TYPE_GEOGRAPHIC:
+    case .TYPE_GEODETIC, .TYPE_GEOGRAPHIC:
         let geo : CRSGeoCoordinateReferenceSystem = coordRefSys as! CRSGeoCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_PARAMETRIC:
+    case .TYPE_PARAMETRIC:
         let parametric : CRSParametricCoordinateReferenceSystem = coordRefSys as! CRSParametricCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_PROJECTED:
+    case .TYPE_PROJECTED:
         let projected : CRSProjectedCoordinateReferenceSystem = coordRefSys as! CRSProjectedCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_TEMPORAL:
+    case .TYPE_TEMPORAL:
         let temporal : CRSTemporalCoordinateReferenceSystem = coordRefSys as! CRSTemporalCoordinateReferenceSystem
         // ...
         break
-    case CRS_TYPE_VERTICAL:
+    case .TYPE_VERTICAL:
         let vertical : CRSVerticalCoordinateReferenceSystem = coordRefSys as! CRSVerticalCoordinateReferenceSystem
         // ...
         break
@@ -264,27 +270,27 @@ case CRS_CATEGORY_CRS:
     // ...
     break
 
-case CRS_CATEGORY_METADATA:
+case .CATEGORY_METADATA:
 
     let metadata : CRSCoordinateMetadata = crs as! CRSCoordinateMetadata
 
     // ...
     break
 
-case CRS_CATEGORY_OPERATION:
+case .CATEGORY_OPERATION:
 
     let operation = crs as! CRSOperation
 
     switch type {
-    case CRS_TYPE_CONCATENATED_OPERATION:
+    case .TYPE_CONCATENATED_OPERATION:
         let concatenatedOperation : CRSConcatenatedOperation = operation as! CRSConcatenatedOperation
         // ...
         break
-    case CRS_TYPE_COORDINATE_OPERATION:
+    case .TYPE_COORDINATE_OPERATION:
         let coordinateOperation : CRSCoordinateOperation = operation as! CRSCoordinateOperation
         // ...
         break
-    case CRS_TYPE_POINT_MOTION_OPERATION:
+    case .TYPE_POINT_MOTION_OPERATION:
         let pointMotionOperation : CRSPointMotionOperation = operation as! CRSPointMotionOperation
         // ...
         break

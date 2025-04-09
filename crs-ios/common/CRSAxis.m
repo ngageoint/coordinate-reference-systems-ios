@@ -6,9 +6,9 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSAxis.h"
-#import "CRSWriter.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSAxis.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSAxis
 
@@ -21,7 +21,7 @@
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andDirection: (enum CRSAxisDirectionType) direction{
+-(instancetype) initWithName: (NSString *) name andDirection: (CRSAxisDirectionType) direction{
     self = [super init];
     if(self != nil){
         [self setName:name];

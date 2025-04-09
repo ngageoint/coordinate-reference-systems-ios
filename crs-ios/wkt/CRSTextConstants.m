@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTextConstants.h"
+#import <CoordinateReferenceSystems/CRSTextConstants.h>
 
 NSString * const CRS_WKT_SEPARATOR = @",";
 NSString * const CRS_WKT_LEFT_DELIMITER = @"[";

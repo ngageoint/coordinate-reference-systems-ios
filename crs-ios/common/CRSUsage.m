@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSUsage.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSUsage.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSUsage
 

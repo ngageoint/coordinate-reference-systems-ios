@@ -6,11 +6,11 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSKeyword.h"
+#import <CoordinateReferenceSystems/CRSKeyword.h>
 
 @interface CRSKeyword()
 
-@property (nonatomic) enum CRSKeywordType type;
+@property (nonatomic) CRSKeywordType type;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray<NSString *> *keywords;
 
@@ -130,27 +130,27 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     
 }
 
-+(CRSKeyword *) createWithType: (enum CRSKeywordType) type andName: (NSString *) name{
++(CRSKeyword *) createWithType: (CRSKeywordType) type andName: (NSString *) name{
     return [[CRSKeyword alloc] initWithType:type andName:name];
 }
 
-+(CRSKeyword *) createWithType: (enum CRSKeywordType) type andName: (NSString *) name andKeyword: (NSString *) keyword{
++(CRSKeyword *) createWithType: (CRSKeywordType) type andName: (NSString *) name andKeyword: (NSString *) keyword{
     return [[CRSKeyword alloc] initWithType:type andName:name andKeyword:keyword];
 }
 
-+(CRSKeyword *) createWithType: (enum CRSKeywordType) type andName: (NSString *) name andKeywords: (NSArray<NSString *> *) keywords{
++(CRSKeyword *) createWithType: (CRSKeywordType) type andName: (NSString *) name andKeywords: (NSArray<NSString *> *) keywords{
     return [[CRSKeyword alloc] initWithType:type andName:name andKeywords:keywords];
 }
 
--(instancetype) initWithType: (enum CRSKeywordType) type andName: (NSString *) name{
+-(instancetype) initWithType: (CRSKeywordType) type andName: (NSString *) name{
     return [self initWithType:type andName:name andKeywords:nil];
 }
 
--(instancetype) initWithType: (enum CRSKeywordType) type andName: (NSString *) name andKeyword: (NSString *) keyword{
+-(instancetype) initWithType: (CRSKeywordType) type andName: (NSString *) name andKeyword: (NSString *) keyword{
     return [self initWithType:type andName:name andKeywords:[NSArray arrayWithObject:keyword]];
 }
 
--(instancetype) initWithType: (enum CRSKeywordType) type andName: (NSString *) name andKeywords: (NSArray<NSString *> *) keywords{
+-(instancetype) initWithType: (CRSKeywordType) type andName: (NSString *) name andKeywords: (NSArray<NSString *> *) keywords{
     self = [super init];
     if(self != nil){
         _keywords = [NSMutableArray array];
@@ -164,7 +164,7 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return self;
 }
 
--(enum CRSKeywordType) type{
+-(CRSKeywordType) type{
     return _type;
 }
 
@@ -217,8 +217,8 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return kw;
 }
 
-+(enum CRSKeywordType) type: (NSString *) keyword{
-    enum CRSKeywordType type = -1;
++(CRSKeywordType) type: (NSString *) keyword{
+    CRSKeywordType type = -1;
     CRSKeyword *kw = [self keyword:keyword];
     if(kw != nil){
         type = kw.type;
@@ -234,8 +234,8 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return kw;
 }
 
-+(enum CRSKeywordType) requiredType: (NSString *) keyword{
-    enum CRSKeywordType type = [self type:keyword];
++(CRSKeywordType) requiredType: (NSString *) keyword{
+    CRSKeywordType type = [self type:keyword];
     if((int)type == -1){
         [NSException raise:@"No Keyword" format:@"No Coordinate Reference System Keyword for value: %@", keyword];
     }
@@ -278,11 +278,11 @@ static NSMutableDictionary<NSNumber *, CRSKeyword *> *typeKeywords = nil;
     return types;
 }
 
-+(CRSKeyword *) keywordOfType: (enum CRSKeywordType) type{
++(CRSKeyword *) keywordOfType: (CRSKeywordType) type{
     return [typeKeywords objectForKey:[NSNumber numberWithInt:type]];
 }
 
-+(NSString *) nameOfType: (enum CRSKeywordType) type{
++(NSString *) nameOfType: (CRSKeywordType) type{
     NSString *name = nil;
     CRSKeyword *keyword = [self keywordOfType:type];
     if(keyword != nil){

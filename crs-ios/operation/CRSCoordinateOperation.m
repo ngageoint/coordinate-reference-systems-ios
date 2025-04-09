@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCoordinateOperation.h"
+#import <CoordinateReferenceSystems/CRSCoordinateOperation.h>
 
 @implementation CRSCoordinateOperation
 
@@ -27,7 +27,7 @@
     return self;
 }
 
--(enum CRSOperationType) operationType{
+-(CRSOperationType) operationType{
     return CRS_OPERATION_COORDINATE;
 }
 

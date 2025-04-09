@@ -6,14 +6,14 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSEllipsoidTypes.h"
+#import <CoordinateReferenceSystems/CRSEllipsoidTypes.h>
 
 NSString * const CRS_ELLIPSOID_OBLATE_NAME = @"OBLATE";
 NSString * const CRS_ELLIPSOID_TRIAXIAL_NAME = @"TRIAXIAL";
 
 @implementation CRSEllipsoidTypes
 
-+(NSString *) name: (enum CRSEllipsoidType) type{
++(NSString *) name: (CRSEllipsoidType) type{
     NSString * name = nil;
     
     switch(type){
@@ -28,8 +28,8 @@ NSString * const CRS_ELLIPSOID_TRIAXIAL_NAME = @"TRIAXIAL";
     return name;
 }
 
-+(enum CRSEllipsoidType) type: (NSString *) name{
-    enum CRSEllipsoidType value = -1;
++(CRSEllipsoidType) type: (NSString *) name{
+    CRSEllipsoidType value = -1;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -40,7 +40,7 @@ NSString * const CRS_ELLIPSOID_TRIAXIAL_NAME = @"TRIAXIAL";
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum CRSEllipsoidType)[enumValue intValue];
+            value = (CRSEllipsoidType)[enumValue intValue];
         }
     }
     

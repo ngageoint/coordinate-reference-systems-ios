@@ -6,9 +6,9 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSDatumEnsemble.h"
-#import "CRSWriter.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSDatumEnsemble.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSDatumEnsemble
 

@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTemporalCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSTemporalCoordinateReferenceSystem.h>
 
 @implementation CRSTemporalCoordinateReferenceSystem
 

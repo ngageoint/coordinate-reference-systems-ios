@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSVerticalCoordinateReferenceSystem.h"
+#import <CoordinateReferenceSystems/CRSVerticalCoordinateReferenceSystem.h>
 
 @implementation CRSVerticalCoordinateReferenceSystem
 

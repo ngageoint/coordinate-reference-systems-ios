@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSOperationTypes.h"
+#import <CoordinateReferenceSystems/CRSOperationTypes.h>
 
 NSString * const CRS_OPERATION_COORDINATE_NAME = @"COORDINATE";
 NSString * const CRS_OPERATION_POINT_MOTION_NAME = @"POINT_MOTION";
@@ -16,7 +16,7 @@ NSString * const CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME = @"ABRID
 
 @implementation CRSOperationTypes
 
-+(NSString *) name: (enum CRSOperationType) type{
++(NSString *) name: (CRSOperationType) type{
     NSString * name = nil;
     
     switch(type){
@@ -40,8 +40,8 @@ NSString * const CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME = @"ABRID
     return name;
 }
 
-+(enum CRSOperationType) type: (NSString *) name{
-    enum CRSOperationType value = -1;
++(CRSOperationType) type: (NSString *) name{
+    CRSOperationType value = -1;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -55,7 +55,7 @@ NSString * const CRS_OPERATION_ABRIDGED_COORDINATE_TRANSFORMATION_NAME = @"ABRID
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum CRSOperationType)[enumValue intValue];
+            value = (CRSOperationType)[enumValue intValue];
         }
     }
     

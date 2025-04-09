@@ -8,7 +8,7 @@
 
 #import "CRSProjParserTest.h"
 #import "CRSTestUtils.h"
-#import "CRSProjParser.h"
+@import CoordinateReferenceSystems;
 
 @implementation CRSProjParserTest
 

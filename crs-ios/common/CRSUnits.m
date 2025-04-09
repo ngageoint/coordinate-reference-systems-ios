@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSUnits.h"
+#import <CoordinateReferenceSystems/CRSUnits.h>
 
 NSString * const CRS_UNITS_MICROMETRE_NAME = @"micrometre";
 NSString * const CRS_UNITS_MILLIMETRE_NAME = @"millimetre";
@@ -85,14 +85,14 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
 
 +(CRSUnit *) unitFromName: (NSString *) name{
     CRSUnit *unit = nil;
-    enum CRSUnitsType type = [self typeFromName:name];
+    CRSUnitsType type = [self typeFromName:name];
     if((int) type != -1){
         unit = [self unitFromType:type];
     }
     return unit;
 }
 
-+(CRSUnit *) unitFromType: (enum CRSUnitsType) type{
++(CRSUnit *) unitFromType: (CRSUnitsType) type{
     
     CRSUnit *unit = nil;
     
@@ -188,8 +188,8 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     return unit;
 }
 
-+(enum CRSUnitsType) typeFromName: (NSString *) name{
-    enum CRSUnitsType type = -1;
++(CRSUnitsType) typeFromName: (NSString *) name{
+    CRSUnitsType type = -1;
     NSNumber *typeNumber = [nameTypes objectForKey:[name lowercaseString]];
     if(typeNumber != nil){
         type = [typeNumber intValue];
@@ -197,7 +197,7 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     return type;
 }
 
-+(enum CRSUnitsType) typeFromUnit: (CRSUnit *) unit{
++(CRSUnitsType) typeFromUnit: (CRSUnit *) unit{
     return [self typeFromName:unit.name];
 }
 
@@ -313,8 +313,8 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     return [CRSUnit createWithType:CRS_UNIT_TIME andName:CRS_UNITS_CALENDAR_MONTH_NAME];
 }
 
-+(enum CRSUnitType) unitTypeFromName: (NSString *) name{
-    enum CRSUnitType type = -1;
++(CRSUnitType) unitTypeFromName: (NSString *) name{
+    CRSUnitType type = -1;
     CRSUnit *unit = [self unitFromName:name];
     if(unit != nil){
         type = unit.type;
@@ -322,7 +322,7 @@ static NSMutableDictionary<NSString *, NSNumber *> *nameTypes = nil;
     return type;
 }
 
-+(CRSUnit *) defaultUnit: (enum CRSUnitType) type{
++(CRSUnit *) defaultUnit: (CRSUnitType) type{
     
     CRSUnit *defaultUnit = nil;
     

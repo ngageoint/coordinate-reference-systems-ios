@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSCoordinateMetadata.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSCoordinateMetadata.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSCoordinateMetadata
 

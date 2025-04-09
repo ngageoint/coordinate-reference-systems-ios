@@ -6,17 +6,17 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSOperation.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSOperation.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @implementation CRSOperation
 
--(instancetype) initWithType: (enum CRSType) type{
+-(instancetype) initWithType: (CRSType) type{
     self = [super initWithType:type];
     return self;
 }
 
--(instancetype) initWithName: (NSString *) name andType: (enum CRSType) type andSource: (CRSCoordinateReferenceSystem *) source{
+-(instancetype) initWithName: (NSString *) name andType: (CRSType) type andSource: (CRSCoordinateReferenceSystem *) source{
     self = [super initWithName:name andType:type];
     if(self != nil){
         [self setSource:source];

@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSOperationMethod.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSOperationMethod.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSOperationMethod
 

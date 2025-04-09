@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSExtent.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSExtent.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSExtent
 

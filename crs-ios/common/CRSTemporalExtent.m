@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTemporalExtent.h"
-#import "CRSWriter.h"
+#import <CoordinateReferenceSystems/CRSTemporalExtent.h>
+#import <CoordinateReferenceSystems/CRSWriter.h>
 
 @implementation CRSTemporalExtent
 

@@ -4,9 +4,14 @@ Adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## 1.0.6 (TBD)
+## 2.0.0 (6-3-2025)
 
-* TBD
+* Swift Package Manager support exposes public headers and restructures code for SPM format.
+* Renamed framework from crs-ios to CoordinateReferenceSystems in SPM (dashes break SPM bundle resources)
+* Updated to use `NS_ENUM` for C `enum` for Swift/Objective-C interoperability
+* Updated tests (Objective-C based and Swift based tests)
+* Removed Cocoapods (deprecated)
+* Updated build instructions and github workflows
 
 ## [1.0.5](https://github.com/ngageoint/coordinate-reference-systems-ios/releases/tag/1.0.5) (11-07-2023)
 

@@ -8,10 +8,7 @@
 
 #import "CRSReaderWriterTest.h"
 #import "CRSTestUtils.h"
-#import "CRSReader.h"
-#import "CRSWriter.h"
-#import "CRSTextUtils.h"
-#import "CRSTriaxialEllipsoid.h"
+@import CoordinateReferenceSystems;
 
 @implementation CRSReaderWriterTest
 

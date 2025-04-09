@@ -6,7 +6,7 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSAxisDirectionTypes.h"
+#import <CoordinateReferenceSystems/CRSAxisDirectionTypes.h>
 
 NSString * const CRS_AXIS_AFT_NAME = @"aft";
 NSString * const CRS_AXIS_AWAY_FROM_NAME = @"awayFrom";
@@ -51,7 +51,7 @@ NSString * const CRS_AXIS_WEST_SOUTH_WEST_NAME = @"westSouthWest";
 
 @implementation CRSAxisDirectionTypes
 
-+(NSString *) name: (enum CRSAxisDirectionType) type{
++(NSString *) name: (CRSAxisDirectionType) type{
     NSString * name = nil;
     
     switch(type){
@@ -180,8 +180,8 @@ NSString * const CRS_AXIS_WEST_SOUTH_WEST_NAME = @"westSouthWest";
     return name;
 }
 
-+(enum CRSAxisDirectionType) type: (NSString *) name{
-    enum CRSAxisDirectionType value = -1;
++(CRSAxisDirectionType) type: (NSString *) name{
+    CRSAxisDirectionType value = -1;
     
     if(name != nil){
         name = [name uppercaseString];
@@ -230,7 +230,7 @@ NSString * const CRS_AXIS_WEST_SOUTH_WEST_NAME = @"westSouthWest";
                                ];
         NSNumber *enumValue = [types objectForKey:name];
         if(enumValue != nil){
-            value = (enum CRSAxisDirectionType)[enumValue intValue];
+            value = (CRSAxisDirectionType)[enumValue intValue];
         }
     }
     

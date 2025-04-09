@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSProjParams.h"
-#import "CRSProjConstants.h"
+#import <CoordinateReferenceSystems/CRSProjParams.h>
+#import <CoordinateReferenceSystems/CRSProjConstants.h>
 
 @implementation CRSProjParams
 

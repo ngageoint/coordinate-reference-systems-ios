@@ -6,8 +6,8 @@
 //  Copyright © 2021 NGA. All rights reserved.
 //
 
-#import "CRSTextReader.h"
-#import "CRSTextUtils.h"
+#import <CoordinateReferenceSystems/CRSTextReader.h>
+#import <CoordinateReferenceSystems/CRSTextUtils.h>
 
 @interface CRSTextReader()
 
